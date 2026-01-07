@@ -538,90 +538,12 @@ function Contact() {
                                         <p>Home</p>
                                     </Link>
                                 </li>
-
-
-                            {/* portfolio navbar button*/}
-                                <li 
-                                    ref={portfolioRef}
-                                    className={`button portfolio-dropdown-container ${isPortfolioDropdownOpen ? 'active-portfolio' : ''}`}
-                                >
-                                    <div 
-                                    className="portfolio-link-wrapper"
-                                    onClick={handlePortfolioClick}
-                                    >
-                                        <img src="/images/Painting.ico" className='paint-icon' alt='portfolio'/>
-                                        <p>Portfolio</p>
-                                        <div className="dropdown-arrow">
-                                            <img src="/images/downward-arrow.png" className='caret-down' alt='portfolio'/>
-                                        </div>
-                                    </div>
-
-                                    {isPortfolioDropdownOpen && (
-                                    
-                                        <div 
-                                            className="portfolio-dropdown"
-                                            onClick={(e) => e.stopPropagation()}
-                                        >
-                                            <Link
-                                                to="/portfolio" 
-                                                className="dropdown-item"
-                                                onClick={() => setIsPortfolioDropdownOpen(false)}
-                                            >
-                                                <span className="dropdown-icon">📁</span>
-                                                <span>All Projects</span>
-                                            </Link>
-                                            <Link 
-                                                to="/webcraft"
-                                                className="dropdown-item"
-                                                onClick={() => setIsPortfolioDropdownOpen(false)}
-                                            >
-                                                <span className="dropdown-icon">🌐</span>
-                                                <span>WebCraft</span>
-                                            </Link>
-                                            <Link 
-                                                to="/personal"
-                                                className="dropdown-item"
-                                                onClick={() => setIsPortfolioDropdownOpen(false)}
-                                            >
-                                                <span className="dropdown-icon">🎨</span>
-                                                <span>Personal</span>
-                                            </Link>
-                                            <Link 
-                                                to="/ux"
-                                                className="dropdown-item"
-                                                onClick={() => setIsPortfolioDropdownOpen(false)}
-                                            >
-                                                <span className="dropdown-icon">🎮</span>
-                                                <span>UX/UI Design</span>
-                                            </Link>
-                                            <Link 
-                                                to="/ai"
-                                                className="dropdown-item"
-                                                onClick={() => setIsPortfolioDropdownOpen(false)}
-                                            >
-                                                <span className="dropdown-icon">🕐</span>
-                                                <span>AI & Python</span>
-                                            </Link>
-                                        </div>
-                                    )}
-                                </li>
-
-
-
-
-
                                 <li className='button'>
-                                    <Link to="/resume">
-                                        <img src="/images/resume.png" className='resume-icon' alt='resume'></img>
-                                        <p>Resume</p>
-                                    </Link>
-                                </li>
-                                {/* <li className='button'>
                                     <Link to="/about">
-                                        <img src="/src/assets/resume.png" className='resume-icon' alt='about'></img>
+                                        <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
                                         <p>About</p>
                                     </Link>
-                                </li> */}
+                                </li>
                                 <li className={`button ${location.pathname === '/contact' ? 'active-contact' : ''}`}>
                                     <Link to="/contact">
                                         <img src={send} className='contact-icon' alt='contact'></img>

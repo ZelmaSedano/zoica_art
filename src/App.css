@@ -690,10 +690,8 @@ nav ul li a p{
 }
 .img-grid img {
   width: 100%;
-  height: auto;
 }
-/* add these new styles */
-.image-container {
+.grid-container {
   position: relative;
   display: inline-block;
 }

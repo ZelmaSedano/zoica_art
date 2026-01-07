@@ -237,18 +237,6 @@ function About() {
                                         <p>Home</p>
                                     </Link>
                                 </li>
-                                <li className='button'>
-                                    <Link to="/portfolio">
-                                        <img src="/src/assets/painting.ico" className='paint-icon' alt='portfolio'/>
-                                        <p>Portfolio</p>
-                                    </Link>
-                                </li>
-                                <li className='button'>
-                                    <Link to="/resume">
-                                        <img src="/src/assets/resume.png" className='resume-icon' alt='resume'></img>
-                                        <p>Resume</p>
-                                    </Link>
-                                </li>
                                 <li className={`button ${location.pathname === '/about' ? 'active-about' : ''}`}>
                                     <Link to="/about">
                                         <img src="/src/assets/resume.png" className='resume-icon' alt='about'></img>

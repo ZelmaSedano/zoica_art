@@ -24,16 +24,6 @@ type HoroscopeData = {
 
 const images = [
         {
-            title:'Joten',
-            id: '7',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Princess',
-            id: '8',
-            url: 'http://www.etsy.com'
-        },
-        {
             title:'Big Scary',
             id: '12',
             url: 'http://www.etsy.com'
@@ -43,14 +33,24 @@ const images = [
             id: '13',
             url: 'http://www.etsy.com'
         },
+                {
+            title:'Wizard',
+            id: '19',
+            url: 'http://www.etsy.com'
+        },
+        {
+            title:'Princess',
+            id: '8',
+            url: 'http://www.etsy.com'
+        },
         {
             title:'Chronic Wasting',
             id: '14',
             url: 'http://www.etsy.com'
         },
         {
-            title:'Wizard',
-            id: '19',
+            title:'Joten',
+            id: '7',
             url: 'http://www.etsy.com'
         }
     ];
@@ -550,7 +550,6 @@ function Home() {
                         {/* *************************** NAVBAR ************************/}
                         <nav className='navbar'>
                             <ul>
-                                {/* allows you to style the Home button when it's the router path */}
                                 <li className={`button left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
                                     <Link to="/">
                                         <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
@@ -558,20 +557,13 @@ function Home() {
                                     </Link>
                                 </li>
 
-
-                                {/* portfolio navbar button*/}
                                 <li className='button'>
                                     <Link to="/about">
                                         <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
                                         <p>About</p>
                                     </Link>
                                 </li>
-                                {/* <li className='button'>
-                                    <Link to="/about">
-                                        <img src="/src/assets/resume.png" className='resume-icon' alt='about'></img>
-                                        <p>About</p>
-                                    </Link>
-                                </li> */}
+
                                 <li className='button'>
                                     <Link to="/contact">
                                         <img src={send} className='contact-icon' alt='contact'></img>
@@ -609,7 +601,7 @@ function Home() {
                         <div className="img-grid">
                             {images.map((image, index) => (
                                 <div key={index}>
-                                    <div className='image-container'>
+                                    <div className='grid-container'>
                                         <div className='image-title'>{image.title}</div>
                                         <a href={image.url} target="_blank" rel="noopener noreferrer">
                                             <img
