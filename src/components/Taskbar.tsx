@@ -72,7 +72,7 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
                 onClick={toggleWindow}
                 >
                 <img src="/images/connections.ico" className='connections-icon' alt="icon"/>
-                <span className="devscape-text">DevScape</span>
+                <span className="devscape-text">Zoica Browser</span>
                 </button>
             </div>
 

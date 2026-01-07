@@ -22,6 +22,39 @@ type HoroscopeData = {
     };
 };
 
+const images = [
+        {
+            title:'Joten',
+            id: '7',
+            url: 'http://www.etsy.com'
+        },
+        {
+            title:'Princess',
+            id: '8',
+            url: 'http://www.etsy.com'
+        },
+        {
+            title:'Big Scary',
+            id: '12',
+            url: 'http://www.etsy.com'
+        },
+        {
+            title:'Hanging Man',
+            id: '13',
+            url: 'http://www.etsy.com'
+        },
+        {
+            title:'Chronic Wasting',
+            id: '14',
+            url: 'http://www.etsy.com'
+        },
+        {
+            title:'Wizard',
+            id: '19',
+            url: 'http://www.etsy.com'
+        }
+    ];
+
 function Home() {
     // portfolio dropdown
     const portfolioRef = useRef<HTMLLIElement>(null);
@@ -248,12 +281,6 @@ function Home() {
         };
     }, [isDragging, dragOffset]);
 
-    // portfolio dropdown
-    const handlePortfolioClick = (e: React.MouseEvent) => {
-        // fixes window drag breaking, if you don't include this the blue-bar drag 
-        e.stopPropagation();
-        setIsPortfolioDropdownOpen(!isPortfolioDropdownOpen);
-    };
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (portfolioRef.current && !portfolioRef.current.contains(event.target as Node)) {
@@ -512,7 +539,7 @@ function Home() {
                     <header>
                         <section className='blue-bar'>
                             <img src="/images/connections.ico" className='icon' alt="icon"/>
-                            <section className='blue-bar-text'>DevScape - Val Sedano</section>
+                            <section className='blue-bar-text'>Zoica Browser</section>
 
                             <div className="button-container">
                                 <button className='x-button' onClick={toggleWindow}>✕</button>
@@ -533,87 +560,10 @@ function Home() {
 
 
                                 {/* portfolio navbar button*/}
-                                <li 
-                                    ref={portfolioRef}
-                                    className={`button portfolio-dropdown-container ${isPortfolioDropdownOpen ? 'active-portfolio' : ''}`}
-                                >
-                                    <div 
-                                    className="portfolio-link-wrapper"
-                                    onClick={handlePortfolioClick}
-                                    >
-                                        <img src="/images/Painting.ico" className='paint-icon' alt='portfolio'/>
-                                        <p>Portfolio</p>
-                                        <div className="dropdown-arrow">
-                                            <img src="/images/downward-arrow.png" className='caret-down' alt='portfolio'/>
-                                        </div>
-                                    </div>
-
-                                    {isPortfolioDropdownOpen && (
-                                    
-                                        <div 
-                                            className="portfolio-dropdown"
-                                            onClick={(e) => e.stopPropagation()}
-                                        >
-                                            <Link 
-                                                to="/portfolio" 
-                                                className="dropdown-item"
-                                                onClick={() => setIsPortfolioDropdownOpen(false)}
-                                            >
-                                                <span className="dropdown-icon">📁</span>
-                                                <span>All Projects</span>
-                                            </Link>
-                                            <Link 
-                                                to="/webcraft"
-                                                className="dropdown-item"
-                                                onClick={() => setIsPortfolioDropdownOpen(false)}
-                                            >
-                                                <span className="dropdown-icon">🌐</span>
-                                                <span>WebCraft</span>
-                                            </Link>
-                                            <Link 
-                                                to="/personal"
-                                                className="dropdown-item"
-                                                onClick={() => setIsPortfolioDropdownOpen(false)}
-                                            >
-                                                <span className="dropdown-icon">🎨</span>
-                                                <span>Personal</span>
-                                            </Link>
-                                            <Link 
-                                                to="/ux"
-                                                className="dropdown-item"
-                                                onClick={() => setIsPortfolioDropdownOpen(false)}
-                                            >
-                                                <span className="dropdown-icon">🎮</span>
-                                                <span>UX/UI Design</span>
-                                            </Link>
-                                            <Link 
-                                                to="/ai"
-                                                className="dropdown-item"
-                                                onClick={() => setIsPortfolioDropdownOpen(false)}
-                                            >
-                                                <span className="dropdown-icon">🕐</span>
-                                                <span>AI & Python</span>
-                                            </Link>
-                                        </div>
-                                    )}
-                                </li>
-
-                                {/* <li className='button'>
-                                    <Link to="/portfolio">
-                                        <img src="/images/Painting.ico" className='paint-icon' alt='portfolio'/>
-                                        <p>Portfolio</p>
-                                    </Link>
-                                </li> */}
-
-
-
-
-
-
                                 <li className='button'>
-                                    <Link to="/resume">
-                                        <img src="/images/resume.png"className='resume-icon' alt='resume'></img>
-                                        <p>Resume</p>
+                                    <Link to="/about">
+                                        <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
+                                        <p>About</p>
                                     </Link>
                                 </li>
                                 {/* <li className='button'>
@@ -650,25 +600,29 @@ function Home() {
                     {/* window content */}
                     <div className='content'>
                         <div className='homepage-banners'>
-                            <img className='computer' src="/images/computer_1.png" alt="computer_1" />
                             <div className='inner-banner-text'>
-                                <p className='banner'>-- Val Sedano --</p>
-                                <p className='banner-1'>RetroWave Designer & Developer</p>
+                                <p className='banner'>Zoica Art</p>
+                                <p className='banner-1'>Explore Your Dark Fantasy</p>
                             </div>
-                            <img className='computer' src="/images/computer-2.png" alt="computer_2" />
                         </div>
 
-                        <div className='bio-section'>
+                        <div className="img-grid">
+                            {images.map((image, index) => (
+                                <div key={index}>
+                                    <div className='image-container'>
+                                        <div className='image-title'>{image.title}</div>
+                                        <a href={image.url} target="_blank" rel="noopener noreferrer">
+                                            <img
+                                                src={`/images/${image.id}.jpg`} // Changed to use public folder path
+                                                title={`${image.id} website`}
 
-                            <div className='sub-bio-section'>
-                                <img src='/images/thunderlegs.png' className='homepage-pic' />
-                                <div className='bio-container'>
-                                    <p className='sub-bio-text'>Slow Tech Design</p>
-                                    <p className='sub-bio-p'>
-                                        In an ever-changing world where users sense of safety is paramount, let's create environments that address their needs and provide a feeling of security to users via NOSTALGIA DESIGN
-                                    </p>
+                                                alt={image.id}
+                                                className='image clickable-image'
+                                            />
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            ))}
                         </div>
 
                         {/* content footer */}

@@ -7,3 +7,8 @@
     font-family: "single day";
     src: url("./SingleDay-Regular.ttf");
 }
+
+@font-face {
+    font-family: 'alegard';
+    src: url('./alagard.ttf');
+}
