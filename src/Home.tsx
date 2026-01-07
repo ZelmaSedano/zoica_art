@@ -100,9 +100,6 @@ function Home() {
     const [chatHistory, setChatHistory] = useState<Array<{sender: string, message: string}>>([]);
     const [shouldShake, setShouldShake] = useState(false);
 
-    // portfolio dropdown
-    const [isPortfolioDropdownOpen, setIsPortfolioDropdownOpen] = useState(false);
-
     // API fetches
     const fetchHoroscope = async (sign: string) => {
         setIsLoading(true);
@@ -281,17 +278,6 @@ function Home() {
         };
     }, [isDragging, dragOffset]);
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (portfolioRef.current && !portfolioRef.current.contains(event.target as Node)) {
-            setIsPortfolioDropdownOpen(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-            return () => {
-                document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
 
     // toggle visibility
     const toggleWindow = () => setIsVisible(!isVisible);
