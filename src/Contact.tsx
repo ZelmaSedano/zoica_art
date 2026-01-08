@@ -6,7 +6,7 @@ import './App.css';
 import Taskbar from './components/Taskbar'
 import './components/Taskbar.css'
 import DesktopIcon from './components/DesktopIcon';
-import './components/DesktopIcon.css'; // contains both icon + modal 
+import './components/DesktopIcon.css';
 
 import send from './assets/send.png'
 import earth from './assets/earth.ico'

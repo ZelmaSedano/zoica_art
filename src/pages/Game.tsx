@@ -18,7 +18,7 @@ type HoroscopeData = {
 };
 
 
-function UX() {
+function Game() {
     // portfolio dropdown
     const portfolioRef = useRef<HTMLLIElement>(null);
     const windowRef = useRef<HTMLDivElement | null>(null)
@@ -620,24 +620,7 @@ function UX() {
                         </div>
                         </div>
                     {/* <div className='portfolio-banner'>PORTFOLIO</div> */}
-                        <div className="img-grid">
-                            {images.map((image, index) => (
-                                <div key={index}>
-                                    <div className='image-container'>
-                                        <div className='image-title'>{image.title}</div>
-                                        <a href={image.url} target="_blank" rel="noopener noreferrer">
-                                            <img
-                                                src={`/images/${image.id}.jpg`} // Changed to use public folder path
-                                                title={`${image.id} website`}
-                                                style={{ width: '320px', height: '160px' }}
-                                                alt={image.id}
-                                                className='image clickable-image'
-                                            />
-                                        </a>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                        <p>NORSE MYTHOLOGY</p>
                     
                     </div>
                 
@@ -667,4 +650,4 @@ function UX() {
 );
 }
 
-export default UX;
+export default Game;

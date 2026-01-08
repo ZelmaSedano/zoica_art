@@ -47,7 +47,7 @@ html, body {
 }
 
 body {
-  background: #008080;
+  background: url('/public/images/xp_2.png') no-repeat center/cover;
 }
 
 

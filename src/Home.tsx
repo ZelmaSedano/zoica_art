@@ -2,16 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './App.css';
 
-// hi justine, feel free to look at the comments in the modal section to learn more about how to render modals.  the component is in DesktopIcon.tsx :)
-
 // component imports
 import Taskbar from './components/Taskbar'
 import './components/Taskbar.css'
 import DesktopIcon from './components/DesktopIcon';
-import './components/DesktopIcon.css'; // contains both icon + modal styles
+import './components/DesktopIcon.css';
 
-// import images
-// don't remove thesend one lol 
 import send from './assets/send.png'
 import earth from './assets/earth.ico'
 
@@ -123,47 +119,25 @@ function Home() {
     };
 
     // getters
-    const getChatbotResponse = async (input: string): Promise<string> => {
-        try {
-            const response = await fetch('/api/chatbot', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: input })
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            return data.message;
-            } catch (error) {
-                console.error('Chatbot error:', error);
-                return "Sorry, I'm having trouble responding right now!";
-            }
-    };
-    const handleChatbotSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!chatbotInput.trim()) return;
-
-        // Add user message
-        const userMessage = chatbotInput;
-        setChatHistory(prev => [...prev, { 
-            sender: 'user',
-            message: userMessage
-        }]);
-        setChatbotInput('');
-
-        // Get bot response from server
-        const botMessage = await getChatbotResponse(userMessage);
-        
-        // Add bot message
-        setChatHistory(prev => [...prev, { 
-            sender: 'bot', 
-            message: botMessage 
-        }]);
-    };
-
+    // const getChatbotResponse = async (input: string): Promise<string> => {
+    //     try {
+    //         const response = await fetch('/api/chatbot', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({ message: input })
+    //         });
+    //         if (!response.ok) {
+    //             throw new Error(`HTTP error! status: ${response.status}`);
+    //         }
+    //         const data = await response.json();
+    //         return data.message;
+    //         } catch (error) {
+    //             console.error('Chatbot error:', error);
+    //             return "Sorry, I'm having trouble responding right now!";
+    //         }
+    // };
 
     // useEffects
     // save the position of the window to session storage
@@ -192,15 +166,14 @@ function Home() {
                 document.documentElement.clientHeight
             );
             
-            // bottom-right corner of document
             setClippyPosition({
-            x: window.innerWidth - 80, // 100px from right edge
-            y: documentHeight - 150 // 120px from bottom
+            x: window.innerWidth - 80,
+            y: documentHeight - 150
             });
         };
-        // initial position
+
         updateClippyPosition();
-        // update on window resize and load
+
         window.addEventListener('resize', updateClippyPosition);
         window.addEventListener('load', updateClippyPosition);
         return () => {
@@ -209,7 +182,6 @@ function Home() {
         };
     }, [location.pathname]);
 
-    // clippy shake on initial page load
     useEffect(() => {
         // Check if shake has already been shown in this session
         const hasShaken = sessionStorage.getItem('clippyShaken');
@@ -237,7 +209,6 @@ function Home() {
     }, []);
 
 
-    // window dragging effect
     const handleMouseDown = (e: React.MouseEvent) => {
     // Don't start dragging if clicking on dropdown or its children
         if (
@@ -413,99 +384,41 @@ function Home() {
                         </div>
                         <div className="modal-body">
                             <div className="horoscope-controls">
-                            <select 
-                                value={sign} 
-                                onChange={(e) => setSign(e.target.value)}
-                                className="horoscope-select"
-                            >
-                                {["aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"].map((sign) => (
-                                <option key={sign} value={sign}>
-                                    {sign.charAt(0).toUpperCase() + sign.slice(1)}
-                                </option>
-                                ))}
-                            </select>
-                            
-                            <button 
-                                onClick={handleGetHoroscope}
-                                className="horoscope-button"
-                                disabled={isLoading}
-                            >
-                                {isLoading ? "Loading..." : "Get Horoscope"}
-                            </button>
+                                <select 
+                                    value={sign} 
+                                    onChange={(e) => setSign(e.target.value)}
+                                    className="horoscope-select"
+                                >
+                                    {["aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"].map((sign) => (
+                                    <option key={sign} value={sign}>
+                                        {sign.charAt(0).toUpperCase() + sign.slice(1)}
+                                    </option>
+                                    ))}
+                                </select>
+                                
+                                <button 
+                                    onClick={handleGetHoroscope}
+                                    className="horoscope-button"
+                                    disabled={isLoading}
+                                >
+                                    {isLoading ? "Loading..." : "Get Horoscope"}
+                                </button>
                             </div>
 
                             {error && <div className="error">{error}</div>}
 
                             {horoscopeData && (
-                            <div className="horoscope-results">
-                                <h3>{sign.charAt(0).toUpperCase() + sign.slice(1)}</h3>
-                                <p><strong>Date:</strong> {horoscopeData.data.date}</p>
-                                <p><strong>Horoscope Data:</strong> {horoscopeData.data.horoscope_data}</p>
-                            </div>
+                                <div className="horoscope-results">
+                                    <h3>{sign.charAt(0).toUpperCase() + sign.slice(1)}</h3>
+                                    <p><strong>Date:</strong> {horoscopeData.data.date}</p>
+                                    <p><strong>Horoscope Data:</strong> {horoscopeData.data.horoscope_data}</p>
+                                </div>
                             )}
                         </div>
                         </div>
                     </div>
                     )}
             </div>
-
-
-
-
-            {/* clippy */}
-            <div className="desktop">
-                {/* when you click the desktop icon, setShowModal is set to true */}
-                <DesktopIcon
-                    icon="/images/mad_clippy.png"
-                    label="Hello???"
-                    x={clippyPosition.x}
-                    y={clippyPosition.y}
-                    onClick={() => setShowClippyModal(true)}
-                    className={`clippy ${shouldShake ? 'shake-animation' : ''}`}
-                />
-                {showClippyModal && (
-                    <div className="modal-overlay" onClick={() => setShowClippyModal(false)}>
-                        <div className="chatbot-modal" onClick={(e) => e.stopPropagation()}>
-                        <div className='chatbot-modal-header'>
-                            <span>ClipBot Messenger</span>
-                            <button className='x-button clippy-x' onClick={() => setShowClippyModal(false)}>✕</button>
-                        </div>
-                        
-                        <div className="chatbot-body">
-                            <div className="chat-history">
-                                {chatHistory.map((chat, index) => (
-                                    <div key={index} className={`chat-message ${chat.sender}`}>
-                                        <div className="message-header">
-                                            <span className="message-sender">
-                                                {chat.sender === 'user' ? 'You:' : 'Clippy:'}
-                                            </span>
-                                        </div>
-                                        <div className="message-content">
-                                            {chat.message}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                            
-                            {/* Chat input */}
-                            <form onSubmit={handleChatbotSubmit} className="chat-input-form">
-                            <input
-                                type="text"
-                                value={chatbotInput}
-                                onChange={(e) => setChatbotInput(e.target.value)}
-                                placeholder="Type your message..."
-                                className="chat-input"
-                            />
-                            <button type="submit" className="end-button">
-                                <img src={send} alt="Send" className="send-icon" />
-                            </button>
-                            </form>
-                        </div>
-                        </div>
-                    </div>
-                    )}
-            </div>
-
 
         {/* content window - draggable */}
             {/* if isVisible is true, */}
@@ -532,7 +445,6 @@ function Home() {
                             </div>
                         </section>
 
-
                         {/* *************************** NAVBAR ************************/}
                         <nav className='navbar'>
                             <ul>
@@ -542,14 +454,30 @@ function Home() {
                                         <p>Home</p>
                                     </Link>
                                 </li>
-
                                 <li className='button'>
-                                    <Link to="/about">
-                                        <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
-                                        <p>About</p>
+                                    <Link to="/tarot">
+                                        <img src="/images/scandique.jpg" className='home-icon' alt='home'/>
+                                        <p>Tarot</p>
                                     </Link>
                                 </li>
-
+                                <li className='button'>
+                                    <Link to="/norse">
+                                        <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
+                                        <p>Mythology</p>
+                                    </Link>
+                                </li>
+                                <li className='button'>
+                                    <Link to="/game">
+                                        <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
+                                        <p>Game Art</p>
+                                    </Link>
+                                </li>
+                                <li className='button'>
+                                    <Link to="/commissions">
+                                        <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
+                                        <p>Commissions</p>
+                                    </Link>
+                                </li>
                                 <li className='button'>
                                     <Link to="/contact">
                                         <img src={send} className='contact-icon' alt='contact'></img>
@@ -573,7 +501,6 @@ function Home() {
                             <div className = 'url-bar-small-2'>Links</div>
                         </div>
                     </div>
-
 
                     {/* window content */}
                     <div className='content'>
@@ -618,7 +545,6 @@ function Home() {
                 </div>
             )}
 
-            {/* taskbar */}
             <Taskbar
                 isVisible={isVisible} 
                 toggleWindow={toggleWindow}

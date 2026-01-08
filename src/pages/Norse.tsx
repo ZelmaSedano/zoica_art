@@ -18,7 +18,7 @@ type HoroscopeData = {
 };
 
 
-function AI() {
+function Norse() {
     // portfolio dropdown
     const portfolioRef = useRef<HTMLLIElement>(null);
     const windowRef = useRef<HTMLDivElement | null>(null)
@@ -485,7 +485,7 @@ function AI() {
                             {/* portfolio navbar button*/}
                                 <li 
                                     ref={portfolioRef}
-                                    className={`button portfolio-dropdown-container ${location.pathname === '/ai' ? 'active-portfolio' : ''}`}
+                                    className={`button portfolio-dropdown-container ${location.pathname === '/personal' ? 'active-portfolio' : ''}`}
                                 >
                                     <div 
                                     className="portfolio-link-wrapper"
@@ -601,43 +601,26 @@ function AI() {
                                     <ul className='portfolio-ul'>
                                         <li><Link to='/portfolio'>Portfolio</Link></li>
                                         <li><Link to='/webcraft'>WebCraft</Link></li>
-                                        <li><Link to='/personal'>Personal</Link></li>
+                                        <li className='portfolio-active'><Link to='/personal'>Personal</Link></li>
                                     </ul>
                                     <ul className='portfolio-ul'>
                                             <li><Link to='/ux'>UX/UI</Link></li>
-                                            <li className='portfolio-active'><Link to='/ai'>AI/Pyhthon</Link></li>
+                                            <li><Link to='/ai'>AI/Pyhthon</Link></li>
                                     </ul>
                                 </>
                             ) : (
                                 <ul className='portfolio-ul'>
-                                    <li><Link to='/portfolio'>Portfolio</Link></li>
+                                    <li> <Link to='/portfolio'>Portfolio</Link></li>
                                     <li><Link to='/webcraft'>WebCraft</Link></li>
-                                    <li><Link to='/personal'>Personal</Link></li>
+                                    <li className='portfolio-active'><Link to='/personal'>Personal</Link></li>
                                     <li><Link to='/ux'>UX/UI</Link></li>
-                                    <li className='portfolio-active'><Link to='/ai'>AI/Python</Link></li>
+                                    <li><Link to='/ai'>AI/Python</Link></li>
                                 </ul>
                             )}
                         </div>
                         </div>
                     {/* <div className='portfolio-banner'>PORTFOLIO</div> */}
-                        <div className="img-grid">
-                            {images.map((image, index) => (
-                                <div key={index}>
-                                    <div className='image-container'>
-                                        <div className='image-title'>{image.title}</div>
-                                        <a href={image.url} target="_blank" rel="noopener noreferrer">
-                                            <img
-                                                src={`/images/${image.id}.jpg`} // Changed to use public folder path
-                                                title={`${image.id} website`}
-                                                style={{ width: '320px', height: '160px' }}
-                                                alt={image.id}
-                                                className='image clickable-image'
-                                            />
-                                        </a>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                        <p>NORSE MYTHOLOGY</p>
                     
                     </div>
                 
@@ -667,4 +650,4 @@ function AI() {
 );
 }
 
-export default AI;
+export default Norse;

@@ -18,7 +18,7 @@ type HoroscopeData = {
 };
 
 
-function Webcraft() {
+function Tarot() {
     // portfolio dropdown
     const portfolioRef = useRef<HTMLLIElement>(null);
     const windowRef = useRef<HTMLDivElement | null>(null)
@@ -485,7 +485,7 @@ function Webcraft() {
                             {/* portfolio navbar button*/}
                                 <li 
                                     ref={portfolioRef}
-                                    className={`button portfolio-dropdown-container ${location.pathname === '/webcraft' ? 'active-portfolio' : ''}`}
+                                    className={`button portfolio-dropdown-container ${location.pathname === '/ai' ? 'active-portfolio' : ''}`}
                                 >
                                     <div 
                                     className="portfolio-link-wrapper"
@@ -599,46 +599,28 @@ function Webcraft() {
                             {isSmallScreen ? (
                                 <>
                                     <ul className='portfolio-ul'>
-                                        <li>
-                                            <Link to='/portfolio'>Portfolio</Link></li>
-                                        <li className='portfolio-active'><Link to='/webcraft'>WebCraft</Link></li>
+                                        <li><Link to='/portfolio'>Portfolio</Link></li>
+                                        <li><Link to='/webcraft'>WebCraft</Link></li>
                                         <li><Link to='/personal'>Personal</Link></li>
                                     </ul>
                                     <ul className='portfolio-ul'>
                                             <li><Link to='/ux'>UX/UI</Link></li>
-                                            <li><Link to='/ai'>AI/Pyhthon</Link></li>
+                                            <li className='portfolio-active'><Link to='/ai'>AI/Pyhthon</Link></li>
                                     </ul>
                                 </>
                             ) : (
                                 <ul className='portfolio-ul'>
-                                    <li> <Link to='/portfolio'>Portfolio</Link></li>
-                                    <li className='portfolio-active'><Link to='/webcraft'>WebCraft</Link></li>
+                                    <li><Link to='/portfolio'>Portfolio</Link></li>
+                                    <li><Link to='/webcraft'>WebCraft</Link></li>
                                     <li><Link to='/personal'>Personal</Link></li>
                                     <li><Link to='/ux'>UX/UI</Link></li>
-                                    <li><Link to='/ai'>AI/Python</Link></li>
+                                    <li className='portfolio-active'><Link to='/ai'>AI/Python</Link></li>
                                 </ul>
                             )}
                         </div>
                         </div>
                     {/* <div className='portfolio-banner'>PORTFOLIO</div> */}
-                        <div className="img-grid">
-                            {images.map((image, index) => (
-                                <div key={index}>
-                                    <div className='image-container'>
-                                        <div className='image-title'>{image.title}</div>
-                                        <a href={image.url} target="_blank" rel="noopener noreferrer">
-                                            <img
-                                                src={`/images/${image.id}.jpg`} // Changed to use public folder path
-                                                title={`${image.id} website`}
-                                                style={{ width: '320px', height: '160px' }}
-                                                alt={image.id}
-                                                className='image clickable-image'
-                                            />
-                                        </a>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                        <p>TAROT</p>
                     
                     </div>
                 
@@ -668,4 +650,4 @@ function Webcraft() {
 );
 }
 
-export default Webcraft;
+export default Tarot;

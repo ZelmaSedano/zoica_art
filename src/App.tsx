@@ -4,20 +4,23 @@ import Portfolio from './Portfolio'
 import Resume from './Resume'
 import Contact from './Contact'
 import About from './About'
-import Webcraft from './pages/Webcraft'
-import Personal from './pages/Personal'
-import UX from './pages/UX'
-import AI from './pages/AI'
+
+
+import Tarot from './pages/Tarot'
+import Norse from './pages/Norse'
+import Game from './pages/Game'
+import Commissions from './pages/Commissions'
+
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/webcraft" element={<Webcraft />} />
-        <Route path="/personal" element={<Personal />} />
-        <Route path="/ux" element={<UX />} />
-        <Route path="/ai" element={<AI />} />
+        <Route path="/tarot" element={<Tarot />} />
+        <Route path="/norse" element={<Norse />} />
+        <Route path="/game" element={<Game />} />
+        <Route path="/commissions" element={<Commissions />} />
       <Route path="/resume" element={<Resume />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
