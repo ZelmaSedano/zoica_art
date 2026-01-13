@@ -620,7 +620,7 @@ function Game() {
                         </div>
                         </div>
                     {/* <div className='portfolio-banner'>PORTFOLIO</div> */}
-                        <p>NORSE MYTHOLOGY</p>
+                        <p>GAME ART</p>
                     
                     </div>
                 

@@ -8,7 +8,6 @@ import './components/Taskbar.css'
 import DesktopIcon from './components/DesktopIcon';
 import './components/DesktopIcon.css';
 
-import send from './assets/send.png'
 import earth from './assets/earth.ico'
 
 type HoroscopeData = {
@@ -450,37 +449,37 @@ function Home() {
                             <ul>
                                 <li className={`button left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
                                     <Link to="/">
-                                        <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
+                                        <img src="/images/home.png" className='home-icon' alt='home'/>
                                         <p>Home</p>
                                     </Link>
                                 </li>
                                 <li className='button'>
                                     <Link to="/tarot">
-                                        <img src="/images/scandique.jpg" className='home-icon' alt='home'/>
+                                        <img src="/images/tarot.png" className='home-icon' alt='home'/>
                                         <p>Tarot</p>
                                     </Link>
                                 </li>
                                 <li className='button'>
                                     <Link to="/norse">
-                                        <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
+                                        <img src="/images/home.png" className='home-icon' alt='home'/>
                                         <p>Mythology</p>
                                     </Link>
                                 </li>
                                 <li className='button'>
                                     <Link to="/game">
-                                        <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
+                                        <img src="/images/game_art.png" className='home-icon' alt='home'/>
                                         <p>Game Art</p>
                                     </Link>
                                 </li>
                                 <li className='button'>
                                     <Link to="/commissions">
-                                        <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
+                                        <img src="/images/commissions.png" className='home-icon' alt='home'/>
                                         <p>Commissions</p>
                                     </Link>
                                 </li>
                                 <li className='button'>
                                     <Link to="/contact">
-                                        <img src={send} className='contact-icon' alt='contact'></img>
+                                        <img src='/images/contact.png' className='contact-icon' alt='contact'></img>
                                         <p>Contact</p>
                                     </Link>
                                 </li>   
