@@ -46,8 +46,8 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
                 className={`start-button ${isStartMenuOpen ? 'active' : ''}`}
                 onClick={toggleStartMenu}
             >
-                <img src="/src/assets/flag.png" className="start-icon" alt="start"/>
-                <span className="start-text">Start</span>
+                <img src="/images/18.ico" className="start-icon" alt="start"/>
+                <span className="start-text">Links</span>
             </button>
 
             {isStartMenuOpen && (
@@ -65,13 +65,12 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
                 </div>
             )}
 
-
             <div className='devscape-section'>
                 <button 
                 className={`devscape-button ${isVisible ? 'window-visible' : ''}`}
                 onClick={toggleWindow}
                 >
-                <img src="/images/connections.ico" className='connections-icon' alt="icon"/>
+                <img src="/images/home.png" className='connections-icon' alt="icon"/>
                 <span className="devscape-text">Zoica Browser</span>
                 </button>
             </div>

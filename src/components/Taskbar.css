@@ -6,42 +6,77 @@
     left: 0;
     width: 100%;
     height: 30px;
-    background: #c3c3c3;
-    /* centers horizontally, too */
-    align-items: stretch;
-
-    border-top: 1px solid #ffffff;
+    background: linear-gradient(
+        to bottom,
+        #4f7de1 0%,
+        #245edb 45%,
+        #1f4fd8 60%,
+        #1b44c2 100%
+    );
+    /* XP borders */
     border-left: 1px solid #ffffff;
-    border-right: 1px solid #808080;
-    border-bottom: 1px solid #808080;
-    font-family: 'MS Sans Serif', sans-serif
+    border-right: 1px solid #0c2d89;
+    border-bottom: 1px solid #0c2d89;
+
+    /* Inner depth */
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.4),
+        inset 0 -1px 0 rgba(0,0,0,0.25);
+
+    font-family: Tahoma, 'MS Sans Serif', sans-serif;
+}
+/* glossy layover effect */
+.taskbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.7),
+        rgba(255,255,255,0)
+    );
+
+    pointer-events: none;
 }
 .start-button {
-    color: black;
-    font-size: 18px;
-    height: 106%;
     display: flex;
-    /* aligns horizontally */
     align-items: center;
-    padding: 0 10px;
-    background-color: #c3c3c3;
-    border-right: 1px solid #808080;
-    border-bottom: 1px solid #808080;
-    border-top: 1px solid #ffffff;
-    border-left: 1px solid #ffffff;
-    box-shadow: 
-        inset -1px -1px 0 #000,
-        inset 1px 1px 0 #dfdfdf;
+    padding: 0 14px;
+    height: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    border-radius: 6px;
+    border: 1px solid #0b5f0b;
+
+    background: linear-gradient(
+        to bottom,
+        #6fdc6f 0%,
+        #3dbb3d 45%,
+        #1e9c1e 100%
+    );
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.6),
+        inset 0 -1px 0 rgba(0,0,0,0.3),
+        0 1px 0 rgba(255,255,255,0.3);
 }
 /* while the menu is open, it remains active */
 .start-button.active {
-    border-top: 1px solid #808080;
-    border-left: 1px solid #808080;
-    border-right: 1px solid #ffffff;
-    border-bottom: 1px solid #ffffff;
-    box-shadow: 
-        inset -1px -1px 0 #dfdfdf,
-        inset 1px 1px 0 #000;
+    background: linear-gradient(
+        to bottom,
+        #1e9c1e 0%,
+        #3dbb3d 100%
+    );
+    box-shadow:
+        inset 0 2px 3px rgba(0,0,0,0.4);
+}
+.start-text {
+    font-size: 17px;
+    font-weight: 500;
 }
 
 .start-menu {
@@ -49,7 +84,7 @@
     bottom: 100%;
     left: 0;
     width: 150px;
-    background: #c3c3c3;
+    background: #043ddb;
     border: 1px solid;
     border-color: #ffffff #000000 #000000 #ffffff;
     box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
@@ -86,35 +121,45 @@
     height: 20px;
 }
 .devscape-button {
-    color: black;
-    font-size: 18px;
-    height: 106%;
     display: flex;
-    /* aligns horizontally */
     align-items: center;
     padding: 0 10px;
-    background-color: #c3c3c3;
-    border-right: 1px solid #808080;
-    border-bottom: 1px solid #808080;
-    border-top: 1px solid #ffffff;
-    border-left: 1px solid #ffffff;
-    box-shadow: 
-        inset -1px -1px 0 #000,
-        inset 1px 1px 0 #dfdfdf;
+    margin: 3px 2px;
+    height: 24px;
+
+    background: linear-gradient(
+        to bottom,
+        #5a83e8 0%,
+        #2a5bd7 50%,
+        #1f4fd8 100%
+    );
+
+    border-radius: 3px;
+    border: 1px solid #0c2d89;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.5),
+        inset 0 -1px 0 rgba(0,0,0,0.25);
+
+    color: #eaf1ff;
 }
+
 /* when isVisible is true (content is visible) */
 .devscape-button.window-visible {
-    border-top: 1px solid #808080;
-    border-left: 1px solid #808080;
-    border-right: 1px solid #ffffff;
-    border-bottom: 1px solid #ffffff;
-    box-shadow: 
-        inset -1px -1px 0 #dfdfdf,
-        inset 1px 1px 0 #000;
+    background: linear-gradient(
+        to bottom,
+        #1f4fd8 0%,
+        #2a5bd7 100%
+    );
+
+    box-shadow:
+        inset 0 2px 3px rgba(0,0,0,0.35);
 }
+
 .devscape-text {
     margin-top: 4px;
     margin-left: 4px;
+    color: #d7e2fc;
 }
 
 .taskbar-items {
@@ -130,19 +175,35 @@
     margin-bottom: -1px;
     margin-left: auto;
     padding: 0 8px;
-    display: flex;
-    color: black;
-    align-items: center;
-    background: #c0c0c0;
-    border-top: 1px solid #ffffff;
-    border-left: 1px solid #ffffff;
-    border-right: 1px solid #808080;
-    border-bottom: 1px solid #808080;
+
     font-family: 'MS Sans Serif', sans-serif;
     font-size: 14px;
-    box-shadow: 
-        inset -1px -1px 0 #000,
-        inset 1px 1px 0 #dfdfdf;
+
+}
+.clock {
+    font-family: verdana, sans-serif;
+    margin-left: auto;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+
+    background: linear-gradient(
+        to bottom,
+        #4f7de1 0%,
+        #245edb 100%
+    );
+
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #0c2d89;
+    border-bottom: 1px solid #0c2d89;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.5),
+        inset 0 -1px 0 rgba(0,0,0,0.25);
+
+    font-size: 13px;
+    color: #ffffff;
+    border-radius: 5%;
 }
 
 

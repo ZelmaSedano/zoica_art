@@ -31,7 +31,7 @@ html, body {
 
 
 
-/****************** Desktop Design *******************/
+/************ Desktop Design *************/
 .window {
   background-color: #c3c3c3;
   border-top: solid rgb(250, 250, 250) 2px;
@@ -39,7 +39,10 @@ html, body {
   border-right: solid rgb(90, 90, 90) 1.5px;
   border-bottom: solid rgb(90, 90, 90) 1.5px;
   box-shadow: 1.5px 1.5px black;
-  outline: rgb(222, 222, 222) 1px solid;
+
+  border-radius: 8px 8px 0 0;
+  /* fixes sharp edges */
+  overflow: hidden;
 }
 
 .window.hidden {
@@ -47,7 +50,7 @@ html, body {
 }
 
 body {
-  background: url('/public/images/xp_2.png') no-repeat center/cover;
+  background: url('/public/images/xp.jpg') no-repeat center/cover;
 }
 
 
@@ -114,14 +117,24 @@ header {
   margin: 0px 0px 40px 0px;
 }
 .blue-bar {
+  font-family: Tahoma, 'MS Sans Serif', sans-serif;
   cursor: grab;
   width: 70vw;
   /* if you don't include max-content, then the navbar spreads */
   position: absolute;
   text-align: left;
-  background: #00008c;
-  border: 1px solid #c0c0c0;
-  box-sizing: border-box;
+  background: linear-gradient(
+        to bottom,
+        #4f7de1 0%,
+        #245edb 45%,
+        #1f4fd8 60%,
+        #1b44c2 100%
+    );
+
+    /* Inner depth */
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.4),
+        inset 0 -1px 0 rgba(0,0,0,0.25);
   height: 40px;
   display: flex;
 }
@@ -156,26 +169,26 @@ header {
 }
 /* unicode x, not normal x */
 .x-button {
+  align-items: center;
   display: flex;
   width: 5px;
   height: 5px;
-  background-color: #c3c3c3;
+  background-color: #ca5b52;
   font-family: 'MS Sans Serif';
   font-size: 12px;
-  color: black;
+  color: white;
   padding: 9px;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid #ffffff;
-  border-left: 1px solid #ffffff;
-  border-right: 1px solid #808080;
-  border-bottom: 1px solid #808080;
+  border: 1px solid #ffffff;
+  border-radius: 20%;
   box-shadow: 
     1px 1px 0px #000000,
     inset 1px 1px 0px #dfdfdf;
   cursor: pointer;
   transition: all 0.1s ease;
 }
+
 
 
 /********** NAVBAR *********/
@@ -362,17 +375,6 @@ nav ul li a p{
 
 
 
-/************ entire window ***************/
-.window {
-  background-color: #c3c3c3;
-  border-top: solid rgb(250, 250, 250) 2px;
-  border-left: solid rgb(250, 250, 250) 2px;
-  border-right: solid rgb(90, 90, 90) 1.5px;
-  border-bottom: solid rgb(90, 90, 90) 1.5px;
-  box-shadow: 1.5px 1.5px black;
-  outline: rgb(222, 222, 222) 1px solid;
-}
-
 
 .content {
   background: url('./assets/grey_zone.png') no-repeat center/cover;
@@ -415,43 +417,66 @@ nav ul li a p{
 
 /* Custom Windows 98-style scrollbar for .content */
 .content::-webkit-scrollbar {
-  width: 16px; /* Classic Windows scrollbar width */
-  background-color: #c0c0c0; /* Classic gray background */
+  width: 20px; /* Classic Windows scrollbar width */
+  background-color: #ece9d8; /* Classic gray background */
 }
 .content::-webkit-scrollbar-track {
-  background: repeating-conic-gradient(
-    #c0c0c0 0% 25%, 
-    #ffffff 0% 50%
-  ) 50% / 2px 2px; /* Classic dotted pattern */
-  border-top: 1px solid #ffffff;
-  border-left: 1px solid #ffffff;
-  border-right: 1px solid #808080;
-  border-bottom: 1px solid #808080;
+  background-color: #ece9d8;
+  border: 2px solid #ece9d8;
+  /* XP track has subtle gradient */
+  background-image: linear-gradient(
+    to right,
+    #f0f0f0 0%,
+    #e5e5e5 50%,
+    #f0f0f0 100%
+  );
 }
+
 .content::-webkit-scrollbar-thumb {
-  background: #c0c0c0;
-  border-top: 1px solid #ffffff;
-  border-left: 1px solid #ffffff;
-  border-right: 1px solid #808080;
-  border-bottom: 1px solid #808080;
+  /* XP's light blue gradient scrollbar */
+  background: #bfd3fa;
+  border: 2px solid #ece9d8;
+  border-radius: 6px;
+  /* XP 3D effect */
   box-shadow: 
-    inset -1px -1px 0px #000000,
-    inset 1px 1px 0px #dfdfdf;
+    inset 1px 1px 0px #ffffff,
+    inset -1px -1px 0px #316ac5;
 }
+.content::-webkit-scrollbar-thumb:hover {
+  /* Slightly brighter on hover */
+  background: #bfd3fa;
+}
+
+/* Scrollbar buttons (up/down arrows) */
 .content::-webkit-scrollbar-button:vertical:decrement:start {
   display: block;
   height: 16px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4' viewBox='0 0 8 4'%3E%3Cpolygon points='0,4 4,0 8,4' fill='black'/%3E%3C/svg%3E");
+  background-color: #bfd3fa;
+  /* XP-style arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5' viewBox='0 0 10 5'%3E%3Cpolygon points='0,5 5,0 10,5' fill='%23555555'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
+  border: 1px solid #a0a0a0;
+  border-radius: 2px;
 }
+
 .content::-webkit-scrollbar-button:vertical:increment:end {
   display: block;
   height: 16px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4' viewBox='0 0 8 4'%3E%3Cpolygon points='0,0 4,4 8,0' fill='black'/%3E%3C/svg%3E");
+  background-color: #bfd3fa;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5' viewBox='0 0 10 5'%3E%3Cpolygon points='0,0 5,5 10,0' fill='%23555555'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
+  border: 1px solid #a0a0a0;
+  border-radius: 2px;
 }
+
+/* Make sure to style the scrollbar buttons on hover */
+.content::-webkit-scrollbar-button:hover {
+  background-color: #e1dfce;
+  border-color: #888888;
+}
+
 
 
 
@@ -1185,7 +1210,7 @@ input:focus, textarea:focus {
 }
 
 /******** Mobile Design *********/
-@media (max-width: 901px) {
+@media (max-width: 914px) {
   /* make sure all the icons are hidden */
   .desktop {
     display: none;
@@ -1224,6 +1249,7 @@ input:focus, textarea:focus {
     background: linear-gradient(to right, #02198e, #1178c9);
     border: 1px solid #c0c0c0;
     box-sizing: border-box;
+    border-radius: 8px 8px 0 0;
   }
 
   .navbar ul {
