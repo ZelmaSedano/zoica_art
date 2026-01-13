@@ -8,8 +8,6 @@ import './components/Taskbar.css'
 import DesktopIcon from './components/DesktopIcon';
 import './components/DesktopIcon.css';
 
-import earth from './assets/earth.ico'
-
 type HoroscopeData = {
     data: {
         date: string;
@@ -436,7 +434,7 @@ function Home() {
                     {/* header */}
                     <header>
                         <section className='blue-bar'>
-                            <img src="/images/connections.ico" className='icon' alt="icon"/>
+                            <img src="/images/16.ico" className='icon' alt="icon"/>
                             <section className='blue-bar-text'>Zoica Browser</section>
 
                             <div className="button-container">
@@ -530,16 +528,7 @@ function Home() {
                         </div>
 
                         {/* content footer */}
-                        <div className="footer">
-                            <div className='footer-section footer-large'></div>
-                            <div className = 'footer-section footer-small'></div>
-                            <div className = 'footer-section footer-small'></div>
-                            <div className = 'footer-section footer-small'></div>
-                            <div className='footer-section footer-medium'>
-                                <img src={earth} className='content-footer-icon' alt='content_footer'></img>
-                                <p className='footer-section-text'>Internet</p>
-                            </div>
-                        </div>
+                            <div className="xp-footer-line"></div>
                     </div>
                 </div>
             )}
