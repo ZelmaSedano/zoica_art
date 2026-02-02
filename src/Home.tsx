@@ -431,11 +431,12 @@ function Home() {
                     }}
                     onMouseDown={handleMouseDown}
                 >
+
                     {/* header */}
                     <header>
                         <section className='blue-bar'>
                             <img src="/images/16.ico" className='icon' alt="icon"/>
-                            <section className='blue-bar-text'>Zoica Browser</section>
+                            <section className='blue-bar-text'>Zoica Art</section>
 
                             <div className="button-container">
                                 <button className='x-button' onClick={toggleWindow}>✕</button>
@@ -459,7 +460,7 @@ function Home() {
                                 </li>
                                 <li className='button'>
                                     <Link to="/norse">
-                                        <img src="/images/home.png" className='home-icon' alt='home'/>
+                                        <img src="/images/d2.ico" className='home-icon' alt='home'/>
                                         <p>Mythology</p>
                                     </Link>
                                 </li>
@@ -491,7 +492,7 @@ function Home() {
                             <div className = 'url-bar-small-1'>Address</div>
                             <div className = 'url-bar-large'>
                                 <div className='dropdown-container'>
-                                    <div className='url-text'>http://www.geocities.com/val_is_best_dev</div>
+                                    <div className='url-text'>http://www.geocities.com/zoica_art</div>
                                 </div>
                                 <button className='url-dropdown-button'>▼</button>
                             </div>

@@ -229,10 +229,11 @@ nav ul li {
 
 /* NOTE: make sure you have commas, they break the style */
 .button.active-home,
-.button.active-portfolio,
-.button.active-resume, 
-.button.active-contact,
-.button.active-about {
+.button.active-tarot,
+.button.active-norse, 
+.button.active-game,
+.button.active-commissions,
+.button.active-contact {
   border-top: 1px solid #808080;
     border-left: 1px solid #808080;
     border-right: 1px solid #ffffff;

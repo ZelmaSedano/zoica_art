@@ -532,21 +532,39 @@ function Contact() {
                         {/* navbar */}
                         <nav className='navbar'>
                             <ul>
-                                <li className='button left-button'>
+                                <li className='button'>
                                     <Link to="/">
-                                        <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
+                                        <img src="/images/home.png" className='home-icon' alt='home'/>
                                         <p>Home</p>
                                     </Link>
                                 </li>
                                 <li className='button'>
-                                    <Link to="/about">
-                                        <img src="/images/Starfield.ico" className='home-icon' alt='home'/>
-                                        <p>About</p>
+                                    <Link to="/tarot">
+                                        <img src="/images/tarot.png" className='home-icon' alt='home'/>
+                                        <p>Tarot</p>
                                     </Link>
                                 </li>
-                                <li className={`button ${location.pathname === '/contact' ? 'active-contact' : ''}`}>
+                                <li className='button'>
+                                    <Link to="/norse">
+                                        <img src="/images/d2.ico" className='home-icon' alt='home'/>
+                                        <p>Mythology</p>
+                                    </Link>
+                                </li>
+                                <li className='button'>
+                                    <Link to="/game">
+                                        <img src="/images/game_art.png" className='home-icon' alt='home'/>
+                                        <p>Game Art</p>
+                                    </Link>
+                                </li>
+                                <li className='button'>
+                                    <Link to="/commissions">
+                                        <img src="/images/commissions.png" className='home-icon' alt='home'/>
+                                        <p>Commissions</p>
+                                    </Link>
+                                </li>
+                                <li className={`button left-button ${location.pathname === '/contact' ? 'active-contact' : ''}`}>
                                     <Link to="/contact">
-                                        <img src={send} className='contact-icon' alt='contact'></img>
+                                        <img src='/images/contact.png' className='contact-icon' alt='contact'></img>
                                         <p>Contact</p>
                                     </Link>
                                 </li>   

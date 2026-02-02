@@ -53,14 +53,16 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
             {isStartMenuOpen && (
                 <div ref={startMenuRef} className="start-menu">
                     <div className="start-menu-items">
-                            {/* don't forget to add the https */}
-                        <a href='http://www.linkedin.com/in/zvs' target='_blank' className="start-menu-item">
-                            <span className='underline'>L</span>inkedIn
+                        
+                        {/* don't forget to add the https */}
+                        <a href='https://www.etsy.com/uk/shop/ZoicaArt' target='_blank' className="start-menu-item">
+                            <span className='underline'>S</span>hop
                         </a>
-                        <a href='http://www.github.com/ZelmaSedano' target='_blank' className="start-menu-item">
-                            <span className='underline'>G</span>itHub
+                        <a href='https://www.twitch.tv/zoicaart' target='_blank' className="start-menu-item">
+                            <span className='underline'>T</span>witch
                         </a>
-                        <div className="start-menu-item"><span className='underline'>W</span>ebCraft Labs</div>
+                        <a href='https://www.instagram.com/zoica' target='_blank' className="start-menu-item"><span className='underline'>I</span>nstagram</a>
+
                     </div>
                 </div>
             )}
