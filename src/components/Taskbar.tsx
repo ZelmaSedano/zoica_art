@@ -38,7 +38,6 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
         setIsStartMenuOpen(!isStartMenuOpen);
     };
 
-
     return (
         <div className="taskbar">
             <button
@@ -46,22 +45,30 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
                 className={`start-button ${isStartMenuOpen ? 'active' : ''}`}
                 onClick={toggleStartMenu}
             >
-                <img src="/images/18.ico" className="start-icon" alt="start"/>
-                <span className="start-text">Links</span>
+                <img src="/images/windows_purple.png" className="start-icon" alt="start"/>
+                <span className="start-text">links</span>
             </button>
 
             {isStartMenuOpen && (
                 <div ref={startMenuRef} className="start-menu">
+                    <section className='blue-bar-1'>
+                            <img src="/images/16.ico" className='start-menu-icon' alt="icon"/>
+                            <section className='blue-bar-text-1'>Zoica Art</section>
+                    </section>
+
                     <div className="start-menu-items">
-                        
-                        {/* don't forget to add the https */}
                         <a href='https://www.etsy.com/uk/shop/ZoicaArt' target='_blank' className="start-menu-item">
+                            <img src="/images/etsy.png" className='start-icon-1' alt="icon"/>
                             <span className='underline'>S</span>hop
                         </a>
                         <a href='https://www.twitch.tv/zoicaart' target='_blank' className="start-menu-item">
+                            <img src="/images/twitch.png" className='start-icon-1' alt="icon"/>
                             <span className='underline'>T</span>witch
                         </a>
-                        <a href='https://www.instagram.com/zoica' target='_blank' className="start-menu-item"><span className='underline'>I</span>nstagram</a>
+                        <a href='https://www.instagram.com/zoica' target='_blank' className="start-menu-item">
+                            <img src="/images/insta.png" className='start-icon' alt="icon"/>
+                            <span className='underline'>I</span>nstagram
+                        </a>
 
                     </div>
                 </div>
