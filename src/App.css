@@ -149,8 +149,8 @@ header {
   font-weight: 600;
 }
 .blue-bar img {
-  margin-left: 8px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 8px;
 
   width: 20px;
   height: 20px;
@@ -548,13 +548,18 @@ nav ul li a p{
   border-bottom: 1px solid #808080;
 }
 .url-bar-small-2 {
+  align-items: center;
   text-align: center;
+  background-color: #efecda;
   width: 10%;
   color: black;
   border-top: 1px solid #ffffff;
   border-left: 1px solid #ffffff;
   border-right: 1px solid #808080;
   border-bottom: 1px solid #808080;
+}
+.url-bar-go {
+  height: 20px;
 }
 
 .homepage-banners {

@@ -435,7 +435,7 @@ function Commissions() {
                     {/* header */}
                     <header>
                         <section className='blue-bar'>
-                            <img src="/images/16.ico" className='icon' alt="icon"/>
+                            <img src="/images/18.ico" className='icon' alt="icon"/>
                             <section className='blue-bar-text'>Zoica Art</section>
 
                             <div className="button-container">
@@ -492,7 +492,7 @@ function Commissions() {
                             <div className = 'url-bar-small-1'>Address</div>
                             <div className = 'url-bar-large'>
                                 <div className='dropdown-container'>
-                                    <div className='url-text'>http://www.geocities.com/val_is_best_dev</div>
+                                    <div className='url-text'>http://www.geocities.com/zoica_art</div>
                                 </div>
                                 <button className='url-dropdown-button'>▼</button>
                             </div>

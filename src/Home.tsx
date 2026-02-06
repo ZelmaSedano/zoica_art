@@ -435,7 +435,7 @@ function Home() {
                     {/* header */}
                     <header>
                         <section className='blue-bar'>
-                            <img src="/images/16.ico" className='icon' alt="icon"/>
+                            <img src="/images/18.ico" className='icon' alt="icon"/>
                             <section className='blue-bar-text'>Zoica Art</section>
 
                             <div className="button-container">
@@ -496,7 +496,10 @@ function Home() {
                                 </div>
                                 <button className='url-dropdown-button'>▼</button>
                             </div>
-                            <div className = 'url-bar-small-2'>Links</div>
+                            <div className = 'url-bar-small-2'>
+                                <img src='/images/290.ico' className='url-bar-go'></img>
+                                <span>Go</span>
+                            </div>
                         </div>
                     </div>
 

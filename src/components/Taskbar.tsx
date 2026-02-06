@@ -40,6 +40,7 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
 
     return (
         <div className="taskbar">
+
             <button
                 ref={startButtonRef}
                 className={`start-button ${isStartMenuOpen ? 'active' : ''}`}
@@ -52,23 +53,25 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
             {isStartMenuOpen && (
                 <div ref={startMenuRef} className="start-menu">
                     <section className='blue-bar-1'>
-                            <img src="/images/16.ico" className='start-menu-icon' alt="icon"/>
-                            <section className='blue-bar-text-1'>Administrator</section>
+                            <img src="/images/art_lover.png" className='start-menu-icon' alt="icon"/>
+                            <section className='blue-bar-text-1'>Zoica Art</section>
                     </section>
 
                     <div className="start-menu-items">
                         <a href='https://www.etsy.com/uk/shop/ZoicaArt' target='_blank' className="start-menu-item">
                             <img src="/images/etsy.png" className='start-icon-1' alt="icon"/>
-                            Shop
+                            <span className='start-menu-item-text'>Shop</span>
                         </a>
                         <a href='https://www.twitch.tv/zoicaart' target='_blank' className="start-menu-item">
                             <img src="/images/twitch.png" className='start-icon-1' alt="icon"/>
-                            Twitch
+                            <span className='start-menu-item-text'>Twitch</span>
                         </a>
                         <a href='https://www.instagram.com/zoica' target='_blank' className="start-menu-item">
                             <img src="/images/insta.png" className='start-icon-1' alt="icon"/>
-                            Instagram
+                            <span className='start-menu-item-text'>Instagram</span>
                         </a>
+
+                        <section className='blue-bar-2'></section>
 
                     </div>
                 </div>

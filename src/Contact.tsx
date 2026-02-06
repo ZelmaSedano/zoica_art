@@ -520,8 +520,8 @@ function Contact() {
                     {/* header */}
                     <header>
                         <section className='blue-bar'>
-                            <img src="/images/connections.ico" className='icon' alt="icon"/>
-                            <section className='blue-bar-text'>DevScape - Valentia Sedano</section>
+                            <img src="/images/18.ico" className='icon' alt="icon"/>
+                            <section className='blue-bar-text'>Zoica Art</section>
 
                             <div className="button-container">
                                 <button className='x-button' onClick={toggleWindow}>✕</button>
@@ -578,7 +578,7 @@ function Contact() {
                             <div className = 'url-bar-small-1'>Address</div>
                             <div className = 'url-bar-large'>
                                 <div className='dropdown-container'>
-                                    <div className='url-text'>http://www.geocities.com/valentia_is_best_dev</div>
+                                    <div className='url-text'>http://www.geocities.com/zoica_art</div>
                                 </div>
                                 <button className='url-dropdown-button'>▼</button>
                             </div>
