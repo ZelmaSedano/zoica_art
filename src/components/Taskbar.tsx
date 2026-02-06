@@ -53,21 +53,21 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
                 <div ref={startMenuRef} className="start-menu">
                     <section className='blue-bar-1'>
                             <img src="/images/16.ico" className='start-menu-icon' alt="icon"/>
-                            <section className='blue-bar-text-1'>Zoica Art</section>
+                            <section className='blue-bar-text-1'>Administrator</section>
                     </section>
 
                     <div className="start-menu-items">
                         <a href='https://www.etsy.com/uk/shop/ZoicaArt' target='_blank' className="start-menu-item">
                             <img src="/images/etsy.png" className='start-icon-1' alt="icon"/>
-                            <span className='underline'>S</span>hop
+                            Shop
                         </a>
                         <a href='https://www.twitch.tv/zoicaart' target='_blank' className="start-menu-item">
                             <img src="/images/twitch.png" className='start-icon-1' alt="icon"/>
-                            <span className='underline'>T</span>witch
+                            Twitch
                         </a>
                         <a href='https://www.instagram.com/zoica' target='_blank' className="start-menu-item">
-                            <img src="/images/insta.png" className='start-icon' alt="icon"/>
-                            <span className='underline'>I</span>nstagram
+                            <img src="/images/insta.png" className='start-icon-1' alt="icon"/>
+                            Instagram
                         </a>
 
                     </div>
@@ -79,8 +79,8 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
                 className={`devscape-button ${isVisible ? 'window-visible' : ''}`}
                 onClick={toggleWindow}
                 >
-                <img src="/images/home.png" className='connections-icon' alt="icon"/>
-                <span className="devscape-text">Zoica Browser</span>
+                    <img src="/images/home.png" className='connections-icon' alt="icon"/>
+                    <span className="devscape-text">Zoica Browser</span>
                 </button>
             </div>
 

@@ -1,3 +1,5 @@
+
+
 /* START MENU */
 .taskbar {
     position: fixed;
@@ -84,6 +86,8 @@
     box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
     z-index: 1000;
 }
+
+
 .blue-bar-1 {
     font-family: Tahoma, 'MS Sans Serif', sans-serif;
     border-top-left-radius: 5px;
@@ -103,54 +107,66 @@
     display: flex;
 }
 .blue-bar-1 {
+    height: 45px;
     width: 200px;
     position: relative;
+    align-items: center;
 }
 .blue-bar:active,
 .blue-bar-1:active {
     cursor: none;
 }
 .blue-bar-text-1 {
-    font-size: 18px;
-    margin-top: 6px;
+    font-size: 16px;
     margin-left: 10px;
+    font-family: Arial, sans-serif;
+    font-weight: 700; /* Arial's 600 ≈ Tahoma's "bold but not too bold" */
+}
+/* desktop computer icon */
+.start-menu-icon {
+    height: 30px;
+    margin-left: 13px;
 }
 
 .start-menu-items {
     padding: 3px 0;
     display: flex;
     flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .start-menu-item {
     display: flex;
-    padding: 5px 20px;
+    /* align text with icon */
+    align-items: center;
+    padding: 5px 0;
+    margin-left: 5px;
     font-size: 14px;
     cursor: pointer;
     color: black;
     text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
 }
-
 .start-menu-item:hover {
     background-color: #000080;
     color: white;
 }
 
-.start-menu-icon {
-    height: 30px;
-    margin-top: 5px;
-    margin-left: 5px;
-}
+/* flag */
 .start-icon {
-    width: 23px;
-    margin-right: 5px;
-    margin-left: -8px;
+    height: 25px;
+    margin-left: -3px;
+    margin-right: 7px;
 }
 .start-icon-1 {
-    width: 35px;
-    margin-right: 5px;
+    width: 40px;
+    height: 35px;
+    /* keeps icon from warping */
+    object-fit: contain;
+    margin-right: 10px;
 }
 
-
+/* browser button */
 .connections-icon {
     width: 20px;
     height: 20px;
@@ -162,24 +178,19 @@
     margin-left: 10px;
     margin-top: 1px;
     height: 29px;
-
     background: linear-gradient(
         to bottom,
         #5a83e8 0%,
         #2a5bd7 50%,
         #1f4fd8 100%
     );
-
     border-radius: 3px;
     border: 1px solid #0c2d89;
-
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.5),
         inset 0 -1px 0 rgba(0,0,0,0.25);
-
     color: #eaf1ff;
 }
-
 /* when isVisible is true (content is visible) */
 .devscape-button.window-visible {
     background: linear-gradient(
@@ -187,16 +198,14 @@
         #1f4fd8 0%,
         #2a5bd7 100%
     );
-
     box-shadow:
         inset 0 2px 3px rgba(0,0,0,0.35);
 }
-
 .devscape-text {
-    margin-top: 4px;
     margin-left: 4px;
     color: #d7e2fc;
 }
+
 
 .taskbar-items {
     display: flex;
