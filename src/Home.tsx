@@ -87,12 +87,6 @@ function Home() {
     const [error, setError] = useState<string | null>(null);
     const [sign, setSign] = useState('aries'); // Default sign
 
-    const [clippyPosition, setClippyPosition] = useState({ x: 0, y: 0 });
-    const [showClippyModal, setShowClippyModal] = useState(false);
-    const [chatbotInput, setChatbotInput] = useState('');
-    const [chatHistory, setChatHistory] = useState<Array<{sender: string, message: string}>>([]);
-    const [shouldShake, setShouldShake] = useState(false);
-
     // API fetches
     const fetchHoroscope = async (sign: string) => {
         setIsLoading(true);
@@ -148,63 +142,6 @@ function Home() {
         }, 1000);
         return () => clearInterval(timer); // Cleanup
     }, []);
-    
-    // CLIPPY
-    // clippy useEffect, keeps him stuck to the bottom-right
-    useEffect(() => {
-        const updateClippyPosition = () => {
-            // get document height
-            const documentHeight = Math.max(
-                document.body.scrollHeight,
-                document.documentElement.scrollHeight,
-                document.body.offsetHeight,
-                document.documentElement.offsetHeight,
-                document.body.clientHeight,
-                document.documentElement.clientHeight
-            );
-            
-            setClippyPosition({
-            x: window.innerWidth - 80,
-            y: documentHeight - 150
-            });
-        };
-
-        updateClippyPosition();
-
-        window.addEventListener('resize', updateClippyPosition);
-        window.addEventListener('load', updateClippyPosition);
-        return () => {
-            window.removeEventListener('resize', updateClippyPosition);
-            window.removeEventListener('load', updateClippyPosition);
-        };
-    }, [location.pathname]);
-
-    useEffect(() => {
-        // Check if shake has already been shown in this session
-        const hasShaken = sessionStorage.getItem('clippyShaken');
-        
-        if (!hasShaken) {
-            // Trigger the shake
-            setShouldShake(true);
-            // Mark as shaken for this session
-            sessionStorage.setItem('clippyShaken', 'true');
-            
-            // Reset after animation completes (adjust time to match your CSS animation duration)
-            const shakeTimer = setTimeout(() => {
-                setShouldShake(false);
-            }, 1000); // Adjust this time to match your animation duration
-            
-            return () => clearTimeout(shakeTimer);
-        }
-    }, []);
-    // clippy shakes on page reload, not just first visit
-    useEffect(() => {
-        return () => {
-            // Reset on page unload if you want it to shake on next visit
-            sessionStorage.removeItem('clippyShaken');
-        };
-    }, []);
-
 
     const handleMouseDown = (e: React.MouseEvent) => {
     // Don't start dragging if clicking on dropdown or its children
@@ -436,54 +373,12 @@ function Home() {
                     <header>
                         <section className='blue-bar'>
                             <img src="/images/18.ico" className='icon' alt="icon"/>
-                            <section className='blue-bar-text'>Zoica Art</section>
+                            <section className='blue-bar-text'>Zoica Browser</section>
 
                             <div className="button-container">
                                 <button className='x-button' onClick={toggleWindow}>✕</button>
                             </div>
                         </section>
-
-                        {/* *************************** NAVBAR ************************/}
-                        <nav className='navbar'>
-                            <ul>
-                                <li className={`button left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                    <Link to="/">
-                                        <img src="/images/home.png" className='home-icon' alt='home'/>
-                                        <p>Home</p>
-                                    </Link>
-                                </li>
-                                <li className='button'>
-                                    <Link to="/tarot">
-                                        <img src="/images/tarot.png" className='home-icon' alt='home'/>
-                                        <p>Tarot</p>
-                                    </Link>
-                                </li>
-                                <li className='button'>
-                                    <Link to="/norse">
-                                        <img src="/images/d2.ico" className='home-icon' alt='home'/>
-                                        <p>Mythology</p>
-                                    </Link>
-                                </li>
-                                <li className='button'>
-                                    <Link to="/game">
-                                        <img src="/images/game_art.png" className='home-icon' alt='home'/>
-                                        <p>Game Art</p>
-                                    </Link>
-                                </li>
-                                <li className='button'>
-                                    <Link to="/commissions">
-                                        <img src="/images/commissions.png" className='home-icon' alt='home'/>
-                                        <p>Commissions</p>
-                                    </Link>
-                                </li>
-                                <li className='button'>
-                                    <Link to="/contact">
-                                        <img src='/images/contact.png' className='contact-icon' alt='contact'></img>
-                                        <p>Contact</p>
-                                    </Link>
-                                </li>   
-                            </ul>
-                        </nav>
                     </header>
 
                     {/* URL bar */}
@@ -494,14 +389,56 @@ function Home() {
                                 <div className='dropdown-container'>
                                     <div className='url-text'>http://www.geocities.com/zoica_art</div>
                                 </div>
-                                <button className='url-dropdown-button'>▼</button>
+                                    <img src='/images/blue-arrow.png' className='url-dropdown-button'/>
                             </div>
                             <div className = 'url-bar-small-2'>
                                 <img src='/images/290.ico' className='url-bar-go'></img>
-                                <span>Go</span>
+                                <span className='url-go-text'>Go</span>
                             </div>
                         </div>
                     </div>
+                        
+                        {/* *************************** NAVBAR ************************/}
+                        <nav className='navbar'>
+                            <ul>
+                                <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
+                                    <Link to="/">
+                                        <img src="/images/home.png" className='home-icon' alt='home'/>
+                                        <p>Home</p>
+                                    </Link>
+                                </li>
+                                <li className='button-1'>
+                                    <Link to="/tarot">
+                                        <img src="/images/tarot.png" className='home-icon' alt='home'/>
+                                        <p>Tarot</p>
+                                    </Link>
+                                </li>
+                                <li className='button-1'>
+                                    <Link to="/norse">
+                                        <img src="/images/d2.ico" className='home-icon' alt='home'/>
+                                        <p>Mythology</p>
+                                    </Link>
+                                </li>
+                                <li className='button-1'>
+                                    <Link to="/game">
+                                        <img src="/images/game_art.png" className='home-icon' alt='home'/>
+                                        <p>Game Art</p>
+                                    </Link>
+                                </li>
+                                <li className='button-1'>
+                                    <Link to="/commissions">
+                                        <img src="/images/commissions.png" className='home-icon' alt='home'/>
+                                        <p>Commissions</p>
+                                    </Link>
+                                </li>
+                                <li className='button-1'>
+                                    <Link to="/contact">
+                                        <img src='/images/contact.png' className='contact-icon' alt='contact'></img>
+                                        <p>Contact</p>
+                                    </Link>
+                                </li>   
+                            </ul>
+                        </nav>
 
                     {/* window content */}
                     <div className='content'>

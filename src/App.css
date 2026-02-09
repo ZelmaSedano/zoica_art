@@ -15,7 +15,7 @@
 @import url('./fonts/fontStyles.css');
 
 html, body {
-  font-family: 'MS Sans Serif';
+  font-family: Tahoma;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -114,7 +114,7 @@ body {
 
 /* content window */
 header {
-  margin: 0px 0px 40px 0px;
+  margin: 0px 0px 32px 0px;
 }
 .blue-bar {
   font-family: Tahoma, 'MS Sans Serif', sans-serif;
@@ -193,55 +193,101 @@ header {
 
 
 /********** NAVBAR *********/
-.navbar {
-  padding: 13px 0;
-}
+
 .navbar ul {
+  margin: 2px 0 0 0;
   /* removes the browser's default 40px padding to the left of the navbar */
   width: 70vw;
   padding: 0;
   display: flex;
   text-decoration: none;
-  position: absolute;
+
   background: #c3c3c3;
   border-bottom: 1px solid black; /* Top border */
 }
 nav ul li {
   list-style: none;
-  padding-right: 10px;
+  padding-right: 25px;
   cursor: pointer;
 }
 .button {
   display: flex;
-  background: rgb(195, 195, 195);
+  background: #bfd5fb;
   border-top: solid rgb(250, 250, 250) 1px;
   border-left: solid rgb(250, 250, 250) 1px;
   border-right: solid rgb(90, 90, 90) 1px;
   border-bottom: solid rgb(90, 90, 90) 1px;
   box-shadow: 1px 1px black;
   align-items: center;
-  margin: 3px;
-  border-radius: 10%;
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
 }
+.button-1 {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  background: #d2d9ea;
+  border-top: solid rgb(250, 250, 250) 1px;
+  border-left: solid rgb(250, 250, 250) 1px;
+  border-right: solid rgb(90, 90, 90) 1px;
+  border-bottom: solid rgb(90, 90, 90) 1px;
+  box-shadow: 1px 1px black;
+  align-items: center;
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
+}
+.button-1::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  height: 10px; /* Add a specific height */
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.85),
+    rgba(255,255,255,0.35),
+    rgba(255,255,255,0.0)
+  );
+  pointer-events: none;
+}
+
 /* shift left navbar button slightly right */
 .left-button {
   margin-left: 5px;
 }
 
 /* NOTE: make sure you have commas, they break the style */
-.button.active-home,
-.button.active-tarot,
-.button.active-norse, 
-.button.active-game,
-.button.active-commissions,
-.button.active-contact {
-  border-top: 1px solid #808080;
-    border-left: 1px solid #808080;
-    border-right: 1px solid #ffffff;
-    border-bottom: 1px solid #ffffff;
-    box-shadow: 
-        inset -1px -1px 0 #dfdfdf,
-        inset 1px 1px 0 #000;
+.button-1.active-home,
+.button-1.active-tarot,
+.button-1.active-norse, 
+.button-1.active-game,
+.button-1.active-commissions,
+.button-1.active-contact {
+  background: #bfd5fb;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  box-shadow: 
+      inset 1px 1px 0 #dfdfdf,
+      inset -1px -1px 0 #000;
+}
+
+.button-1::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  height: 10px; /* Add a specific height */
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.85),
+    rgba(255,255,255,0.35),
+    rgba(255,255,255,0.0)
+  );
+  pointer-events: none;
 }
 .home-icon{
   margin-left: 1px;
@@ -286,6 +332,7 @@ nav ul li::first-letter {
 nav ul li a p{
   margin-top: 3px;
   margin-bottom: 1px;
+  font-size: 15px;
 }
 
 /* PORTFOLIO dropdown menu */
@@ -492,7 +539,8 @@ nav ul li a p{
 .url-bar-small-1 {
   text-align: center;
   width: 10%;
-  color: black;
+  color: #4a4a44;
+  background-color: #c3c3c3;
   border-top: 1px solid #ffffff;
   border-left: 1px solid #ffffff;
   border-right: 1px solid #808080;
@@ -500,10 +548,10 @@ nav ul li a p{
 }
 .url-bar-large {
   background-color: white;
-  width: 80%;
+  width: 85%;
   display: flex;
   position: relative;
-  border: 1px solid #000;
+  border: 1px solid #a1a2a5;
 
   &::before {
     content: '';
@@ -532,14 +580,13 @@ nav ul li a p{
 .url-dropdown-button {
   position: absolute;
   right: 0;
-  top: 0;
-  height: 100%;
-  width: 26px;
+  top: 1px;
+  height: 21px;
+  width: 20px;
   padding: 0;
   margin: 0;
   border: none;
   background: #c0c0c0;
-  font-size: 12px;
   color: black;
   /* MS 98 styling */
   border-top: 1px solid #ffffff;
@@ -548,10 +595,12 @@ nav ul li a p{
   border-bottom: 1px solid #808080;
 }
 .url-bar-small-2 {
+  display: flex;
   align-items: center;
-  text-align: center;
-  background-color: #efecda;
-  width: 10%;
+  /* margin: 0 auto doesn't work on flexbox */
+  justify-content: center;
+  background-color: #c3c3c3;
+  width: 8%;
   color: black;
   border-top: 1px solid #ffffff;
   border-left: 1px solid #ffffff;
@@ -560,7 +609,16 @@ nav ul li a p{
 }
 .url-bar-go {
   height: 20px;
+  /* shift everything left to match xp */
+  margin-left: -10px;
 }
+.url-go-text {
+  margin-top: 3px;
+  margin-left: 7px;
+  font-size: 15px;
+}
+
+
 
 .homepage-banners {
   display: flex;

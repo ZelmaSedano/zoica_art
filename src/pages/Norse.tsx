@@ -87,12 +87,6 @@ function Norse() {
     const [error, setError] = useState<string | null>(null);
     const [sign, setSign] = useState('aries'); // Default sign
 
-    const [clippyPosition, setClippyPosition] = useState({ x: 0, y: 0 });
-    const [showClippyModal, setShowClippyModal] = useState(false);
-    const [chatbotInput, setChatbotInput] = useState('');
-    const [chatHistory, setChatHistory] = useState<Array<{sender: string, message: string}>>([]);
-    const [shouldShake, setShouldShake] = useState(false);
-
     // API fetches
     const fetchHoroscope = async (sign: string) => {
         setIsLoading(true);
@@ -147,62 +141,6 @@ function Norse() {
             setCurrentTime(new Date());
         }, 1000);
         return () => clearInterval(timer); // Cleanup
-    }, []);
-    
-    // CLIPPY
-    // clippy useEffect, keeps him stuck to the bottom-right
-    useEffect(() => {
-        const updateClippyPosition = () => {
-            // get document height
-            const documentHeight = Math.max(
-                document.body.scrollHeight,
-                document.documentElement.scrollHeight,
-                document.body.offsetHeight,
-                document.documentElement.offsetHeight,
-                document.body.clientHeight,
-                document.documentElement.clientHeight
-            );
-            
-            setClippyPosition({
-            x: window.innerWidth - 80,
-            y: documentHeight - 150
-            });
-        };
-
-        updateClippyPosition();
-
-        window.addEventListener('resize', updateClippyPosition);
-        window.addEventListener('load', updateClippyPosition);
-        return () => {
-            window.removeEventListener('resize', updateClippyPosition);
-            window.removeEventListener('load', updateClippyPosition);
-        };
-    }, [location.pathname]);
-
-    useEffect(() => {
-        // Check if shake has already been shown in this session
-        const hasShaken = sessionStorage.getItem('clippyShaken');
-        
-        if (!hasShaken) {
-            // Trigger the shake
-            setShouldShake(true);
-            // Mark as shaken for this session
-            sessionStorage.setItem('clippyShaken', 'true');
-            
-            // Reset after animation completes (adjust time to match your CSS animation duration)
-            const shakeTimer = setTimeout(() => {
-                setShouldShake(false);
-            }, 1000); // Adjust this time to match your animation duration
-            
-            return () => clearTimeout(shakeTimer);
-        }
-    }, []);
-    // clippy shakes on page reload, not just first visit
-    useEffect(() => {
-        return () => {
-            // Reset on page unload if you want it to shake on next visit
-            sessionStorage.removeItem('clippyShaken');
-        };
     }, []);
 
 

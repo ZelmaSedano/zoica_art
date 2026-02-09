@@ -52,8 +52,6 @@ function Contact() {
     const [error, setError] = useState<string | null>(null);
     const [sign, setSign] = useState('aries'); // Default sign
 
-    const [clippyPosition, setClippyPosition] = useState({ x: 0, y: 0 });
-    const [showClippyModal, setShowClippyModal] = useState(false);
 
     // portfolio dropdown
     const [isPortfolioDropdownOpen, setIsPortfolioDropdownOpen] = useState(false);
@@ -145,40 +143,7 @@ function Contact() {
             return () => clearTimeout(timer);
         }
     }, [isButtonActive]);
-    // clippy useEffect, keeps him stuck to the bottom-right
-    useEffect(() => {
-        const updateClippyPosition = () => {
-            // get document height
-            const documentHeight = Math.max(
-                document.body.scrollHeight,
-                document.documentElement.scrollHeight,
-                document.body.offsetHeight,
-                document.documentElement.offsetHeight,
-                document.body.clientHeight,
-                document.documentElement.clientHeight
-            );
-            
-            // bottom-right corner of document
-            setClippyPosition({
-            x: window.innerWidth - 80, // 100px from right edge
-            y: documentHeight - 150 // 120px from bottom
-            });
-        };
-
-        // initial position
-        updateClippyPosition();
-
-        // update on window resize and load
-        window.addEventListener('resize', updateClippyPosition);
-        window.addEventListener('load', updateClippyPosition);
-
-        return () => {
-            window.removeEventListener('resize', updateClippyPosition);
-            window.removeEventListener('load', updateClippyPosition);
-        };
-    }, []);
-
-
+    
     // mouse event handlers for React events (used in onMouseDown)
     const handleMouseDown = (e: React.MouseEvent) => {
     // Don't start dragging if clicking on dropdown or its children
@@ -451,55 +416,6 @@ function Contact() {
                         </div>
                     </div>
                     )}
-            </div>
-
-            {/* clippy */}
-            <div className="desktop">
-                {/* when you click the desktop icon, setShowModal is set to true */}
-                <DesktopIcon
-                    icon="/images/mad_clippy.png"
-                    label="click me"
-                    x={clippyPosition.x}
-                    y={clippyPosition.y}
-                    onClick={() => setShowCatModal(true)}
-                    className='clippy'
-                />
-
-                {showClippyModal && (
-                    <div className="modal-overlay" onClick={() => setShowClippyModal(false)}>{/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
-                    {/* if you click inside the modal, then setShowModal ISN'T set to false */}
-                    {/* onClick takes the event, and returns 'don't propogate this event' function */}
-                        <div className="modal" onClick={(e) => e.stopPropagation()}>
-                            <div className="modal-header">
-                                <span>Hi, I'm ANGRY CLIPPY</span>
-                                <button className='x-button' onClick={() => setShowClippyModal(false)}>✕</button>
-                            </div>
-                            {/* body of modal */}
-                            <div className="modal-body">Are you kidding me??</div>
-                            {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
-                            <div className='cat-buttons'>
-                                <button 
-                                className='cat-button'
-                                onClick={() => {
-                                    setShowClippyModal(false);
-                                    setShowYesModal(true);
-                                }}
-                                >
-                                    Yes
-                                </button>
-                                <button 
-                                    className='cat-button'
-                                    onClick={() => {
-                                        setShowClippyModal(false);
-                                        setShowLoveModal(true);
-                                    }}
-                                >
-                                    No
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )}
             </div>
 
 
