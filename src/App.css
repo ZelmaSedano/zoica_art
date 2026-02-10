@@ -34,10 +34,10 @@ html, body {
 /************ Desktop Design *************/
 .window {
   background-color: #c3c3c3;
-  border-top: solid #727fd7 2px;
-  border-left: solid #727fd7 2px;
-  border-right: solid #727fd7 2px;
-  border-bottom: solid #727fd7 2px;
+  border-top: solid #1172ee 2px;
+  border-left: solid #002bad 2px;
+  border-right: solid #002bad 2px;
+  border-bottom: solid #002bad 2px;
   box-shadow: 1.5px 1.5px black;
 
   border-radius: 8px 8px 8px 8px;
@@ -126,9 +126,9 @@ header {
   text-align: left;
   background: linear-gradient(
         to bottom,
-        #4f7de1 0%,
-        #245edb 45%,
-        #1f4fd8 60%,
+        #287bec 0%,
+        #0052f4 20%,
+        #0161fe 80%,
         #1b44c2 100%
     );
 
@@ -193,7 +193,9 @@ header {
 
 
 /********** NAVBAR *********/
-
+.navbar {
+  height: 32px;
+}
 .navbar ul {
   margin: 2px 0 0 0;
   /* removes the browser's default 40px padding to the left of the navbar */
@@ -251,12 +253,6 @@ nav ul li {
   );
   pointer-events: none;
 }
-
-/* shift left navbar button slightly right */
-.left-button {
-  margin-left: 5px;
-}
-
 /* NOTE: make sure you have commas, they break the style */
 .button-1.active-home,
 .button-1.active-tarot,
@@ -273,7 +269,6 @@ nav ul li {
       inset 1px 1px 0 #dfdfdf,
       inset -1px -1px 0 #000;
 }
-
 .button-1::before {
   content: '';
   position: absolute;
@@ -293,29 +288,29 @@ nav ul li {
   margin-left: 1px;
   margin-top: 3px;
   margin-right: 5px;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
 }
 .paint-icon{
   margin-left: 1px;
   margin-top: 3.5px;
   margin-right: 5px;
-  width: 20.5px;
-  height: 20.5px;
+  width: 18px;
+  height: 18px;
 }
 .resume-icon{
   margin-left: 1px;
   margin-top: 4px;
   margin-right: 5px;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
 }
 .contact-icon{
   margin-left: 1px;
   margin-top: 4px;
   margin-right: 5px;
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
 }
 nav ul li a {
   color: black;
@@ -325,7 +320,6 @@ nav ul li a {
   margin-left: 5px;
   display: flex;
 }
-
 nav ul li::first-letter {
   text-decoration: underline;
 }
@@ -334,96 +328,16 @@ nav ul li a p{
   margin-bottom: 1px;
   font-size: 15px;
 }
-
-/* PORTFOLIO dropdown menu */
-.portfolio-link-wrapper {
-  color: black;
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: -0.5px;
-  margin-left: 5px;
-  display: flex;
-  align-items: center;
-  text-decoration: none; /* Remove underline */
-  padding: 0;
-  /* need a solid height, otherwise it's WAY too tall */
-  height: 25px;
-  width: 100%;
-  box-sizing: border-box;
+.light-blue-bar-bottom {
+    background: #bfd5fb;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.4),
+        inset 0 -1px 0 rgba(0,0,0,0.25);
+    height: 3px;
+    margin-bottom: -4px;
+    width: 100%; /* Make it span the full width */
+    content: ''
 }
-
-.portfolio-link-wrapper img {
-  margin-top: 0px;
-}
-.portfolio-link-wrapper p {
-  color: black;
-  margin-top: 18px;
-  margin-left: 3px;
-}
-
-.dropdown-arrow {
-  margin-top: 6px;
-}
-.caret-down {
-  width: 14px;
-  padding-left: 5px;
-  padding-top: 0px;
-}
-
-.portfolio-dropdown-container {
-  padding-right: 3px !important;
-}
-
-/* PARENT to dropdown */
-.portfolio-dropdown-container {
-  position: relative;
-}
-
-.portfolio-dropdown {
-  /* remember, removes from flow */
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  background-color: #c3c3c3;
-  border: 1px solid #000;
-  box-shadow: 2px 2px 0px #000;
-  min-width: 200px;
-  margin-top: 2px;
-}
-
-.dropdown-item {
-  display: flex;
-  align-items: center;
-  padding: 8px 12px;
-  text-decoration: none;
-  color: black;
-  cursor: pointer;
-}
-
-.dropdown-item:hover {
-  background-color: #000080;
-  color: white;
-}
-
-.dropdown-icon {
-  margin-right: 8px;
-  font-size: 14px;
-}
-
-.dropdown-divider {
-  height: 1px;
-  background-color: #808080;
-  margin: 4px 0;
-}
-
-/* helps fix drag issue that dropdown interferes with*/
-.portfolio-dropdown * {
-  pointer-events: auto; 
-}
-
-
-
 
 
 .content {
@@ -570,8 +484,9 @@ nav ul li a p{
   margin: 0;
   color: black;
   text-align: left;
-  padding: 1px;
+  padding: 2px;
   padding-left: 5px;
+  font-size: 13.7px;
 }
 .dropdown-container {
   position: relative;

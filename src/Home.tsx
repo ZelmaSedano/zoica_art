@@ -436,9 +436,15 @@ function Home() {
                                         <img src='/images/contact.png' className='contact-icon' alt='contact'></img>
                                         <p>Contact</p>
                                     </Link>
-                                </li>   
+                                </li>
                             </ul>
+                            
+                            <div className='light-blue-bar-bottom'></div>
                         </nav>
+
+
+
+
 
                     {/* window content */}
                     <div className='content'>
