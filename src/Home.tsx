@@ -17,35 +17,25 @@ type HoroscopeData = {
 
 const images = [
         {
-            title:'Big Scary',
+            title:'Tarot',
             id: '12',
             url: 'http://www.etsy.com'
         },
         {
-            title:'Hanging Man',
+            title:'Mythology',
             id: '13',
             url: 'http://www.etsy.com'
         },
                 {
-            title:'Wizard',
+            title:'Game Art',
             id: '19',
             url: 'http://www.etsy.com'
         },
         {
-            title:'Princess',
+            title:'Commissions',
             id: '8',
             url: 'http://www.etsy.com'
         },
-        {
-            title:'Chronic Wasting',
-            id: '14',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Joten',
-            id: '7',
-            url: 'http://www.etsy.com'
-        }
     ];
 
 function Home() {
