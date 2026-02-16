@@ -448,7 +448,9 @@ function Contact() {
                     {/* URL bar */}
                     <div className='url-container'>
                         <div className = 'url-bar'>
-                            <div className = 'url-bar-small-1'>Address</div>
+                            <div className = 'url-bar-small-1'>
+                                <div className='url-bar-small-1-text'>Address</div>
+                            </div>
                             <div className = 'url-bar-large'>
                                 <div className='dropdown-container'>
                                     <div className='url-text'>http://www.geocities.com/zoica_art</div>
@@ -465,8 +467,8 @@ function Contact() {
                     {/* *************************** NAVBAR ************************/}
                     <nav className='navbar'>
                         <ul>
-                            <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                <Link to="/">
+                            <li className='button-1'>
+                                <Link to="/" className='link'>
                                     <img src="/images/home.png" className='home-icon' alt='home'/>
                                     <p>Home</p>
                                 </Link>
@@ -495,7 +497,7 @@ function Contact() {
                                     <p>Commissions</p>
                                 </Link>
                             </li>
-                            <li className='button-1'>
+                            <li className={`button-1 left-button ${location.pathname === '/contact' ? 'active-contact' : ''}`}>
                                 <Link to="/contact">
                                     <img src='/images/contact.png' className='contact-icon' alt='contact'></img>
                                     <p>Contact</p>
@@ -503,7 +505,6 @@ function Contact() {
                             </li>
                         </ul>
                         
-                        <div className='light-blue-bar-bottom'></div>
                     </nav>
 
 

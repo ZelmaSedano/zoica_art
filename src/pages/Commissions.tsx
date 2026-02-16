@@ -410,7 +410,7 @@ function Commissions() {
                                         <p>Game Art</p>
                                     </Link>
                                 </li>
-                                <li className={`button left-button ${location.pathname === '/commissions' ? 'active-commissions' : ''}`}>
+                                <li className={`button-1 left-button ${location.pathname === '/commissions' ? 'active-commissions' : ''}`}>
                                     <Link to="/commissions">
                                         <img src="/images/commissions.png" className='home-icon' alt='home'/>
                                         <p>Commissions</p>

@@ -374,7 +374,9 @@ function Home() {
                     {/* URL bar */}
                     <div className='url-container'>
                         <div className = 'url-bar'>
-                            <div className = 'url-bar-small-1'>Address</div>
+                            <div className = 'url-bar-small-1'>
+                                <div className='url-bar-small-1-text'>Address</div>
+                            </div>
                             <div className = 'url-bar-large'>
                                 <div className='dropdown-container'>
                                     <div className='url-text'>http://www.geocities.com/zoica_art</div>
@@ -388,49 +390,48 @@ function Home() {
                         </div>
                     </div>
                         
-                        {/* *************************** NAVBAR ************************/}
-                        <nav className='navbar'>
-                            <ul>
-                                <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                    <Link to="/">
-                                        <img src="/images/home.png" className='home-icon' alt='home'/>
-                                        <p>Home</p>
-                                    </Link>
-                                </li>
-                                <li className='button-1'>
-                                    <Link to="/tarot">
-                                        <img src="/images/tarot.png" className='home-icon' alt='home'/>
-                                        <p>Tarot</p>
-                                    </Link>
-                                </li>
-                                <li className='button-1'>
-                                    <Link to="/norse">
-                                        <img src="/images/d2.ico" className='home-icon' alt='home'/>
-                                        <p>Mythology</p>
-                                    </Link>
-                                </li>
-                                <li className='button-1'>
-                                    <Link to="/game">
-                                        <img src="/images/game_art.png" className='home-icon' alt='home'/>
-                                        <p>Game Art</p>
-                                    </Link>
-                                </li>
-                                <li className='button-1'>
-                                    <Link to="/commissions">
-                                        <img src="/images/commissions.png" className='home-icon' alt='home'/>
-                                        <p>Commissions</p>
-                                    </Link>
-                                </li>
-                                <li className='button-1'>
-                                    <Link to="/contact">
-                                        <img src='/images/contact.png' className='contact-icon' alt='contact'></img>
-                                        <p>Contact</p>
-                                    </Link>
-                                </li>
-                            </ul>
-                            
-                            <div className='light-blue-bar-bottom'></div>
-                        </nav>
+                    {/* *************************** NAVBAR ************************/}
+                    <nav className='navbar'>
+                        <ul>
+                            <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
+                                <Link to="/">
+                                    <img src="/images/home.png" className='home-icon' alt='home'/>
+                                    <p>Home</p>
+                                </Link>
+                            </li>
+                            <li className='button-1'>
+                                <Link to="/tarot">
+                                    <img src="/images/tarot.png" className='home-icon' alt='home'/>
+                                    <p>Tarot</p>
+                                </Link>
+                            </li>
+                            <li className='button-1'>
+                                <Link to="/norse">
+                                    <img src="/images/d2.ico" className='home-icon' alt='home'/>
+                                    <p>Mythology</p>
+                                </Link>
+                            </li>
+                            <li className='button-1'>
+                                <Link to="/game">
+                                    <img src="/images/game_art.png" className='home-icon' alt='home'/>
+                                    <p>Game Art</p>
+                                </Link>
+                            </li>
+                            <li className='button-1'>
+                                <Link to="/commissions">
+                                    <img src="/images/commissions.png" className='home-icon' alt='home'/>
+                                    <p>Commissions</p>
+                                </Link>
+                            </li>
+                            <li className='button-1'>
+                                <Link to="/contact">
+                                    <img src='/images/contact.png' className='contact-icon' alt='contact'></img>
+                                    <p>Contact</p>
+                                </Link>
+                            </li>
+                        </ul>
+                        
+                    </nav>
 
 
 
