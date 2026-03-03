@@ -373,69 +373,75 @@ function Game() {
                     <header>
                         <section className='blue-bar'>
                             <img src="/images/18.ico" className='icon' alt="icon"/>
-                            <section className='blue-bar-text'>Zoica Art</section>
+                            <section className='blue-bar-text'>Zoica Browser</section>
 
                             <div className="button-container">
                                 <button className='x-button' onClick={toggleWindow}>✕</button>
                             </div>
                         </section>
-
-                        {/* *************************** NAVBAR ************************/}
-                        <nav className='navbar'>
-                            <ul>
-                                <li className='button'>
-                                    <Link to="/">
-                                        <img src="/images/home.png" className='home-icon' alt='home'/>
-                                        <p>Home</p>
-                                    </Link>
-                                </li>
-                                <li className='button'>
-                                    <Link to="/tarot">
-                                        <img src="/images/tarot.png" className='home-icon' alt='home'/>
-                                        <p>Tarot</p>
-                                    </Link>
-                                </li>
-                                <li className='button'>
-                                    <Link to="/norse">
-                                        <img src="/images/d2.ico" className='home-icon' alt='home'/>
-                                        <p>Mythology</p>
-                                    </Link>
-                                </li>
-                                <li className={`button left-button ${location.pathname === '/game' ? 'active-game' : ''}`}>
-                                    <Link to="/game">
-                                        <img src="/images/game_art.png" className='home-icon' alt='home'/>
-                                        <p>Game Art</p>
-                                    </Link>
-                                </li>
-                                <li className='button'>
-                                    <Link to="/commissions">
-                                        <img src="/images/commissions.png" className='home-icon' alt='home'/>
-                                        <p>Commissions</p>
-                                    </Link>
-                                </li>
-                                <li className='button'>
-                                    <Link to="/contact">
-                                        <img src='/images/contact.png' className='contact-icon' alt='contact'></img>
-                                        <p>Contact</p>
-                                    </Link>
-                                </li>   
-                            </ul>
-                        </nav>
                     </header>
 
                     {/* URL bar */}
                     <div className='url-container'>
                         <div className = 'url-bar'>
-                            <div className = 'url-bar-small-1'>Address</div>
+                            <div className = 'url-bar-small-1'>
+                                <div className='url-bar-small-1-text'>Address</div>
+                            </div>
                             <div className = 'url-bar-large'>
                                 <div className='dropdown-container'>
                                     <div className='url-text'>http://www.geocities.com/zoica_art</div>
                                 </div>
-                                <button className='url-dropdown-button'>▼</button>
+                                    <img src='/images/blue-arrow.png' className='url-dropdown-button'/>
                             </div>
-                            <div className = 'url-bar-small-2'>Links</div>
+                            <div className = 'url-bar-small-2'>
+                                <img src='/images/290.ico' className='url-bar-go'></img>
+                                <span className='url-go-text'>Go</span>
+                            </div>
                         </div>
                     </div>
+                        
+                    {/* *************************** NAVBAR ************************/}
+                    <nav className='navbar'>
+                        <ul>
+                            <li className='button-1'>
+                                <Link to="/">
+                                    <img src="/images/home.png" className='home-icon' alt='home'/>
+                                    <p>Home</p>
+                                </Link>
+                            </li>
+                            <li className='button-1'>
+                                <Link to="/tarot">
+                                    <img src="/images/tarot.png" className='home-icon' alt='home'/>
+                                    <p>Tarot</p>
+                                </Link>
+                            </li>
+                            <li className='button-1'>
+                                <Link to="/norse">
+                                    <img src="/images/d2.ico" className='home-icon' alt='home'/>
+                                    <p>Mythology</p>
+                                </Link>
+                            </li>
+                            <li className={`button-1 left-button ${location.pathname === '/game' ? 'active-game' : ''}`}>
+                                <Link to="/game">
+                                    <img src="/images/game_art.png" className='home-icon' alt='home'/>
+                                    <p>Game Art</p>
+                                </Link>
+                            </li>
+                            <li className='button-1'>
+                                <Link to="/commissions">
+                                    <img src="/images/commissions.png" className='home-icon' alt='home'/>
+                                    <p>Commissions</p>
+                                </Link>
+                            </li>
+                            <li className='button-1'>
+                                <Link to="/contact">
+                                    <img src='/images/contact.png' className='contact-icon' alt='contact'></img>
+                                    <p>Contact</p>
+                                </Link>
+                            </li>
+                        </ul>
+                        
+                    </nav>
 
                     {/* window content */}
                     <div className='content'>

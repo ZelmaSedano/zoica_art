@@ -258,7 +258,7 @@ nav ul li {
   height: 100%;
   width: 100%;
   /* add padding here so entire button is clickable */
-  padding-right: 25px;
+  padding-right: 29px;
 }
 /* Justine, new concept, STACKING BOUNDARY */
 .button-1 > a {
@@ -1188,7 +1188,7 @@ input:focus, textarea:focus {
 }
 
 /******** Mobile Design *********/
-@media (max-width: 956px) {
+@media (max-width: 992px) {
   /* make sure all the icons are hidden */
   .desktop {
     display: none;
@@ -1279,7 +1279,7 @@ input:focus, textarea:focus {
     width: 10%;
   }
   .url-bar-small-2 {
-    width: %;
+    width: 7%;
   }
 
 
