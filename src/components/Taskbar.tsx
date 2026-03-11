@@ -53,7 +53,7 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
             {isStartMenuOpen && (
                 <div ref={startMenuRef} className="start-menu">
                     <section className='blue-bar-1'>
-                            <img src="/images/art_lover.png" className='start-menu-icon' alt="icon"/>
+                            <img src="/images/mythology.png" className='start-menu-icon' alt="icon"/>
                             <section className='blue-bar-text-1'>Zoica Art</section>
                     </section>
 

@@ -46,7 +46,7 @@ const images = [
             id: '7',
             url: 'http://www.etsy.com'
         }
-    ];
+];
 
 function Home() {
     // portfolio dropdown
@@ -116,7 +116,7 @@ function Home() {
         }
     };
     const handleGetHoroscope = () => {
-    fetchHoroscope(sign);
+        fetchHoroscope(sign);
     };
 
     // getters
@@ -184,6 +184,7 @@ function Home() {
         }
     };
     const handleNativeMouseUp = () => setIsDragging(false);
+
     useEffect(() => {
         document.addEventListener('mousemove', handleNativeMouseMove);
         document.addEventListener('mouseup', handleNativeMouseUp);
@@ -264,16 +265,16 @@ function Home() {
                             <div className="modal-body">Do you like cats?</div>
                             {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
                             <div className='cat-buttons'>
-                                <button 
-                                className='cat-button'
-                                onClick={() => {
-                                    setShowCatModal(false);
-                                    setShowYesModal(true);
-                                }}
+                                <button
+                                    className='cat-button'
+                                    onClick={() => {
+                                        setShowCatModal(false);
+                                        setShowYesModal(true);
+                                    }}
                                 >
                                     Yes
                                 </button>
-                                <button 
+                                <button
                                     className='cat-button'
                                     onClick={() => {
                                         setShowCatModal(false);
@@ -351,7 +352,7 @@ function Home() {
             {/* media player */}
             <div className="desktop">
                 <DesktopIcon
-                    icon="/public/images/player.png"
+                    icon="/images/player.png"
                     label="play"
                     x={50}
                     y={255}
@@ -380,7 +381,7 @@ function Home() {
                                     {/* Audio element - hidden but controls playback */}
                                     <audio
                                         id="audio-player"
-                                        src="/public/Miki_Matsubara_-_Stay_With_Me_(mp3.pm).mp3"
+                                        src="/images/Miki_Matsubara_-_Stay_With_Me_(mp3.pm).mp3"
                                         onTimeUpdate={handleTimeUpdate}
                                         onLoadedMetadata={(e) => {
                                             const audioElement = e.currentTarget as HTMLAudioElement;
@@ -523,7 +524,7 @@ function Home() {
                             </li>
                             <li className='button-1'>
                                 <Link to="/norse">
-                                    <img src="/public/images/Mythology.png" className='home-icon' alt='home'/>
+                                    <img src="/images/Mythology.png" className='home-icon' alt='home'/>
                                     <p>Mythology</p>
                                 </Link>
                             </li>

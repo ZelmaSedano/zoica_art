@@ -87,6 +87,15 @@ function Tarot() {
     const [error, setError] = useState<string | null>(null);
     const [sign, setSign] = useState('aries'); // Default sign
 
+    // Add this to your existing states
+    const [showPlayModal, setShowPlayModal] = useState(false);
+
+    const [audioPlayer, setAudioPlayer] = useState({
+    isPlaying: false,
+    currentTime: 0,
+    duration: 0,
+    });
+
     // API fetches
     const fetchHoroscope = async (sign: string) => {
         setIsLoading(true);
@@ -182,6 +191,39 @@ function Tarot() {
             document.removeEventListener('mouseup', handleNativeMouseUp);
         };
     }, [isDragging, dragOffset]);
+
+    // media player
+    const handlePlayAudio = () => {
+        const audioElement = document.getElementById('audio-player')  as HTMLAudioElement;
+        if (audioElement) {
+            if (audioPlayer.isPlaying) {
+            audioElement.pause();
+            } else {
+            audioElement.play();
+            }
+            setAudioPlayer(prev => ({ ...prev, isPlaying: !prev.isPlaying }));
+        }
+    };
+
+    // Add this function to handle time updates
+    const handleTimeUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
+        const audio = e.target as HTMLAudioElement;
+        setAudioPlayer(prev => ({
+            ...prev,
+            currentTime: audio.currentTime,
+            duration: audio.duration || 0
+        }));
+    };
+
+    // Function to handle seeking
+    const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const audioElement = document.getElementById('audio-player') as HTMLAudioElement;
+        const seekTime = parseFloat(e.target.value);
+        if (audioElement) {
+            audioElement.currentTime = seekTime;
+            setAudioPlayer(prev => ({ ...prev, currentTime: seekTime }));
+        }
+    };
 
 
     // toggle visibility
@@ -296,63 +338,118 @@ function Tarot() {
                     </div>
                 )}
             </div>
-            
-            {/* horoscope icon */}
+
+            {/* media player */}
             <div className="desktop">
                 <DesktopIcon
-                    icon="/images/scandique.jpg"
-                    label="horoscope"
+                    icon="/public/images/player.png"
+                    label="play"
                     x={50}
                     y={255}
-                    onClick={() => setShowHoroscopeModal(true)}
-                    className=''
-                    imgClassName='horoscope-icon'
+                    onClick={() => setShowPlayModal(true)}
                 />
 
-                {showHoroscopeModal && (
-                    <div className="modal-overlay" onClick={() => setShowHoroscopeModal(false)}>
-                        <div className="modal" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <span>Your Horoscope</span>
-                            <button className='x-button' onClick={() => setShowHoroscopeModal(false)}>✕</button>
-                        </div>
-                        <div className="modal-body">
-                            <div className="horoscope-controls">
-                                <select 
-                                    value={sign} 
-                                    onChange={(e) => setSign(e.target.value)}
-                                    className="horoscope-select"
-                                >
-                                    {["aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"].map((sign) => (
-                                    <option key={sign} value={sign}>
-                                        {sign.charAt(0).toUpperCase() + sign.slice(1)}
-                                    </option>
-                                    ))}
-                                </select>
-                                
-                                <button 
-                                    onClick={handleGetHoroscope}
-                                    className="horoscope-button"
-                                    disabled={isLoading}
-                                >
-                                    {isLoading ? "Loading..." : "Get Horoscope"}
-                                </button>
+                {showPlayModal && (
+                    <div className="modal-overlay" onClick={() => setShowPlayModal(false)}>
+                        <div className="modal media-modal" onClick={(e) => e.stopPropagation()}>
+                            <div className="modal-header">
+                                <span>Media Player</span>
+                                <button className='x-button' onClick={() => {
+                                    setShowPlayModal(false);
+
+                                    const audioElement = document.getElementById('audio-player') as HTMLAudioElement;
+
+                                    if (audioElement) {
+                                        audioElement.pause();
+                                        setAudioPlayer({ isPlaying: false, currentTime: 0, duration: 0 });
+                                    }
+                                }}>✕</button>
                             </div>
 
-                            {error && <div className="error">{error}</div>}
-
-                            {horoscopeData && (
-                                <div className="horoscope-results">
-                                    <h3>{sign.charAt(0).toUpperCase() + sign.slice(1)}</h3>
-                                    <p><strong>Date:</strong> {horoscopeData.data.date}</p>
-                                    <p><strong>Horoscope Data:</strong> {horoscopeData.data.horoscope_data}</p>
+                            <div className="modal-body">
+                                <div className="media-player-container">
+                                    {/* Audio element - hidden but controls playback */}
+                                    <audio
+                                        id="audio-player"
+                                        src="/public/Miki_Matsubara_-_Stay_With_Me_(mp3.pm).mp3"
+                                        onTimeUpdate={handleTimeUpdate}
+                                        onLoadedMetadata={(e) => {
+                                            const audioElement = e.currentTarget as HTMLAudioElement;
+                                            setAudioPlayer(prev => ({ ...prev, duration: audioElement.duration }));
+                                        }}
+                                        onEnded={() => {
+                                            setAudioPlayer(prev => ({ ...prev, isPlaying: false, currentTime: 0 }));
+                                        }}
+                                    />
+                                    
+                                    {/* player controls */}
+                                    <div className="media-controls">
+                                        <div className='media-player-image'>
+                                            <img src='/images/miki.jpg' className='miki'></img>
+                                        </div>
+                                        
+                                        {/* song progress */}
+                                        <div className="progress-container">
+                                            {/* play/pause button */}
+                                            <button 
+                                                className="play-button"
+                                                onClick={handlePlayAudio}
+                                            >
+                                                {audioPlayer.isPlaying ? <img src='/images/pause.png' className='media-player-pause'></img> : <img src='/images/play.png' className='media-player-play'></img>}
+                                            </button>
+                                            <span className="time-display current-time">
+                                                {formatTime(audioPlayer.currentTime)}
+                                            </span>
+                                            
+                                            <input
+                                                type="range"
+                                                className="progress-bar"
+                                                min="0"
+                                                max={audioPlayer.duration || 100}
+                                                value={audioPlayer.currentTime}
+                                                onChange={handleSeek}
+                                                step="0.1"
+                                            />
+                                            
+                                            <span className="time-display total-time">
+                                                {formatTime(audioPlayer.duration)}
+                                            </span>
+                                        </div>
+                                        
+                                        <div className="volume-controls">
+                                            <span>
+                                                <img src='/images/Volume.ico' className="volume-icon"></img>
+                                            </span>
+                                            <input
+                                                type="range"
+                                                className="volume-bar"
+                                                min="0"
+                                                max="1"
+                                                step="0.01"
+                                                defaultValue="1"
+                                                onChange={(e) => {
+                                                    const audioElement = document.getElementById('audio-player') as HTMLAudioElement;
+                                                    if (audioElement) {
+                                                    audioElement.volume = parseFloat(e.target.value);
+                                                    }
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                
+                                {/* Track info */}
+                                <div className="track-info">
+                                    <div className="track-title">Now Playing: "Stay with Me"</div>
+                                    <div className="track-artist">Artist: Miki Matsubara</div>
                                 </div>
-                            )}
-                        </div>
+                            </div>
+                            </div>
                         </div>
                     </div>
                     )}
-            </div>
+                </div>
+
+
 
         {/* content window - draggable */}
             {/* if isVisible is true, */}
