@@ -76,13 +76,26 @@ you can just add the more specific selector in that case in front of the one tha
     border: 2px solid black;
     box-shadow: 4px 4px rgba(0,0,0,0.5);
     font-family: 'MS Sans Serif';
+    border-radius: 3%;
 }
 .modal-header {
-    background: #000080;
+    height: 30px;
+    display: flex;
+    text-align: left;
+    cursor: grab;
+    align-items: center;
+    background: linear-gradient(
+        to bottom,
+        #287bec 0%,
+        #0052f4 20%,
+        #0161fe 80%,
+        #1b44c2 100%
+    );
     color: white;
     padding: 4px 8px;
     display: flex;
     justify-content: space-between;
+    border-radius: 3%;
 }
 .modal-button {
     display: flex;
