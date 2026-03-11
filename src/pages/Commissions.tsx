@@ -26,7 +26,7 @@ const images = [
             id: '13',
             url: 'http://www.etsy.com'
         },
-                {
+        {
             title:'Wizard',
             id: '19',
             url: 'http://www.etsy.com'
