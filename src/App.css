@@ -82,6 +82,7 @@ body {
   height: 200px;
 }
 
+
 .cat-response-modal {
     width: 350px;
 }
@@ -266,7 +267,7 @@ nav ul li {
     rgba(255, 255, 255, 0.8)
   );
   z-index: 1;
-  pointer-events: none;
+
 }
 .button-1 a {
   position: relative;
@@ -310,7 +311,7 @@ nav ul li {
     rgba(255,255,255,0.35),
     rgba(255,255,255,0.0)
   );
-  pointer-events: none;
+
 }
 .link {
   width: 100%;

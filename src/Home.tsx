@@ -142,22 +142,16 @@ function Home() {
 
     // handle video
     const handlePlayVideo = () => {
-    // Target the hidden video (the one that actually contains your video file)
-    const videoElement = document.getElementById('hidden-video-player') as HTMLVideoElement;
-    // Also get the display video if you want to sync them
-    const displayVideo = document.getElementById('display-video') as HTMLVideoElement;
-    
-    if (videoElement) {
-        if (videoPlayer.isPlaying) {
-            videoElement.pause();
-            if (displayVideo) displayVideo.pause(); // Pause display video too
-        } else {
-            videoElement.play();
-            if (displayVideo) displayVideo.play(); // Play display video too
+        const videoElement = document.getElementById('video-player') as HTMLVideoElement;
+        if (videoElement) {
+            if (videoPlayer.isPlaying) {
+                videoElement.pause();
+            } else {
+                videoElement.play();
+            }
+            setVideoPlayer(prev => ({ ...prev, isPlaying: !prev.isPlaying }));
         }
-        setVideoPlayer(prev => ({ ...prev, isPlaying: !prev.isPlaying }));
-    }
-};
+    };
     const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
         const video = e.target as HTMLVideoElement;
         setVideoPlayer(prev => ({
@@ -312,50 +306,44 @@ function Home() {
                             {/* blue bar */}
                             <div className="modal-header">
                                 <div className='modal-left'>
-                                    <img className='tiny-media-player' src='/images/player.png'></img>
+                                    <img className='tiny-media-player' src='/images/player.png' alt="player" />
                                     <span>Zoica Player</span>
                                 </div>
                                 <button className='x-button' onClick={() => {
                                     setShowPlayModal(false);
-                                    const videoElement = document.getElementById('hidden-video-player') as HTMLVideoElement;
-                                    const displayVideo = document.getElementById('display-video') as HTMLVideoElement;
+                                    const videoElement = document.getElementById('video-player') as HTMLVideoElement;
                                     if (videoElement) {
                                         videoElement.pause();
-                                        if (displayVideo) displayVideo.pause();
                                         setVideoPlayer({ isPlaying: false, currentTime: 0, duration: 0 });
                                     }
                                 }}>✕</button>
                             </div>
+                            
                             {/* modal body */}
                             <div className="modal-body">
-
                                 <div className="media-player-container">
+                                    
+                                    {/* VISIBLE VIDEO ELEMENT - ADD THIS BACK */}
+                                    <div className='media-player-image'>
+                                        <video 
+                                            id="video-player"  // Single ID for both control and display
+                                            src='/lane.mp4'
+                                            className='lane'
+                                            onClick={handlePlayVideo}
+                                            onTimeUpdate={handleTimeUpdate}
+                                            onLoadedMetadata={(e) => {
+                                                const videoElement = e.currentTarget as HTMLVideoElement;
+                                                setVideoPlayer(prev => ({ ...prev, duration: videoElement.duration }));
+                                            }}
+                                            onEnded={() => {
+                                                setVideoPlayer(prev => ({ ...prev, isPlaying: false, currentTime: 0 }));
+                                            }}
 
-                                    <video
-                                        id="hidden-video-player" // Changed ID
-                                        src="/images/your-video-file.mp4"
-                                        onTimeUpdate={handleTimeUpdate}
-                                        onLoadedMetadata={(e) => {
-                                            const videoElement = e.currentTarget as HTMLVideoElement;
-                                            setVideoPlayer(prev => ({ ...prev, duration: videoElement.duration }));
-                                        }}
-                                        onEnded={() => {
-                                            setVideoPlayer(prev => ({ ...prev, isPlaying: false, currentTime: 0 }));
-                                        }}
-                                        style={{ display: 'none' }}
-                                    />
+                                        />
+                                    </div>
                                     
                                     {/* player controls */}
                                     <div className="media-controls">
-                                        <div className='media-player-image'>
-                                            <video 
-                                                id="display-video" // Added ID
-                                                src='/lane.mp4' 
-                                                className='lane'
-                                                muted
-                                            />
-                                        </div>
-                                        
                                         {/* video progress */}
                                         <div className="progress-container">
                                             {/* play/pause button */}
@@ -390,7 +378,7 @@ function Home() {
                                         
                                         <div className="volume-controls">
                                             <span>
-                                                <img src='/images/Volume.ico' className="volume-icon"></img>
+                                                <img src='/images/Volume.ico' className="volume-icon" alt="volume" />
                                             </span>
                                             <input
                                                 type="range"
@@ -409,14 +397,12 @@ function Home() {
                                         </div>
                                     </div>
                                 
-                                {/* Track info */}
-                                <div className="track-info">
-                                    <div className="track-title">Now Playing: "Your Video Title"</div>
-                                    <div className="track-artist">Video description or artist info</div>
+                                    {/* Track info */}
+                                    <div className="track-info">
+                                        <div className="track-title">Now Playing: "Your Video Title"</div>
+                                        <div className="track-artist">Video description or artist info</div>
+                                    </div>
                                 </div>
-                            </div>
-
-
                             </div>
                         </div>
                     </div>

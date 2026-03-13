@@ -28,9 +28,7 @@ CSS multi-class selector vs descendant selector::after
     box-sizing: border-box;
     padding-top: 6px;
 }
-.desktop-icon * {
-    pointer-events: none;
-}
+
 .desktop-icon.active {
     background-color: #000080; /* Classic Windows blue */
     color: white;
