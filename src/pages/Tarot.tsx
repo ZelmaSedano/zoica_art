@@ -204,8 +204,7 @@ function Tarot() {
             setAudioPlayer(prev => ({ ...prev, isPlaying: !prev.isPlaying }));
         }
     };
-
-    // Add this function to handle time updates
+    // function to handle time updates
     const handleTimeUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
         const audio = e.target as HTMLAudioElement;
         setAudioPlayer(prev => ({
@@ -214,8 +213,7 @@ function Tarot() {
             duration: audio.duration || 0
         }));
     };
-
-    // Function to handle seeking
+    // function to handle seeking
     const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
         const audioElement = document.getElementById('audio-player') as HTMLAudioElement;
         const seekTime = parseFloat(e.target.value);
@@ -223,6 +221,13 @@ function Tarot() {
             audioElement.currentTime = seekTime;
             setAudioPlayer(prev => ({ ...prev, currentTime: seekTime }));
         }
+    };
+    // function to format time (seconds to MM:SS)
+    const formatTime = (seconds: number) => {
+        if (!seconds || isNaN(seconds)) return '00:00';
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     };
 
 

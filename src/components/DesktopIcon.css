@@ -83,7 +83,6 @@ you can just add the more specific selector in that case in front of the one tha
     display: flex;
     text-align: left;
     cursor: grab;
-    align-items: center;
     background: linear-gradient(
         to bottom,
         #287bec 0%,

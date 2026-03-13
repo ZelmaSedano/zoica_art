@@ -8,12 +8,6 @@ import './components/Taskbar.css'
 import DesktopIcon from './components/DesktopIcon';
 import './components/DesktopIcon.css';
 
-type HoroscopeData = {
-    data: {
-        date: string;
-        horoscope_data: string;
-    };
-};
 
 const images = [
         {
@@ -57,6 +51,7 @@ function Home() {
     const location = useLocation();
 
     // STATES
+    // dragging position
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
         // if there isn't a saved position, center the window on default load
@@ -65,13 +60,15 @@ function Home() {
             y: Math.max(0, (window.innerHeight - 600) / 2)
         };
     });
+    // drag the content window
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+
+
     // taskbar clock
     const [currentTime, setCurrentTime] = useState(new Date());
     // window visibility
     const [isVisible, setIsVisible] = useState(true);
-    // drag the content window
-    const [isDragging, setIsDragging] = useState(false);
-    const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
 
     // icons
     const [showCatModal, setShowCatModal] = useState(false);
@@ -80,66 +77,15 @@ function Home() {
 
     const [showScreamModal, setShowScreamModal] = useState(false);
 
-    // horoscope API states
-    const [showHoroscopeModal, setShowHoroscopeModal] = useState(false);
-    const [horoscopeData, setHoroscopeData] = useState<HoroscopeData | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const [sign, setSign] = useState('aries'); // Default sign
-
     // Add this to your existing states
     const [showPlayModal, setShowPlayModal] = useState(false);
 
-    // Add this audio state
-    const [audioPlayer, setAudioPlayer] = useState({
+    // video player
+    const [videoPlayer, setVideoPlayer] = useState({
     isPlaying: false,
     currentTime: 0,
     duration: 0,
-    });
-
-    // API fetches
-    const fetchHoroscope = async (sign: string) => {
-        setIsLoading(true);
-        setError(null);
-        
-        try {
-            const response = await fetch(`/api/horoscope?sign=${sign.toLowerCase()}`); // <-- No full URL needed
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-            const data = await response.json();
-            setHoroscopeData(data);
-        } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : "Failed to fetch horoscope";
-            setError(errorMessage);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-    const handleGetHoroscope = () => {
-        fetchHoroscope(sign);
-    };
-
-    // getters
-    // const getChatbotResponse = async (input: string): Promise<string> => {
-    //     try {
-    //         const response = await fetch('/api/chatbot', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ message: input })
-    //         });
-    //         if (!response.ok) {
-    //             throw new Error(`HTTP error! status: ${response.status}`);
-    //         }
-    //         const data = await response.json();
-    //         return data.message;
-    //         } catch (error) {
-    //             console.error('Chatbot error:', error);
-    //             return "Sorry, I'm having trouble responding right now!";
-    //         }
-    // };
-
+});
     // useEffects
     // save the position of the window to session storage
     useEffect(() => {
@@ -194,40 +140,41 @@ function Home() {
         };
     }, [isDragging, dragOffset]);
 
-    // media player
-    const handlePlayAudio = () => {
-        const audioElement = document.getElementById('audio-player')  as HTMLAudioElement;
-        if (audioElement) {
-            if (audioPlayer.isPlaying) {
-            audioElement.pause();
-            } else {
-            audioElement.play();
-            }
-            setAudioPlayer(prev => ({ ...prev, isPlaying: !prev.isPlaying }));
+    // handle video
+    const handlePlayVideo = () => {
+    // Target the hidden video (the one that actually contains your video file)
+    const videoElement = document.getElementById('hidden-video-player') as HTMLVideoElement;
+    // Also get the display video if you want to sync them
+    const displayVideo = document.getElementById('display-video') as HTMLVideoElement;
+    
+    if (videoElement) {
+        if (videoPlayer.isPlaying) {
+            videoElement.pause();
+            if (displayVideo) displayVideo.pause(); // Pause display video too
+        } else {
+            videoElement.play();
+            if (displayVideo) displayVideo.play(); // Play display video too
         }
-    };
-
-    // Add this function to handle time updates
-    const handleTimeUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
-        const audio = e.target as HTMLAudioElement;
-        setAudioPlayer(prev => ({
+        setVideoPlayer(prev => ({ ...prev, isPlaying: !prev.isPlaying }));
+    }
+};
+    const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+        const video = e.target as HTMLVideoElement;
+        setVideoPlayer(prev => ({
             ...prev,
-            currentTime: audio.currentTime,
-            duration: audio.duration || 0
+            currentTime: video.currentTime,
+            duration: video.duration || 0
         }));
     };
-
-    // Function to handle seeking
     const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const audioElement = document.getElementById('audio-player') as HTMLAudioElement;
+        const videoElement = document.getElementById('video-player') as HTMLVideoElement;
         const seekTime = parseFloat(e.target.value);
-        if (audioElement) {
-            audioElement.currentTime = seekTime;
-            setAudioPlayer(prev => ({ ...prev, currentTime: seekTime }));
+        if (videoElement) {
+            videoElement.currentTime = seekTime;
+            setVideoPlayer(prev => ({ ...prev, currentTime: seekTime }));
         }
     };
-
-    // Function to format time (seconds to MM:SS)
+    // function to format time (seconds to MM:SS)
     const formatTime = (seconds: number) => {
         if (!seconds || isNaN(seconds)) return '00:00';
         const mins = Math.floor(seconds / 60);
@@ -362,67 +309,82 @@ function Home() {
                 {showPlayModal && (
                     <div className="modal-overlay" onClick={() => setShowPlayModal(false)}>
                         <div className="modal media-modal" onClick={(e) => e.stopPropagation()}>
+                            {/* blue bar */}
                             <div className="modal-header">
-                                <span>Media Player</span>
+                                <div className='modal-left'>
+                                    <img className='tiny-media-player' src='/images/player.png'></img>
+                                    <span>Zoica Player</span>
+                                </div>
                                 <button className='x-button' onClick={() => {
                                     setShowPlayModal(false);
-
-                                    const audioElement = document.getElementById('audio-player') as HTMLAudioElement;
-
-                                    if (audioElement) {
-                                        audioElement.pause();
-                                        setAudioPlayer({ isPlaying: false, currentTime: 0, duration: 0 });
+                                    const videoElement = document.getElementById('hidden-video-player') as HTMLVideoElement;
+                                    const displayVideo = document.getElementById('display-video') as HTMLVideoElement;
+                                    if (videoElement) {
+                                        videoElement.pause();
+                                        if (displayVideo) displayVideo.pause();
+                                        setVideoPlayer({ isPlaying: false, currentTime: 0, duration: 0 });
                                     }
                                 }}>✕</button>
                             </div>
-
+                            {/* modal body */}
                             <div className="modal-body">
+
                                 <div className="media-player-container">
-                                    {/* Audio element - hidden but controls playback */}
-                                    <audio
-                                        id="audio-player"
-                                        src="/images/Miki_Matsubara_-_Stay_With_Me_(mp3.pm).mp3"
+
+                                    <video
+                                        id="hidden-video-player" // Changed ID
+                                        src="/images/your-video-file.mp4"
                                         onTimeUpdate={handleTimeUpdate}
                                         onLoadedMetadata={(e) => {
-                                            const audioElement = e.currentTarget as HTMLAudioElement;
-                                            setAudioPlayer(prev => ({ ...prev, duration: audioElement.duration }));
+                                            const videoElement = e.currentTarget as HTMLVideoElement;
+                                            setVideoPlayer(prev => ({ ...prev, duration: videoElement.duration }));
                                         }}
                                         onEnded={() => {
-                                            setAudioPlayer(prev => ({ ...prev, isPlaying: false, currentTime: 0 }));
+                                            setVideoPlayer(prev => ({ ...prev, isPlaying: false, currentTime: 0 }));
                                         }}
+                                        style={{ display: 'none' }}
                                     />
                                     
                                     {/* player controls */}
                                     <div className="media-controls">
                                         <div className='media-player-image'>
-                                            <img src='/images/miki.jpg' className='miki'></img>
+                                            <video 
+                                                id="display-video" // Added ID
+                                                src='/lane.mp4' 
+                                                className='lane'
+                                                muted
+                                            />
                                         </div>
                                         
-                                        {/* song progress */}
+                                        {/* video progress */}
                                         <div className="progress-container">
                                             {/* play/pause button */}
                                             <button 
                                                 className="play-button"
-                                                onClick={handlePlayAudio}
+                                                onClick={handlePlayVideo}
                                             >
-                                                {audioPlayer.isPlaying ? <img src='/images/pause.png' className='media-player-pause'></img> : <img src='/images/play.png' className='media-player-play'></img>}
+                                                {videoPlayer.isPlaying ? 
+                                                    <img src='/images/pause.png' className='media-player-pause' alt="pause" /> : 
+                                                    <img src='/images/play.png' className='media-player-play' alt="play" />
+                                                }
                                             </button>
+
                                             <span className="time-display current-time">
-                                                {formatTime(audioPlayer.currentTime)}
+                                                {formatTime(videoPlayer.currentTime)}
                                             </span>
                                             
                                             <input
                                                 type="range"
                                                 className="progress-bar"
                                                 min="0"
-                                                max={audioPlayer.duration || 100}
-                                                value={audioPlayer.currentTime}
+                                                max={videoPlayer.duration || 100}
+                                                value={videoPlayer.currentTime}
                                                 onChange={handleSeek}
                                                 step="0.1"
                                             />
                                             
                                             <span className="time-display total-time">
-                                                {formatTime(audioPlayer.duration)}
+                                                {formatTime(videoPlayer.duration)}
                                             </span>
                                         </div>
                                         
@@ -438,9 +400,9 @@ function Home() {
                                                 step="0.01"
                                                 defaultValue="1"
                                                 onChange={(e) => {
-                                                    const audioElement = document.getElementById('audio-player') as HTMLAudioElement;
-                                                    if (audioElement) {
-                                                    audioElement.volume = parseFloat(e.target.value);
+                                                    const videoElement = document.getElementById('video-player') as HTMLVideoElement;
+                                                    if (videoElement) {
+                                                        videoElement.volume = parseFloat(e.target.value);
                                                     }
                                                 }}
                                             />
@@ -449,15 +411,17 @@ function Home() {
                                 
                                 {/* Track info */}
                                 <div className="track-info">
-                                    <div className="track-title">Now Playing: "Stay with Me"</div>
-                                    <div className="track-artist">Artist: Miki Matsubara</div>
+                                    <div className="track-title">Now Playing: "Your Video Title"</div>
+                                    <div className="track-artist">Video description or artist info</div>
                                 </div>
                             </div>
+
+
                             </div>
                         </div>
                     </div>
-                    )}
-                </div>
+                )}
+            </div>
 
 
 
