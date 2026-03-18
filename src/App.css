@@ -55,31 +55,95 @@ body {
 
 /* icons */
 .modal .modal-body {
-  background-color: #c3c3c3;
-  margin-left: 10px;
+  background-color: #2452c8;
 }
-.modal .modal-body.scream-modal {
-  background-color: #c3c3c3;
-  margin-left: 0px;
+.modal-body.cats {
+  background: #c3c3c3;
 }
-/* */
+.cats-text {
+  /* get rid of default margin above */
+  margin: 0;
+  padding: 5px 0;
+
+}
+/* media player */
 .tiny-media-player {
   height: 20px;
   margin-bottom: -3px;
   margin-right: 10px;
 }
+.play-button {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  /* even though I removed .button's native stylings from index.css, only this could fix it */
+  /* reset styling for this one button */
+  all: unset;
+  cursor: pointer;
+  /* removes space above volume*/
+  line-height: 0;
+}
 .media-player-play, 
 .media-player-pause {
-  height: 17px;
-  width: 17px;
+  height: 34px;
+  width: 34px;
 }
-.media-player-image {
+.video-player {
   align-items: center;
+  text-align: center;
   justify-content: center;
-
+}
+.media-player-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 .lane {
-  height: 200px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.media-player-container {
+  width: 320px; /* or whatever your XP-style player width is */
+  align-items: stretch;
+}
+.media-controls {
+
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(
+    to bottom,
+    rgb(142, 170, 232),
+    rgb(87, 110, 180),
+    rgb(74, 85, 161)
+  );
+}
+.progress-container {
+  display: flex;
+  align-items: center;
+
+  margin: 10px auto;
+}
+
+.track-info {
+  background-color: black;
+  text-align: center;
+
+}
+.track-title {
+  width: 100%;
+  display: flex;
+  padding: 5px;
+  font-size: 15px;
+  color: rgb(182, 185, 201);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 
@@ -879,7 +943,7 @@ input:focus, textarea:focus {
 .gif {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
+
 }
 .obra-dinn {
   max-width: 100%;

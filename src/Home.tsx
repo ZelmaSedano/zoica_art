@@ -51,7 +51,7 @@ function Home() {
     const location = useLocation();
 
     // STATES
-    // dragging position
+    // draggable window starting position
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
         // if there isn't a saved position, center the window on default load
@@ -63,7 +63,6 @@ function Home() {
     // drag the content window
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-
 
     // taskbar clock
     const [currentTime, setCurrentTime] = useState(new Date());
@@ -82,10 +81,10 @@ function Home() {
 
     // video player
     const [videoPlayer, setVideoPlayer] = useState({
-    isPlaying: false,
-    currentTime: 0,
-    duration: 0,
-});
+        isPlaying: false,
+        currentTime: 0,
+        duration: 0,
+    });
     // useEffects
     // save the position of the window to session storage
     useEffect(() => {
@@ -203,27 +202,29 @@ function Home() {
                                 <button className='x-button' onClick={() => setShowCatModal(false)}>✕</button>
                             </div>
                             {/* body of modal */}
-                            <div className="modal-body">Do you like cats?</div>
-                            {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
-                            <div className='cat-buttons'>
-                                <button
-                                    className='cat-button'
-                                    onClick={() => {
-                                        setShowCatModal(false);
-                                        setShowYesModal(true);
-                                    }}
-                                >
-                                    Yes
-                                </button>
-                                <button
-                                    className='cat-button'
-                                    onClick={() => {
-                                        setShowCatModal(false);
-                                        setShowLoveModal(true);
-                                    }}
-                                >
-                                    Yes, I do 
-                                </button>
+                            <div className="modal-body cats">
+                                <p className='cats-text'>Do you like cats?</p>
+                                {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
+                                <div className='cat-buttons'>
+                                    <button
+                                        className='cat-button'
+                                        onClick={() => {
+                                            setShowCatModal(false);
+                                            setShowYesModal(true);
+                                        }}
+                                    >
+                                        Yes
+                                    </button>
+                                    <button
+                                        className='cat-button'
+                                        onClick={() => {
+                                            setShowCatModal(false);
+                                            setShowLoveModal(true);
+                                        }}
+                                    >
+                                        Yes, I do 
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -318,15 +319,13 @@ function Home() {
                                     }
                                 }}>✕</button>
                             </div>
-                            
+
                             {/* modal body */}
                             <div className="modal-body">
                                 <div className="media-player-container">
-                                    
-                                    {/* VISIBLE VIDEO ELEMENT - ADD THIS BACK */}
-                                    <div className='media-player-image'>
+                                        {/* video */}
                                         <video 
-                                            id="video-player"  // Single ID for both control and display
+                                            id='video-player'
                                             src='/lane.mp4'
                                             className='lane'
                                             onClick={handlePlayVideo}
@@ -340,20 +339,25 @@ function Home() {
                                             }}
 
                                         />
+
+                                    {/* Track info */}
+                                    <div className="track-info">
+                                        <div className="track-title">Now Playing: "Your Video Title"</div>
                                     </div>
-                                    
+
                                     {/* player controls */}
                                     <div className="media-controls">
                                         {/* video progress */}
                                         <div className="progress-container">
+                                            
                                             {/* play/pause button */}
-                                            <button 
+                                            <button
                                                 className="play-button"
                                                 onClick={handlePlayVideo}
                                             >
                                                 {videoPlayer.isPlaying ? 
                                                     <img src='/images/pause.png' className='media-player-pause' alt="pause" /> : 
-                                                    <img src='/images/play.png' className='media-player-play' alt="play" />
+                                                    <img src='/images/play_3.png' className='media-player-play' alt="play" />
                                                 }
                                             </button>
 
@@ -395,12 +399,6 @@ function Home() {
                                                 }}
                                             />
                                         </div>
-                                    </div>
-                                
-                                    {/* Track info */}
-                                    <div className="track-info">
-                                        <div className="track-title">Now Playing: "Your Video Title"</div>
-                                        <div className="track-artist">Video description or artist info</div>
                                     </div>
                                 </div>
                             </div>
@@ -474,7 +472,7 @@ function Home() {
                             </li>
                             <li className='button-1'>
                                 <Link to="/norse">
-                                    <img src="/images/Mythology.png" className='home-icon' alt='home'/>
+                                    <img src="/images/mythology.png" className='home-icon' alt='home'/>
                                     <p>Mythology</p>
                                 </Link>
                             </li>

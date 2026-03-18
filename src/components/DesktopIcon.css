@@ -69,13 +69,12 @@ you can just add the more specific selector in that case in front of the one tha
     justify-content: center;
 }
 .modal {
-    width: 300px;
-    background: #c0c0c0;
-    border: 2px solid black;
+
     box-shadow: 5px 5px rgba(0,0,0,0.5);
     font-family: 'MS Sans Serif';
     border-radius: 3%;
 }
+
 .modal-header {
     height: 25px;
     display: flex;
@@ -92,7 +91,8 @@ you can just add the more specific selector in that case in front of the one tha
     padding: 4px 8px;
     display: flex;
     justify-content: space-between;
-    border-radius: 3%;
+    border-top-left-radius: 3%;
+    border-top-right-radius: 3%;
 }
 .modal-button {
     display: flex;
@@ -108,7 +108,6 @@ you can just add the more specific selector in that case in front of the one tha
     height: 5px;
 }
 .modal-body {
-    padding: 12px;
     color: black;
 }
 
