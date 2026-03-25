@@ -59,10 +59,8 @@ function Home() {
         };
     });
     
-    // REFS - for values that should NOT trigger re-renders
-    const isDraggingRef = useRef(false);
-    const dragOffsetRef = useRef({ x: 0, y: 0 });
-    const dragPositionRef = useRef(position);
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
 
     // taskbar clock
     const [currentTime, setCurrentTime] = useState(new Date());
@@ -96,84 +94,46 @@ function Home() {
         return () => clearInterval(timer);
     }, []);
 
-    // Set initial position directly on the DOM element — no re-render needed
-    useEffect(() => {
-        if (windowRef.current) {
-            windowRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`;
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    // TEST TEST - keep? optimizing drag feature
-    useEffect(() => {
-        if (windowRef.current) {
-            windowRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`;
-        }
-    }, [position]);
-
-    // Attach mousemove/mouseup once on mount — all drag logic is ref-based, zero re-renders
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            if (!isDraggingRef.current || !windowRef.current) return;
-
-            const newX = e.clientX - dragOffsetRef.current.x;
-            const newY = e.clientY - dragOffsetRef.current.y;
-            const { offsetWidth, offsetHeight } = windowRef.current;
-
-            const constrainedX = Math.max(0, Math.min(newX, window.innerWidth - offsetWidth));
-            const constrainedY = Math.max(0, Math.min(newY, window.innerHeight - offsetHeight));
-
-            // Direct DOM manipulation — no state update here!
-            windowRef.current.style.transform = `translate(${constrainedX}px, ${constrainedY}px)`;
-            dragPositionRef.current = { x: constrainedX, y: constrainedY };
-            
-            // REMOVED: setPosition(dragPositionRef.current); // <- This was causing re-renders
-        };
-
-        const handleMouseUp = () => {
-            if (!isDraggingRef.current) return;
-            isDraggingRef.current = false;
-
-            // Restore cursor directly on the DOM element — no state, no re-render
-            if (windowRef.current) {
-                windowRef.current.style.cursor = 'default';
-            }
-
-            // Single state update only when drag ends — triggers sessionStorage save
-            setPosition(dragPositionRef.current);
-        };
-
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
-
-        return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-            document.removeEventListener('mouseup', handleMouseUp);
-        };
-    }, []); // Empty deps — runs once on mount, no stale closure issues
-
     const handleMouseDown = (e: React.MouseEvent) => {
         if (
             (e.target as HTMLElement).closest('.blue-bar') && 
-            !(e.target as HTMLElement).closest('.x-button') &&
-            !(e.target as HTMLElement).closest('.portfolio-dropdown') &&
-            !(e.target as HTMLElement).closest('.portfolio-link-wrapper')
+            !(e.target as HTMLElement).closest('.x-button')
         ) {
             const rect = windowRef.current?.getBoundingClientRect();
             if (!rect) return;
-
-            dragOffsetRef.current = {
+            setIsDragging(true);
+            setDragOffset({
                 x: e.clientX - rect.left,
                 y: e.clientY - rect.top
-            };
-
-            isDraggingRef.current = true;
-
-            // Set cursor directly on DOM — no state update, no re-render
-            if (windowRef.current) {
-                windowRef.current.style.cursor = 'grabbing';
-            }
+            });
         }
     };
+
+    const handleNativeMouseMove = (e: MouseEvent) => {
+        if (isDragging && windowRef.current) {
+            const newX = e.clientX - dragOffset.x;
+            const newY = e.clientY - dragOffset.y;
+            const { offsetWidth, offsetHeight } = windowRef.current;
+            
+            setPosition({
+                x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
+                y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
+            });
+        }
+    };
+
+    const handleNativeMouseUp = () => setIsDragging(false);
+
+    // Add this useEffect after your handler functions
+useEffect(() => {
+    document.addEventListener('mousemove', handleNativeMouseMove);
+    document.addEventListener('mouseup', handleNativeMouseUp);
+    return () => {
+        document.removeEventListener('mousemove', handleNativeMouseMove);
+        document.removeEventListener('mouseup', handleNativeMouseUp);
+    };
+}, [isDragging, dragOffset]); // Dependencies so handlers have latest values
+
 
     // handle video
     const handlePlayVideo = () => {
@@ -433,8 +393,9 @@ function Home() {
                     ref={windowRef}
                     style={{
                         position: 'absolute',
-                        // transform is set directly on the DOM element via ref
-                        // so React never touches it during drag — no re-renders
+                        left: `${position.x}px`,
+                        top: `${position.y}px`,
+                        cursor: isDragging ? 'grabbing' : 'default'
                     }}
                     onMouseDown={handleMouseDown}
                 >
