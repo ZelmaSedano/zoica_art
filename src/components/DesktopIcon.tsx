@@ -37,12 +37,12 @@ const DesktopIcon: React.FC<DesktopIconProps> = ({icon, label, x, y, onClick, cl
 
     return (
         <div
-        className={`desktop-icon ${isActive ? 'active' : ''} ${className}`}
-        style={{ position: 'absolute', left: x, top: y }}
-        onClick={handleClick}
+            className={`desktop-icon ${isActive ? 'active' : ''} ${className}`}
+            style={{ position: 'absolute', left: x, top: y }}
+            onClick={handleClick}
         >
         <img src={icon} alt={label} className={imgClassName}/>
-        <span>{label}</span>
+        <span className='desktop-icon-label'>{label}</span>
         </div>
     );
 }

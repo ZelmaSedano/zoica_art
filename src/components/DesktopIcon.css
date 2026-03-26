@@ -3,7 +3,6 @@
 CSS multi-class selector vs descendant selector::after
 
     - remember to string the classes in one string, no spaces
-
     ex: .desktop-icon.clippy img {
 */
 
@@ -29,13 +28,13 @@ CSS multi-class selector vs descendant selector::after
     padding-top: 6px;
 }
 
-.desktop-icon.active {
+.desktop-icon.active .desktop-icon-label {
     background-color: #000080;
     color: white;
-    /* when selected, the transparent border becomes visible */
-    border: 1px dotted #ffffff;
+    padding: 2px 2px;
+    /* Optional: add border-radius for a nicer look */
+    border-radius: 2px;
 }
-
 .desktop-icon img {
     width: 50px;
     height: 50px;
