@@ -58,32 +58,24 @@ function Home() {
             y: Math.max(0, (window.innerHeight - 400) / 2)
         };
     });
+    const [screamModalPosition, setScreamModalPosition] = useState(() => {
+        const saved = sessionStorage.getItem('screamModalPosition');
+        return saved ? JSON.parse(saved) : { 
+            x: Math.max(0, (window.innerWidth - 400) / 2), // Adjust width based on your scream modal size
+            y: Math.max(0, (window.innerHeight - 300) / 2)
+        };
+    });
 
-    // refs for dragging
-    const windowRef = useRef<HTMLDivElement | null>(null);
-    const mediaModalRef = useRef<HTMLDivElement | null>(null);
-    const isDraggingRef = useRef(false);
-    const dragOffsetRef = useRef({ x: 0, y: 0 });
-    const windowSizeRef = useRef({ width: 0, height: 0 });
-    const dragPositionRef = useRef(position);
-    // clock location?
-    const location = useLocation();
-    
-    // dragging states
+    // STATES
     const [isDraggingModal, setIsDraggingModal] = useState(false); // modals
     const [modalDragOffset, setModalDragOffset] = useState({ x: 0, y: 0 });
-    // modal dragging
-
-
+    const [isDraggingScreamModal, setIsDraggingScreamModal] = useState(false);
+    const [screamModalDragOffset, setScreamModalDragOffset] = useState({ x: 0, y: 0 });
     // taskbar clock
     const [currentTime, setCurrentTime] = useState(new Date());
     // window visibility
     const [isVisible, setIsVisible] = useState(true);
-
-    // icons
-    const [showCatModal, setShowCatModal] = useState(false);
-    const [showYesModal, setShowYesModal] = useState(false);
-    const [showLoveModal, setShowLoveModal] = useState(false);
+    // icon states
     const [showScreamModal, setShowScreamModal] = useState(false);
     const [showPlayModal, setShowPlayModal] = useState(false);
 
@@ -93,14 +85,26 @@ function Home() {
         currentTime: 0,
         duration: 0,
     });
-    
 
+    // refs for dragging
+    const windowRef = useRef<HTMLDivElement | null>(null);
+    const mediaModalRef = useRef<HTMLDivElement | null>(null);
+    const screamModalRef = useRef<HTMLDivElement | null>(null);
+    const isDraggingRef = useRef(false);
+    const dragOffsetRef = useRef({ x: 0, y: 0 });
+    const windowSizeRef = useRef({ width: 0, height: 0 });
+    const dragPositionRef = useRef(position);
+    // clock location?
+    const location = useLocation();
+    
+    // initial window load
     useEffect(() => {
         if (windowRef.current && !isDraggingRef.current) {
             windowRef.current.style.left = `${position.x}px`;
             windowRef.current.style.top = `${position.y}px`;
         }
     }, [position]);
+    
     // Clock ticker
     useEffect(() => {
         const timer = setInterval(() => {
@@ -109,6 +113,7 @@ function Home() {
         return () => clearInterval(timer);
     }, []);
 
+    // HANDLER FUNCTIONS
     const handleWindowMouseDown = (e: React.MouseEvent) => {
         if (
             (e.target as HTMLElement).closest('.blue-bar') && 
@@ -134,16 +139,29 @@ function Home() {
         }
     };
     const handleModalMouseDown = (e: React.MouseEvent) => {
-        // Only allow dragging from the modal header
+        // Check if clicking on either modal's header
         if ((e.target as HTMLElement).closest('.modal-header') && 
             !(e.target as HTMLElement).closest('.x-button')) {
-            const rect = mediaModalRef.current?.getBoundingClientRect();
-            if (!rect) return;
-            setIsDraggingModal(true);
-            setModalDragOffset({
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top
-            });
+            
+            // Determine which modal is being dragged
+            const isMediaModal = mediaModalRef.current?.contains(e.target as Node);
+            const isScreamModal = screamModalRef.current?.contains(e.target as Node);
+            
+            if (isMediaModal && mediaModalRef.current) {
+                const rect = mediaModalRef.current.getBoundingClientRect();
+                setIsDraggingModal(true);
+                setModalDragOffset({
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top
+                });
+            } else if (isScreamModal && screamModalRef.current) {
+                const rect = screamModalRef.current.getBoundingClientRect();
+                setIsDraggingModal(true);
+                setModalDragOffset({
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top
+                });
+            }
         }
     };
 
@@ -167,15 +185,27 @@ function Home() {
         dragPositionRef.current = { x: constrainedX, y: constrainedY };
     };
     const handleModalMouseMove = (e: MouseEvent) => {
-        if (isDraggingModal && mediaModalRef.current) {
-            const newX = e.clientX - modalDragOffset.x;
-            const newY = e.clientY - modalDragOffset.y;
-            const { offsetWidth, offsetHeight } = mediaModalRef.current;
-            
-            setModalPosition({
-                x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
-                y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
-            });
+        if (isDraggingModal) {
+            // Check which modal is currently being dragged
+            if (mediaModalRef.current && document.activeElement !== screamModalRef.current) {
+                const newX = e.clientX - modalDragOffset.x;
+                const newY = e.clientY - modalDragOffset.y;
+                const { offsetWidth, offsetHeight } = mediaModalRef.current;
+                
+                setModalPosition({
+                    x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
+                    y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
+                });
+            } else if (screamModalRef.current) {
+                const newX = e.clientX - modalDragOffset.x;
+                const newY = e.clientY - modalDragOffset.y;
+                const { offsetWidth, offsetHeight } = screamModalRef.current;
+                
+                setScreamModalPosition({
+                    x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
+                    y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
+                });
+            }
         }
     };
 
@@ -194,13 +224,17 @@ function Home() {
     };
     const handleModalMouseUp = () => setIsDraggingModal(false);
 
+
     // save position to sessionStorage only when drag ends (not during drag)
     useEffect(() => {
         sessionStorage.setItem('windowPosition', JSON.stringify(position));
     }, [position]); // window
     useEffect(() => {
         sessionStorage.setItem('mediaModalPosition', JSON.stringify(modalPosition));
-    }, [modalPosition]); // modal
+    }, [modalPosition]); // media player
+    useEffect(() => {
+        sessionStorage.setItem('screamModalPosition', JSON.stringify(screamModalPosition));
+    }, [screamModalPosition]); // scream
 
     // after drag
     useEffect(() => {
@@ -210,6 +244,7 @@ function Home() {
         }
     }, [position]);
 
+
     // this needs to be after handler funcs
     useEffect(() => {
         document.addEventListener('mousemove', handleWindowMouseMove);
@@ -218,7 +253,7 @@ function Home() {
             document.removeEventListener('mousemove', handleWindowMouseMove);
             document.removeEventListener('mouseup', handleWindowMouseUp);
         };
-    }, []); // Empty deps - event handlers use refs, no stale closures
+    }, []); // event handlers use refs, no stale closures
     useEffect(() => {
         document.addEventListener('mousemove', handleModalMouseMove);
         document.addEventListener('mouseup', handleModalMouseUp);
@@ -229,7 +264,7 @@ function Home() {
     }, [isDraggingModal, modalDragOffset]);
 
 
-    // handle video
+    // handle media player funcs
     const handlePlayVideo = () => {
         const videoElement = document.getElementById('video-player') as HTMLVideoElement;
         if (videoElement) {
@@ -241,7 +276,6 @@ function Home() {
             setVideoPlayer(prev => ({ ...prev, isPlaying: !prev.isPlaying }));
         }
     };
-    
     const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
         const video = e.target as HTMLVideoElement;
         setVideoPlayer(prev => ({
@@ -250,7 +284,6 @@ function Home() {
             duration: video.duration || 0
         }));
     };
-    
     const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
         const videoElement = document.getElementById('video-player') as HTMLVideoElement;
         const seekTime = parseFloat(e.target.value);
@@ -259,7 +292,6 @@ function Home() {
             setVideoPlayer(prev => ({ ...prev, currentTime: seekTime }));
         }
     };
-    
     const formatTime = (seconds: number) => {
         if (!seconds || isNaN(seconds)) return '00:00';
         const mins = Math.floor(seconds / 60);
@@ -267,100 +299,37 @@ function Home() {
         return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     };
 
+
+
     const toggleWindow = () => setIsVisible(!isVisible);
 
     return (
         <>
-            {/* cat icon */}
-            <div className="desktop">
-                <DesktopIcon
-                    icon="images/cat.png"
-                    label="meowdy"
-                    x={50}
-                    y={35}
-                    onClick={() => setShowCatModal(true)}
-                />
-
-                {showCatModal && (
-                    <div className="modal-overlay" onClick={() => setShowCatModal(false)}>
-                        <div className="modal" onClick={(e) => e.stopPropagation()}>
-                            <div className="modal-header">
-                                <span>Question...</span>
-                                <button className='x-button' onClick={() => setShowCatModal(false)}>✕</button>
-                            </div>
-                            <div className="modal-body cats">
-                                <p className='cats-text'>Do you like cats?</p>
-                                <div className='cat-buttons'>
-                                    <button
-                                        className='cat-button'
-                                        onClick={() => {
-                                            setShowCatModal(false);
-                                            setShowYesModal(true);
-                                        }}
-                                    >
-                                        Yes
-                                    </button>
-                                    <button
-                                        className='cat-button'
-                                        onClick={() => {
-                                            setShowCatModal(false);
-                                            setShowLoveModal(true);
-                                        }}
-                                    >
-                                        Yes, I do 
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
-            </div>
-
-            {showYesModal && (
-                <div className="modal-overlay" onClick={() => setShowYesModal(false)}>
-                    <div className="modal cat-response-modal" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <span>Smart Answer</span>
-                            <button className='x-button' onClick={() => setShowYesModal(false)}>✕</button>
-                        </div>
-                        <div className="modal-body">
-                            <div className="image-container">
-                                <img src="/images/evil_cat.gif" alt="evil_cat" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {showLoveModal && (
-                <div className="modal-overlay" onClick={() => setShowLoveModal(false)}>
-                    <div className="modal cat-response-modals" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <span>That's right, MINION</span>
-                            <button className='x-button' onClick={() => setShowLoveModal(false)}>✕</button>
-                        </div>
-                        <div className="modal-body">
-                            <div className="image-container">
-                                <img src="/images/evil_cat.gif" alt="evil_cat" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-
             {/* scream icon */}
             <div className="desktop">
                 <DesktopIcon
                     icon="/images/scream_2.png"
                     label="RING RING"
                     x={50}
-                    y={145}
+                    y={35}
                     onClick={() => setShowScreamModal(true)}
                 />
 
                 {showScreamModal && (
                     <div className="modal-overlay" onClick={() => setShowScreamModal(false)}>
-                        <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <div 
+                            className="modal" 
+                            ref={screamModalRef}
+                            style={{
+                                position: 'fixed',
+                                left: `${screamModalPosition.x}px`,
+                                top: `${screamModalPosition.y}px`,
+                                cursor: isDraggingModal ? 'grabbing' : 'default',
+                                margin: 0,
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                            onMouseDown={handleModalMouseDown}
+                        >
                             <div className="modal-header">
                                 <span className='scream-modal'>I know what you did last summer</span>
                                 <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
@@ -379,7 +348,7 @@ function Home() {
                     icon="/images/player.png"
                     label="play"
                     x={50}
-                    y={255}
+                    y={145}
                     onClick={() => setShowPlayModal(true)}
                 />
 
@@ -441,8 +410,8 @@ function Home() {
                                                 onClick={handlePlayVideo}
                                             >
                                                 {videoPlayer.isPlaying ? 
-                                                    <img src='/images/pause.png' className='media-player-pause' alt="pause" /> : 
-                                                    <img src='/images/play_3.png' className='media-player-play' alt="play" />
+                                                    <img src='/images/pause_1.png' className='media-player-pause' alt="pause" /> : 
+                                                    <img src='/images/play_1.png' className='media-player-play' alt="play" />
                                                 }
                                             </button>
 
@@ -467,7 +436,7 @@ function Home() {
                                         
                                         <div className="volume-controls">
                                             <span>
-                                                <img src='/images/Volume.ico' className="volume-icon" alt="volume" />
+                                                <img src='/images/volume_1.png' className="volume-icon" alt="volume" />
                                             </span>
                                             <input
                                                 type="range"
