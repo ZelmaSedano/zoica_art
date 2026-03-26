@@ -42,6 +42,7 @@ html, body {
   /* fixes sharp edges */
   overflow: hidden;
   border-radius: 1%;
+  will-change: transform;
 }
 
 .window.hidden {

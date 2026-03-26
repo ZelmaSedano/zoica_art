@@ -43,14 +43,7 @@ const images = [
 ];
 
 function Home() {
-    // portfolio dropdown
-    const portfolioRef = useRef<HTMLLIElement>(null);
-    // dragging feature
-    const windowRef = useRef<HTMLDivElement | null>(null);
-    // clock
-    const location = useLocation();
-
-    // STATES - only for values that need to trigger re-renders
+    // position states
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
         return saved ? JSON.parse(saved) : { 
@@ -58,9 +51,29 @@ function Home() {
             y: Math.max(0, (window.innerHeight - 600) / 2)
         };
     });
+    const [modalPosition, setModalPosition] = useState(() => {
+        const saved = sessionStorage.getItem('mediaModalPosition');
+        return saved ? JSON.parse(saved) : { 
+            x: Math.max(0, (window.innerWidth - 500) / 2), // Adjust width based on your modal size
+            y: Math.max(0, (window.innerHeight - 400) / 2)
+        };
+    });
+
+    // refs for dragging
+    const windowRef = useRef<HTMLDivElement | null>(null);
+    const mediaModalRef = useRef<HTMLDivElement | null>(null);
+    const isDraggingRef = useRef(false);
+    const dragOffsetRef = useRef({ x: 0, y: 0 });
+    const windowSizeRef = useRef({ width: 0, height: 0 });
+    const dragPositionRef = useRef(position);
+    // clock location?
+    const location = useLocation();
     
-    const [isDragging, setIsDragging] = useState(false);
-    const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+    // dragging states
+    const [isDraggingModal, setIsDraggingModal] = useState(false); // modals
+    const [modalDragOffset, setModalDragOffset] = useState({ x: 0, y: 0 });
+    // modal dragging
+
 
     // taskbar clock
     const [currentTime, setCurrentTime] = useState(new Date());
@@ -81,11 +94,13 @@ function Home() {
         duration: 0,
     });
     
-    // Persist position to sessionStorage only when drag ends (not during drag)
-    useEffect(() => {
-        sessionStorage.setItem('windowPosition', JSON.stringify(position));
-    }, [position]);
 
+    useEffect(() => {
+        if (windowRef.current && !isDraggingRef.current) {
+            windowRef.current.style.left = `${position.x}px`;
+            windowRef.current.style.top = `${position.y}px`;
+        }
+    }, [position]);
     // Clock ticker
     useEffect(() => {
         const timer = setInterval(() => {
@@ -94,45 +109,124 @@ function Home() {
         return () => clearInterval(timer);
     }, []);
 
-    const handleMouseDown = (e: React.MouseEvent) => {
+    const handleWindowMouseDown = (e: React.MouseEvent) => {
         if (
             (e.target as HTMLElement).closest('.blue-bar') && 
             !(e.target as HTMLElement).closest('.x-button')
         ) {
             const rect = windowRef.current?.getBoundingClientRect();
+            if (!rect || !windowRef.current) return;
+
+            windowSizeRef.current = {
+                width: windowRef.current.offsetWidth,
+                height: windowRef.current.offsetHeight
+            };
+
+            isDraggingRef.current = true;
+
+            dragOffsetRef.current = {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+
+            // cursor
+            windowRef.current.style.cursor = 'grabbing';
+        }
+    };
+    const handleModalMouseDown = (e: React.MouseEvent) => {
+        // Only allow dragging from the modal header
+        if ((e.target as HTMLElement).closest('.modal-header') && 
+            !(e.target as HTMLElement).closest('.x-button')) {
+            const rect = mediaModalRef.current?.getBoundingClientRect();
             if (!rect) return;
-            setIsDragging(true);
-            setDragOffset({
+            setIsDraggingModal(true);
+            setModalDragOffset({
                 x: e.clientX - rect.left,
                 y: e.clientY - rect.top
             });
         }
     };
 
-    const handleNativeMouseMove = (e: MouseEvent) => {
-        if (isDragging && windowRef.current) {
-            const newX = e.clientX - dragOffset.x;
-            const newY = e.clientY - dragOffset.y;
-            const { offsetWidth, offsetHeight } = windowRef.current;
+    const handleWindowMouseMove = (e: MouseEvent) => {
+        if (!isDraggingRef.current || !windowRef.current) return;
+
+        const newX = e.clientX - dragOffsetRef.current.x;
+        const newY = e.clientY - dragOffsetRef.current.y;
+
+        // ✅ use cached size (no per-frame reflow)
+        const { width, height } = windowSizeRef.current;
+
+        const constrainedX = Math.max(0, Math.min(newX, window.innerWidth - width));
+        const constrainedY = Math.max(0, Math.min(newY, window.innerHeight - height));
+
+        // direct DOM update (fast)
+        windowRef.current.style.left = `${constrainedX}px`;
+        windowRef.current.style.top = `${constrainedY}px`;
+
+        // store final position for mouseup
+        dragPositionRef.current = { x: constrainedX, y: constrainedY };
+    };
+    const handleModalMouseMove = (e: MouseEvent) => {
+        if (isDraggingModal && mediaModalRef.current) {
+            const newX = e.clientX - modalDragOffset.x;
+            const newY = e.clientY - modalDragOffset.y;
+            const { offsetWidth, offsetHeight } = mediaModalRef.current;
             
-            setPosition({
+            setModalPosition({
                 x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
                 y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
             });
         }
     };
 
-    const handleNativeMouseUp = () => setIsDragging(false);
-
-    // Add this useEffect after your handler functions
-useEffect(() => {
-    document.addEventListener('mousemove', handleNativeMouseMove);
-    document.addEventListener('mouseup', handleNativeMouseUp);
-    return () => {
-        document.removeEventListener('mousemove', handleNativeMouseMove);
-        document.removeEventListener('mouseup', handleNativeMouseUp);
+    const handleWindowMouseUp = () => {
+        if (!isDraggingRef.current) return;
+        
+        isDraggingRef.current = false;
+        
+        // Restore cursor
+        if (windowRef.current) {
+            windowRef.current.style.cursor = 'default';
+        }
+        
+        // Single state update when drag ends
+        setPosition(dragPositionRef.current);
     };
-}, [isDragging, dragOffset]); // Dependencies so handlers have latest values
+    const handleModalMouseUp = () => setIsDraggingModal(false);
+
+    // save position to sessionStorage only when drag ends (not during drag)
+    useEffect(() => {
+        sessionStorage.setItem('windowPosition', JSON.stringify(position));
+    }, [position]); // window
+    useEffect(() => {
+        sessionStorage.setItem('mediaModalPosition', JSON.stringify(modalPosition));
+    }, [modalPosition]); // modal
+
+    // after drag
+    useEffect(() => {
+        if (windowRef.current && !isDraggingRef.current) {
+            windowRef.current.style.left = `${position.x}px`;
+            windowRef.current.style.top = `${position.y}px`;
+        }
+    }, [position]);
+
+    // this needs to be after handler funcs
+    useEffect(() => {
+        document.addEventListener('mousemove', handleWindowMouseMove);
+        document.addEventListener('mouseup', handleWindowMouseUp);
+        return () => {
+            document.removeEventListener('mousemove', handleWindowMouseMove);
+            document.removeEventListener('mouseup', handleWindowMouseUp);
+        };
+    }, []); // Empty deps - event handlers use refs, no stale closures
+    useEffect(() => {
+        document.addEventListener('mousemove', handleModalMouseMove);
+        document.addEventListener('mouseup', handleModalMouseUp);
+        return () => {
+            document.removeEventListener('mousemove', handleModalMouseMove);
+            document.removeEventListener('mouseup', handleModalMouseUp);
+        };
+    }, [isDraggingModal, modalDragOffset]);
 
 
     // handle video
@@ -291,7 +385,19 @@ useEffect(() => {
 
                 {showPlayModal && (
                     <div className="modal-overlay" onClick={() => setShowPlayModal(false)}>
-                        <div className="modal media-modal" onClick={(e) => e.stopPropagation()}>
+                        <div 
+                            className="modal media-modal" 
+                            ref={mediaModalRef}
+                            style={{
+                                position: 'fixed',
+                                left: `${modalPosition.x}px`,
+                                top: `${modalPosition.y}px`,
+                                cursor: isDraggingModal ? 'grabbing' : 'default',
+                                margin: 0, // Override any default margin
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                            onMouseDown={handleModalMouseDown}
+                        >
                             <div className="modal-header">
                                 <div className='modal-left'>
                                     <img className='tiny-media-player' src='/images/player.png' alt="player" />
@@ -393,11 +499,8 @@ useEffect(() => {
                     ref={windowRef}
                     style={{
                         position: 'absolute',
-                        left: `${position.x}px`,
-                        top: `${position.y}px`,
-                        cursor: isDragging ? 'grabbing' : 'default'
                     }}
-                    onMouseDown={handleMouseDown}
+                    onMouseDown={handleWindowMouseDown}
                 >
                     <header>
                         <section className='blue-bar'>
