@@ -67,18 +67,16 @@ function Home() {
     });
 
     // STATES
+    // icon states
+    const [showScreamModal, setShowScreamModal] = useState(false);
+    const [showPlayModal, setShowPlayModal] = useState(false);
+    // dragging states
     const [isDraggingModal, setIsDraggingModal] = useState(false); // modals
     const [modalDragOffset, setModalDragOffset] = useState({ x: 0, y: 0 });
-    const [isDraggingScreamModal, setIsDraggingScreamModal] = useState(false);
-    const [screamModalDragOffset, setScreamModalDragOffset] = useState({ x: 0, y: 0 });
     // taskbar clock
     const [currentTime, setCurrentTime] = useState(new Date());
     // window visibility
     const [isVisible, setIsVisible] = useState(true);
-    // icon states
-    const [showScreamModal, setShowScreamModal] = useState(false);
-    const [showPlayModal, setShowPlayModal] = useState(false);
-
     // video player
     const [videoPlayer, setVideoPlayer] = useState({
         isPlaying: false,
@@ -94,9 +92,11 @@ function Home() {
     const dragOffsetRef = useRef({ x: 0, y: 0 });
     const windowSizeRef = useRef({ width: 0, height: 0 });
     const dragPositionRef = useRef(position);
-    // clock location?
+
+    // active button styling
     const location = useLocation();
     
+
     // initial window load
     useEffect(() => {
         if (windowRef.current && !isDraggingRef.current) {
@@ -105,6 +105,7 @@ function Home() {
         }
     }, [position]);
     
+
     // Clock ticker
     useEffect(() => {
         const timer = setInterval(() => {
@@ -112,6 +113,8 @@ function Home() {
         }, 1000);
         return () => clearInterval(timer);
     }, []);
+
+
 
     // HANDLER FUNCTIONS
     const handleWindowMouseDown = (e: React.MouseEvent) => {
@@ -139,11 +142,11 @@ function Home() {
         }
     };
     const handleModalMouseDown = (e: React.MouseEvent) => {
-        // Check if clicking on either modal's header
+        // if clicking on either modal's header
         if ((e.target as HTMLElement).closest('.modal-header') && 
             !(e.target as HTMLElement).closest('.x-button')) {
             
-            // Determine which modal is being dragged
+            // choose which modal is being dragged
             const isMediaModal = mediaModalRef.current?.contains(e.target as Node);
             const isScreamModal = screamModalRef.current?.contains(e.target as Node);
             
@@ -171,7 +174,7 @@ function Home() {
         const newX = e.clientX - dragOffsetRef.current.x;
         const newY = e.clientY - dragOffsetRef.current.y;
 
-        // ✅ use cached size (no per-frame reflow)
+        // use cached size (no per-frame reflow)
         const { width, height } = windowSizeRef.current;
 
         const constrainedX = Math.max(0, Math.min(newX, window.innerWidth - width));
@@ -186,7 +189,7 @@ function Home() {
     };
     const handleModalMouseMove = (e: MouseEvent) => {
         if (isDraggingModal) {
-            // Check which modal is currently being dragged
+            // check which modal is currently being dragged
             if (mediaModalRef.current && document.activeElement !== screamModalRef.current) {
                 const newX = e.clientX - modalDragOffset.x;
                 const newY = e.clientY - modalDragOffset.y;
@@ -224,47 +227,7 @@ function Home() {
     };
     const handleModalMouseUp = () => setIsDraggingModal(false);
 
-
-    // save position to sessionStorage only when drag ends (not during drag)
-    useEffect(() => {
-        sessionStorage.setItem('windowPosition', JSON.stringify(position));
-    }, [position]); // window
-    useEffect(() => {
-        sessionStorage.setItem('mediaModalPosition', JSON.stringify(modalPosition));
-    }, [modalPosition]); // media player
-    useEffect(() => {
-        sessionStorage.setItem('screamModalPosition', JSON.stringify(screamModalPosition));
-    }, [screamModalPosition]); // scream
-
-    // after drag
-    useEffect(() => {
-        if (windowRef.current && !isDraggingRef.current) {
-            windowRef.current.style.left = `${position.x}px`;
-            windowRef.current.style.top = `${position.y}px`;
-        }
-    }, [position]);
-
-
-    // this needs to be after handler funcs
-    useEffect(() => {
-        document.addEventListener('mousemove', handleWindowMouseMove);
-        document.addEventListener('mouseup', handleWindowMouseUp);
-        return () => {
-            document.removeEventListener('mousemove', handleWindowMouseMove);
-            document.removeEventListener('mouseup', handleWindowMouseUp);
-        };
-    }, []); // event handlers use refs, no stale closures
-    useEffect(() => {
-        document.addEventListener('mousemove', handleModalMouseMove);
-        document.addEventListener('mouseup', handleModalMouseUp);
-        return () => {
-            document.removeEventListener('mousemove', handleModalMouseMove);
-            document.removeEventListener('mouseup', handleModalMouseUp);
-        };
-    }, [isDraggingModal, modalDragOffset]);
-
-
-    // handle media player funcs
+    // MEDIA PLAYER HANDLER FUNCS
     const handlePlayVideo = () => {
         const videoElement = document.getElementById('video-player') as HTMLVideoElement;
         if (videoElement) {
@@ -300,7 +263,47 @@ function Home() {
     };
 
 
+    // save position to sessionStorage only when drag ends (not during drag)
+    useEffect(() => {
+        sessionStorage.setItem('windowPosition', JSON.stringify(position));
+    }, [position]); // window
+    useEffect(() => {
+        sessionStorage.setItem('mediaModalPosition', JSON.stringify(modalPosition));
+    }, [modalPosition]); // media player
+    useEffect(() => {
+        sessionStorage.setItem('screamModalPosition', JSON.stringify(screamModalPosition));
+    }, [screamModalPosition]); // scream
 
+    // after drag
+    useEffect(() => {
+        if (windowRef.current && !isDraggingRef.current) {
+            windowRef.current.style.left = `${position.x}px`;
+            windowRef.current.style.top = `${position.y}px`;
+        }
+    }, [position]);
+
+
+    // this needs to be after handler funcs
+    // adds event listeners to DOM
+    useEffect(() => {
+        document.addEventListener('mousemove', handleWindowMouseMove);
+        document.addEventListener('mouseup', handleWindowMouseUp);
+        return () => {
+            document.removeEventListener('mousemove', handleWindowMouseMove);
+            document.removeEventListener('mouseup', handleWindowMouseUp);
+        };
+    }, []);
+    useEffect(() => {
+        document.addEventListener('mousemove', handleModalMouseMove);
+        document.addEventListener('mouseup', handleModalMouseUp);
+        return () => {
+            document.removeEventListener('mousemove', handleModalMouseMove);
+            document.removeEventListener('mouseup', handleModalMouseUp);
+        };
+    }, [isDraggingModal, modalDragOffset]);
+
+
+    // hide/show content window
     const toggleWindow = () => setIsVisible(!isVisible);
 
     return (

@@ -136,6 +136,21 @@ body {
   align-items: center;
   text-align: center;
 }
+.volume-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.volume-icon {
+  height: 23px;
+  width: 23px;
+  display: inline-block;
+}
+.volume-bar {
+  width: 70px;
+  vertical-align: middle;
+  margin-top: -5px;
+}
 
 
 .cat-response-modal {

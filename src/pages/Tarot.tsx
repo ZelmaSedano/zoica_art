@@ -8,12 +8,6 @@ import '../components/Taskbar.css'
 import DesktopIcon from '../components/DesktopIcon';
 import '../components/DesktopIcon.css';
 
-type HoroscopeData = {
-    data: {
-        date: string;
-        horoscope_data: string;
-    };
-};
 
 const images = [
         {
@@ -46,183 +40,221 @@ const images = [
             id: '7',
             url: 'http://www.etsy.com'
         }
-    ];
+];
 
 function Tarot() {
-    // portfolio dropdown
-    const portfolioRef = useRef<HTMLLIElement>(null);
-    // dragging feature
-    const windowRef = useRef<HTMLDivElement | null>(null);
-    // clock
-    const location = useLocation();
-
-    // STATES
+    // position states
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
-        // if there isn't a saved position, center the window on default load
         return saved ? JSON.parse(saved) : { 
             x: Math.max(0, (window.innerWidth - 1000) / 2),
             y: Math.max(0, (window.innerHeight - 600) / 2)
         };
     });
+    const [modalPosition, setModalPosition] = useState(() => {
+        const saved = sessionStorage.getItem('mediaModalPosition');
+        return saved ? JSON.parse(saved) : { 
+            x: Math.max(0, (window.innerWidth - 500) / 2), // Adjust width based on your modal size
+            y: Math.max(0, (window.innerHeight - 400) / 2)
+        };
+    });
+    const [screamModalPosition, setScreamModalPosition] = useState(() => {
+        const saved = sessionStorage.getItem('screamModalPosition');
+        return saved ? JSON.parse(saved) : { 
+            x: Math.max(0, (window.innerWidth - 400) / 2), // Adjust width based on your scream modal size
+            y: Math.max(0, (window.innerHeight - 300) / 2)
+        };
+    });
+
+    // STATES
+    // icon states
+    const [showScreamModal, setShowScreamModal] = useState(false);
+    const [showPlayModal, setShowPlayModal] = useState(false);
+    // dragging states
+    const [isDraggingModal, setIsDraggingModal] = useState(false); // modals
+    const [modalDragOffset, setModalDragOffset] = useState({ x: 0, y: 0 });
     // taskbar clock
     const [currentTime, setCurrentTime] = useState(new Date());
     // window visibility
     const [isVisible, setIsVisible] = useState(true);
-    // drag the content window
-    const [isDragging, setIsDragging] = useState(false);
-    const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-
-    // icons
-    const [showCatModal, setShowCatModal] = useState(false);
-    const [showYesModal, setShowYesModal] = useState(false);
-    const [showLoveModal, setShowLoveModal] = useState(false);
-
-    const [showScreamModal, setShowScreamModal] = useState(false);
-
-    // horoscope API states
-    const [showHoroscopeModal, setShowHoroscopeModal] = useState(false);
-    const [horoscopeData, setHoroscopeData] = useState<HoroscopeData | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const [sign, setSign] = useState('aries'); // Default sign
-
-    // Add this to your existing states
-    const [showPlayModal, setShowPlayModal] = useState(false);
-
-    const [audioPlayer, setAudioPlayer] = useState({
-    isPlaying: false,
-    currentTime: 0,
-    duration: 0,
+    // video player
+    const [videoPlayer, setVideoPlayer] = useState({
+        isPlaying: false,
+        currentTime: 0,
+        duration: 0,
     });
 
-    // API fetches
-    const fetchHoroscope = async (sign: string) => {
-        setIsLoading(true);
-        setError(null);
-        
-        try {
-            const response = await fetch(`/api/horoscope?sign=${sign.toLowerCase()}`); // <-- No full URL needed
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    // refs for dragging
+    const windowRef = useRef<HTMLDivElement | null>(null);
+    const mediaModalRef = useRef<HTMLDivElement | null>(null);
+    const screamModalRef = useRef<HTMLDivElement | null>(null);
+    const isDraggingRef = useRef(false);
+    const dragOffsetRef = useRef({ x: 0, y: 0 });
+    const windowSizeRef = useRef({ width: 0, height: 0 });
+    const dragPositionRef = useRef(position);
 
-            const data = await response.json();
-            setHoroscopeData(data);
-        } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : "Failed to fetch horoscope";
-            setError(errorMessage);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-    const handleGetHoroscope = () => {
-    fetchHoroscope(sign);
-    };
+    // active button styling
+    const location = useLocation();
+    
 
-    // getters
-    // const getChatbotResponse = async (input: string): Promise<string> => {
-    //     try {
-    //         const response = await fetch('/api/chatbot', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ message: input })
-    //         });
-    //         if (!response.ok) {
-    //             throw new Error(`HTTP error! status: ${response.status}`);
-    //         }
-    //         const data = await response.json();
-    //         return data.message;
-    //         } catch (error) {
-    //             console.error('Chatbot error:', error);
-    //             return "Sorry, I'm having trouble responding right now!";
-    //         }
-    // };
-
-    // useEffects
-    // save the position of the window to session storage
+    // initial window load
     useEffect(() => {
-        sessionStorage.setItem('windowPosition', JSON.stringify(position));
+        if (windowRef.current && !isDraggingRef.current) {
+            windowRef.current.style.left = `${position.x}px`;
+            windowRef.current.style.top = `${position.y}px`;
+        }
     }, [position]);
+    
 
+    // Clock ticker
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentTime(new Date());
         }, 1000);
-        return () => clearInterval(timer); // Cleanup
+        return () => clearInterval(timer);
     }, []);
 
-    const handleMouseDown = (e: React.MouseEvent) => {
-    // Don't start dragging if clicking on dropdown or its children
+
+
+    // HANDLER FUNCTIONS
+    const handleWindowMouseDown = (e: React.MouseEvent) => {
         if (
             (e.target as HTMLElement).closest('.blue-bar') && 
-            !(e.target as HTMLElement).closest('.x-button') &&
-            !(e.target as HTMLElement).closest('.portfolio-dropdown') &&
-            !(e.target as HTMLElement).closest('.portfolio-link-wrapper')
+            !(e.target as HTMLElement).closest('.x-button')
         ) {
             const rect = windowRef.current?.getBoundingClientRect();
-            if (!rect) return;
-            setIsDragging(true);
-            setDragOffset({
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top
-            });
-        }
-    };
-    // native DOM event handlers (used with addEventListener)
-    const handleNativeMouseMove = (e: MouseEvent) => {
-        if (isDragging && windowRef.current) {
-            const newX = e.clientX - dragOffset.x;
-            const newY = e.clientY - dragOffset.y;
-            const { offsetWidth, offsetHeight } = windowRef.current;
-            
-            setPosition({
-                x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
-                y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
-            });
-        }
-    };
-    const handleNativeMouseUp = () => setIsDragging(false);
-    useEffect(() => {
-        document.addEventListener('mousemove', handleNativeMouseMove);
-        document.addEventListener('mouseup', handleNativeMouseUp);
-        return () => {
-            document.removeEventListener('mousemove', handleNativeMouseMove);
-            document.removeEventListener('mouseup', handleNativeMouseUp);
-        };
-    }, [isDragging, dragOffset]);
+            if (!rect || !windowRef.current) return;
 
-    // media player
-    const handlePlayAudio = () => {
-        const audioElement = document.getElementById('audio-player')  as HTMLAudioElement;
-        if (audioElement) {
-            if (audioPlayer.isPlaying) {
-            audioElement.pause();
-            } else {
-            audioElement.play();
-            }
-            setAudioPlayer(prev => ({ ...prev, isPlaying: !prev.isPlaying }));
+            windowSizeRef.current = {
+                width: windowRef.current.offsetWidth,
+                height: windowRef.current.offsetHeight
+            };
+
+            isDraggingRef.current = true;
+
+            dragOffsetRef.current = {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+
+            // cursor
+            windowRef.current.style.cursor = 'grabbing';
         }
     };
-    // function to handle time updates
-    const handleTimeUpdate = (e: React.SyntheticEvent<HTMLAudioElement>) => {
-        const audio = e.target as HTMLAudioElement;
-        setAudioPlayer(prev => ({
+    const handleModalMouseDown = (e: React.MouseEvent) => {
+        // if clicking on either modal's header
+        if ((e.target as HTMLElement).closest('.modal-header') && 
+            !(e.target as HTMLElement).closest('.x-button')) {
+            
+            // choose which modal is being dragged
+            const isMediaModal = mediaModalRef.current?.contains(e.target as Node);
+            const isScreamModal = screamModalRef.current?.contains(e.target as Node);
+            
+            if (isMediaModal && mediaModalRef.current) {
+                const rect = mediaModalRef.current.getBoundingClientRect();
+                setIsDraggingModal(true);
+                setModalDragOffset({
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top
+                });
+            } else if (isScreamModal && screamModalRef.current) {
+                const rect = screamModalRef.current.getBoundingClientRect();
+                setIsDraggingModal(true);
+                setModalDragOffset({
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top
+                });
+            }
+        }
+    };
+
+    const handleWindowMouseMove = (e: MouseEvent) => {
+        if (!isDraggingRef.current || !windowRef.current) return;
+
+        const newX = e.clientX - dragOffsetRef.current.x;
+        const newY = e.clientY - dragOffsetRef.current.y;
+
+        // use cached size (no per-frame reflow)
+        const { width, height } = windowSizeRef.current;
+
+        const constrainedX = Math.max(0, Math.min(newX, window.innerWidth - width));
+        const constrainedY = Math.max(0, Math.min(newY, window.innerHeight - height));
+
+        // direct DOM update (fast)
+        windowRef.current.style.left = `${constrainedX}px`;
+        windowRef.current.style.top = `${constrainedY}px`;
+
+        // store final position for mouseup
+        dragPositionRef.current = { x: constrainedX, y: constrainedY };
+    };
+    const handleModalMouseMove = (e: MouseEvent) => {
+        if (isDraggingModal) {
+            // check which modal is currently being dragged
+            if (mediaModalRef.current && document.activeElement !== screamModalRef.current) {
+                const newX = e.clientX - modalDragOffset.x;
+                const newY = e.clientY - modalDragOffset.y;
+                const { offsetWidth, offsetHeight } = mediaModalRef.current;
+                
+                setModalPosition({
+                    x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
+                    y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
+                });
+            } else if (screamModalRef.current) {
+                const newX = e.clientX - modalDragOffset.x;
+                const newY = e.clientY - modalDragOffset.y;
+                const { offsetWidth, offsetHeight } = screamModalRef.current;
+                
+                setScreamModalPosition({
+                    x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
+                    y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
+                });
+            }
+        }
+    };
+
+    const handleWindowMouseUp = () => {
+        if (!isDraggingRef.current) return;
+        
+        isDraggingRef.current = false;
+        
+        // Restore cursor
+        if (windowRef.current) {
+            windowRef.current.style.cursor = 'default';
+        }
+        
+        // Single state update when drag ends
+        setPosition(dragPositionRef.current);
+    };
+    const handleModalMouseUp = () => setIsDraggingModal(false);
+
+    // MEDIA PLAYER HANDLER FUNCS
+    const handlePlayVideo = () => {
+        const videoElement = document.getElementById('video-player') as HTMLVideoElement;
+        if (videoElement) {
+            if (videoPlayer.isPlaying) {
+                videoElement.pause();
+            } else {
+                videoElement.play();
+            }
+            setVideoPlayer(prev => ({ ...prev, isPlaying: !prev.isPlaying }));
+        }
+    };
+    const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+        const video = e.target as HTMLVideoElement;
+        setVideoPlayer(prev => ({
             ...prev,
-            currentTime: audio.currentTime,
-            duration: audio.duration || 0
+            currentTime: video.currentTime,
+            duration: video.duration || 0
         }));
     };
-    // function to handle seeking
     const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const audioElement = document.getElementById('audio-player') as HTMLAudioElement;
+        const videoElement = document.getElementById('video-player') as HTMLVideoElement;
         const seekTime = parseFloat(e.target.value);
-        if (audioElement) {
-            audioElement.currentTime = seekTime;
-            setAudioPlayer(prev => ({ ...prev, currentTime: seekTime }));
+        if (videoElement) {
+            videoElement.currentTime = seekTime;
+            setVideoPlayer(prev => ({ ...prev, currentTime: seekTime }));
         }
     };
-    // function to format time (seconds to MM:SS)
     const formatTime = (seconds: number) => {
         if (!seconds || isNaN(seconds)) return '00:00';
         const mins = Math.floor(seconds / 60);
@@ -231,114 +263,83 @@ function Tarot() {
     };
 
 
-    // toggle visibility
+    // save position to sessionStorage only when drag ends (not during drag)
+    useEffect(() => {
+        sessionStorage.setItem('windowPosition', JSON.stringify(position));
+    }, [position]); // window
+    useEffect(() => {
+        sessionStorage.setItem('mediaModalPosition', JSON.stringify(modalPosition));
+    }, [modalPosition]); // media player
+    useEffect(() => {
+        sessionStorage.setItem('screamModalPosition', JSON.stringify(screamModalPosition));
+    }, [screamModalPosition]); // scream
+
+    // after drag
+    useEffect(() => {
+        if (windowRef.current && !isDraggingRef.current) {
+            windowRef.current.style.left = `${position.x}px`;
+            windowRef.current.style.top = `${position.y}px`;
+        }
+    }, [position]);
+
+
+    // this needs to be after handler funcs
+    // adds event listeners to DOM
+    useEffect(() => {
+        document.addEventListener('mousemove', handleWindowMouseMove);
+        document.addEventListener('mouseup', handleWindowMouseUp);
+        return () => {
+            document.removeEventListener('mousemove', handleWindowMouseMove);
+            document.removeEventListener('mouseup', handleWindowMouseUp);
+        };
+    }, []); // event handlers use refs, no stale closures
+    useEffect(() => {
+        document.addEventListener('mousemove', handleModalMouseMove);
+        document.addEventListener('mouseup', handleModalMouseUp);
+        return () => {
+            document.removeEventListener('mousemove', handleModalMouseMove);
+            document.removeEventListener('mouseup', handleModalMouseUp);
+        };
+    }, [isDraggingModal, modalDragOffset]);
+
+
+    // hide/show content window
     const toggleWindow = () => setIsVisible(!isVisible);
 
     return (
         <>
-            {/* cat icon */}
-            <div className="desktop">
-                {/* when you click the desktop icon, setShowModal is set to true */}
-                <DesktopIcon
-                    icon="images/cat.png"
-                    label="meowdy"
-                    x={50}
-                    y={35}
-                    onClick={() => setShowCatModal(true)}
-                />
-
-                {showCatModal && (
-                    <div className="modal-overlay" onClick={() => setShowCatModal(false)}>{/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
-                    {/* if you click inside the modal, then setShowModal ISN'T set to false */}
-                    {/* onClick takes the event, and returns 'don't propogate this event' function */}
-                        <div className="modal" onClick={(e) => e.stopPropagation()}>
-                            <div className="modal-header">
-                                <span>Question...</span>
-                                <button className='x-button' onClick={() => setShowCatModal(false)}>✕</button>
-                            </div>
-                            {/* body of modal */}
-                            <div className="modal-body">Do you like cats?</div>
-                            {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
-                            <div className='cat-buttons'>
-                                <button 
-                                className='cat-button'
-                                onClick={() => {
-                                    setShowCatModal(false);
-                                    setShowYesModal(true);
-                                }}
-                                >
-                                    Yes
-                                </button>
-                                <button 
-                                    className='cat-button'
-                                    onClick={() => {
-                                        setShowCatModal(false);
-                                        setShowLoveModal(true);
-                                    }}
-                                >
-                                    Yes, I do 
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )}
-            </div>
-
-                {/* define what showYesModal is */}
-                {showYesModal && (
-                    <div className="modal-overlay" onClick={() => setShowYesModal(false)}>
-                        <div className="modal cat-response-modal" onClick={(e) => e.stopPropagation()}>
-                            <div className="modal-header">
-                                <span>Smart Answer</span>
-                                <button className='x-button' onClick={() => setShowYesModal(false)}>✕</button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="image-container">
-                                    <img src="/images/evil_cat.gif" alt="evil_cat" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
-
-                {showLoveModal && (
-                    <div className="modal-overlay" onClick={() => setShowLoveModal(false)}>
-                        <div className="modal cat-response-modals" onClick={(e) => e.stopPropagation()}>
-                            <div className="modal-header">
-                                <span>That's right, MINION</span>
-                                <button className='x-button' onClick={() => setShowLoveModal(false)}>✕</button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="image-container">
-                                    <img src="/images/evil_cat.gif" alt="evil_cat" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
-
             {/* scream icon */}
             <div className="desktop">
                 <DesktopIcon
                     icon="/images/scream_2.png"
                     label="RING RING"
                     x={50}
-                    y={145}
+                    y={35}
                     onClick={() => setShowScreamModal(true)}
                 />
 
                 {showScreamModal && (
                     <div className="modal-overlay" onClick={() => setShowScreamModal(false)}>
-
-                    <div className="modal" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <span className='scream-modal'>I know what you did last summer</span>
-                            <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
-                        </div>
-
-                        <div className="modal-body">
-                            <img src="/images/wassup.gif" className='gif' alt="evil_cat" />
-                        </div>
+                        <div 
+                            className="modal" 
+                            ref={screamModalRef}
+                            style={{
+                                position: 'fixed',
+                                left: `${screamModalPosition.x}px`,
+                                top: `${screamModalPosition.y}px`,
+                                cursor: isDraggingModal ? 'grabbing' : 'default',
+                                margin: 0,
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                            onMouseDown={handleModalMouseDown}
+                        >
+                            <div className="modal-header">
+                                <span className='scream-modal'>I know what you did last summer</span>
+                                <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
+                            </div>
+                            <div className="modal-body">
+                                <img src="/images/wassup.gif" className='gif' alt="evil_cat" />
+                            </div>
                         </div>
                     </div>
                 )}
@@ -347,83 +348,98 @@ function Tarot() {
             {/* media player */}
             <div className="desktop">
                 <DesktopIcon
-                    icon="/public/images/player.png"
+                    icon="/images/player.png"
                     label="play"
                     x={50}
-                    y={255}
+                    y={145}
                     onClick={() => setShowPlayModal(true)}
                 />
 
                 {showPlayModal && (
                     <div className="modal-overlay" onClick={() => setShowPlayModal(false)}>
-                        <div className="modal media-modal" onClick={(e) => e.stopPropagation()}>
+                        <div 
+                            className="modal media-modal" 
+                            ref={mediaModalRef}
+                            style={{
+                                position: 'fixed',
+                                left: `${modalPosition.x}px`,
+                                top: `${modalPosition.y}px`,
+                                cursor: isDraggingModal ? 'grabbing' : 'default',
+                                margin: 0, // Override any default margin
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                            onMouseDown={handleModalMouseDown}
+                        >
                             <div className="modal-header">
-                                <span>Media Player</span>
+                                <div className='modal-left'>
+                                    <img className='tiny-media-player' src='/images/player.png' alt="player" />
+                                    <span>Zoica Player</span>
+                                </div>
                                 <button className='x-button' onClick={() => {
                                     setShowPlayModal(false);
-
-                                    const audioElement = document.getElementById('audio-player') as HTMLAudioElement;
-
-                                    if (audioElement) {
-                                        audioElement.pause();
-                                        setAudioPlayer({ isPlaying: false, currentTime: 0, duration: 0 });
+                                    const videoElement = document.getElementById('video-player') as HTMLVideoElement;
+                                    if (videoElement) {
+                                        videoElement.pause();
+                                        setVideoPlayer({ isPlaying: false, currentTime: 0, duration: 0 });
                                     }
                                 }}>✕</button>
                             </div>
 
                             <div className="modal-body">
                                 <div className="media-player-container">
-                                    {/* Audio element - hidden but controls playback */}
-                                    <audio
-                                        id="audio-player"
-                                        src="/public/Miki_Matsubara_-_Stay_With_Me_(mp3.pm).mp3"
+                                    <video 
+                                        id='video-player'
+                                        src='/lane.mp4'
+                                        className='lane'
+                                        onClick={handlePlayVideo}
                                         onTimeUpdate={handleTimeUpdate}
                                         onLoadedMetadata={(e) => {
-                                            const audioElement = e.currentTarget as HTMLAudioElement;
-                                            setAudioPlayer(prev => ({ ...prev, duration: audioElement.duration }));
+                                            const videoElement = e.currentTarget as HTMLVideoElement;
+                                            setVideoPlayer(prev => ({ ...prev, duration: videoElement.duration }));
                                         }}
                                         onEnded={() => {
-                                            setAudioPlayer(prev => ({ ...prev, isPlaying: false, currentTime: 0 }));
+                                            setVideoPlayer(prev => ({ ...prev, isPlaying: false, currentTime: 0 }));
                                         }}
                                     />
-                                    
-                                    {/* player controls */}
+
+                                    <div className="track-info">
+                                        <div className="track-title">Now Playing: "Your Video Title"</div>
+                                    </div>
+
                                     <div className="media-controls">
-                                        <div className='media-player-image'>
-                                            <img src='/images/miki.jpg' className='miki'></img>
-                                        </div>
-                                        
-                                        {/* song progress */}
                                         <div className="progress-container">
-                                            {/* play/pause button */}
-                                            <button 
+                                            <button
                                                 className="play-button"
-                                                onClick={handlePlayAudio}
+                                                onClick={handlePlayVideo}
                                             >
-                                                {audioPlayer.isPlaying ? <img src='/images/pause.png' className='media-player-pause'></img> : <img src='/images/play.png' className='media-player-play'></img>}
+                                                {videoPlayer.isPlaying ? 
+                                                    <img src='/images/pause_1.png' className='media-player-pause' alt="pause" /> : 
+                                                    <img src='/images/play_1.png' className='media-player-play' alt="play" />
+                                                }
                                             </button>
+
                                             <span className="time-display current-time">
-                                                {formatTime(audioPlayer.currentTime)}
+                                                {formatTime(videoPlayer.currentTime)}
                                             </span>
                                             
                                             <input
                                                 type="range"
                                                 className="progress-bar"
                                                 min="0"
-                                                max={audioPlayer.duration || 100}
-                                                value={audioPlayer.currentTime}
+                                                max={videoPlayer.duration || 100}
+                                                value={videoPlayer.currentTime}
                                                 onChange={handleSeek}
                                                 step="0.1"
                                             />
                                             
                                             <span className="time-display total-time">
-                                                {formatTime(audioPlayer.duration)}
+                                                {formatTime(videoPlayer.duration)}
                                             </span>
                                         </div>
                                         
                                         <div className="volume-controls">
                                             <span>
-                                                <img src='/images/Volume.ico' className="volume-icon"></img>
+                                                <img src='/images/volume_1.png' className="volume-icon" alt="volume" />
                                             </span>
                                             <input
                                                 type="range"
@@ -433,85 +449,68 @@ function Tarot() {
                                                 step="0.01"
                                                 defaultValue="1"
                                                 onChange={(e) => {
-                                                    const audioElement = document.getElementById('audio-player') as HTMLAudioElement;
-                                                    if (audioElement) {
-                                                    audioElement.volume = parseFloat(e.target.value);
+                                                    const videoElement = document.getElementById('video-player') as HTMLVideoElement;
+                                                    if (videoElement) {
+                                                        videoElement.volume = parseFloat(e.target.value);
                                                     }
                                                 }}
                                             />
                                         </div>
                                     </div>
-                                
-                                {/* Track info */}
-                                <div className="track-info">
-                                    <div className="track-title">Now Playing: "Stay with Me"</div>
-                                    <div className="track-artist">Artist: Miki Matsubara</div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>
-                    )}
-                </div>
+                )}
+            </div>
 
-
-
-        {/* content window - draggable */}
-            {/* if isVisible is true, */}
+            {/* content window - draggable */}
             {isVisible && (
                 <div 
                     className={`window ${isVisible ? 'visible' : ''}`}
                     ref={windowRef}
                     style={{
                         position: 'absolute',
-                        left: `${position.x}px`,
-                        top: `${position.y}px`,
-                        cursor: isDragging ? 'grabbing' : 'default'
                     }}
-                    onMouseDown={handleMouseDown}
+                    onMouseDown={handleWindowMouseDown}
                 >
-
-                    {/* header */}
                     <header>
                         <section className='blue-bar'>
                             <img src="/images/18.ico" className='icon' alt="icon"/>
                             <section className='blue-bar-text'>Zoica Browser</section>
-
                             <div className="button-container">
                                 <button className='x-button' onClick={toggleWindow}>✕</button>
                             </div>
                         </section>
                     </header>
 
-                    {/* URL bar */}
                     <div className='url-container'>
-                        <div className = 'url-bar'>
-                            <div className = 'url-bar-small-1'>
+                        <div className='url-bar'>
+                            <div className='url-bar-small-1'>
                                 <div className='url-bar-small-1-text'>Address</div>
                             </div>
-                            <div className = 'url-bar-large'>
+                            <div className='url-bar-large'>
                                 <div className='dropdown-container'>
                                     <div className='url-text'>http://www.geocities.com/zoica_art</div>
                                 </div>
-                                    <img src='/images/blue-arrow.png' className='url-dropdown-button'/>
+                                <img src='/images/blue-arrow.png' className='url-dropdown-button'/>
                             </div>
-                            <div className = 'url-bar-small-2'>
+                            <div className='url-bar-small-2'>
                                 <img src='/images/290.ico' className='url-bar-go'></img>
                                 <span className='url-go-text'>Go</span>
                             </div>
                         </div>
                     </div>
                         
-                    {/* *************************** NAVBAR ************************/}
                     <nav className='navbar'>
                         <ul>
-                            <li className='button-1'>
+                            <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
                                 <Link to="/">
                                     <img src="/images/home.png" className='home-icon' alt='home'/>
                                     <p>Home</p>
                                 </Link>
                             </li>
-                            <li className={`button-1 left-button ${location.pathname === '/tarot' ? 'active-tarot' : ''}`}>
+                            <li className='button-1'>
                                 <Link to="/tarot">
                                     <img src="/images/tarot.png" className='home-icon' alt='home'/>
                                     <p>Tarot</p>
@@ -519,7 +518,7 @@ function Tarot() {
                             </li>
                             <li className='button-1'>
                                 <Link to="/norse">
-                                    <img src="/images/d2.ico" className='home-icon' alt='home'/>
+                                    <img src="/images/mythology.png" className='home-icon' alt='home'/>
                                     <p>Mythology</p>
                                 </Link>
                             </li>
@@ -542,11 +541,8 @@ function Tarot() {
                                 </Link>
                             </li>
                         </ul>
-                        
                     </nav>
 
-
-                    {/* window content */}
                     <div className='content'>
                         <div className='homepage-banners'>
                             <div className='inner-banner-text'>
@@ -562,9 +558,8 @@ function Tarot() {
                                         <div className='image-title'>{image.title}</div>
                                         <a href={image.url} target="_blank" rel="noopener noreferrer">
                                             <img
-                                                src={`/images/${image.id}.jpg`} // Changed to use public folder path
+                                                src={`/images/${image.id}.jpg`}
                                                 title={`${image.id} website`}
-
                                                 alt={image.id}
                                                 className='image clickable-image'
                                             />
@@ -574,8 +569,7 @@ function Tarot() {
                             ))}
                         </div>
 
-                        {/* content footer */}
-                            <div className="xp-footer-line"></div>
+                        <div className="xp-footer-line"></div>
                     </div>
                 </div>
             )}
