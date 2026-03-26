@@ -373,7 +373,7 @@ function Home() {
                             <div className="modal-header">
                                 <div className='modal-left'>
                                     <img className='tiny-media-player' src='/images/player.png' alt="player" />
-                                    <span>Zoica Player</span>
+                                    <span className='media-header-title'>Zoica Player</span>
                                 </div>
                                 <button className='x-button' onClick={() => {
                                     setShowPlayModal(false);

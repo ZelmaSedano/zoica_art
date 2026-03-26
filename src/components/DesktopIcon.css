@@ -30,7 +30,7 @@ CSS multi-class selector vs descendant selector::after
 }
 
 .desktop-icon.active {
-    background-color: #000080; /* Classic Windows blue */
+    background-color: #000080;
     color: white;
     /* when selected, the transparent border becomes visible */
     border: 1px dotted #ffffff;
@@ -93,6 +93,8 @@ you can just add the more specific selector in that case in front of the one tha
     justify-content: space-between;
     border-top-left-radius: 3%;
     border-top-right-radius: 3%;
+    align-content: center;
+    align-items: center;
 }
 .modal-button {
     display: flex;

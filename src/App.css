@@ -58,13 +58,22 @@ body {
 .modal .modal-body {
   background-color: #2452c8;
 }
-
+.scream-modal {
+  margin-left: 5px;
+}
 
 /* MEDIA PLAYER MODAL */
+.modal-left {
+  display: flex;
+  align-items: center;
+}
 .tiny-media-player {
   height: 20px;
   margin-bottom: -3px;
   margin-right: 10px;
+}
+.media-header-title {
+  margin-top: 5px;
 }
 .play-button {
   padding: 0;
@@ -268,6 +277,10 @@ header {
     inset 1px 1px 0px #dfdfdf;
   cursor: pointer;
   transition: all 0.1s ease;
+}
+.modal-button {
+  background-color: #ca5b52;
+  margin-top: 5px;
 }
 
 
