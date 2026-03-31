@@ -463,10 +463,10 @@ function Home() {
 
             <div className="desktop">
                 <DesktopIcon
-                    icon="/images/scream_2.png"
+                    icon="/images/contact.png"
                     label="RING RING"
                     x={50}
-                    y={35}
+                    y={255}
                     onClick={() => setShowScreamModal(true)}
                 />
 

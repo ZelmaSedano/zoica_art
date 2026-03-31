@@ -44,23 +44,18 @@ const images = [
 
 function Tarot() {
     // position states
-    const [position, setPosition] = useState(() => {
-        const saved = sessionStorage.getItem('windowPosition');
-        return saved ? JSON.parse(saved) : { 
-            x: Math.max(0, (window.innerWidth - 1000) / 2),
-            y: Math.max(0, (window.innerHeight - 600) / 2)
-        };
-    });
+    // window position
+    const [position, setPosition] = useState({ x: 0, y: 0 });
     const [modalPosition, setModalPosition] = useState(() => {
         const saved = sessionStorage.getItem('mediaModalPosition');
-        return saved ? JSON.parse(saved) : { 
+        return saved ? JSON.parse(saved) : {
             x: Math.max(0, (window.innerWidth - 500) / 2), // Adjust width based on your modal size
             y: Math.max(0, (window.innerHeight - 400) / 2)
         };
     });
     const [screamModalPosition, setScreamModalPosition] = useState(() => {
         const saved = sessionStorage.getItem('screamModalPosition');
-        return saved ? JSON.parse(saved) : { 
+        return saved ? JSON.parse(saved) : {
             x: Math.max(0, (window.innerWidth - 400) / 2), // Adjust width based on your scream modal size
             y: Math.max(0, (window.innerHeight - 300) / 2)
         };
@@ -95,16 +90,18 @@ function Tarot() {
 
     // active button styling
     const location = useLocation();
-    
 
-    // initial window load
+    // initial window load - IN THE MIDDLE
     useEffect(() => {
-        if (windowRef.current && !isDraggingRef.current) {
-            windowRef.current.style.left = `${position.x}px`;
-            windowRef.current.style.top = `${position.y}px`;
+        if (windowRef.current) {
+            const rect = windowRef.current.getBoundingClientRect();
+            // divide the actual width of the viewport
+            setPosition({
+                x: (window.innerWidth - rect.width) / 2,
+                y: (window.innerHeight - rect.height) / 2
+            });
         }
-    }, [position]);
-    
+    }, []);
 
     // Clock ticker
     useEffect(() => {
@@ -292,7 +289,7 @@ function Tarot() {
             document.removeEventListener('mousemove', handleWindowMouseMove);
             document.removeEventListener('mouseup', handleWindowMouseUp);
         };
-    }, []); // event handlers use refs, no stale closures
+    }, []);
     useEffect(() => {
         document.addEventListener('mousemove', handleModalMouseMove);
         document.addEventListener('mouseup', handleModalMouseUp);
@@ -373,7 +370,7 @@ function Tarot() {
                             <div className="modal-header">
                                 <div className='modal-left'>
                                     <img className='tiny-media-player' src='/images/player.png' alt="player" />
-                                    <span>Zoica Player</span>
+                                    <span className='media-header-title'>Zoica Player</span>
                                 </div>
                                 <button className='x-button' onClick={() => {
                                     setShowPlayModal(false);
@@ -389,7 +386,7 @@ function Tarot() {
                                 <div className="media-player-container">
                                     <video 
                                         id='video-player'
-                                        src='/lane.mp4'
+                                        src='/perfect.mp4'
                                         className='lane'
                                         onClick={handlePlayVideo}
                                         onTimeUpdate={handleTimeUpdate}
@@ -464,6 +461,43 @@ function Tarot() {
                 )}
             </div>
 
+            <div className="desktop">
+                <DesktopIcon
+                    icon="/images/contact.png"
+                    label="RING RING"
+                    x={50}
+                    y={255}
+                    onClick={() => setShowScreamModal(true)}
+                />
+
+                {showScreamModal && (
+                    <div className="modal-overlay" onClick={() => setShowScreamModal(false)}>
+                        <div 
+                            className="modal" 
+                            ref={screamModalRef}
+                            style={{
+                                position: 'fixed',
+                                left: `${screamModalPosition.x}px`,
+                                top: `${screamModalPosition.y}px`,
+                                cursor: isDraggingModal ? 'grabbing' : 'default',
+                                margin: 0,
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                            onMouseDown={handleModalMouseDown}
+                        >
+                            <div className="modal-header">
+                                <span className='scream-modal'>I know what you did last summer</span>
+                                <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
+                            </div>
+                            <div className="modal-body">
+                                <img src="/images/wassup.gif" className='gif' alt="evil_cat" />
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+
             {/* content window - draggable */}
             {isVisible && (
                 <div 
@@ -471,6 +505,8 @@ function Tarot() {
                     ref={windowRef}
                     style={{
                         position: 'absolute',
+                        left: `${position.x}px`,
+                        top: `${position.y}px`,
                     }}
                     onMouseDown={handleWindowMouseDown}
                 >
