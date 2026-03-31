@@ -57,6 +57,9 @@ body {
 /* icons */
 .modal .modal-body {
   background-color: #2452c8;
+  /* fixed the extra blue at bottom under gif*/
+  display: flex;
+  justify-content: center;
 }
 .scream-modal {
   margin-left: 5px;
