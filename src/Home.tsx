@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 import './App.css';
 
 // component imports
@@ -65,13 +66,17 @@ function Home() {
     // icon states
     const [showScreamModal, setShowScreamModal] = useState(false);
     const [showPlayModal, setShowPlayModal] = useState(false);
+    const [showContactModal, setShowContactModal] = useState(false);
     // dragging states
-    const [isDraggingModal, setIsDraggingModal] = useState(false); // modals
+    const [isDraggingModal, setIsDraggingModal] = useState(false);
     const [modalDragOffset, setModalDragOffset] = useState({ x: 0, y: 0 });
     // taskbar clock
     const [currentTime, setCurrentTime] = useState(new Date());
     // window visibility
     const [isVisible, setIsVisible] = useState(true);
+    // active button for CONTACT
+    const [isButtonActive, setIsButtonActive] = useState(false);
+
     // video player
     const [videoPlayer, setVideoPlayer] = useState({
         isPlaying: false,
@@ -102,7 +107,6 @@ function Home() {
             });
         }
     }, []);
-
     // Clock ticker
     useEffect(() => {
         const timer = setInterval(() => {
@@ -111,6 +115,49 @@ function Home() {
         return () => clearInterval(timer);
     }, []);
 
+
+    // CONTACT
+    useEffect(() => {
+        if (isButtonActive) {
+            const timer = setTimeout(() => {
+                setIsButtonActive(false);
+            }, 2000); // 2 seconds
+
+            return () => clearTimeout(timer);
+        }
+    }, [isButtonActive]);
+    const [formData, setFormData] = useState({
+        to: 'webcraftian.laboratory@gmail.com',
+        from: '',
+        subject: '',
+        message: ''
+    });
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+    // handle form submission - added emailjs code to actually send email
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsButtonActive(true); // Trigger the color change
+        
+        emailjs.send(
+            'service_fiblai5',
+            'template_bzci6ho',
+            {
+            to_email: 'webcraftian.laboratory@gmail.com',
+            from_email: formData.from,
+            subject: formData.subject,
+            message: formData.message
+            },
+            'kM5UXATQMVrLI690I'
+        )
+        .then(() => alert("Email sent to webcraftian.laboratory@gmail.com!"))
+        .catch((err) => console.error("Failed to send:", err)); // log the error
+    };
 
 
     // HANDLER FUNCTIONS
@@ -165,6 +212,7 @@ function Home() {
         }
     };
 
+    
     const handleWindowMouseMove = (e: MouseEvent) => {
         if (!isDraggingRef.current || !windowRef.current) return;
 
@@ -461,36 +509,116 @@ function Home() {
                 )}
             </div>
 
+            {/* contact icon */}
             <div className="desktop">
                 <DesktopIcon
                     icon="/images/contact.png"
-                    label="RING RING"
+                    label="contact"
                     x={50}
                     y={255}
-                    onClick={() => setShowScreamModal(true)}
+                    onClick={() => setShowContactModal(true)}
                 />
 
-                {showScreamModal && (
-                    <div className="modal-overlay" onClick={() => setShowScreamModal(false)}>
-                        <div 
-                            className="modal" 
-                            ref={screamModalRef}
-                            style={{
-                                position: 'fixed',
-                                left: `${screamModalPosition.x}px`,
-                                top: `${screamModalPosition.y}px`,
-                                cursor: isDraggingModal ? 'grabbing' : 'default',
-                                margin: 0,
-                            }}
-                            onClick={(e) => e.stopPropagation()}
-                            onMouseDown={handleModalMouseDown}
-                        >
+                {showContactModal && (
+                    <div className="modal-overlay" onClick={() => setShowContactModal(false)}>
+
+                        <div className="modal" onClick={(e) => e.stopPropagation()}>
+
                             <div className="modal-header">
-                                <span className='scream-modal'>I know what you did last summer</span>
+                                <span>Contact</span>
                                 <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
                             </div>
+
                             <div className="modal-body">
-                                <img src="/images/wassup.gif" className='gif' alt="evil_cat" />
+                                
+                                <div className='contact-content'>
+                        <form onSubmit={handleSubmit} className="contact-form">
+                            {/* first row - Recipient email (read-only) */}
+                            <div className="form-row">
+                                <label htmlFor="to" className='to-label'>T<span className='underline'>o.</span>..</label> 
+                                <input
+                                    type="email"
+                                    id="to"
+                                    name="to"
+                                    value={formData.to}
+                                    onChange={handleInputChange}
+                                    readOnly
+                                    className="form-input"
+                                />
+                            </div>
+                            
+                            {/* second row - sender email */}
+                            <div className="form-row">
+                                <label htmlFor="from" className='from-label'><span className='underline'>F</span>rom...</label>
+                                <input
+                                    type="email"
+                                    id="from"
+                                    name="from"
+                                    value={formData.from}
+                                    onChange={handleInputChange}
+                                    required                   
+                                    className="form-input"
+                                    placeholder="your email"  
+                                />
+                            </div>
+                            
+                            {/* third row - email subject */}
+                            <div className="form-row">
+                                <label htmlFor="subject" className='subject-label'> S<span className='underline'>u</span>bject:</label>
+                                <input
+                                    type="text"
+                                    id="subject"
+                                    name="subject"
+                                    value={formData.subject}
+                                    onChange={handleInputChange}
+                                    required
+                                    className="form-input"
+                                    placeholder="subject matter"
+                                />
+                            </div>
+                            
+                            {/* fourth row - message body */}
+                            <div className="form-row">
+                                <label htmlFor="message" className='message-label'>
+                                    <span className='underline'>M</span>essage:
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleInputChange}
+                                    required
+                                    className="form-textarea"
+                                    placeholder='"what a kewl portfolio, you&apos;re hired!"'
+                                />
+                            </div>
+                            
+                            {/* submit button row */}
+                            <div className="form-button">
+                                <button 
+                                    type="submit"
+                                    className={`send-button ${isButtonActive ? 'active' : ''}`}
+                                >
+                                    <img src='/src/assets/send.png' className="send-icon" alt="Send"/>
+                                    Send
+                                </button>
+                            </div>
+                        </form>
+
+                        <div className="footer">
+                            <div className='footer-section footer-large'></div>
+                            <div className = 'footer-section footer-small'></div>
+                            <div className = 'footer-section footer-small'></div>
+                            <div className = 'footer-section footer-small'></div>
+                            <div className='footer-section footer-medium'>
+                                <img src='/src/assets/earth.ico'
+                                className='content-footer-icon'></img>
+                                <p className='footer-section-text'>Internet</p>
+                            </div>
+                        </div>
+                    {/* contact-content */}
+                    </div>
+
                             </div>
                         </div>
                     </div>

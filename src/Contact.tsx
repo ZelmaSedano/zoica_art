@@ -11,12 +11,6 @@ import './components/DesktopIcon.css';
 import send from './assets/send.png'
 import earth from './assets/earth.ico'
 
-type HoroscopeData = {
-    data: {
-        date: string;
-        horoscope_data: string;
-    };
-};
 
 function Contact() {
     // portfolio dropdown
@@ -42,24 +36,11 @@ function Contact() {
     const [showCatModal, setShowCatModal] = useState(false);
     const [showYesModal, setShowYesModal] = useState(false);
     const [showLoveModal, setShowLoveModal] = useState(false);
-    
+
     const [showScreamModal, setShowScreamModal] = useState(false);
-
-    // horoscope API states
-    const [showHoroscopeModal, setShowHoroscopeModal] = useState(false);
-    const [horoscopeData, setHoroscopeData] = useState<HoroscopeData | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const [sign, setSign] = useState('aries'); // Default sign
-
-
-    // portfolio dropdown
-    const [isPortfolioDropdownOpen, setIsPortfolioDropdownOpen] = useState(false);
 
     // Send button active state
     const [isButtonActive, setIsButtonActive] = useState(false);
-
-
 
     // contact window size state - check size of window to resize textarea
     const [windowSize, setWindowSize] = useState({
@@ -68,44 +49,23 @@ function Contact() {
     });
 
     const calculateTextareaHeight = () => {
-    const otherElementsHeight = 500; // Adjust this value based on your layout
-    const minHeight = 180;
-    const maxHeight = 400; // Add a maximum height for sanity
-    
-    // Base calculation on the window's height, not screen position
-    const availableHeight = windowSize.height - otherElementsHeight - 100; // Fixed offset
-    
-    let height = Math.max(minHeight, Math.min(availableHeight, maxHeight));
-    
-    // Optional: Keep your width-based constraints
-    if (windowSize.width >= 901 && windowSize.width <= 1400) {
-        height = Math.min(height, 185);
-    }
-    
-    return height;
-};
-    // fetch - VITE WAS BLOCKING THIS FROM WORKING, REMEMBER TO UPDATE VITE.CONFIG NEXT
-    const fetchHoroscope = async (sign: string) => {
-        setIsLoading(true);
-        setError(null);
+        const otherElementsHeight = 500; // Adjust this value based on your layout
+        const minHeight = 180;
+        const maxHeight = 400; // Add a maximum height for sanity
         
-        try {
-            const response = await fetch(`/api/horoscope?sign=${sign.toLowerCase()}`); // <-- No full URL needed
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-            const data = await response.json();
-            setHoroscopeData(data);
-        } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : "Failed to fetch horoscope";
-            setError(errorMessage);
-        } finally {
-            setIsLoading(false);
+        // Base calculation on the window's height, not screen position
+        const availableHeight = windowSize.height - otherElementsHeight - 100; // Fixed offset
+        
+        let height = Math.max(minHeight, Math.min(availableHeight, maxHeight));
+        
+        // Optional: Keep your width-based constraints
+        if (windowSize.width >= 901 && windowSize.width <= 1400) {
+            height = Math.min(height, 185);
         }
+        
+        return height;
     };
 
-    const handleGetHoroscope = () => {
-    fetchHoroscope(sign);
-    };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
     // use effects
@@ -121,6 +81,7 @@ function Contact() {
         }, 1000);
         return () => clearInterval(timer); // Cleanup
     }, []);
+    
     // contact window size - resize textarea
     useEffect(() => {
         const handleResize = () => {
@@ -133,6 +94,7 @@ function Contact() {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
     // send button useEffect
     useEffect(() => {
         if (isButtonActive) {
@@ -149,9 +111,7 @@ function Contact() {
     // Don't start dragging if clicking on dropdown or its children
         if (
             (e.target as HTMLElement).closest('.blue-bar') && 
-            !(e.target as HTMLElement).closest('.x-button') &&
-            !(e.target as HTMLElement).closest('.portfolio-dropdown') &&
-            !(e.target as HTMLElement).closest('.portfolio-link-wrapper')
+            !(e.target as HTMLElement).closest('.x-button')
         ) {
             const rect = windowRef.current?.getBoundingClientRect();
             if (!rect) return;
@@ -188,24 +148,6 @@ function Contact() {
             document.removeEventListener('mouseup', handleNativeMouseUp);
         };
     }, [isDragging, dragOffset]);
-
-    // portfolio dropdown
-    const handlePortfolioClick = (e: React.MouseEvent) => {
-        // fixes window drag breaking, if you don't include this the blue-bar drag 
-        e.stopPropagation();
-        setIsPortfolioDropdownOpen(!isPortfolioDropdownOpen);
-    };
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (portfolioRef.current && !portfolioRef.current.contains(event.target as Node)) {
-            setIsPortfolioDropdownOpen(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-            return () => {
-                document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
 
     // toggle visibility
     const toggleWindow = () => setIsVisible(!isVisible);
@@ -360,64 +302,6 @@ function Contact() {
                     </div>
                 )}
             </div>
-
-            {/* horoscope icon */}
-            <div className="desktop">
-                <DesktopIcon
-                    icon="/images/scandique.jpg"
-                    label="horoscope"
-                    x={50}
-                    y={255}
-                    onClick={() => setShowHoroscopeModal(true)}
-                    className=''
-                    imgClassName='horoscope-icon'
-                />
-
-                {showHoroscopeModal && (
-                    <div className="modal-overlay" onClick={() => setShowHoroscopeModal(false)}>
-                        <div className="modal" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <span>Your Horoscope</span>
-                            <button className='x-button' onClick={() => setShowHoroscopeModal(false)}>✕</button>
-                        </div>
-                        <div className="modal-body">
-                            <div className="horoscope-controls">
-                            <select 
-                                value={sign} 
-                                onChange={(e) => setSign(e.target.value)}
-                                className="horoscope-select"
-                            >
-                                {["aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"].map((sign) => (
-                                <option key={sign} value={sign}>
-                                    {sign.charAt(0).toUpperCase() + sign.slice(1)}
-                                </option>
-                                ))}
-                            </select>
-                            
-                            <button 
-                                onClick={handleGetHoroscope}
-                                className="horoscope-button"
-                                disabled={isLoading}
-                            >
-                                {isLoading ? "Loading..." : "Get Horoscope"}
-                            </button>
-                            </div>
-
-                            {error && <div className="error">{error}</div>}
-
-                            {horoscopeData && (
-                            <div className="horoscope-results">
-                                <h3>{sign.charAt(0).toUpperCase() + sign.slice(1)}</h3>
-                                <p><strong>Date:</strong> {horoscopeData.data.date}</p>
-                                <p><strong>Horoscope Data:</strong> {horoscopeData.data.horoscope_data}</p>
-                            </div>
-                            )}
-                        </div>
-                        </div>
-                    </div>
-                    )}
-            </div>
-
 
             {/* actual window content */}
             {isVisible && (
@@ -596,6 +480,8 @@ function Contact() {
                         </div>
                     {/* contact-content */}
                     </div>
+
+                    
                 {/* window */}
                 </div>
             )}
