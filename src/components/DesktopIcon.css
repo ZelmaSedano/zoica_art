@@ -71,7 +71,9 @@ you can just add the more specific selector in that case in front of the one tha
     box-shadow: 5px 5px 15px  rgba(0,0,0,0.3);
     font-family: 'MS Sans Serif';
     overflow: hidden; /* without this, border-radius won't work */
-    border-radius: 3%;
+    border-top-left-radius: 3%;
+    border-top-right-radius: 3%;
+    border: solid 3px #2348a9;
 }
 
 .modal-header {

@@ -129,7 +129,8 @@ body {
 .progress-container {
   display: flex;
   align-items: center;
-  margin: 10px auto;
+  margin: 5px auto;
+  margin-bottom: 0px;
 }
 .track-info {
   background-color: black;

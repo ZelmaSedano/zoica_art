@@ -46,21 +46,21 @@ function Home() {
     // position states
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
-        return saved ? JSON.parse(saved) : { 
+        return saved ? JSON.parse(saved) : {
             x: Math.max(0, (window.innerWidth - 1000) / 2),
             y: Math.max(0, (window.innerHeight - 600) / 2)
         };
     });
     const [modalPosition, setModalPosition] = useState(() => {
         const saved = sessionStorage.getItem('mediaModalPosition');
-        return saved ? JSON.parse(saved) : { 
+        return saved ? JSON.parse(saved) : {
             x: Math.max(0, (window.innerWidth - 500) / 2), // Adjust width based on your modal size
             y: Math.max(0, (window.innerHeight - 400) / 2)
         };
     });
     const [screamModalPosition, setScreamModalPosition] = useState(() => {
         const saved = sessionStorage.getItem('screamModalPosition');
-        return saved ? JSON.parse(saved) : { 
+        return saved ? JSON.parse(saved) : {
             x: Math.max(0, (window.innerWidth - 400) / 2), // Adjust width based on your scream modal size
             y: Math.max(0, (window.innerHeight - 300) / 2)
         };
