@@ -604,18 +604,6 @@ function Home() {
                                 </button>
                             </div>
                         </form>
-
-                        <div className="footer">
-                            <div className='footer-section footer-large'></div>
-                            <div className = 'footer-section footer-small'></div>
-                            <div className = 'footer-section footer-small'></div>
-                            <div className = 'footer-section footer-small'></div>
-                            <div className='footer-section footer-medium'>
-                                <img src='/src/assets/earth.ico'
-                                className='content-footer-icon'></img>
-                                <p className='footer-section-text'>Internet</p>
-                            </div>
-                        </div>
                     {/* contact-content */}
                     </div>
 

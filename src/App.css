@@ -469,7 +469,7 @@ nav ul li a p{
   /* positioning */
   position: relative;
   width: 70vw;
-  height: 70vh;
+  height: 63vh;
   /* text color */
   color: black;
   /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
@@ -1363,7 +1363,7 @@ input:focus, textarea:focus {
 
   .contact-content {
     /* adjust height accounting 4 header */
-    height: calc(100vh - 130px);
+
     width: 100vw;
     box-sizing: border-box;
     border: 5px solid #c3c3c3; 
