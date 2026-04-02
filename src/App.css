@@ -445,6 +445,10 @@ nav ul li a p{
 }
 
 
+/* CONTACT FORM */
+.modal.contact {
+  width: 600px;
+}
 .content {
   background: url('./assets/grey_zone.png') no-repeat center/cover;
   position: relative;
@@ -462,8 +466,6 @@ nav ul li a p{
   display: flex;
   flex-direction: column;
 }
-/* custom Windows 98-style scrollbar for .content */
-
 .contact-content {
   background-color: #c3c3c3;
   /* positioning */
@@ -482,8 +484,6 @@ nav ul li a p{
   display: flex;
   flex-direction: column;
 }
-
-
 /* Custom Windows 98-style scrollbar for .content */
 .content::-webkit-scrollbar {
   width: 20px; /* Classic Windows scrollbar width */
@@ -500,7 +500,6 @@ nav ul li a p{
     #f0f0f0 100%
   );
 }
-
 .content::-webkit-scrollbar-thumb {
   /* XP's light blue gradient scrollbar */
   background: #bfd3fa;
@@ -515,7 +514,6 @@ nav ul li a p{
   /* Slightly brighter on hover */
   background: #bfd3fa;
 }
-
 /* Scrollbar buttons (up/down arrows) */
 .content::-webkit-scrollbar-button:vertical:decrement:start {
   display: block;

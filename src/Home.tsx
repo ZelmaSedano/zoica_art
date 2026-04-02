@@ -61,6 +61,13 @@ function Home() {
             y: Math.max(0, (window.innerHeight - 300) / 2)
         };
     });
+    const [contactModalPosition, setContactModalPosition] = useState(() => {
+        const saved = sessionStorage.getItem('contactModalPosition');
+        return saved ? JSON.parse(saved) : {
+            x: Math.max(0, (window.innerWidth - 500) / 2), // Adjust width based on your modal size
+            y: Math.max(0, (window.innerHeight - 400) / 2)
+        };
+    });
 
     // STATES
     // icon states
@@ -88,6 +95,7 @@ function Home() {
     const windowRef = useRef<HTMLDivElement | null>(null);
     const mediaModalRef = useRef<HTMLDivElement | null>(null);
     const screamModalRef = useRef<HTMLDivElement | null>(null);
+    const contactModalRef = useRef<HTMLDivElement | null>(null);
     const isDraggingRef = useRef(false);
     const dragOffsetRef = useRef({ x: 0, y: 0 });
     const windowSizeRef = useRef({ width: 0, height: 0 });
@@ -522,7 +530,19 @@ function Home() {
                 {showContactModal && (
                     <div className="modal-overlay" onClick={() => setShowContactModal(false)}>
 
-                        <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <div 
+                            className="modal contact" 
+                            ref={mediaModalRef}
+                            style={{
+                                position: 'fixed',
+                                left: `${modalPosition.x}px`,
+                                top: `${modalPosition.y}px`,
+                                cursor: isDraggingModal ? 'grabbing' : 'default',
+                                margin: 0,
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                            onMouseDown={handleModalMouseDown}
+                        >
 
                             <div className="modal-header">
                                 <span>Contact</span>
