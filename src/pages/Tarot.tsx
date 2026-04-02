@@ -61,6 +61,13 @@ function Tarot() {
             y: Math.max(0, (window.innerHeight - 300) / 2)
         };
     });
+    const [contactModalPosition, setContactModalPosition] = useState(() => {
+        const saved = sessionStorage.getItem('contactModalPosition');
+        return saved ? JSON.parse(saved) : {
+            x: Math.max(0, (window.innerWidth - 500) / 2), // Adjust width based on your modal size
+            y: Math.max(0, (window.innerHeight - 400) / 2)
+        };
+    });
 
     // STATES
     // icon states
@@ -68,7 +75,7 @@ function Tarot() {
     const [showPlayModal, setShowPlayModal] = useState(false);
     const [showContactModal, setShowContactModal] = useState(false);
     // dragging states
-    const [isDraggingModal, setIsDraggingModal] = useState(false); // modals
+    const [isDraggingModal, setIsDraggingModal] = useState(false);
     const [modalDragOffset, setModalDragOffset] = useState({ x: 0, y: 0 });
     // taskbar clock
     const [currentTime, setCurrentTime] = useState(new Date());
@@ -88,6 +95,8 @@ function Tarot() {
     const windowRef = useRef<HTMLDivElement | null>(null);
     const mediaModalRef = useRef<HTMLDivElement | null>(null);
     const screamModalRef = useRef<HTMLDivElement | null>(null);
+    const contactModalRef = useRef<HTMLDivElement | null>(null);
+    
     const isDraggingRef = useRef(false);
     const dragOffsetRef = useRef({ x: 0, y: 0 });
     const windowSizeRef = useRef({ width: 0, height: 0 });
@@ -107,7 +116,6 @@ function Tarot() {
             });
         }
     }, []);
-
     // Clock ticker
     useEffect(() => {
         const timer = setInterval(() => {
@@ -115,6 +123,7 @@ function Tarot() {
         }, 1000);
         return () => clearInterval(timer);
     }, []);
+
 
     // CONTACT
     useEffect(() => {
@@ -160,8 +169,8 @@ function Tarot() {
     };
 
 
-
     // HANDLER FUNCTIONS
+    // content window
     const handleWindowMouseDown = (e: React.MouseEvent) => {
         if (
             (e.target as HTMLElement).closest('.blue-bar') && 
@@ -186,6 +195,7 @@ function Tarot() {
             windowRef.current.style.cursor = 'grabbing';
         }
     };
+    // modal windows
     const handleModalMouseDown = (e: React.MouseEvent) => {
         // if clicking on either modal's header
         if ((e.target as HTMLElement).closest('.modal-header') && 
@@ -194,6 +204,7 @@ function Tarot() {
             // choose which modal is being dragged
             const isMediaModal = mediaModalRef.current?.contains(e.target as Node);
             const isScreamModal = screamModalRef.current?.contains(e.target as Node);
+            const isContactModal = contactModalRef.current?.contains(e.target as Node);
             
             if (isMediaModal && mediaModalRef.current) {
                 const rect = mediaModalRef.current.getBoundingClientRect();
@@ -209,10 +220,18 @@ function Tarot() {
                     x: e.clientX - rect.left,
                     y: e.clientY - rect.top
                 });
+            } else if (isContactModal && contactModalRef.current) {
+                const rect = contactModalRef.current.getBoundingClientRect();
+                setIsDraggingModal(true);
+                setModalDragOffset({
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top
+                });
             }
         }
     };
 
+    // content window
     const handleWindowMouseMove = (e: MouseEvent) => {
         if (!isDraggingRef.current || !windowRef.current) return;
 
@@ -232,10 +251,11 @@ function Tarot() {
         // store final position for mouseup
         dragPositionRef.current = { x: constrainedX, y: constrainedY };
     };
+    // modal windows
     const handleModalMouseMove = (e: MouseEvent) => {
         if (isDraggingModal) {
             // check which modal is currently being dragged
-            if (mediaModalRef.current && document.activeElement !== screamModalRef.current) {
+            if (mediaModalRef.current && document.activeElement !== screamModalRef.current && document.activeElement !== contactModalRef.current) {
                 const newX = e.clientX - modalDragOffset.x;
                 const newY = e.clientY - modalDragOffset.y;
                 const { offsetWidth, offsetHeight } = mediaModalRef.current;
@@ -253,10 +273,20 @@ function Tarot() {
                     x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
                     y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
                 });
+            } else if (contactModalRef.current) {
+                const newX = e.clientX - modalDragOffset.x;
+                const newY = e.clientY - modalDragOffset.y;
+                const { offsetWidth, offsetHeight } = contactModalRef.current;
+                
+                setContactModalPosition({
+                    x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
+                    y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
+                });
             }
         }
     };
 
+    // content window
     const handleWindowMouseUp = () => {
         if (!isDraggingRef.current) return;
         
@@ -318,6 +348,9 @@ function Tarot() {
     useEffect(() => {
         sessionStorage.setItem('screamModalPosition', JSON.stringify(screamModalPosition));
     }, [screamModalPosition]); // scream
+    useEffect(() => {
+        sessionStorage.setItem('contactModalPosition', JSON.stringify(contactModalPosition));
+    }, [contactModalPosition]); // contact
 
     // after drag
     useEffect(() => {
@@ -522,7 +555,19 @@ function Tarot() {
                 {showContactModal && (
                     <div className="modal-overlay" onClick={() => setShowContactModal(false)}>
 
-                        <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <div 
+                            className="modal contact" 
+                            ref={contactModalRef}
+                            style={{
+                                position: 'fixed',
+                                left: `${contactModalPosition.x}px`,
+                                top: `${contactModalPosition.y}px`,
+                                cursor: isDraggingModal ? 'grabbing' : 'default',
+                                margin: 0,
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                            onMouseDown={handleModalMouseDown}
+                        >
 
                             <div className="modal-header">
                                 <span>Contact</span>
@@ -684,12 +729,6 @@ function Tarot() {
                                 <Link to="/commissions">
                                     <img src="/images/commissions.png" className='home-icon' alt='home'/>
                                     <p>Commissions</p>
-                                </Link>
-                            </li>
-                            <li className='button-1'>
-                                <Link to="/contact">
-                                    <img src='/images/contact.png' className='contact-icon' alt='contact'></img>
-                                    <p>Contact</p>
                                 </Link>
                             </li>
                         </ul>

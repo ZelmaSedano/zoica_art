@@ -731,12 +731,6 @@ function Home() {
                                     <p>Commissions</p>
                                 </Link>
                             </li>
-                            <li className='button-1'>
-                                <Link to="/contact">
-                                    <img src='/images/contact.png' className='contact-icon' alt='contact'></img>
-                                    <p>Contact</p>
-                                </Link>
-                            </li>
                         </ul>
                     </nav>
 
