@@ -471,7 +471,7 @@ nav ul li a p{
   /* positioning */
   position: relative;
   width: 70vw;
-  height: 63vh;
+  height: 50vh;
   /* text color */
   color: black;
   /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
