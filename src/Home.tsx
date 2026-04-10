@@ -571,7 +571,7 @@ function Home() {
 
                             <div className="modal-header">
                                 <span>Contact</span>
-                                <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
+                                <button className='x-button' onClick={() => setShowContactModal(false)}>✕</button>
                             </div>
 
                             <div className="modal-body">
