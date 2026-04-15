@@ -294,18 +294,17 @@ header {
   height: 35px;
   position: relative;
   display: flex; /* without this you can't make active button higher */
+  flex-direction: column;
 }
 .navbar ul {
   margin: 2px 0 0 0;
   /* removes the browser's default 40px padding to the left of the navbar */
-  width: 70vw;
+
   padding: 0;
   display: flex;
-  align-items: flex-end;
-  text-decoration: none;
+  flex-direction: column;
 
-  background: #c3c3c3;
-  border-bottom: 1px solid black;
+  text-decoration: none;
 }
 nav ul li {
   list-style: none;

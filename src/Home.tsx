@@ -699,42 +699,43 @@ function Home() {
                         </div>
                     </div>
                         
-                    <nav className='navbar'>
-                        <ul>
-                            <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                <Link to="/">
-                                    <img src="/images/home.png" className='home-icon' alt='home'/>
-                                    <p>Home</p>
-                                </Link>
-                            </li>
-                            <li className='button-1'>
-                                <Link to="/tarot">
-                                    <img src="/images/tarot.png" className='home-icon' alt='home'/>
-                                    <p>Tarot</p>
-                                </Link>
-                            </li>
-                            <li className='button-1'>
-                                <Link to="/norse">
-                                    <img src="/images/mythology.png" className='home-icon' alt='home'/>
-                                    <p>Mythology</p>
-                                </Link>
-                            </li>
-                            <li className='button-1'>
-                                <Link to="/game">
-                                    <img src="/images/game_art.png" className='home-icon' alt='home'/>
-                                    <p>Game Art</p>
-                                </Link>
-                            </li>
-                            <li className='button-1'>
-                                <Link to="/commissions">
-                                    <img src="/images/commissions.png" className='home-icon' alt='home'/>
-                                    <p>Commissions</p>
-                                </Link>
-                            </li>
-                        </ul>
-                    </nav>
-
+                    
                     <div className='content'>
+                        <nav className='navbar'>
+                            <ul>
+                                <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
+                                    <Link to="/">
+                                        <img src="/images/home.png" className='home-icon' alt='home'/>
+                                        <p>Home</p>
+                                    </Link>
+                                </li>
+                                <li className='button-1'>
+                                    <Link to="/tarot">
+                                        <img src="/images/tarot.png" className='home-icon' alt='home'/>
+                                        <p>Tarot</p>
+                                    </Link>
+                                </li>
+                                <li className='button-1'>
+                                    <Link to="/norse">
+                                        <img src="/images/mythology.png" className='home-icon' alt='home'/>
+                                        <p>Mythology</p>
+                                    </Link>
+                                </li>
+                                <li className='button-1'>
+                                    <Link to="/game">
+                                        <img src="/images/game_art.png" className='home-icon' alt='home'/>
+                                        <p>Game Art</p>
+                                    </Link>
+                                </li>
+                                <li className='button-1'>
+                                    <Link to="/commissions">
+                                        <img src="/images/commissions.png" className='home-icon' alt='home'/>
+                                        <p>Commissions</p>
+                                    </Link>
+                                </li>
+                            </ul>
+                        </nav>
+
                         <div className='homepage-banners'>
                             <div className='inner-banner-text'>
                                 <p className='banner'>Zoica Art</p>
