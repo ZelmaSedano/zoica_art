@@ -701,40 +701,37 @@ function Home() {
                         
                     
                     <div className='content'>
-                        <nav className='navbar'>
-                            <ul>
-                                <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                    <Link to="/">
-                                        <img src="/images/home.png" className='home-icon' alt='home'/>
-                                        <p>Home</p>
-                                    </Link>
-                                </li>
-                                <li className='button-1'>
-                                    <Link to="/tarot">
-                                        <img src="/images/tarot.png" className='home-icon' alt='home'/>
-                                        <p>Tarot</p>
-                                    </Link>
-                                </li>
-                                <li className='button-1'>
-                                    <Link to="/norse">
-                                        <img src="/images/mythology.png" className='home-icon' alt='home'/>
-                                        <p>Mythology</p>
-                                    </Link>
-                                </li>
-                                <li className='button-1'>
-                                    <Link to="/game">
-                                        <img src="/images/game_art.png" className='home-icon' alt='home'/>
-                                        <p>Game Art</p>
-                                    </Link>
-                                </li>
-                                <li className='button-1'>
-                                    <Link to="/commissions">
-                                        <img src="/images/commissions.png" className='home-icon' alt='home'/>
-                                        <p>Commissions</p>
-                                    </Link>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div className='navbar-container'>
+                            <nav className='navbar'>
+                                <ul>
+                                    <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
+                                        <Link to="/">
+                                            <p className='nav-p'>Home</p>
+                                        </Link>
+                                    </li>
+                                    <li className='button-1'>
+                                        <Link to="/tarot">
+                                            <p className='nav-p'>Tarot</p>
+                                        </Link>
+                                    </li>
+                                    <li className='button-1'>
+                                        <Link to="/norse">
+                                            <p className='nav-p'>Mythology</p>
+                                        </Link>
+                                    </li>
+                                    <li className='button-1'>
+                                        <Link to="/game">
+                                            <p className='nav-p'>Game Art</p>
+                                        </Link>
+                                    </li>
+                                    <li className='button-1'>
+                                        <Link to="/commissions">
+                                            <p className='nav-p'>Commissions</p>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
 
                         <div className='homepage-banners'>
                             <div className='inner-banner-text'>

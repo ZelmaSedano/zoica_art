@@ -288,10 +288,10 @@ header {
 }
 
 
-
 /********** NAVBAR *********/
 .navbar {
   height: 35px;
+  width: 150px;
   position: relative;
   display: flex; /* without this you can't make active button higher */
   flex-direction: column;
@@ -310,51 +310,21 @@ nav ul li {
   list-style: none;
   cursor: pointer;
 }
-.button {
-  display: flex;
-  background: #bfd5fb;
-  border-top: solid rgb(250, 250, 250) 1px;
-  border-left: solid rgb(250, 250, 250) 1px;
-  border-right: solid rgb(90, 90, 90) 1px;
-  border-bottom: solid rgb(90, 90, 90) 1px;
-  box-shadow: 1px 1px black;
-  align-items: center;
-  border-top-left-radius: 10%;
-  border-top-right-radius: 10%;
-}
+
 .button-1 {
   position: relative;
   overflow: hidden;
   display: flex;
-  background: #d2d9ea;
-  border-right: 1px solid #a0a0a0;
-  border-bottom: 1px solid #a0a0a0;
-  border-top: 1px solid #a0a0a0;
-  border-left: 1px solid #a0a0a0;
+  background: url('/public/images/navbar_button.png');
+  border-right: 2px solid #000;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+  border-left: 2px solid #000;
 
   align-items: center;
-  border-top-left-radius: 10%;
-  border-top-right-radius: 10%;
-
-
 
 }
-.button-1::before {
-  content: '';
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  right: 1px;
-  height: 40px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.8),
-    rgba(200, 200, 200, 0.4),
-    rgba(255, 255, 255, 0.8)
-  );
-  z-index: 1;
 
-}
 .button-1 a {
   position: relative;
   display: flex;
@@ -372,33 +342,6 @@ nav ul li {
   gap: 6px;
 }
 
-.button-1.active-home,
-.button-1.active-tarot,
-.button-1.active-norse, 
-.button-1.active-game,
-.button-1.active-commissions,
-.button-1.active-contact {
-  background: #bfd5fb;
-  border-right: 1px solid #808080;
-  border-top: 1px solid #808080;
-  border-left: 1px solid #808080;
-  height: 33px;
-}
-.button-1.active-home::before {
-  content: '';
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  right: 1px;
-  height: 10px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.85),
-    rgba(255,255,255,0.35),
-    rgba(255,255,255,0.0)
-  );
-
-}
 .link {
   width: 100%;
 }
@@ -449,7 +392,7 @@ nav ul li a p{
   width: 600px;
 }
 .content {
-  background: url('./assets/grey_zone.png') no-repeat center/cover;
+  background-color: #626347;
   position: relative;
   width: 70vw;
   height: 70vh;
@@ -759,7 +702,7 @@ nav ul li a p{
   /* makes the elements inside display as a grid */
   display: grid;
   /* instead of using auto-fill, specify 3 videos wide, otherwise it'll auto-fill to 4 or 5 videos */
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 16px;
   padding: 5px 20px;
   flex-grow: 1; /* take up available space */
@@ -1253,7 +1196,7 @@ input:focus, textarea:focus {
 /* Switch to 2 columns when window is less than 1200px wide */
 @media (max-width: 1200px) {
   .img-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
