@@ -154,7 +154,7 @@ function Contact() {
 
     // form with useful comments
     const [formData, setFormData] = useState({
-    to: 'webcraftian.laboratory@gmail.com',
+    to: 'zoicaart@gmail.com',
     from: '',
     subject: '',
     message: ''

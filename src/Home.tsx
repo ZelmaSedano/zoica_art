@@ -124,7 +124,6 @@ function Home() {
         return () => clearInterval(timer);
     }, []);
 
-
     // CONTACT
     useEffect(() => {
         if (isButtonActive) {
@@ -136,7 +135,7 @@ function Home() {
         }
     }, [isButtonActive]);
     const [formData, setFormData] = useState({
-        to: 'webcraftian.laboratory@gmail.com',
+        to: 'zoicaart@gmail.com',
         from: '',
         subject: '',
         message: ''
@@ -571,84 +570,85 @@ function Home() {
 
                             <div className="modal-header">
                                 <span>Contact</span>
-                                <button className='x-button' onClick={() => setShowContactModal(false)}>✕</button>
+                                <button className='x-button' 
+                                    onClick={(e) => {setShowContactModal(false);}}>✕</button>
                             </div>
 
                             <div className="modal-body">
                                 
-                                <div className='contact-content'>
-                        <form onSubmit={handleSubmit} className="contact-form">
-                            {/* first row - Recipient email (read-only) */}
-                            <div className="form-row">
-                                <label htmlFor="to" className='to-label'>T<span className='underline'>o.</span>..</label> 
-                                <input
-                                    type="email"
-                                    id="to"
-                                    name="to"
-                                    value={formData.to}
-                                    onChange={handleInputChange}
-                                    readOnly
-                                    className="form-input"
-                                />
-                            </div>
-                            
-                            {/* second row - sender email */}
-                            <div className="form-row">
-                                <label htmlFor="from" className='from-label'><span className='underline'>F</span>rom...</label>
-                                <input
-                                    type="email"
-                                    id="from"
-                                    name="from"
-                                    value={formData.from}
-                                    onChange={handleInputChange}
-                                    required                   
-                                    className="form-input"
-                                    placeholder="your email"  
-                                />
-                            </div>
-                            
-                            {/* third row - email subject */}
-                            <div className="form-row">
-                                <label htmlFor="subject" className='subject-label'> S<span className='underline'>u</span>bject:</label>
-                                <input
-                                    type="text"
-                                    id="subject"
-                                    name="subject"
-                                    value={formData.subject}
-                                    onChange={handleInputChange}
-                                    required
-                                    className="form-input"
-                                    placeholder="subject matter"
-                                />
-                            </div>
-                            
-                            {/* fourth row - message body */}
-                            <div className="form-row">
-                                <label htmlFor="message" className='message-label'>
-                                    <span className='underline'>M</span>essage:
-                                </label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleInputChange}
-                                    required
-                                    className="form-textarea"
-                                    placeholder='"what a kewl portfolio, you&apos;re hired!"'
-                                />
-                            </div>
-                            
-                            {/* submit button row */}
-                            <div className="form-button">
-                                <button 
-                                    type="submit"
-                                    className={`send-button ${isButtonActive ? 'active' : ''}`}
-                                >
-                                    <img src='/src/assets/send.png' className="send-icon" alt="Send"/>
-                                    Send
-                                </button>
-                            </div>
-                        </form>
+                            <div className='contact-content'>
+                                <form onSubmit={handleSubmit} className="contact-form">
+                                    {/* first row - Recipient email (read-only) */}
+                                    <div className="form-row">
+                                        <label htmlFor="to" className='to-label'>T<span className='underline'>o.</span>..</label> 
+                                        <input
+                                            type="email"
+                                            id="to"
+                                            name="to"
+                                            value={formData.to}
+                                            onChange={handleInputChange}
+                                            readOnly
+                                            className="form-input"
+                                        />
+                                    </div>
+
+                                    {/* second row - sender email */}
+                                    <div className="form-row">
+                                        <label htmlFor="from" className='from-label'><span className='underline'>F</span>rom...</label>
+                                        <input
+                                            type="email"
+                                            id="from"
+                                            name="from"
+                                            value={formData.from}
+                                            onChange={handleInputChange}
+                                            required   
+                                            className="form-input"
+                                            placeholder="your email"
+                                        />
+                                    </div>
+                                    
+                                    {/* third row - email subject */}
+                                    <div className="form-row">
+                                        <label htmlFor="subject" className='subject-label'> S<span className='underline'>u</span>bject:</label>
+                                        <input
+                                            type="text"
+                                            id="subject"
+                                            name="subject"
+                                            value={formData.subject}
+                                            onChange={handleInputChange}
+                                            required
+                                            className="form-input"
+                                            placeholder="Greetings!"
+                                        />
+                                    </div>
+                                    
+                                    {/* fourth row - message body */}
+                                    <div className="form-row">
+                                        <label htmlFor="message" className='message-label'>
+                                            <span className='underline'>M</span>essage:
+                                        </label>
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleInputChange}
+                                            required
+                                            className="form-textarea"
+                                            placeholder='Wow! Your art is amazing!'
+                                        />
+                                    </div>
+
+                                    {/* submit button row */}
+                                    <div className="form-button">
+                                        <button 
+                                            type="submit"
+                                            className={`send-button ${isButtonActive ? 'active' : ''}`}
+                                        >
+                                            <img src='/src/assets/send.png' className="send-icon" alt="Send"/>
+                                            Send
+                                        </button>
+                                    </div>
+                                </form>
                     {/* contact-content */}
                     </div>
 

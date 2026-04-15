@@ -137,7 +137,7 @@ function Game() {
         }
     }, [isButtonActive]);
     const [formData, setFormData] = useState({
-        to: 'webcraftian.laboratory@gmail.com',
+        to: 'zoicaart@gmail.com',
         from: '',
         subject: '',
         message: ''
