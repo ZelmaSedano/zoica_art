@@ -158,14 +158,14 @@ function Norse() {
             'service_fiblai5',
             'template_bzci6ho',
             {
-            to_email: 'webcraftian.laboratory@gmail.com',
+            to_email: 'zoicaart@gmail.com',
             from_email: formData.from,
             subject: formData.subject,
             message: formData.message
             },
             'kM5UXATQMVrLI690I'
         )
-        .then(() => alert("Email sent to webcraftian.laboratory@gmail.com!"))
+        .then(() => alert("Email sent to zoicaart@gmail.com!"))
         .catch((err) => console.error("Failed to send:", err)); // log the error
     };
 
