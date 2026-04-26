@@ -516,7 +516,14 @@ function Home() {
                                         
                                         <div className="volume-controls">
                                             <span>
-                                                <img src='/images/volume_1.png' className="volume-icon" alt="volume" />
+                                                <img className='backwards' src='/public/images/backwards.png'></img>
+                                            </span>
+                                            <span>
+                                                <img className='forward' src='/public/images/forward.png'></img>
+                                            </span>
+
+                                            <span>
+                                                <img src='/images/volume.png' className="volume-icon" alt="volume" />
                                             </span>
                                             <input
                                                 type="range"
