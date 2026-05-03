@@ -35,8 +35,8 @@ html, body {
 
 
 .window {
-  max-width: 1008px;
-  height: 748px;
+  height: 668px;
+  width: 1088px;
   border-top: solid #1172ee 2px;
   border-left: solid #002bad 2px;
   border-right: solid #002bad 2px;
@@ -242,7 +242,7 @@ header {
   position: absolute;
   text-align: left;
   cursor: grab;
-  width: 70vw;
+  width: 1088px;
   align-items: center;
   background: linear-gradient(
         to bottom,
@@ -413,10 +413,12 @@ nav ul li a p{
 /* CONTENT WINDOW */
 .content {
   background: url('/public/images/desktop_standard.png') no-repeat;
-  background-size: 100% 100%; /* Match exactly */
+  background-size: 100% 100%;
   position: relative;
-  width: 70vw;
-  height: 600px;
+  max-width: 1088px;
+  height: 612px;
+  max-height: 612px;
+  width: 1088px;
   color: black;
   /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
   border: none;

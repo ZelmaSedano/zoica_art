@@ -747,7 +747,7 @@ function Home() {
                             </div>
                         </div>
 
-                        <div className="img-grid">
+                        {/* <div className="img-grid">
                             {images.map((image, index) => (
                                 <div key={index}>
                                     <div className='grid-container'>
@@ -763,7 +763,7 @@ function Home() {
                                     </div>
                                 </div>
                             ))}
-                        </div>
+                        </div> */}
 
                         <div className="xp-footer-line"></div>
                     </div>
