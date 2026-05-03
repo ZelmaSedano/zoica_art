@@ -32,7 +32,11 @@ html, body {
 
 
 /************ Desktop Design *************/
+
+
 .window {
+  max-width: 1008px;
+  height: 748px;
   border-top: solid #1172ee 2px;
   border-left: solid #002bad 2px;
   border-right: solid #002bad 2px;
@@ -405,11 +409,14 @@ nav ul li a p{
 .modal.contact {
   width: 600px;
 }
+
+/* CONTENT WINDOW */
 .content {
-  background: url('/public/images/tile.png');
+  background: url('/public/images/desktop_standard.png') no-repeat;
+  background-size: 100% 100%; /* Match exactly */
   position: relative;
   width: 70vw;
-  height: 70vh;
+  height: 600px;
   color: black;
   /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
   border: none;
