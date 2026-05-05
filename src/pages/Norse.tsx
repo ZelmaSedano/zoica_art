@@ -43,7 +43,6 @@ const images = [
         }
 ];
 
-
 function Norse() {
     // position states
     // window position
@@ -124,7 +123,6 @@ function Norse() {
         }, 1000);
         return () => clearInterval(timer);
     }, []);
-
 
     // CONTACT
     useEffect(() => {
@@ -518,7 +516,14 @@ function Norse() {
                                         
                                         <div className="volume-controls">
                                             <span>
-                                                <img src='/images/volume_1.png' className="volume-icon" alt="volume" />
+                                                <img className='backwards' src='/public/images/backwards.png'></img>
+                                            </span>
+                                            <span>
+                                                <img className='forward' src='/public/images/forward.png'></img>
+                                            </span>
+
+                                            <span>
+                                                <img src='/images/volume.png' className="volume-icon" alt="volume" />
                                             </span>
                                             <input
                                                 type="range"
@@ -572,84 +577,85 @@ function Norse() {
 
                             <div className="modal-header">
                                 <span>Contact</span>
-                                <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
+                                <button className='x-button' 
+                                    onClick={(e) => {setShowContactModal(false);}}>✕</button>
                             </div>
 
                             <div className="modal-body">
                                 
-                                <div className='contact-content'>
-                        <form onSubmit={handleSubmit} className="contact-form">
-                            {/* first row - Recipient email (read-only) */}
-                            <div className="form-row">
-                                <label htmlFor="to" className='to-label'>T<span className='underline'>o.</span>..</label> 
-                                <input
-                                    type="email"
-                                    id="to"
-                                    name="to"
-                                    value={formData.to}
-                                    onChange={handleInputChange}
-                                    readOnly
-                                    className="form-input"
-                                />
-                            </div>
-                            
-                            {/* second row - sender email */}
-                            <div className="form-row">
-                                <label htmlFor="from" className='from-label'><span className='underline'>F</span>rom...</label>
-                                <input
-                                    type="email"
-                                    id="from"
-                                    name="from"
-                                    value={formData.from}
-                                    onChange={handleInputChange}
-                                    required                   
-                                    className="form-input"
-                                    placeholder="your email"  
-                                />
-                            </div>
-                            
-                            {/* third row - email subject */}
-                            <div className="form-row">
-                                <label htmlFor="subject" className='subject-label'> S<span className='underline'>u</span>bject:</label>
-                                <input
-                                    type="text"
-                                    id="subject"
-                                    name="subject"
-                                    value={formData.subject}
-                                    onChange={handleInputChange}
-                                    required
-                                    className="form-input"
-                                    placeholder="subject matter"
-                                />
-                            </div>
-                            
-                            {/* fourth row - message body */}
-                            <div className="form-row">
-                                <label htmlFor="message" className='message-label'>
-                                    <span className='underline'>M</span>essage:
-                                </label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleInputChange}
-                                    required
-                                    className="form-textarea"
-                                    placeholder='"what a kewl portfolio, you&apos;re hired!"'
-                                />
-                            </div>
-                            
-                            {/* submit button row */}
-                            <div className="form-button">
-                                <button 
-                                    type="submit"
-                                    className={`send-button ${isButtonActive ? 'active' : ''}`}
-                                >
-                                    <img src='/src/assets/send.png' className="send-icon" alt="Send"/>
-                                    Send
-                                </button>
-                            </div>
-                        </form>
+                            <div className='contact-content'>
+                                <form onSubmit={handleSubmit} className="contact-form">
+                                    {/* first row - Recipient email (read-only) */}
+                                    <div className="form-row">
+                                        <label htmlFor="to" className='to-label'>T<span className='underline'>o.</span>..</label> 
+                                        <input
+                                            type="email"
+                                            id="to"
+                                            name="to"
+                                            value={formData.to}
+                                            onChange={handleInputChange}
+                                            readOnly
+                                            className="form-input"
+                                        />
+                                    </div>
+
+                                    {/* second row - sender email */}
+                                    <div className="form-row">
+                                        <label htmlFor="from" className='from-label'><span className='underline'>F</span>rom...</label>
+                                        <input
+                                            type="email"
+                                            id="from"
+                                            name="from"
+                                            value={formData.from}
+                                            onChange={handleInputChange}
+                                            required   
+                                            className="form-input"
+                                            placeholder="your email"
+                                        />
+                                    </div>
+                                    
+                                    {/* third row - email subject */}
+                                    <div className="form-row">
+                                        <label htmlFor="subject" className='subject-label'> S<span className='underline'>u</span>bject:</label>
+                                        <input
+                                            type="text"
+                                            id="subject"
+                                            name="subject"
+                                            value={formData.subject}
+                                            onChange={handleInputChange}
+                                            required
+                                            className="form-input"
+                                            placeholder="Greetings!"
+                                        />
+                                    </div>
+                                    
+                                    {/* fourth row - message body */}
+                                    <div className="form-row">
+                                        <label htmlFor="message" className='message-label'>
+                                            <span className='underline'>M</span>essage:
+                                        </label>
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleInputChange}
+                                            required
+                                            className="form-textarea"
+                                            placeholder='Wow! Your art is amazing!'
+                                        />
+                                    </div>
+
+                                    {/* submit button row */}
+                                    <div className="form-button">
+                                        <button 
+                                            type="submit"
+                                            className={`send-button ${isButtonActive ? 'active' : ''}`}
+                                        >
+                                            <img src='/src/assets/send.png' className="send-icon" alt="Send"/>
+                                            Send
+                                        </button>
+                                    </div>
+                                </form>
                     {/* contact-content */}
                     </div>
 
@@ -700,42 +706,40 @@ function Norse() {
                         </div>
                     </div>
                         
-                    <nav className='navbar'>
-                        <ul>
-                            <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                <Link to="/">
-                                    <img src="/images/home.png" className='home-icon' alt='home'/>
-                                    <p>Home</p>
-                                </Link>
-                            </li>
-                            <li className='button-1'>
-                                <Link to="/tarot">
-                                    <img src="/images/tarot.png" className='home-icon' alt='home'/>
-                                    <p>Tarot</p>
-                                </Link>
-                            </li>
-                            <li className='button-1'>
-                                <Link to="/norse">
-                                    <img src="/images/mythology.png" className='home-icon' alt='home'/>
-                                    <p>Mythology</p>
-                                </Link>
-                            </li>
-                            <li className='button-1'>
-                                <Link to="/game">
-                                    <img src="/images/game_art.png" className='home-icon' alt='home'/>
-                                    <p>Game Art</p>
-                                </Link>
-                            </li>
-                            <li className='button-1'>
-                                <Link to="/commissions">
-                                    <img src="/images/commissions.png" className='home-icon' alt='home'/>
-                                    <p>Commissions</p>
-                                </Link>
-                            </li>
-                        </ul>
-                    </nav>
-
+                    
                     <div className='content'>
+                        <div className='navbar-container'>
+                            <nav className='navbar'>
+                                <ul>
+                                    <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
+                                        <Link to="/">
+                                            <p className='nav-p'>Home</p>
+                                        </Link>
+                                    </li>
+                                    <li className='button-1'>
+                                        <Link to="/tarot">
+                                            <p className='nav-p'>Tarot</p>
+                                        </Link>
+                                    </li>
+                                    <li className='button-1'>
+                                        <Link to="/norse">
+                                            <p className='nav-p'>Mythology</p>
+                                        </Link>
+                                    </li>
+                                    <li className='button-1'>
+                                        <Link to="/game">
+                                            <p className='nav-p'>Game Art</p>
+                                        </Link>
+                                    </li>
+                                    <li className='button-1'>
+                                        <Link to="/commissions">
+                                            <p className='nav-p'>Commissions</p>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
                         <div className='homepage-banners'>
                             <div className='inner-banner-text'>
                                 <p className='banner'>Zoica Art</p>
@@ -743,7 +747,7 @@ function Norse() {
                             </div>
                         </div>
 
-                        <div className="img-grid">
+                        {/* <div className="img-grid">
                             {images.map((image, index) => (
                                 <div key={index}>
                                     <div className='grid-container'>
@@ -759,7 +763,7 @@ function Norse() {
                                     </div>
                                 </div>
                             ))}
-                        </div>
+                        </div> */}
 
                         <div className="xp-footer-line"></div>
                     </div>
