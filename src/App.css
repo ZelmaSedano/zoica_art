@@ -35,8 +35,8 @@ html, body {
 
 
 .window {
-  height: 668px;
-  width: 1088px;
+  width: 988px;
+  height: 613px;
   border-top: solid #1172ee 2px;
   border-left: solid #002bad 2px;
   border-right: solid #002bad 2px;
@@ -237,12 +237,12 @@ header {
   margin: 0px 0px 30px 0px;
 }
 .blue-bar {
+  width: 988px;
   height: 30px;
   display: flex;
   position: absolute;
   text-align: left;
   cursor: grab;
-  width: 1088px;
   align-items: center;
   background: linear-gradient(
         to bottom,
@@ -414,17 +414,20 @@ nav ul li a p{
 .content {
   background: url('/public/images/desktop_standard.png') no-repeat;
   background-size: 100% 100%;
+
+
   position: relative;
-  max-width: 1088px;
-  height: 612px;
-  max-height: 612px;
-  width: 1088px;
+
+  /* image dimensions: 988px x 556px */
+  max-width: 988px;
+  height: 556px;
+  max-height: 556px;
+  width: 988px;
+
+
   color: black;
   /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
-  border: none;
-  box-shadow: 
-    inset 1px 1px 0px #808080,
-    0 0 0 0px #c3c3c3;
+
   z-index: 0;
   overflow-y: auto;
   overflow-x: hidden;
@@ -1147,72 +1150,21 @@ input:focus, textarea:focus {
 }
 
 /* widescreen */
-@media (min-width: 1445px) {
-  /* left column */
-  .resume-column-2 {
-    display: none;
+@media (min-width: 1500px) {
+  .window {
+    width: 1200px;
+    height: 732px;
   }
-  .resume-column-1 {
-    width: 50%;
+  .content {
+    background: url('/public/images/widescreen_standard.png') no-repeat;
+    /* image dimensions: 1200x675*/
+    max-width: 1200px;
+    height: 675px;
+    max-height: 675px;
+    width: 1200px;
   }
-  .middle-resume-column-1 {
-    /* keep height the same as content, diff from laptop view  */ 
-    height: auto;
-    padding: 20px;
-  }
-  .resume-contact-title {
-    text-align: center;
-    margin: 0px;
-  }
-  .stats-section-text {
-    display: flex;
-    justify-content: center;
-  }
-  /* right column */
-  .resume-column-3 {
-    width: 50%;
-  }
-  .middle-resume-column-1 {
-    border: none;
-  }
-  .widescreen-middle-resume-column-1 {
-    padding: 10px;
-    text-align: center;
-    margin: 0 auto;
-    border-bottom: 3px solid grey;
-  }
-  .widescreen-bottom-resume-column-1 {
-    border-top: 3px solid grey;
-  }
-  .widescreen-employment-section {
-    /* keep the section from growing wider, so skill section doesn't move */
-    max-width: 505px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  .bottom-resume-column-3 {
-    display: flex;
-    border-top: 3px solid grey;
-    margin-left: -20px;
-    padding: 0px;
-  }
-  .skills-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* align the top a bit with image top */
-    margin-top: -15px;
-  }
-  .image-section {
-    width: 130px;
-    margin: 10px 20px 0 0;
-  }
-}
-
-@media (max-width: 1400px) {
-  .bio-section {
-    width: 70%;
+  .blue-bar {
+    width: 1200px;
   }
 }
 
@@ -1235,6 +1187,7 @@ input:focus, textarea:focus {
   }
 }
 
+/********* MOBILE *********/ 
 @media (max-width: 914px) {
   .homepage-banners {
     /* horizontally centers on the x axis */
