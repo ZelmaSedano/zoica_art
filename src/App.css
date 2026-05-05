@@ -1208,17 +1208,8 @@ input:focus, textarea:focus {
   }
 }
 
-/******** Mobile Design *********/
+/******** Tablet Design *********/
 @media (max-width: 992px) {
-  /* make sure all the icons are hidden */
-  .desktop {
-    display: none;
-  }
-
-  body {
-    background: url('./assets/boop.png') no-repeat center/cover;;
-  }
-  
   .window {
     position: static !important;
     left: auto !important;
@@ -1271,7 +1262,7 @@ input:focus, textarea:focus {
 
   .content {
     /* adjust height accounting 4 header */
-    height: calc(100vh - 120px);
+    height: 100vh;
     width: 100vw;
     box-sizing: border-box;
     border: 5px solid #c3c3c3; 
@@ -1290,14 +1281,17 @@ input:focus, textarea:focus {
   .url-container {
     position: relative;
     margin-top: 30px;
-    height: 80%;
+    width: 100%;
+  }
+  .url-bar {
+    width: 100%;
   }
   .url-bar-large {
     margin: 0 auto;
-    width: 83%;
+    width: 70%;
   }
   .url-bar-small-1 {
-    width: 10%;
+    width: 18%;
   }
   .url-bar-small-2 {
     width: 7%;
@@ -1395,12 +1389,22 @@ input:focus, textarea:focus {
   }
 }
 
-@media (max-width: 400px) {
+/* iphone 14 dimensions: 430x932 */
+/* image dimsneions: 375x833*/
+@media (max-width: 430px) {
+  .window {
+    height: 932px;
+    max-height: 932px;
+  }
+  .content {
+    background: url('/public/images/mobile_standard.png') no-repeat;
+    height: 932px;
+    max-height: 932px;
+    width: 430px;
+  }
   .left-button {
     margin-left: 0px;
   }
-
-
 
   .button {
     margin: 3px 0px 3px 0px;
