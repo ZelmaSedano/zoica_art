@@ -608,121 +608,24 @@ nav ul li a p{
   margin: 0 auto;
   justify-content: center;
 }
-.computer {
-  height: 110px;
-}
-/* homepage */
 .homepage-banners .banner,
 .homepage-banners .banner-1 {
   font-family: 'alegard';
-  color: black;
+  color: rgb(255, 255, 255);
   margin: 0 auto;
-  padding-top: 25px;
   text-shadow: 2px 2px 5px rgba(24, 22, 173, 0.7);
   text-align: center;
 }
 .homepage-banners .banner {
   padding-top: 0;
-  font-size: 50px;
+  font-size: 28px;
+  margin-top: 10px;
 }
-.homepage-banners .banner-1 {
+/* .homepage-banners .banner-1 {
   padding-top: 0;
   font-size: 28px;
   margin-top: -15px;
-}
-
-.homepage-banners .bio-p {
-  text-align: center;
-}
-.bio-section{
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  margin: 0 auto;
-  box-sizing: border-box;
-  margin-top: 20px;
-}
-.bio-section .bio-image{
-  height: 300px;
-  width: 300px;
-  border-radius: 200px 100px;
-  border: solid 3px #871cd4;
-}
-.sub-bio-section {
-  margin-top: 30px;
-  text-align: center;
-  display: flex;
-}
-.bio-container {
-  display: inline-block;
-}
-.homepage-pic {
-  height: 265px;
-  border-radius: 5%;
-}
-.sub-bio-text {
-  margin-top: -5px;
-  font-size: 20px;
-  text-decoration: underline;
-}
-.sub-bio-p {
-  width: 70%;
-  text-align: center;
-  align-items: center;
-  margin: 0 auto;
-  margin-top: -10px;
-}
-.sub-bio-p-1 {
-  margin-top: 7px;
-}
-
-
-/* portfolio page */
-.portfolio-content {
-  /* make sure this wraps so the entire page is scrollable */
-  overflow-y: auto;
-}
-.portfolio-container {
-  display: flex;
-}
-.portfolio-navbar {
-  margin: 0 auto;
-  display: flex;
-}
-.portfolio-ul {
-  display: flex; /* Add this line */
-  flex-wrap: wrap; /* Optional: allows wrapping on smaller screens */
-  justify-content: center; /* Center the items horizontally */
-  margin: 0 auto; /* Center the ul itself */
-  padding: 0; /* Remove default padding */
-  list-style: none;
-}
-.portfolio-ul a {
-  display: flex;
-  list-style: none;
-  font-family: "Single Day", cursive;
-  color: #AF1CD4;
-  font-size: 28px;
-  justify-content: center;
-  margin: 5px 0;
-  /* where is this coming from? */
-  padding-left: 0;
-}
-.portfolio-ul li {
-  padding: 0 25px;
-}
-.portfolio-active {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.portfolio-banner {
-  font-family: "Single Day", cursive;
-  color: #AF1CD4;
-  font-size: 28px;
-  text-align: center;
-  margin-bottom: -20px;
-  margin-top: -3px;
-}
+} */
 
 .img-grid {
   /* makes the elements inside display as a grid */

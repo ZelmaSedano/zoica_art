@@ -678,6 +678,7 @@ function Home() {
                     }}
                     onMouseDown={handleWindowMouseDown}
                 >
+                    {/* BLUE BAR */}
                     <header>
                         <section className='blue-bar'>
                             <img src="/images/18.ico" className='icon' alt="icon"/>
@@ -688,6 +689,7 @@ function Home() {
                         </section>
                     </header>
 
+                    {/* URL BAR */}
                     <div className='url-container'>
                         <div className='url-bar'>
                             <div className='url-bar-small-1'>
@@ -706,9 +708,20 @@ function Home() {
                         </div>
                     </div>
                         
-                    
+                    {/* NAVBAR */}
                     <div className='content'>
-                        <div className='navbar-container'>
+
+                        <div className='homepage-banners'>
+                            <div className='inner-banner-text'>
+                                <p className='banner'>Zoica Art</p>
+                                {/* <p className='banner-1'>Explore Your Dark Fantasy</p> */}
+                            </div>
+                        </div>
+                        
+                        
+                        {/* navbar -- image gallery -- image scroll */}
+                        {/* content container */}
+                        <div className='content-container'>
                             <nav className='navbar'>
                                 <ul>
                                     <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
@@ -738,32 +751,25 @@ function Home() {
                                     </li>
                                 </ul>
                             </nav>
-                        </div>
 
-                        <div className='homepage-banners'>
-                            <div className='inner-banner-text'>
-                                <p className='banner'>Zoica Art</p>
-                                <p className='banner-1'>Explore Your Dark Fantasy</p>
-                            </div>
-                        </div>
-
-                        {/* <div className="img-grid">
-                            {images.map((image, index) => (
-                                <div key={index}>
-                                    <div className='grid-container'>
-                                        <div className='image-title'>{image.title}</div>
-                                        <a href={image.url} target="_blank" rel="noopener noreferrer">
-                                            <img
-                                                src={`/images/${image.id}.jpg`}
-                                                title={`${image.id} website`}
-                                                alt={image.id}
-                                                className='image clickable-image'
-                                            />
-                                        </a>
+                            {/* <div className="img-grid">
+                                {images.map((image, index) => (
+                                    <div key={index}>
+                                        <div className='grid-container'>
+                                            <div className='image-title'>{image.title}</div>
+                                            <a href={image.url} target="_blank" rel="noopener noreferrer">
+                                                <img
+                                                    src={`/images/${image.id}.jpg`}
+                                                    title={`${image.id} website`}
+                                                    alt={image.id}
+                                                    className='image clickable-image'
+                                                />
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
-                        </div> */}
+                                ))}
+                            </div> */}
+                        </div>
 
                         <div className="xp-footer-line"></div>
                     </div>
