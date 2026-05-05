@@ -708,7 +708,7 @@ function Home() {
                         </div>
                     </div>
                         
-                    {/* NAVBAR */}
+                    {/* CONTENT */}
                     <div className='content'>
 
                         <div className='homepage-banners'>
@@ -719,8 +719,8 @@ function Home() {
                         </div>
                         
                         
+                        {/* NAVBAR */}
                         {/* navbar -- image gallery -- image scroll */}
-                        {/* content container */}
                         <div className='content-container'>
                             <nav className='navbar'>
                                 <ul>
@@ -770,6 +770,8 @@ function Home() {
                                 ))}
                             </div> */}
                         </div>
+
+                        {/* image scrolling section */}
 
                         <div className="xp-footer-line"></div>
                     </div>

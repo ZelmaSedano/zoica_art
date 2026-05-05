@@ -307,14 +307,20 @@ header {
   margin-top: 5px;
 }
 
+.content-container {
+  display: flex;
+}
 
 /********** NAVBAR *********/
 .navbar {
-  height: 35px;
-  width: 150px;
+  width: 161px;
+  height: 200px;
   position: relative;
   display: flex; /* without this you can't make active button higher */
   flex-direction: column;
+
+  margin-left: 100px;
+  margin-top: 70px;
 }
 .navbar ul {
   margin: 2px 0 0 0;
@@ -335,12 +341,15 @@ nav ul li {
   position: relative;
   overflow: hidden;
   display: flex;
-  background: url('/public/images/navbar_button.png');
-  border-right: 2px solid #000;
+  background: url('images/button.png');
+  /* border-right: 2px solid #000;
   border-bottom: 1px solid #000;
   border-top: 1px solid #000;
-  border-left: 2px solid #000;
+  border-left: 2px solid #000; */
   align-items: center;
+  margin: 5px;
+  outline: 2px solid black;
+  outline-offset: 5px;
 }
 .button-1 a {
   position: relative;
@@ -350,7 +359,7 @@ nav ul li {
   /* add padding here so entire button is clickable */
 }
 nav ul li a {
-  color: black;
+  color: #b1b19f;
   font-weight: 400;
   font-style: normal;
   letter-spacing: -0.5px;
@@ -361,7 +370,7 @@ nav ul li a {
 nav ul li a p{
   margin-top: 3px;
   margin-bottom: 1px;
-  font-size: 20px;
+  font-size: 18px;
   /* center text */
   margin: 0 auto;
   font-family: 'alegard';
@@ -611,14 +620,14 @@ nav ul li a p{
 .homepage-banners .banner,
 .homepage-banners .banner-1 {
   font-family: 'alegard';
-  color: rgb(255, 255, 255);
+  color: #b1b19f;
   margin: 0 auto;
   text-shadow: 2px 2px 5px rgba(24, 22, 173, 0.7);
   text-align: center;
 }
 .homepage-banners .banner {
   padding-top: 0;
-  font-size: 28px;
+  font-size: 27px;
   margin-top: 10px;
 }
 /* .homepage-banners .banner-1 {
