@@ -83,6 +83,8 @@ function Home() {
     const [isVisible, setIsVisible] = useState(true);
     // active button for CONTACT
     const [isButtonActive, setIsButtonActive] = useState(false);
+    // scrolling image menu
+    const [selectedImage, setSelectedImage] = useState(images[0]);
 
     // video player
     const [videoPlayer, setVideoPlayer] = useState({
@@ -101,6 +103,9 @@ function Home() {
     const dragOffsetRef = useRef({ x: 0, y: 0 });
     const windowSizeRef = useRef({ width: 0, height: 0 });
     const dragPositionRef = useRef(position);
+
+    // scrolling image menu ref
+    const scrollRef = useRef<HTMLDivElement | null>(null);
 
     // active button styling
     const location = useLocation();
@@ -334,6 +339,19 @@ function Home() {
         const mins = Math.floor(seconds / 60);
         const secs = Math.floor(seconds % 60);
         return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    };
+
+    // image menu scrolling handlers
+    const scrollUp = () => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollBy({ top: -120, behavior: 'smooth' });
+        }
+    };
+
+    const scrollDown = () => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollBy({ top: 120, behavior: 'smooth' });
+        }
     };
 
 
@@ -707,7 +725,8 @@ function Home() {
                             </div>
                         </div>
                     </div>
-                        
+                    
+
                     {/* CONTENT */}
                     <div className='content'>
 
@@ -717,9 +736,7 @@ function Home() {
                                 {/* <p className='banner-1'>Explore Your Dark Fantasy</p> */}
                             </div>
                         </div>
-                        
-                        
-                        {/* NAVBAR */}
+
                         {/* navbar -- image gallery -- image scroll */}
                         <div className='content-container'>
                             <nav className='navbar'>
@@ -752,31 +769,49 @@ function Home() {
                                 </ul>
                             </nav>
 
-                            {/* <div className="img-grid">
-                                {images.map((image, index) => (
-                                    <div key={index}>
-                                        <div className='grid-container'>
-                                            <div className='image-title'>{image.title}</div>
-                                            <a href={image.url} target="_blank" rel="noopener noreferrer">
-                                                <img
-                                                    src={`/images/${image.id}.jpg`}
-                                                    title={`${image.id} website`}
-                                                    alt={image.id}
-                                                    className='image clickable-image'
-                                                />
-                                            </a>
-                                        </div>
+
+                                {/* LEFT: selected image preview */}
+                                <div className="preview-pane">
+                                    <img
+                                        src={`/images/${selectedImage.id}.jpg`}
+                                        alt={selectedImage.title}
+                                    />
+                                    <div className="preview-title">{selectedImage.title}</div>
+                                </div>
+
+                                {/* RIGHT: scroll selector */}
+                                <div className="scroll-menu">
+                                    <button className="arrow-1 up" onClick={scrollUp}>
+                                        <img src='/public/images/up_arrow.png' />
+                                    </button>
+
+                                    <div className="scroll-list" ref={scrollRef}>
+                                        {images.map((img) => (
+                                            <div
+                                                key={img.id}
+                                                className={`scroll-item ${
+                                                    selectedImage.id === img.id ? 'active' : ''
+                                                }`}
+                                                onClick={() => setSelectedImage(img)}
+                                            >
+                                                <img src={`/images/${img.id}.jpg`} alt={img.title} />
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
-                            </div> */}
+
+                                    <button className="arrow-1 down" onClick={scrollDown}>
+                                        <img src='/public/images/downward_arrow.png'/>
+                                    </button>
+                                </div>
                         </div>
 
                         {/* image scrolling section */}
-
                         <div className="xp-footer-line"></div>
                     </div>
                 </div>
             )}
+
+
 
             <Taskbar
                 isVisible={isVisible} 
