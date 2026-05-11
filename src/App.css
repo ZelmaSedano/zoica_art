@@ -307,110 +307,7 @@ header {
   margin-top: 5px;
 }
 
-.content-container {
-  display: flex;
-}
 
-/********** NAVBAR *********/
-.navbar {
-  width: 161px;
-  height: 200px;
-  position: relative;
-  display: flex; /* without this you can't make active button higher */
-  flex-direction: column;
-
-  margin-left: 100px;
-  margin-top: 70px;
-}
-.navbar ul {
-  margin: 2px 0 0 0;
-  /* removes the browser's default 40px padding to the left of the navbar */
-
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-
-  text-decoration: none;
-}
-nav ul li {
-  list-style: none;
-  cursor: pointer;
-}
-
-.button-1 {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  background: url('images/button.png');
-  /* border-right: 2px solid #000;
-  border-bottom: 1px solid #000;
-  border-top: 1px solid #000;
-  border-left: 2px solid #000; */
-  align-items: center;
-  margin: 5px;
-  outline: 2px solid black;
-  outline-offset: 5px;
-}
-.button-1 a {
-  position: relative;
-  display: flex;
-  height: 100%;
-  width: 100%;
-  /* add padding here so entire button is clickable */
-}
-nav ul li a {
-  color: #b1b19f;
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: -0.5px;
-  margin-left: 5px;
-  display: flex;
-}
-
-nav ul li a p{
-  margin-top: 3px;
-  margin-bottom: 1px;
-  font-size: 18px;
-  /* center text */
-  margin: 0 auto;
-  font-family: 'alegard';
-}
-/* Justine, new concept, STACKING BOUNDARY */
-.button-1 > a {
-  position: relative;
-  z-index: 2;         
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.link {
-  width: 100%;
-}
-.home-icon{
-  margin-left: 1px;
-  margin-top: 3px;
-  width: 20px;
-  height: 20px;
-}
-.paint-icon{
-  margin-left: 1px;
-  margin-top: 3.5px;
-  width: 18px;
-  height: 18px;
-}
-.resume-icon{
-  margin-left: 1px;
-  margin-top: 4px;
-  width: 16px;
-  height: 16px;
-}
-.contact-icon{
-  margin-left: 1px;
-  margin-top: 4px;
-  width: 19px;
-  height: 19px;
-}
 
 
 
@@ -420,6 +317,7 @@ nav ul li a p{
 }
 
 /* CONTENT WINDOW */
+
 .content {
   background: url('/public/images/desktop_standard.png') no-repeat;
   background-size: 100% 100%;
@@ -432,7 +330,6 @@ nav ul li a p{
   height: 556px;
   max-height: 556px;
   width: 988px;
-
 
   color: black;
   /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
@@ -636,6 +533,183 @@ nav ul li a p{
   margin-top: -15px;
 } */
 
+
+/******** CONTENT CONTAINER ********/
+.content-container {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  gap: 20px;
+  /* some extra space at top */
+  margin-top: 5px;
+}
+/********** NAVBAR *********/
+.navbar {
+  width: 161px;
+  height: 200px;
+  position: relative;
+  display: flex; /* without this you can't make active button higher */
+  flex-direction: column;
+  align-self: flex-start;
+
+  margin-left: 100px;
+  margin-top: 70px;
+}
+.navbar ul {
+  margin: 2px 0 0 0;
+  /* removes the browser's default 40px padding to the left of the navbar */
+
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+
+  text-decoration: none;
+}
+nav ul li {
+  list-style: none;
+  cursor: pointer;
+}
+
+.button-1 {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  background: url('images/button.png');
+  /* border-right: 2px solid #000;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+  border-left: 2px solid #000; */
+  align-items: center;
+  margin: 5px;
+  outline: 2px solid black;
+  outline-offset: 5px;
+}
+.button-1 a {
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  /* add padding here so entire button is clickable */
+}
+nav ul li a {
+  color: #b1b19f;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -0.5px;
+  margin-left: 5px;
+  display: flex;
+}
+
+nav ul li a p{
+  margin-top: 3px;
+  margin-bottom: 1px;
+  font-size: 18px;
+  /* center text */
+  margin: 0 auto;
+  font-family: 'alegard';
+}
+/* Justine, new concept, STACKING BOUNDARY */
+.button-1 > a {
+  position: relative;
+  z-index: 2;         
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.link {
+  width: 100%;
+}
+
+
+
+/* LEFT PREVIEW */
+.preview-pane {
+  width: 300px;
+  height: 400px;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+.preview-pane img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.preview-title {
+  margin-top: 8px;
+  font-size: 15px;
+  color: white;
+  font-family: 'alegard';
+  margin: 0 auto;
+}
+
+
+/* RIGHT SCROLLER */
+.scroll-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.arrow-1 {
+   /* Remove all default button padding and margins */
+  background: none !important;
+  /* Make the button fit tightly around the image */
+  display: flex;
+  line-height: 0;
+  /* Remove any potential min-height */
+  min-height: auto;
+  height: auto;
+}
+
+/* ARROWS */
+.arrow-1 img{
+  width: 50px;
+  cursor: pointer;
+  padding: 0;
+}
+.arrow-1.up {
+  padding: 0;
+  margin: 0;
+  margin-bottom: -15px;
+  border: 0;
+}
+.arrow-1.down {
+  padding: 0;
+  margin: 0;
+  margin-top: -15px;
+  border: 0;
+}
+/* SCROLL AREA */
+.scroll-list {
+  /* THIS is what creates the “window” */
+  height: 360px;
+  width: 140px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 5px 0;
+  padding: 5px;
+  background: #222;
+}
+/* ITEMS */
+.scroll-item {
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.scroll-item img {
+  width: 100%;
+  display: block;
+}
+
+/* ACTIVE STATE */
+.scroll-item.active {
+  border: 2px solid green;
+}
+
 .img-grid {
   /* makes the elements inside display as a grid */
   display: grid;
@@ -680,11 +754,6 @@ nav ul li a p{
   position: relative;
 }
 
-.webcraft-portfolio-banner {
-  font-family: "Single Day", cursive;
-  color: #AF1CD4;
-  font-size: 28px;
-}
 
 
 
