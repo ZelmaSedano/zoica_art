@@ -1,8 +1,9 @@
 import { Routes, Route } from 'react-router-dom'
+
+
+
 import Home from './Home'
 import Contact from './Contact'
-
-
 import Tarot from './pages/Tarot'
 import Norse from './pages/Norse'
 import Game from './pages/Game'

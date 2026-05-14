@@ -37,13 +37,13 @@ h1 {
 }
 
 button {
-  padding: 0.6em 1.2em;
-  font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #c3c3c3;
   cursor: pointer;
-  transition: border-color 0.25s;
+  /* remove browser's default button styling */
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
 @media (prefers-color-scheme: light) {
@@ -53,8 +53,5 @@ button {
   }
   a:hover {
     color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }
