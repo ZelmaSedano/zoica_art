@@ -319,7 +319,7 @@ header {
 /* CONTENT WINDOW */
 
 .content {
-  background: url('/public/images/desktop_standard.png') no-repeat;
+  background: url('/public/images/idk.png') no-repeat;
   background-size: 100% 100%;
 
 
@@ -1378,7 +1378,7 @@ input:focus, textarea:focus {
     max-height: 932px;
   }
   .content {
-    background: url('/public/images/mobile_standard.png') no-repeat;
+    background: url('/public/images/mobile_standard_2_shortest.png') no-repeat;
     height: 932px;
     max-height: 932px;
     width: 430px;
