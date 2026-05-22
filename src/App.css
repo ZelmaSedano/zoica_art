@@ -29,8 +29,6 @@ html, body {
 }
 
 
-
-
 /************ Desktop Design *************/
 
 
@@ -53,7 +51,7 @@ html, body {
 }
 
 body {
-  background: url('/public/images/xp.jpg') no-repeat center/cover;
+  background: url('/public/images/island.gif') no-repeat center/cover;
 }
 
 
