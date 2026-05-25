@@ -12,33 +12,38 @@ import '../components/DesktopIcon.css';
 
 const images = [
         {
-            title:'Big Scary',
-            id: '12',
+            title: 'Utgaard',
+            id: 'tarot/Utgaardfloki',
             url: 'http://www.etsy.com'
         },
         {
             title:'Hanging Man',
-            id: '13',
+            id: 'tarot/hangedmanfinal',
             url: 'http://www.etsy.com'
         },
                 {
-            title:'Wizard',
-            id: '19',
+            title:'Hermit',
+            id: 'tarot/hermitfinal',
             url: 'http://www.etsy.com'
         },
         {
-            title:'Princess',
-            id: '8',
+            title:'High Priestess',
+            id: 'tarot/highpriestesstarot',
             url: 'http://www.etsy.com'
         },
         {
-            title:'Chronic Wasting',
-            id: '14',
+            title:'Justice for All',
+            id: 'tarot/justicetarot111',
             url: 'http://www.etsy.com'
         },
         {
-            title:'Joten',
-            id: '7',
+            title:'Moon',
+            id: 'tarot/the moon final',
+            url: 'http://www.etsy.com'
+        },
+        {
+            title:'Freya',
+            id: 'tarot/freyjatarotfinal',
             url: 'http://www.etsy.com'
         }
 ];
