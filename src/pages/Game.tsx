@@ -11,36 +11,41 @@ import '../components/DesktopIcon.css';
 
 
 const images = [
-        {
-            title:'Big Scary',
-            id: '12',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Hanging Man',
-            id: '13',
-            url: 'http://www.etsy.com'
-        },
-                {
-            title:'Wizard',
-            id: '19',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Princess',
-            id: '8',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Chronic Wasting',
-            id: '14',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Joten',
-            id: '7',
-            url: 'http://www.etsy.com'
-        }
+    {
+        title:'Banished Knight',
+        id: 'fanart/banished_knight',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Hanging Man',
+        id: 'fanart/brocover',
+        url: 'http://www.etsy.com'
+    },
+            {
+        title:'Wizard',
+        id: 'fanart/crowfinale',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Princess',
+        id: 'fanart/lich',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Chronic Wasting',
+        id: 'fanart/mtgdarkmagician',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Joten',
+        id: 'fanart/revenant3',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Square',
+        id: 'fanart/square',
+        url: 'http:?? www.etsy.com'
+    }
 ];
 
 function Game() {

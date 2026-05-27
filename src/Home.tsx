@@ -11,36 +11,36 @@ import './components/DesktopIcon.css';
 
 
 const images = [
-        {
-            title:'Big Scary',
-            id: '12',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Hanging Man',
-            id: '13',
-            url: 'http://www.etsy.com'
-        },
-                {
-            title:'Wizard',
-            id: '19',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Princess',
-            id: '8',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Chronic Wasting',
-            id: '14',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Joten',
-            id: '7',
-            url: 'http://www.etsy.com'
-        }
+    {
+        title:'Brocover',
+        id: 'best/brocover',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Revenant',
+        id: 'best/revenant3',
+        url: 'http://www.etsy.com'
+    },
+            {
+        title:'Surtr',
+        id: 'best/surtrprint',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Mazzeri',
+        id: 'best/mazzerisofar',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Banished Knight',
+        id: 'best/banished_knight',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Utgaard Floki',
+        id: 'best/Utgaardfloki',
+        url: 'http://www.etsy.com'
+    }
 ];
 
 function Home() {

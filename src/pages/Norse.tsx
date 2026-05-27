@@ -11,36 +11,36 @@ import '../components/DesktopIcon.css';
 
 
 const images = [
-        {
-            title:'Big Scary',
-            id: '12',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Hanging Man',
-            id: '13',
-            url: 'http://www.etsy.com'
-        },
-                {
-            title:'Wizard',
-            id: '19',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Princess',
-            id: '8',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Chronic Wasting',
-            id: '14',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Joten',
-            id: '7',
-            url: 'http://www.etsy.com'
-        }
+    {
+        title:'Surtr',
+        id: 'mythology/surtrprint',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Freyja',
+        id: 'mythology/Freyja2',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Fenrir',
+        id: 'mythology/Fenrir',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Jotun',
+        id: 'mythology/jotun_paint_3_less_cloud',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Tyr Slays Garmr',
+        id: 'mythology/TyrSlaysGarmr_final2',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Dead Winter',
+        id: 'mythology/dead_winter2',
+        url: 'http://www.etsy.com'
+    }
 ];
 
 function Norse() {

@@ -11,41 +11,41 @@ import '../components/DesktopIcon.css';
 
 
 const images = [
-        {
-            title: 'Utgaard',
-            id: 'tarot/Utgaardfloki',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Hanging Man',
-            id: 'tarot/hangedmanfinal',
-            url: 'http://www.etsy.com'
-        },
-                {
-            title:'Hermit',
-            id: 'tarot/hermitfinal',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'High Priestess',
-            id: 'tarot/highpriestesstarot',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Justice for All',
-            id: 'tarot/justicetarot111',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Moon',
-            id: 'tarot/the moon final',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Freya',
-            id: 'tarot/freyjatarotfinal',
-            url: 'http://www.etsy.com'
-        }
+    {
+        title: 'Utgaard',
+        id: 'tarot/Utgaardfloki',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Hanging Man',
+        id: 'tarot/hangedmanfinal',
+        url: 'http://www.etsy.com'
+    },
+            {
+        title:'Hermit',
+        id: 'tarot/hermitfinal',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'High Priestess',
+        id: 'tarot/highpriestesstarot',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Justice for All',
+        id: 'tarot/justicetarot111',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Moon',
+        id: 'tarot/the moon final',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Freyja',
+        id: 'tarot/freyjatarotfinal',
+        url: 'http://www.etsy.com'
+    }
 ];
 
 function Tarot() {

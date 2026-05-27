@@ -11,36 +11,61 @@ import '../components/DesktopIcon.css';
 
 
 const images = [
-        {
-            title:'Big Scary',
-            id: '12',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Hanging Man',
-            id: '13',
-            url: 'http://www.etsy.com'
-        },
-                {
-            title:'Wizard',
-            id: '19',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Princess',
-            id: '8',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Chronic Wasting',
-            id: '14',
-            url: 'http://www.etsy.com'
-        },
-        {
-            title:'Joten',
-            id: '7',
-            url: 'http://www.etsy.com'
-        }
+    {
+        title:'Graybeard',
+        id: 'commissions/Graybeard',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Kagnor',
+        id: 'commissions/kagnor',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Mandrogora',
+        id: 'commissions/mandrogora',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Mazzerisofar',
+        id: 'commissions/mazzerisofar',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Olm2',
+        id: 'commissions/Olmfinaltiny',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Patasola',
+        id: 'commissions/patasola',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Porcelain',
+        id: 'commissions/porcelain5',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Witch',
+        id: 'commissions/witch',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Dragon',
+        id: 'commissions/commexample',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Demon Lord',
+        id: 'commissions/demonlord',
+        url: 'http://www.etsy.com'
+    },
+    {
+        title:'Olm1',
+        id: 'commissions/olm done',
+        url: 'http://www.etsy.com'
+    },
 ];
 
 function Commissions() {
