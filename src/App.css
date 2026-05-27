@@ -691,6 +691,8 @@ nav ul li a p{
   gap: 10px;
   margin: 5px 0;
   padding: 5px;
+
+  
   background: #222;
 }
 /* ITEMS */
@@ -708,24 +710,7 @@ nav ul li a p{
   border: 2px solid green;
 }
 
-.img-grid {
-  /* makes the elements inside display as a grid */
-  display: grid;
-  /* instead of using auto-fill, specify 3 videos wide, otherwise it'll auto-fill to 4 or 5 videos */
-  grid-template-columns: repeat(1, 1fr);
-  gap: 16px;
-  padding: 5px 20px;
-  flex-grow: 1; /* take up available space */
-  min-height: min-content; /* minimum height needed for content */
 
-  /* CENTER IMAGES WITHOUT CENTERING THE SCROLLBAR */
-  justify-items: center;
-  max-width: 80%;
-  margin: 0 auto;
-}
-.img-grid img {
-  width: 100%;
-}
 .grid-container {
   position: relative;
   display: inline-block;
@@ -750,6 +735,67 @@ nav ul li a p{
   border-top: solid 21px #c3c3c3; /* Space for the title */
   outline: solid 1px black;
   position: relative;
+}
+
+
+
+
+/* Custom Windows 98 Scrollbar Container */
+.custom-scroll-container {
+  display: flex;
+  gap: 5px;
+  height: 360px;
+}
+
+.scroll-list {
+  flex: 1;
+  height: 360px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 5px;
+  background: #32301f;
+  border: 2px solid;
+  border-color: #a9a574 #666343 #16160e #878356;
+
+  /* Hide native scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.scroll-list::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+/* Custom Scrollbar */
+.custom-scrollbar {
+  width: 18px;
+  height: 360px;
+}
+.scroll-track {
+  margin-left: -10px;
+  margin-top: 5px;
+  width: 18px;
+  height: 370px;
+  background-color: #32301f;
+  border: 2px solid;
+  border-color: #c0bd98 #666343 #16160e #878356;
+  position: relative;
+  cursor: pointer;
+}
+.scroll-thumb {
+  position: absolute;
+  width: 14px;
+  left: 1px;
+  background-color: #666343;
+  border: 1px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  cursor: grab;
+  min-height: 30px;
+  display: block;
+}
+.scroll-thumb:active {
+  cursor: grabbing;
+  border-color: #404040 #ffffff #ffffff #404040;
 }
 
 
