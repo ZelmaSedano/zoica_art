@@ -540,6 +540,9 @@ header {
   gap: 20px;
   /* some extra space at top */
   margin-top: 5px;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /********** NAVBAR *********/
@@ -550,9 +553,9 @@ header {
   display: flex; /* without this you can't make active button higher */
   flex-direction: column;
   align-self: flex-start;
-
-  margin-left: 100px;
+  margin-left: 0; /* Remove the 100px margin */
   margin-top: 70px;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 .navbar ul {
   margin: 2px 0 0 0;
@@ -622,6 +625,8 @@ nav ul li a p{
 
 .image-layout {
   display: flex;
+  gap: 20px;
+  flex: 1; /* THIS IS KEY - takes remaining space */
 }
 
 /* LEFT PREVIEW */
@@ -632,6 +637,8 @@ nav ul li a p{
   display: flex;
   flex-direction: column;
   align-self: center;
+  flex-shrink: 0;
+  margin-left: 20px;
 }
 .preview-pane img {
   max-width: 90%;
@@ -654,6 +661,8 @@ nav ul li a p{
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-shrink: 0;
+  margin-left: 20px;
 }
 .arrow-1 {
    /* Remove all default button padding and margins */
@@ -683,6 +692,11 @@ nav ul li a p{
   margin: 0;
   margin-top: 10px;
   border: 0;
+}
+
+.arrow-1.left, 
+.arrow-1.right {
+    display: none;
 }
 /* SCROLL AREA */
 .scroll-list {
@@ -1150,7 +1164,7 @@ input:focus, textarea:focus {
     color: black;
     position: absolute;
     top: -35px;
-    left: 50px;
+    left: 45px;
     z-index: 100;
   }
   .hamburger {
@@ -1205,29 +1219,58 @@ input:focus, textarea:focus {
   
 
 
-
+  .image-layout {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  .preview-pane {
+    width: 250px;
+    height: 350px;
+    margin: 0 auto;
+    margin-left: 50px;
+  }
+  .scroll-menu {
+    margin-left: -40px;
+  }
   .scroll-list {
-    width: 300px;
+    width: 270px;
+    margin-top: 20px;
+    border-color: #a9a574 #a9a574 #75714c #878356;
   }
   .scroll-item img {
     width: 100px;
   }
   .custom-scroll-container {
-  height: auto !important;
-}
-  .image-layout {
-    display: block;
+    height: auto !important;
   }
+
   .scroll-list {
     flex-direction: row;
     height: auto;
   }
   .scroll-list {
-  flex-direction: row !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  height: 150px !important;
-}
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 150px;
+  }
+  .scroll-item {
+    flex: 0 0 auto !important;
+    width: 100px !important;
+  }
+  .arrow-1.up, 
+  .arrow-1.down {
+    display: none;
+  }
+  .right-left-arrows {
+    display: flex;
+    gap: 40px;
+  }
+  .arrow-1.left, 
+  .arrow-1.right {
+    display: block;
+  }
 
 
 

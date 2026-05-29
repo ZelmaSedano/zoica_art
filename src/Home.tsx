@@ -501,7 +501,18 @@ function Home() {
             scrollRef.current.scrollBy({ top: -120, behavior: 'smooth' });
         }
     };
-
+    const scrollLeft = () => {
+        console.log('LEFT');
+        if(scrollRef.current) {
+            scrollRef.current.scrollBy({ left: -120, behavior: 'smooth'});
+        }
+    }
+    const scrollRight = () => {
+        console.log('RIGHT');
+        if(scrollRef.current) {
+            scrollRef.current.scrollBy({ left: 120, behavior: 'smooth'})
+        }
+    }
     const scrollDown = () => {
         if (scrollRef.current) {
             scrollRef.current.scrollBy({ top: 120, behavior: 'smooth' });
@@ -929,7 +940,6 @@ function Home() {
                                 </ul>
                             </nav>
 
-
                             <section className='image-layout'>
                                 {/* LEFT: selected image preview */}
                                 <div className="preview-pane">
@@ -963,19 +973,28 @@ function Home() {
                                         </div>
                                         
                                         {/* Custom scrollbar
-                                        <div className="custom-scrollbar">
-                                        <div 
-                                            className="scroll-track" 
-                                            ref={scrollTrackRef}
-                                            onClick={handleCustomScroll}
-                                        >
-                                            <div 
-                                            className="scroll-thumb" 
-                                            ref={scrollThumbRef}
-                                            onMouseDown={startDragScroll}
-                                            />
-                                        </div>
-                                        </div> */}
+                                            <div className="custom-scrollbar">
+                                                <div 
+                                                    className="scroll-track" 
+                                                    ref={scrollTrackRef}
+                                                    onClick={handleCustomScroll}
+                                                >
+                                                    <div 
+                                                    className="scroll-thumb" 
+                                                    ref={scrollThumbRef}
+                                                    onMouseDown={startDragScroll}
+                                                    />
+                                                </div>
+                                            </div>
+                                        */}
+                                    </div>
+                                    <div className='right-left-arrows'>
+                                        <button className="arrow-1 left" onClick={scrollLeft}>
+                                            <img src='/public/images/left_arrow.png' />
+                                        </button>
+                                        <button className="arrow-1 right" onClick={scrollRight}>
+                                            <img src='/public/images/right_arrow.png' />
+                                        </button>
                                     </div>
 
                                     <button className="arrow-1 down" onClick={scrollDown}>
