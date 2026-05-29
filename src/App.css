@@ -356,42 +356,42 @@ header {
   display: flex;
   flex-direction: column;
 }
+
+/* CUSTOM SCROLLBAR */
 /* Custom Windows 98-style scrollbar for .content */
-.content::-webkit-scrollbar {
-  width: 20px; /* Classic Windows scrollbar width */
-  background-color: #ece9d8; /* Classic gray background */
+/* .content::-webkit-scrollbar {
+  width: 20px;
+  background-color: #ece9d8; 
 }
 .content::-webkit-scrollbar-track {
   background-color: #ece9d8;
   border: 2px solid #ece9d8;
-  /* XP track has subtle gradient */
+
   background-image: linear-gradient(
     to right,
     #f0f0f0 0%,
     #e5e5e5 50%,
     #f0f0f0 100%
   );
-}
-.content::-webkit-scrollbar-thumb {
-  /* XP's light blue gradient scrollbar */
+} */
+/* .content::-webkit-scrollbar-thumb {
   background: #bfd3fa;
   border: 2px solid #ece9d8;
   border-radius: 6px;
-  /* XP 3D effect */
+
   box-shadow: 
     inset 1px 1px 0px #ffffff,
     inset -1px -1px 0px #316ac5;
 }
 .content::-webkit-scrollbar-thumb:hover {
-  /* Slightly brighter on hover */
   background: #bfd3fa;
-}
+} */
 /* Scrollbar buttons (up/down arrows) */
-.content::-webkit-scrollbar-button:vertical:decrement:start {
+/* .content::-webkit-scrollbar-button:vertical:decrement:start {
   display: block;
   height: 16px;
   background-color: #bfd3fa;
-  /* XP-style arrow */
+
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5' viewBox='0 0 10 5'%3E%3Cpolygon points='0,5 5,0 10,5' fill='%23555555'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
@@ -408,13 +408,13 @@ header {
   background-position: center;
   border: 1px solid #a0a0a0;
   border-radius: 2px;
-}
+} */
 
 /* Make sure to style the scrollbar buttons on hover */
-.content::-webkit-scrollbar-button:hover {
+/* .content::-webkit-scrollbar-button:hover {
   background-color: #e1dfce;
   border-color: #888888;
-}
+} */
 
 
 
@@ -541,17 +541,7 @@ header {
   /* some extra space at top */
   margin-top: 5px;
 }
-/* HAMBURGER MENU STYLES */
-.hamburger {
-    display: none;
-    font-size: 40px;
-    cursor: pointer;
-    color: black;
-    position: absolute;
-    top: -40px;
-    left: 50px;
-    z-index: 100;
-}
+
 /********** NAVBAR *********/
 .navbar {
   width: 161px;
@@ -630,6 +620,9 @@ nav ul li a p{
 }
 
 
+.image-layout {
+  display: flex;
+}
 
 /* LEFT PREVIEW */
 .preview-pane {
@@ -771,12 +764,12 @@ nav ul li a p{
   border-color: #a9a574 #666343 #16160e #878356;
 
   /* Hide native scrollbar */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  /* scrollbar-width: none; 
+  -ms-overflow-style: none; */
 }
-.scroll-list::-webkit-scrollbar {
-  display: none; /* Chrome/Safari/Opera */
-}
+/* .scroll-list::-webkit-scrollbar {
+  display: none; 
+} */
 /* Custom Scrollbar */
 .custom-scrollbar {
   width: 18px;
@@ -1065,25 +1058,13 @@ input:focus, textarea:focus {
     width: 430px;
   }
   
+
   header {
     width: 100vw;
     width: 100%;
     top: 0;
     left: 0;
   }
-
-  .content {
-    background: url('/public/images/mobile_standard_2_shortest.png') no-repeat;
-    height: 932px;
-    max-height: 932px;
-    width: 430px;
-    max-width: 430px;
-  }
-
-  .hamburger {
-    display: block;
-  }
-  
   /* gradient: #02198e to #1178c9 */
   .blue-bar {
     top: 0;
@@ -1107,13 +1088,27 @@ input:focus, textarea:focus {
   }
   .url-bar-large {
     margin: 0 auto;
-    width: 60%;
+    width: 70%;
   }
   .url-bar-small-1 {
-    width: 20%;
+    width: 17%;
   }
   .url-bar-small-2 {
-    width: 20%;
+    width: 13%;
+  }
+  .url-bar-go {
+    height: 18px;
+    margin: 1px -2px 0 0.5px;
+  }
+
+
+
+  .content {
+    background: url('/public/images/mobile_standard_2_shortest.png') no-repeat;
+    height: 932px;
+    max-height: 932px;
+    width: 430px;
+    max-width: 430px;
   }
 
   .homepage-banners {
@@ -1121,26 +1116,54 @@ input:focus, textarea:focus {
     align-items: center;
   }
   .homepage-banners .banner {
-    font-size: 35px;
+    font-size: 29px;
   }
 
-  .homepage-banners .banner-1 {
-    font-size: 25px;
+  /* Fix content container to make room for dropdown menu */
+  .content-container {
+    position: relative;
+    margin-top: 20px;
+    width: 90%;
   }
-  /* home page */
-  .banner-1 {
-    text-align: center;
+  .content {
+    /* adjust height accounting 4 header */
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    /* border: 3px solid #c3c3c3;  */
+    overflow-y: auto;
   }
 
+  .contact-content {
+    /* adjust height accounting 4 header */
+    width: 100vw;
+    box-sizing: border-box;
+    border: 5px solid #c3c3c3; 
+    overflow-y: auto;
+  }
+
+  /* HAMBURGER MENU STYLES */
+  .hamburger {
+    display: none;
+    font-size: 50px;
+    cursor: pointer;
+    color: black;
+    position: absolute;
+    top: -35px;
+    left: 50px;
+    z-index: 100;
+  }
+  .hamburger {
+    display: block;
+  }
   .navbar {
     display: none !important;
     position: absolute;
-    top: 50px;
-    left: 0;
-    right: 0;
+    top: 25px;
+    left: 55px;
     background: #32301f;
     z-index: 99;
-    width: 100%;
+
     margin-left: 0 !important;
     margin-top: 0 !important;
     padding: 10px 0;
@@ -1180,29 +1203,34 @@ input:focus, textarea:focus {
     width: 90%;
   }
   
-  /* Fix content container to make room for dropdown menu */
-  .content-container {
-    position: relative;
-    margin-top: 20px;
-    width: 90%;
-  }
 
-  .content {
-    /* adjust height accounting 4 header */
-    height: 100vh;
-    width: 100vw;
-    box-sizing: border-box;
-    border: 5px solid #c3c3c3; 
-    overflow-y: auto;
-  }
 
-  .contact-content {
-    /* adjust height accounting 4 header */
-    width: 100vw;
-    box-sizing: border-box;
-    border: 5px solid #c3c3c3; 
-    overflow-y: auto;
+
+  .scroll-list {
+    width: 300px;
   }
+  .scroll-item img {
+    width: 100px;
+  }
+  .custom-scroll-container {
+  height: auto !important;
+}
+  .image-layout {
+    display: block;
+  }
+  .scroll-list {
+    flex-direction: row;
+    height: auto;
+  }
+  .scroll-list {
+  flex-direction: row !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  height: 150px !important;
+}
+
+
+
 
   .footer {
     /* Change from absolute */
@@ -1240,14 +1268,10 @@ input:focus, textarea:focus {
 @media (max-width: 400px) {
   .content {
     background: url('/public/images/mobile_2.jpg');
-    /* removing border in small */
-    border: none;
     height: 932px;
     max-height: 932px;
     width: 430px;
     max-width: 430px;
   }
 }
-
-
 
