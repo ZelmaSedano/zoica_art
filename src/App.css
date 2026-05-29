@@ -541,6 +541,17 @@ header {
   /* some extra space at top */
   margin-top: 5px;
 }
+/* HAMBURGER MENU STYLES */
+.hamburger {
+    display: none;
+    font-size: 40px;
+    cursor: pointer;
+    color: black;
+    position: absolute;
+    top: -40px;
+    left: 50px;
+    z-index: 100;
+}
 /********** NAVBAR *********/
 .navbar {
   width: 161px;
@@ -911,202 +922,6 @@ input:focus, textarea:focus {
   text-decoration-thickness: 1.5px;
 }
 
-
-
-/* RESUME page */
-.resume-container {
-  width: 100%;
-  position: relative;
-  /* padding-bottom: 141.42%; */
-  height: 100%;
-}
-/* resume: EXTRACT */
-.resume-content {
-  background-color: #c3c3c3;
-  /* positioning */
-  position: relative;
-  width: 70vw;
-  height: 70vh;
-  /* text color */
-  color: black;
-  /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
-  border: none;
-  box-shadow: 
-    inset 1px 1px 0px #808080,
-    0 0 0 0px #c3c3c3;
-  overflow: visible;
-  display: flex;
-  flex-direction: column;
-
-}
-.resume-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  height: calc(100%); 
-  min-height: 0; /* Allows children to shrink */
-}
-.resume-column-1 {
-  display: flex;
-  flex-direction: column;
-  border-top: 3px solid grey;
-  border-right: 3px solid grey;
-  width: 33.33%;
-  /* fit into parent */
-  height: 100%;
-}
-.gif {
-  max-width: 100%;
-  max-height: 100%;
-
-}
-.obra-dinn {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-.top-resume-column-1 {
-  /* set this, or it will be huge */
-  height: 200px;
-  /* flex-grow, flex-shrink, flex-basis */
-  flex: 0 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 3px solid grey; 
-}
-.middle-resume-column-1 {
-  /* optional - flex: 1 to take up remaining space */
-  padding: 10px;
-  text-align: center;
-  margin: 0 auto;
-  border-bottom: 3px solid grey;
-}
-.bottom-resume-column-1 {
-  /* flex-grow (takes up leftover space) */
-  flex: 1;
-  padding: 10px;
-  min-height: 0;
-  padding-bottom: 28px;
-  text-align: center;
-  margin: 0 auto;
-}
-.resume-column-2 {
-  border-top: 3px solid grey;
-  border-right: 3px solid grey;
-  height: 100%;
-  width: 33.33%;
-}
-.resume-column-3 {
-  border-top: 3px solid grey;
-  width: 33.33%;
-}
-/* laptop view (not widescreen) */
-.resume-contact-title {
-  text-align: center;
-  margin: 0px;
-}
-.stats-section-text {
-  display: flex;
-}
-.resume-blue-text, 
-.resume-big-black-text {
-  margin: 3px;
-}
-.resume-blue-text {
-  color: blue;
-}
-.resume-about-section {
-  margin: 0 auto;
-  align-items: center;
-  justify-content: center;
-}
-.resume-about-title {
-  text-align: center;
-  margin: 0 auto;
-}
-.resume-about-text {
-  margin: 0;
-  text-align: center;
-}
-
-
-.employment-title {
-  text-align: center;
-  margin-bottom: 8px;
-}
-.employment-job-title,
-.employment-job-location,
-.employment-job-description {
-  margin: 5px;
-}
-
-.employment-job-description {
-  margin-top: -10px;
-}
-.employment-job-description-1 {
-  margin-top: 0px;
-}
-.job-title-underline {
-  text-decoration: underline;
-}
-.education-title {
-  text-align: center;
-  margin: 5px;
-}
-.education-title-text {
-  text-align: center;
-  margin: 5px;
-  margin-bottom: 0px;
-}
-
-.top-resume-column-3 {
-  /* flex-grow (takes up leftover space) */
-  flex: 1;
-  padding: 10px;
-  min-height: 0;
-  padding-bottom: 28px;
-  border-bottom: 3px solid grey;
-}
-.middle-resume-column-3 {
-  /* set this, or it will be huge */
-  height: 200px;
-  /* flex-grow, flex-shrink, flex-basis */
-  flex: 0 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 3px solid grey; 
-}
-.bottom-resume-column-3 {
-  flex: 1;
-  padding: 10px;
-  min-height: 0;
-  padding-bottom: 28px;
-}
-
-.skills {
-  display: flex;
-  justify-content: center;
-}
-.unordered-list {
-  margin: 5px 5px -10px -10px;
-}
-
-.resume-column-1,
-.resume-column-2,
-.resume-column-3 {
-  flex: 1;
-  min-height: 0; /* allow shrinking */
-  overflow-y: auto; /* scroll only if content overflows */
-  border-top: 3px solid grey;
-}
-
-.resume-column-1,
-.resume-column-2 {
-  border-right: 3px solid grey;
-}
-
 /* CONTENT FOOTER SECTION */
 .footer {
   position: sticky;
@@ -1166,15 +981,27 @@ input:focus, textarea:focus {
   font-size: 15px;
 }
 
+/* desktop - hide hamburger */
+@media (min-width: 769px) {
+    .hamburger {
+        display: none !important;
+    }
+    
+    .navbar {
+        display: flex !important;
+        width: 161px;
+        margin-left: 100px;
+        margin-top: 70px;
+    }
+}
 
-
+/********* WIDESCREEN **********/
 @media (max-width: 1920px) {
   .form-textarea {
     max-height: 300px;
   }
 }
 
-/* widescreen */
 @media (min-width: 1500px) {
   .window {
     width: 1200px;
@@ -1190,6 +1017,14 @@ input:focus, textarea:focus {
   }
   .blue-bar {
     width: 1200px;
+  }
+}
+
+/******** Tablet Design *********/
+@media (max-width: 941px) {
+  /* CONTACT */
+  .form-textarea {
+    max-height: 375px;
   }
 }
 
@@ -1212,29 +1047,8 @@ input:focus, textarea:focus {
   }
 }
 
-/********* MOBILE *********/ 
-@media (max-width: 914px) {
-  .homepage-banners {
-    /* horizontally centers on the x axis */
-    align-items: center;
-  }
-  .homepage-banners .banner {
-    font-size: 35px;
-  }
-
-  .homepage-banners .banner-1 {
-    font-size: 25px;
-  }
-  .bio-section {
-    width: 85%;
-  }
-    .portfolio-ul li {
-    padding: 0 10px;
-  }
-}
-
-/******** Tablet Design *********/
-@media (max-width: 431px) {
+/* Mobile styles */
+@media (max-width: 768px) {
   .window {
     position: static !important;
     left: auto !important;
@@ -1245,8 +1059,12 @@ input:focus, textarea:focus {
     transform: none !important;
     cursor: default !important;
     box-sizing: border-box;
+    height: 932px;
+    max-height: 932px;
+    max-width: 431px;
+    width: 430px;
   }
-
+  
   header {
     width: 100vw;
     width: 100%;
@@ -1254,6 +1072,18 @@ input:focus, textarea:focus {
     left: 0;
   }
 
+  .content {
+    background: url('/public/images/mobile_standard_2_shortest.png') no-repeat;
+    height: 932px;
+    max-height: 932px;
+    width: 430px;
+    max-width: 430px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+  
   /* gradient: #02198e to #1178c9 */
   .blue-bar {
     top: 0;
@@ -1267,8 +1097,61 @@ input:focus, textarea:focus {
     box-sizing: border-box;
     border-radius: 8px 8px 0 0;
   }
+  .url-container {
+    position: relative;
+    margin-top: 30px;
+    width: 100%;
+  }
+  .url-bar {
+    width: 100%;
+  }
+  .url-bar-large {
+    margin: 0 auto;
+    width: 60%;
+  }
+  .url-bar-small-1 {
+    width: 20%;
+  }
+  .url-bar-small-2 {
+    width: 20%;
+  }
 
+  .homepage-banners {
+    /* horizontally centers on the x axis */
+    align-items: center;
+  }
+  .homepage-banners .banner {
+    font-size: 35px;
+  }
+
+  .homepage-banners .banner-1 {
+    font-size: 25px;
+  }
+  /* home page */
+  .banner-1 {
+    text-align: center;
+  }
+
+  .navbar {
+    display: none !important;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    background: #32301f;
+    z-index: 99;
+    width: 100%;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding: 10px 0;
+  }
+  .navbar.mobile-open {
+    display: flex !important;
+  }
   .navbar ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
     /* removes the browser's default 40px padding to the left of the navbar */
     padding: 0;
     display: flex;
@@ -1278,17 +1161,29 @@ input:focus, textarea:focus {
     width: 100%;
     gap: 1px;
   }
-  nav ul li {
+  .navbar ul li {
+    margin: 5px 0;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
     list-style: none;
     padding-right: 10px;
     color: black;
     margin: 0;
   }
+
   .button {
     margin: 3px 0;
   }
-
+  .button-1 {
+    margin: 5px auto;
+    width: 90%;
+  }
+  
+  /* Fix content container to make room for dropdown menu */
   .content-container {
+    position: relative;
+    margin-top: 20px;
     width: 90%;
   }
 
@@ -1309,99 +1204,6 @@ input:focus, textarea:focus {
     overflow-y: auto;
   }
 
-  .url-container {
-    position: relative;
-    margin-top: 30px;
-    width: 100%;
-  }
-  .url-bar {
-    width: 100%;
-  }
-  .url-bar-large {
-    margin: 0 auto;
-    width: 60%;
-  }
-  .url-bar-small-1 {
-    width: 20%;
-  }
-  .url-bar-small-2 {
-    width: 20%;
-  }
-
-
-  /* home page */
-  .banner-1 {
-    text-align: center;
-  }
-  .bio-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .bio-section img{
-    height: 250px;
-    width: 250px;
-  }
-  .bio-p {
-    text-align: center;
-  }
-  .bio-details {
-    text-align: center;
-    width: 80%;
-    margin: 0 auto;
-  }
-
-
-  /* portfolio page */
-  .img-grid {
-    grid-template-columns: 1fr;
-    overflow: auto;
-  }
-
-  
-  /* RESUME */
-  .resume-content {
-    width: 100vw;
-    height: 100vh;
-  }
-  .resume-container {
-    flex-direction: column;
-  }
-  .resume-column-1, .resume-column-2, .resume-column-3 {
-    width: 100%;
-  }
-  .resume-content .resume-container .resume-column-2 {
-    height: 400px;
-    flex: none;
-  }
-  /* change the height of Contact section */
-  .resume-column-1 {
-    flex: none;
-    height: auto;
-  }
-  .resume-column-1 .bottom-resume-column-1 {
-    height: 95px;
-    min-height: 95px;
-    flex: none;
-  }
-  /* remove gifs & skill section */
-  .top-resume-column-1,
-  .middle-resume-column-3,
-  .bottom-resume-column-3 {
-    display: none;
-  }
-  .top-resume-column-3 {
-    border-bottom: none;
-  }
-  
-
-
-  /* CONTACT */
-  .form-textarea {
-    max-height: 375px;
-  }
-
-
   .footer {
     /* Change from absolute */
     position: fixed;
@@ -1411,8 +1213,8 @@ input:focus, textarea:focus {
     right: 0;
     z-index: 0;
   }
-
 }
+
 
 @media (max-height: 667px) {
   .form-textarea {
@@ -1424,19 +1226,7 @@ input:focus, textarea:focus {
 /* iphone 14 Pro dimensions: 430x932 */
 /* image dimsneions: 375x833*/
 @media (max-width: 431px) {
-  .window {
-    height: 932px;
-    max-height: 932px;
-    max-width: 431px;
-    width: 430px;
-  }
-  .content {
-    background: url('/public/images/mobile_standard_2_shortest.png') no-repeat;
-    height: 932px;
-    max-height: 932px;
-    width: 430px;
-    max-width: 430px;
-  }
+
   .left-button {
     margin-left: 0px;
   }
@@ -1458,4 +1248,6 @@ input:focus, textarea:focus {
     max-width: 430px;
   }
 }
+
+
 
