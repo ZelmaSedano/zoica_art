@@ -69,6 +69,8 @@ function Home() {
     });
 
     // STATES
+    // mobile menu
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const [customScrollTop, setCustomScrollTop] = useState(0);
     const [isDraggingScroll, setIsDraggingScroll] = useState(false);
@@ -891,30 +893,36 @@ function Home() {
 
                         {/* navbar -- image gallery -- image scroll */}
                         <div className='content-container'>
-                            <nav className='navbar'>
+                            {/* Hamburger icon - visible only on mobile */}
+                            <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                ☰
+                            </div>
+
+                                                        {/* Navbar - hidden on mobile until hamburger clicked */}
+                            <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
                                 <ul>
                                     <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                        <Link to="/">
+                                        <Link to="/" onClick={() => setIsMenuOpen(false)}>
                                             <p className='nav-p'>Home</p>
                                         </Link>
                                     </li>
                                     <li className='button-1'>
-                                        <Link to="/tarot">
+                                        <Link to="/tarot" onClick={() => setIsMenuOpen(false)}>
                                             <p className='nav-p'>Tarot</p>
                                         </Link>
                                     </li>
                                     <li className='button-1'>
-                                        <Link to="/norse">
+                                        <Link to="/norse" onClick={() => setIsMenuOpen(false)}>
                                             <p className='nav-p'>Mythology</p>
                                         </Link>
                                     </li>
                                     <li className='button-1'>
-                                        <Link to="/game">
+                                        <Link to="/game" onClick={() => setIsMenuOpen(false)}>
                                             <p className='nav-p'>Game Art</p>
                                         </Link>
                                     </li>
                                     <li className='button-1'>
-                                        <Link to="/commissions">
+                                        <Link to="/commissions" onClick={() => setIsMenuOpen(false)}>
                                             <p className='nav-p'>Commissions</p>
                                         </Link>
                                     </li>
