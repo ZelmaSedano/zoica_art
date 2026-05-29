@@ -933,46 +933,46 @@ function Home() {
 
                                 {/* RIGHT: scroll selector */}
                                 <div className="scroll-menu">
-  <button className="arrow-1 up" onClick={scrollUp}>
-    <img src='/public/images/up_arrow.png' />
-  </button>
+                                    <button className="arrow-1 up" onClick={scrollUp}>
+                                        <img src='/public/images/up_arrow.png' />
+                                    </button>
 
-  {/* Custom scroll container */}
-  <div className="custom-scroll-container">
-    <div className="scroll-list" ref={scrollRef}>
-      {images.map((img) => (
-        <div
-          key={img.id}
-          className={`scroll-item ${
-            selectedImage.id === img.id ? 'active' : ''
-          }`}
-          onClick={() => setSelectedImage(img)}
-        >
-          <img src={`/images/${img.id}.jpg`} alt={img.title} />
-        </div>
-      ))}
-    </div>
-    
-    {/* Custom scrollbar */}
-    <div className="custom-scrollbar">
-      <div 
-        className="scroll-track" 
-        ref={scrollTrackRef}
-        onClick={handleCustomScroll}
-      >
-        <div 
-          className="scroll-thumb" 
-          ref={scrollThumbRef}
-          onMouseDown={startDragScroll}
-        />
-      </div>
-    </div>
-  </div>
+                                    {/* Custom scroll container */}
+                                    <div className="custom-scroll-container">
+                                        <div className="scroll-list" ref={scrollRef}>
+                                        {images.map((img) => (
+                                            <div
+                                            key={img.id}
+                                            className={`scroll-item ${
+                                                selectedImage.id === img.id ? 'active' : ''
+                                            }`}
+                                            onClick={() => setSelectedImage(img)}
+                                            >
+                                            <img src={`/images/${img.id}.jpg`} alt={img.title} />
+                                            </div>
+                                        ))}
+                                        </div>
+                                        
+                                        {/* Custom scrollbar */}
+                                        <div className="custom-scrollbar">
+                                        <div 
+                                            className="scroll-track" 
+                                            ref={scrollTrackRef}
+                                            onClick={handleCustomScroll}
+                                        >
+                                            <div 
+                                            className="scroll-thumb" 
+                                            ref={scrollThumbRef}
+                                            onMouseDown={startDragScroll}
+                                            />
+                                        </div>
+                                        </div>
+                                    </div>
 
-  <button className="arrow-1 down" onClick={scrollDown}>
-    <img src='/public/images/downward_arrow.png'/>
-  </button>
-</div>
+                                    <button className="arrow-1 down" onClick={scrollDown}>
+                                        <img src='/public/images/downward_arrow.png'/>
+                                    </button>
+                                    </div>
                         </div>
 
                         {/* image scrolling section */}

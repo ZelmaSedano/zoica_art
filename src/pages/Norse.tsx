@@ -866,7 +866,7 @@ function Norse() {
                             </div>
                             <div className='url-bar-large'>
                                 <div className='dropdown-container'>
-                                    <div className='url-text'>http://www.geocities.com/zoica_art</div>
+                                    <div className='url-text'>http://www.geocities.com/zoica_art/mythology</div>
                                 </div>
                                 <img src='/images/blue-arrow.png' className='url-dropdown-button'/>
                             </div>
