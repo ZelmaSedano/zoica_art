@@ -523,6 +523,9 @@ header {
 .homepage-banners .banner {
   padding-top: 0;
   font-size: 27px;
+  margin: 0 auto;
+  text-align: center;
+  margin-right: 20px;
   margin-top: 10px;
 }
 /* .homepage-banners .banner-1 {
@@ -1092,6 +1095,10 @@ input:focus, textarea:focus {
     box-sizing: border-box;
     border-radius: 8px 8px 0 0;
   }
+  .blue-bar-text {
+    margin-top: 1px;
+    margin-left: 3px;
+  }
   .url-container {
     position: relative;
     margin-top: 30px;
@@ -1229,6 +1236,7 @@ input:focus, textarea:focus {
     height: 350px;
     margin: 0 auto;
     margin-left: 50px;
+    border-color: solid 1px #75714c #75714c #75714c #75714c;
   }
   .scroll-menu {
     margin-left: -40px;
@@ -1236,7 +1244,7 @@ input:focus, textarea:focus {
   .scroll-list {
     width: 270px;
     margin-top: 20px;
-    border-color: #a9a574 #a9a574 #75714c #878356;
+    border-color: #75714c #75714c #75714c #75714c;
   }
   .scroll-item img {
     width: 100px;

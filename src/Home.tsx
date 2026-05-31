@@ -502,13 +502,11 @@ function Home() {
         }
     };
     const scrollLeft = () => {
-        console.log('LEFT');
         if(scrollRef.current) {
             scrollRef.current.scrollBy({ left: -120, behavior: 'smooth'});
         }
     }
     const scrollRight = () => {
-        console.log('RIGHT');
         if(scrollRef.current) {
             scrollRef.current.scrollBy({ left: 120, behavior: 'smooth'})
         }
