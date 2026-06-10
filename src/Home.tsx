@@ -11,16 +11,16 @@ import './components/DesktopIcon.css';
 
 const images = [
     {
+        title:'Revenant',
+        id: 'best/revenant3',
+        url: 'http://www.etsy.com'
+    },
+    {
         title:'Brocover',
         id: 'best/brocover',
         url: 'http://www.etsy.com'
     },
     {
-        title:'Revenant',
-        id: 'best/revenant3',
-        url: 'http://www.etsy.com'
-    },
-            {
         title:'Surtr',
         id: 'best/surtrprint',
         url: 'http://www.etsy.com'
@@ -592,7 +592,7 @@ function Home() {
                             onMouseDown={handleModalMouseDown}
                         >
                             <div className="modal-header">
-                                <span className='scream-modal'>I know what you did last summer</span>
+                                <span className='scream-modal'>Simple and clean is the way you're making me feel tonight</span>
                                 <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
                             </div>
                             <div className="modal-body">

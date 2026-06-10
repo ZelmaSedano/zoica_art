@@ -190,7 +190,7 @@ function About() {
 
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-header">
-                            <span>I know what you did last summer</span>
+                            <span>Simple and clean is the way you're making me feel tonight</span>
                             <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
                         </div>
 

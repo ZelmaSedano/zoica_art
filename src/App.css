@@ -696,11 +696,11 @@ nav ul li a p{
   margin-top: 10px;
   border: 0;
 }
-
 .arrow-1.left, 
 .arrow-1.right {
     display: none;
 }
+
 /* SCROLL AREA */
 .scroll-list {
   /* THIS is what creates the “window” */
@@ -713,7 +713,6 @@ nav ul li a p{
   margin: 5px 0;
   padding: 5px;
 
-  
   background: #222;
 }
 /* ITEMS */
@@ -777,8 +776,6 @@ nav ul li a p{
   gap: 10px;
   padding: 5px;
   background: #32301f;
-  border: 2px solid;
-  border-color: #a9a574 #666343 #16160e #878356;
 
   /* Hide native scrollbar */
   /* scrollbar-width: none; 
@@ -1028,6 +1025,26 @@ input:focus, textarea:focus {
   .blue-bar {
     width: 1200px;
   }
+
+  .image-layout {
+    margin-top: 30px;
+  }
+  .preview-pane {
+    margin-left: 15px;
+    width: 400px;
+    height: 475px;
+  }
+  .preview-pane img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .scroll-menu {
+    margin-left: 70px;
+  }
+  .scroll-list {
+    height: 450px;
+    margin-top: -25px;
+  }
 }
 
 /******** Tablet Design *********/
@@ -1095,6 +1112,9 @@ input:focus, textarea:focus {
     box-sizing: border-box;
     border-radius: 8px 8px 0 0;
   }
+  .blue-bar.icon {
+    width: 10px;
+  }
   .blue-bar-text {
     margin-top: 1px;
     margin-left: 3px;
@@ -1138,6 +1158,7 @@ input:focus, textarea:focus {
   }
   .homepage-banners .banner {
     font-size: 29px;
+    margin-right: 31px;
   }
 
   /* Fix content container to make room for dropdown menu */
@@ -1188,6 +1209,8 @@ input:focus, textarea:focus {
     margin-left: 0 !important;
     margin-top: 0 !important;
     padding: 10px 0;
+    width: 156px;
+    height:  140px;
   }
   .navbar.mobile-open {
     display: flex !important;
