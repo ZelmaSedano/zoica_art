@@ -100,6 +100,14 @@ you can just add the more specific selector in that case in front of the one tha
     align-content: center;
     align-items: center;
 }
+.modal-header-group {
+    display: flex;
+}
+.contact-modal-img {
+    height: 19px;
+    margin: 1px 7px 0 5px;
+}
+
 .modal-button {
     display: flex;
     background: #c0c0c0;

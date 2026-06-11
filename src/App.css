@@ -61,6 +61,7 @@ body {
   /* fixed the extra blue at bottom under gif*/
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 .scream-modal {
   margin-left: 5px;
@@ -258,6 +259,7 @@ header {
   font-size: 16px;
   font-family: Arial;
   font-weight: 600;
+
 }
 .blue-bar img {
   margin-left: 10px;
@@ -309,17 +311,10 @@ header {
 
 
 
-/* CONTACT FORM */
-.modal.contact {
-  width: 600px;
-}
-
 /* CONTENT WINDOW */
-
 .content {
   background: url('/public/images/idk.png') no-repeat;
   background-size: 100% 100%;
-
 
   position: relative;
 
@@ -338,11 +333,30 @@ header {
   display: flex;
   flex-direction: column;
 }
+
+
+/* CONTACT FORM */
+.modal.contact {
+  width: 600px;
+}
+.contact-header {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+.contact-header-items {
+  margin: 5px 15px 0 0px;
+}
+.contact-header-text span {
+  text-decoration: underline;
+}
 .contact-content {
-  background-color: #c3c3c3;
+  background: 
+    radial-gradient(circle at top right, #c4d5f1, #91b5f3);
+
   /* positioning */
   position: relative;
-  width: 70vw;
+  width: 61vw;
   height: 60vh;
   /* text color */
   color: black;
@@ -822,6 +836,7 @@ nav ul li a p{
 /* CONTACT FORM (extract) */
 .contact-form {
   padding: 15px 20px 0px 0px;
+  margin-left: -15px;
 }
 .form-row {
   /* FIXED THE MISALIGNED INPUT BOXES */
@@ -830,6 +845,7 @@ nav ul li a p{
   align-items: center;
   margin-bottom: 15px;
   gap: 10px;
+  width: 100%;
 }
 /* GET LABELS TO BE THE SAME SIZE */
 .form-row label {
@@ -837,16 +853,11 @@ nav ul li a p{
   /* since the labels have varying styling, refrain from using this too much */
 }
 .to-label, .from-label {
-  background-color: #c3c3c3;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-  margin: 5px 15px;
-  padding: 5px 25px;
   text-align: center;
   min-width: 35px;
+  text-align: right;
 }
+
 .subject-label, .message-label {
   text-align: right;
   /* slightly larger to look more similar to To & From */
