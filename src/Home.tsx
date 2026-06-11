@@ -988,15 +988,15 @@ function Home() {
                                     </div>
                                     <div className='right-left-arrows'>
                                         <button className="arrow-1 left" onClick={scrollLeft}>
-                                            <img src='/public/images/left_arrow.png' />
+                                            <img src='/images/left_arrow.png' />
                                         </button>
                                         <button className="arrow-1 right" onClick={scrollRight}>
-                                            <img src='/public/images/right_arrow.png' />
+                                            <img src='/images/right_arrow.png' />
                                         </button>
                                     </div>
 
                                     <button className="arrow-1 down" onClick={scrollDown}>
-                                        <img src='/public/images/downward_arrow.png'/>
+                                        <img src='/images/downward_arrow.png'/>
                                     </button>
                                 </div>
                             </section>
