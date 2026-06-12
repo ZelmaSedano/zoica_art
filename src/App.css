@@ -845,7 +845,9 @@ nav ul li a p{
 
 /* CONTACT FORM (extract) */
 .contact-modal-img {
-  height: 20px;
+  height: 18px;
+  margin-right: 5px;
+  margin-top: 3px;
 }
 .contact-form {
   padding: 15px 20px 0px 0px;
