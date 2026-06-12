@@ -8,8 +8,8 @@ import './components/Taskbar.css'
 import DesktopIcon from './components/DesktopIcon';
 import './components/DesktopIcon.css';
 
-import send from './assets/send.png'
-import earth from './assets/earth.ico'
+import send from '../public/images/send.png'
+
 
 
 function Contact() {
@@ -473,8 +473,8 @@ function Contact() {
                             <div className = 'footer-section footer-small'></div>
                             <div className = 'footer-section footer-small'></div>
                             <div className='footer-section footer-medium'>
-                                <img src={earth}
-                                className='content-footer-icon'></img>
+                                {/* <img src={earth}
+                                className='content-footer-icon'></img> */}
                                 <p className='footer-section-text'>Internet</p>
                             </div>
                         </div>

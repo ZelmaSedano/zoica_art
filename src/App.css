@@ -359,15 +359,15 @@ header {
 
   background: radial-gradient(
     circle at top right,
-    #a9c8f9 0%,      /* Light warm color at top-right corner */
-    #a9c8f9 30%,     /* Light color persists in this radius */
-    #8cb1f6 70%,     /* Transition to darker */
-    #8cb1f6 100%     /* Very dark at bottom-left */
+    #acc8f5 0%,      /* Light warm color at top-right corner */
+    #acc8f5 50%,     /* Light color persists in this radius */
+    #8cb1f6 80%,     /* Transition to darker */
+    #85acf4 100%     /* Very dark at bottom-left */
   );
   /* positioning */
   position: relative;
   width: 600px;
-  height: 60vh;
+  height: 450px;
   /* text color */
   color: black;
   /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
@@ -844,6 +844,9 @@ nav ul li a p{
 
 
 /* CONTACT FORM (extract) */
+.contact-modal-img {
+  height: 20px;
+}
 .contact-form {
   padding: 15px 20px 0px 0px;
   margin-left: -15px;
@@ -916,6 +919,8 @@ nav ul li a p{
   cursor: pointer;
   outline: none;
   color: white;
+  padding: 7px;
+  border-radius: 5px;
 }
 .send-button.active {
   border-top: 1px solid #808080;
@@ -927,15 +932,17 @@ nav ul li a p{
         inset 1px 1px 0 #000;
 }
 .send-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 2px;
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
   /* aligns with 'Send' */
-  margin-top: -3px;
-  padding: 3px;
+  padding: 1px;
 }
 input:focus, textarea:focus {
   outline: none;
+}
+.send-button-text {
+  font-size: 16px;
 }
 
 ::placeholder {
