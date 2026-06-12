@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import '../App.css';
@@ -8,7 +8,6 @@ import Taskbar from '../components/Taskbar'
 import '../components/Taskbar.css'
 import DesktopIcon from '../components/DesktopIcon';
 import '../components/DesktopIcon.css';
-
 
 const images = [
     {
@@ -95,13 +94,15 @@ function Commissions() {
     });
 
     // STATES
+    // mobile menu
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // custom scrollbar 
-    const [customScrollTop, setCustomScrollTop] = useState(0);
-    const [isDraggingScroll, setIsDraggingScroll] = useState(false);
-    const scrollContentRef = useRef<HTMLDivElement | null>(null);
-    const scrollTrackRef = useRef<HTMLDivElement | null>(null);
-    const scrollThumbRef = useRef<HTMLDivElement | null>(null);
+    // const [customScrollTop, setCustomScrollTop] = useState(0);
+    // const [isDraggingScroll, setIsDraggingScroll] = useState(false);
+    // const scrollContentRef = useRef<HTMLDivElement | null>(null);
+    // const scrollTrackRef = useRef<HTMLDivElement | null>(null);
+    // const scrollThumbRef = useRef<HTMLDivElement | null>(null);
+
 
     // icon states
     const [showScreamModal, setShowScreamModal] = useState(false);
@@ -116,6 +117,7 @@ function Commissions() {
     const [isVisible, setIsVisible] = useState(true);
     // active button for CONTACT
     const [isButtonActive, setIsButtonActive] = useState(false);
+    // scrolling image menu
     const [selectedImage, setSelectedImage] = useState(images[0]);
 
     // video player
@@ -140,147 +142,147 @@ function Commissions() {
     const scrollRef = useRef<HTMLDivElement | null>(null);
 
 
+
+
     // custom scrollbar funcs (keep together)
-    const updateScrollThumb = () => {
-    if (scrollRef.current && scrollThumbRef.current && scrollTrackRef.current) {
-        const scrollHeight = scrollRef.current.scrollHeight;
-        const clientHeight = scrollRef.current.clientHeight;
-        const trackHeight = scrollTrackRef.current.clientHeight;
+    // const updateScrollThumb = () => {
+    // if (scrollRef.current && scrollThumbRef.current && scrollTrackRef.current) {
+    //     const scrollHeight = scrollRef.current.scrollHeight;
+    //     const clientHeight = scrollRef.current.clientHeight;
+    //     const trackHeight = scrollTrackRef.current.clientHeight;
         
-        if (scrollHeight <= clientHeight) {
-        scrollThumbRef.current.style.display = 'none';
-        return;
-        }
+    //     if (scrollHeight <= clientHeight) {
+    //     scrollThumbRef.current.style.display = 'none';
+    //     return;
+    //     }
         
-        scrollThumbRef.current.style.display = 'block';
-        const thumbHeight = Math.max(30, (clientHeight / scrollHeight) * trackHeight);
-        const scrollPercent = scrollRef.current.scrollTop / (scrollHeight - clientHeight);
-        const thumbTop = scrollPercent * (trackHeight - thumbHeight);
+    //     scrollThumbRef.current.style.display = 'block';
+    //     const thumbHeight = Math.max(30, (clientHeight / scrollHeight) * trackHeight);
+    //     const scrollPercent = scrollRef.current.scrollTop / (scrollHeight - clientHeight);
+    //     const thumbTop = scrollPercent * (trackHeight - thumbHeight);
         
-        scrollThumbRef.current.style.height = `${thumbHeight}px`;
-        scrollThumbRef.current.style.top = `${thumbTop}px`;
-    }
-    };
+    //     scrollThumbRef.current.style.height = `${thumbHeight}px`;
+    //     scrollThumbRef.current.style.top = `${thumbTop}px`;
+    // }
+    // };
 
-    const handleCustomScroll = (e: React.MouseEvent) => {
-    if (scrollTrackRef.current && scrollRef.current) {
-        const rect = scrollTrackRef.current.getBoundingClientRect();
-        const clickY = e.clientY - rect.top;
-        const trackHeight = rect.height;
-        const scrollHeight = scrollRef.current.scrollHeight;
-        const clientHeight = scrollRef.current.clientHeight;
+    // const handleCustomScroll = (e: React.MouseEvent) => {
+    // if (scrollTrackRef.current && scrollRef.current) {
+    //     const rect = scrollTrackRef.current.getBoundingClientRect();
+    //     const clickY = e.clientY - rect.top;
+    //     const trackHeight = rect.height;
+    //     const scrollHeight = scrollRef.current.scrollHeight;
+    //     const clientHeight = scrollRef.current.clientHeight;
         
-        const scrollPercent = clickY / trackHeight;
-        const scrollTop = scrollPercent * (scrollHeight - clientHeight);
-        scrollRef.current.scrollTop = scrollTop;
-        updateScrollThumb();
-    }
-    };
+    //     const scrollPercent = clickY / trackHeight;
+    //     const scrollTop = scrollPercent * (scrollHeight - clientHeight);
+    //     scrollRef.current.scrollTop = scrollTop;
+    //     updateScrollThumb();
+    // }
+    // };
 
-    const startDragScroll = (e: React.MouseEvent) => {
-    setIsDraggingScroll(true);
-    e.preventDefault();
-    };
+    // const startDragScroll = (e: React.MouseEvent) => {
+    // setIsDraggingScroll(true);
+    // e.preventDefault();
+    // };
 
-    const onDragScroll = (e: MouseEvent) => {
-    if (isDraggingScroll && scrollTrackRef.current && scrollRef.current && scrollThumbRef.current) {
-        const rect = scrollTrackRef.current.getBoundingClientRect();
-        const trackHeight = rect.height;
-        const thumbHeight = scrollThumbRef.current.clientHeight;
-        let newTop = e.clientY - rect.top - (thumbHeight / 2);
-        newTop = Math.max(0, Math.min(newTop, trackHeight - thumbHeight));
+    // const onDragScroll = (e: MouseEvent) => {
+    // if (isDraggingScroll && scrollTrackRef.current && scrollRef.current && scrollThumbRef.current) {
+    //     const rect = scrollTrackRef.current.getBoundingClientRect();
+    //     const trackHeight = rect.height;
+    //     const thumbHeight = scrollThumbRef.current.clientHeight;
+    //     let newTop = e.clientY - rect.top - (thumbHeight / 2);
+    //     newTop = Math.max(0, Math.min(newTop, trackHeight - thumbHeight));
         
-        const scrollPercent = newTop / (trackHeight - thumbHeight);
-        const scrollHeight = scrollRef.current.scrollHeight;
-        const clientHeight = scrollRef.current.clientHeight;
-        const scrollTop = scrollPercent * (scrollHeight - clientHeight);
-        scrollRef.current.scrollTop = scrollTop;
-        updateScrollThumb();
-    }
-    };
+    //     const scrollPercent = newTop / (trackHeight - thumbHeight);
+    //     const scrollHeight = scrollRef.current.scrollHeight;
+    //     const clientHeight = scrollRef.current.clientHeight;
+    //     const scrollTop = scrollPercent * (scrollHeight - clientHeight);
+    //     scrollRef.current.scrollTop = scrollTop;
+    //     updateScrollThumb();
+    // }
+    // };
 
-    const stopDragScroll = () => {
-    setIsDraggingScroll(false);
-    };
+    // const stopDragScroll = () => {
+    // setIsDraggingScroll(false);
+    // };
 
     // Add event listeners for drag scrolling
-    useEffect(() => {
-    if (isDraggingScroll) {
-        document.addEventListener('mousemove', onDragScroll);
-        document.addEventListener('mouseup', stopDragScroll);
-        return () => {
-        document.removeEventListener('mousemove', onDragScroll);
-        document.removeEventListener('mouseup', stopDragScroll);
-        };
-    }
-    }, [isDraggingScroll]);
+    // useEffect(() => {
+    // if (isDraggingScroll) {
+    //     document.addEventListener('mousemove', onDragScroll);
+    //     document.addEventListener('mouseup', stopDragScroll);
+    //     return () => {
+    //     document.removeEventListener('mousemove', onDragScroll);
+    //     document.removeEventListener('mouseup', stopDragScroll);
+    //     };
+    // }
+    // }, [isDraggingScroll]);
 
-    // 1. Initial setup with useLayoutEffect for immediate DOM access
-    useLayoutEffect(() => {
-        const scrollElement = scrollRef.current;
-        if (scrollElement) {
-            const handleScroll = () => updateScrollThumb();
-            scrollElement.addEventListener('scroll', handleScroll);
-            updateScrollThumb(); // Initial update
-            return () => scrollElement.removeEventListener('scroll', handleScroll);
-        }
-    }, []);
-
-    // 2. Handle image loading
-    useEffect(() => {
-        const scrollElement = scrollRef.current;
-        if (!scrollElement) return;
-
-        const updateThumbAfterLoad = () => {
-            updateScrollThumb();
-    };
-
-    // Find all images in the scroll container
-    const images = scrollElement.querySelectorAll('img');
-        let loadedCount = 0;
+    // // 1. Initial setup with useLayoutEffect for immediate DOM access
+    //     useLayoutEffect(() => {
+    //         const scrollElement = scrollRef.current;
+    //         if (scrollElement) {
+    //             const handleScroll = () => updateScrollThumb();
+    //             scrollElement.addEventListener('scroll', handleScroll);
+    //             updateScrollThumb(); // Initial update
+    //             return () => scrollElement.removeEventListener('scroll', handleScroll);
+    //         }
+    //     }, []);
+    
+    //     // 2. Handle image loading
+    //     useEffect(() => {
+    //         const scrollElement = scrollRef.current;
+    //         if (!scrollElement) return;
+    
+    //         const updateThumbAfterLoad = () => {
+    //             updateScrollThumb();
+    //     };
+    
+    //     // Find all images in the scroll container
+    //     const images = scrollElement.querySelectorAll('img');
+    //         let loadedCount = 0;
+            
+    //         const handleImageLoad = () => {
+    //             loadedCount++;
+    //             if (loadedCount === images.length) {
+    //             updateThumbAfterLoad();
+    //             }
+    //     };
         
-        const handleImageLoad = () => {
-            loadedCount++;
-            if (loadedCount === images.length) {
-            updateThumbAfterLoad();
-            }
-    };
-    
-    images.forEach(img => {
-        if (img.complete) {
-        handleImageLoad();
-        } else {
-        img.addEventListener('load', handleImageLoad);
-        }
-    });
-    
-    // Also listen for window resize
-    window.addEventListener('resize', updateThumbAfterLoad);
-    
-    return () => {
-        images.forEach(img => {
-        img.removeEventListener('load', handleImageLoad);
-        });
-        window.removeEventListener('resize', updateThumbAfterLoad);
-    };
-    }, [images]); // Re-run when images array changes
-
-    // 3. Update when selected image changes
-    useEffect(() => {
-        updateScrollThumb();
-    }, [selectedImage]);
-
-    // 4. Final safety net - multiple delayed updates
-    useEffect(() => {
-        const timeouts = [100, 300, 600].map(delay => 
-            setTimeout(() => updateScrollThumb(), delay)
-        );
+    //     images.forEach(img => {
+    //         if (img.complete) {
+    //         handleImageLoad();
+    //         } else {
+    //         img.addEventListener('load', handleImageLoad);
+    //         }
+    //     });
         
-        return () => timeouts.forEach(clearTimeout);
-    }, []);
-
-
-
+    //     // Also listen for window resize
+    //     window.addEventListener('resize', updateThumbAfterLoad);
+        
+    //     return () => {
+    //         images.forEach(img => {
+    //         img.removeEventListener('load', handleImageLoad);
+    //         });
+    //         window.removeEventListener('resize', updateThumbAfterLoad);
+    //     };
+    //     }, [images]); // Re-run when images array changes
+    
+    //     // 3. Update when selected image changes
+    //     useEffect(() => {
+    //         updateScrollThumb();
+    //     }, [selectedImage]);
+    
+    //     // 4. Final safety net - multiple delayed updates
+    //     useEffect(() => {
+    //         const timeouts = [100, 300, 600].map(delay => 
+    //             setTimeout(() => updateScrollThumb(), delay)
+    //         );
+            
+    //         return () => timeouts.forEach(clearTimeout);
+    //     }, []);
+    
 
 
 
@@ -518,13 +520,22 @@ function Commissions() {
         return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     };
 
-        // image menu scrolling handlers
+    // image menu scrolling handlers
     const scrollUp = () => {
         if (scrollRef.current) {
             scrollRef.current.scrollBy({ top: -120, behavior: 'smooth' });
         }
     };
-
+    const scrollLeft = () => {
+        if(scrollRef.current) {
+            scrollRef.current.scrollBy({ left: -120, behavior: 'smooth'});
+        }
+    }
+    const scrollRight = () => {
+        if(scrollRef.current) {
+            scrollRef.current.scrollBy({ left: 120, behavior: 'smooth'})
+        }
+    }
     const scrollDown = () => {
         if (scrollRef.current) {
             scrollRef.current.scrollBy({ top: 120, behavior: 'smooth' });
@@ -771,88 +782,116 @@ function Commissions() {
                         >
 
                             <div className="modal-header">
-                                <span>Contact</span>
+                                <div className='modal-header-group'>
+                                    <img className='contact-modal-img' src="/images/265.ico" alt="" />
+                                    <section className='blue-bar-text'>Contact Zoica Art</section>
+                                </div>
                                 <button className='x-button' 
                                     onClick={(e) => {setShowContactModal(false);}}>✕</button>
                             </div>
 
                             <div className="modal-body">
                                 
-                            <div className='contact-content'>
-                                <form onSubmit={handleSubmit} className="contact-form">
-                                    {/* first row - Recipient email (read-only) */}
-                                    <div className="form-row">
-                                        <label htmlFor="to" className='to-label'>T<span className='underline'>o.</span>..</label> 
-                                        <input
-                                            type="email"
-                                            id="to"
-                                            name="to"
-                                            value={formData.to}
-                                            onChange={handleInputChange}
-                                            readOnly
-                                            className="form-input"
-                                        />
+                                <div className='contact-content'>
+
+                                    <div className='contact-header'>
+                                        <div className='contact-header-items'>
+                                            <div className='contact-header-text'><span>F</span>ile</div>
+                                        </div>
+                                        <div className='contact-header-items'>
+                                            <div className='contact-header-text'><span>E</span>dit</div>
+                                        </div>
+                                        <div className='contact-header-items'>
+                                            <div className='contact-header-text'><span>V</span>iew</div>
+                                        </div>
+                                        <div className='contact-header-items'>
+                                            <div className='contact-header-text'><span>In</span>sert</div>
+                                        </div>
+                                        <div className='contact-header-items'>
+                                            <div className='contact-header-text'><span>F</span>ormat</div>
+                                        </div>
+                                        <div className='contact-header-items'>
+                                            <div className='contact-header-text'><span>T</span>ools</div>
+                                        </div>
+                                        <div className='contact-header-items'>
+                                            <div className='contact-header-text'><span>T</span>able</div>
+                                        </div>
                                     </div>
 
-                                    {/* second row - sender email */}
-                                    <div className="form-row">
-                                        <label htmlFor="from" className='from-label'><span className='underline'>F</span>rom...</label>
-                                        <input
-                                            type="email"
-                                            id="from"
-                                            name="from"
-                                            value={formData.from}
-                                            onChange={handleInputChange}
-                                            required   
-                                            className="form-input"
-                                            placeholder="your email"
-                                        />
-                                    </div>
-                                    
-                                    {/* third row - email subject */}
-                                    <div className="form-row">
-                                        <label htmlFor="subject" className='subject-label'> S<span className='underline'>u</span>bject:</label>
-                                        <input
-                                            type="text"
-                                            id="subject"
-                                            name="subject"
-                                            value={formData.subject}
-                                            onChange={handleInputChange}
-                                            required
-                                            className="form-input"
-                                            placeholder="Greetings!"
-                                        />
-                                    </div>
-                                    
-                                    {/* fourth row - message body */}
-                                    <div className="form-row">
-                                        <label htmlFor="message" className='message-label'>
-                                            <span className='underline'>M</span>essage:
-                                        </label>
-                                        <textarea
-                                            id="message"
-                                            name="message"
-                                            value={formData.message}
-                                            onChange={handleInputChange}
-                                            required
-                                            className="form-textarea"
-                                            placeholder='Wow! Your art is amazing!'
-                                        />
-                                    </div>
+                                    <form onSubmit={handleSubmit} className="contact-form">
+                                        {/* first row - Recipient email (read-only) */}
+                                        <div className="form-row">
+                                            <label htmlFor="to" className='to-label'>T<span className='underline'>o.</span>..</label> 
+                                            <input
+                                                type="email"
+                                                id="to"
+                                                name="to"
+                                                value={formData.to}
+                                                onChange={handleInputChange}
+                                                readOnly
+                                                className="form-input"
+                                            />
+                                        </div>
 
-                                    {/* submit button row */}
-                                    <div className="form-button">
-                                        <button 
-                                            type="submit"
-                                            className={`send-button ${isButtonActive ? 'active' : ''}`}
-                                        >
-                                            <img src='/src/assets/send.png' className="send-icon" alt="Send"/>
-                                            Send
-                                        </button>
-                                    </div>
-                                </form>
-                    {/* contact-content */}
-                    </div>
+                                        {/* second row - sender email */}
+                                        <div className="form-row">
+                                            <label htmlFor="from" className='from-label'><span className='underline'>F</span>rom...</label>
+                                            <input
+                                                type="email"
+                                                id="from"
+                                                name="from"
+                                                value={formData.from}
+                                                onChange={handleInputChange}
+                                                required   
+                                                className="form-input"
+                                                placeholder="your email"
+                                            />
+                                        </div>
+                                        
+                                        {/* third row - email subject */}
+                                        <div className="form-row">
+                                            <label htmlFor="subject" className='subject-label'> S<span className='underline'>u</span>bject:</label>
+                                            <input
+                                                type="text"
+                                                id="subject"
+                                                name="subject"
+                                                value={formData.subject}
+                                                onChange={handleInputChange}
+                                                required
+                                                className="form-input"
+                                                placeholder="Commission"
+                                            />
+                                        </div>
+                                        
+                                        {/* fourth row - message body */}
+                                        <div className="form-row">
+                                            <label htmlFor="message" className='message-label'>
+                                                <span className='underline'>M</span>essage:
+                                            </label>
+                                            <textarea
+                                                id="message"
+                                                name="message"
+                                                value={formData.message}
+                                                onChange={handleInputChange}
+                                                required
+                                                className="form-textarea"
+                                                placeholder='Can you make a portrait of my amazing cat?'
+                                            />
+                                        </div>
+
+                                        {/* submit button row */}
+                                        <div className="form-button">
+                                            <button 
+                                                type="submit"
+                                                className={`send-button ${isButtonActive ? 'active' : ''}`}
+                                            >
+                                                <img src='/src/assets/send.png' className="send-icon" alt="Send"/>
+                                                Send
+                                            </button>
+                                        </div>
+                                    </form>
+                                {/* contact-content */}
+                                </div>
 
                             </div>
                         </div>
@@ -873,6 +912,7 @@ function Commissions() {
                     }}
                     onMouseDown={handleWindowMouseDown}
                 >
+                    {/* BLUE BAR */}
                     <header>
                         <section className='blue-bar'>
                             <img src="/images/18.ico" className='icon' alt="icon"/>
@@ -883,6 +923,7 @@ function Commissions() {
                         </section>
                     </header>
 
+                    {/* URL BAR */}
                     <div className='url-container'>
                         <div className='url-bar'>
                             <div className='url-bar-small-1'>
@@ -890,7 +931,7 @@ function Commissions() {
                             </div>
                             <div className='url-bar-large'>
                                 <div className='dropdown-container'>
-                                    <div className='url-text'>http://www.geocities.com/zoica_art/commissions</div>
+                                    <div className='url-text'>http://www.geocities.com/zoica_art</div>
                                 </div>
                                 <img src='/images/blue-arrow.png' className='url-dropdown-button'/>
                             </div>
@@ -900,109 +941,127 @@ function Commissions() {
                             </div>
                         </div>
                     </div>
-                        
                     
+
                     {/* CONTENT */}
-                                        <div className='content'>
-                    
-                                            <div className='homepage-banners'>
-                                                <div className='inner-banner-text'>
-                                                    <p className='banner'>Zoica Art</p>
-                                                    {/* <p className='banner-1'>Explore Your Dark Fantasy</p> */}
+                    <div className='content'>
+
+                        <div className='homepage-banners'>
+                            <div className='inner-banner-text'>
+                                <p className='banner'>Zoica Art</p>
+                                {/* <p className='banner-1'>Explore Your Dark Fantasy</p> */}
+                            </div>
+                        </div>
+
+                        {/* navbar -- image gallery -- image scroll */}
+                        <div className='content-container'>
+                            {/* Hamburger icon - visible only on mobile */}
+                            <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                ☰
+                            </div>
+
+                            {/* navbar - hidden on mobile until hamburger clicked */}
+                            <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
+                                <ul>
+                                    <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
+                                        <Link to="/" onClick={() => setIsMenuOpen(false)}>
+                                            <p className='nav-p'>Home</p>
+                                        </Link>
+                                    </li>
+                                    <li className='button-1'>
+                                        <Link to="/tarot" onClick={() => setIsMenuOpen(false)}>
+                                            <p className='nav-p'>Tarot</p>
+                                        </Link>
+                                    </li>
+                                    <li className='button-1'>
+                                        <Link to="/norse" onClick={() => setIsMenuOpen(false)}>
+                                            <p className='nav-p'>Mythology</p>
+                                        </Link>
+                                    </li>
+                                    <li className='button-1'>
+                                        <Link to="/game" onClick={() => setIsMenuOpen(false)}>
+                                            <p className='nav-p'>Game Art</p>
+                                        </Link>
+                                    </li>
+                                    <li className='button-1'>
+                                        <Link to="/commissions" onClick={() => setIsMenuOpen(false)}>
+                                            <p className='nav-p'>Commissions</p>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                            <section className='image-layout'>
+                                {/* LEFT: selected image preview */}
+                                <div className="preview-pane">
+                                    <img
+                                        src={`/images/${selectedImage.id}.jpg`}
+                                        alt={selectedImage.title}
+                                    />
+                                    <div className="preview-title">{selectedImage.title}</div>
+                                </div>
+
+                                {/* RIGHT: scroll selector */}
+                                <div className="scroll-menu">
+                                    <button className="arrow-1 up" onClick={scrollUp}>
+                                        <img src='/images/up_arrow.png' />
+                                    </button>
+
+                                    {/* Custom scroll container */}
+                                    <div className="custom-scroll-container">
+                                        <div className="scroll-list" ref={scrollRef}>
+                                        {images.map((img) => (
+                                            <div
+                                            key={img.id}
+                                            className={`scroll-item ${
+                                                selectedImage.id === img.id ? 'active' : ''
+                                            }`}
+                                            onClick={() => setSelectedImage(img)}
+                                            >
+                                            <img src={`/images/${img.id}.jpg`} alt={img.title} />
+                                            </div>
+                                        ))}
+                                        </div>
+                                        
+                                        {/* Custom scrollbar
+                                            <div className="custom-scrollbar">
+                                                <div 
+                                                    className="scroll-track" 
+                                                    ref={scrollTrackRef}
+                                                    onClick={handleCustomScroll}
+                                                >
+                                                    <div 
+                                                    className="scroll-thumb" 
+                                                    ref={scrollThumbRef}
+                                                    onMouseDown={startDragScroll}
+                                                    />
                                                 </div>
                                             </div>
-                    
-                                            {/* navbar -- image gallery -- image scroll */}
-                                            <div className='content-container'>
-                                                <nav className='navbar'>
-                                                    <ul>
-                                                        <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                                            <Link to="/">
-                                                                <p className='nav-p'>Home</p>
-                                                            </Link>
-                                                        </li>
-                                                        <li className='button-1'>
-                                                            <Link to="/tarot">
-                                                                <p className='nav-p'>Tarot</p>
-                                                            </Link>
-                                                        </li>
-                                                        <li className='button-1'>
-                                                            <Link to="/norse">
-                                                                <p className='nav-p'>Mythology</p>
-                                                            </Link>
-                                                        </li>
-                                                        <li className='button-1'>
-                                                            <Link to="/game">
-                                                                <p className='nav-p'>Game Art</p>
-                                                            </Link>
-                                                        </li>
-                                                        <li className='button-1'>
-                                                            <Link to="/commissions">
-                                                                <p className='nav-p'>Commissions</p>
-                                                            </Link>
-                                                        </li>
-                                                    </ul>
-                                                </nav>
-                    
-                    
-                                                    {/* LEFT: selected image preview */}
-                                                    <div className="preview-pane">
-                                                        <img
-                                                            src={`/images/${selectedImage.id}.jpg`}
-                                                            alt={selectedImage.title}
-                                                        />
-                                                        <div className="preview-title">{selectedImage.title}</div>
-                                                    </div>
-                    
-                                                    {/* RIGHT: scroll selector */}
-                                                    <div className="scroll-menu">
-  <button className="arrow-1 up" onClick={scrollUp}>
-    <img src='/public/images/up_arrow.png' />
-  </button>
+                                        */}
+                                    </div>
+                                    <div className='right-left-arrows'>
+                                        <button className="arrow-1 left" onClick={scrollLeft}>
+                                            <img src='/images/left_arrow.png' />
+                                        </button>
+                                        <button className="arrow-1 right" onClick={scrollRight}>
+                                            <img src='/images/right_arrow.png' />
+                                        </button>
+                                    </div>
 
-  {/* Custom scroll container */}
-  <div className="custom-scroll-container">
-    <div className="scroll-list" ref={scrollRef}>
-      {images.map((img) => (
-        <div
-          key={img.id}
-          className={`scroll-item ${
-            selectedImage.id === img.id ? 'active' : ''
-          }`}
-          onClick={() => setSelectedImage(img)}
-        >
-          <img src={`/images/${img.id}.jpg`} alt={img.title} />
-        </div>
-      ))}
-    </div>
-    
-    {/* Custom scrollbar */}
-    <div className="custom-scrollbar">
-      <div 
-        className="scroll-track" 
-        ref={scrollTrackRef}
-        onClick={handleCustomScroll}
-      >
-        <div 
-          className="scroll-thumb" 
-          ref={scrollThumbRef}
-          onMouseDown={startDragScroll}
-        />
-      </div>
-    </div>
-  </div>
+                                    <button className="arrow-1 down" onClick={scrollDown}>
+                                        <img src='/images/downward_arrow.png'/>
+                                    </button>
+                                </div>
+                            </section>
+                        </div>
 
-  <button className="arrow-1 down" onClick={scrollDown}>
-    <img src='/public/images/downward_arrow.png'/>
-  </button>
-</div>
-                                            </div>
-                    
-                                            {/* image scrolling section */}
-                                            <div className="xp-footer-line"></div>
-                                        </div>
+                        {/* image scrolling section */}
+                        <div className="xp-footer-line"></div>
+                    </div>
                 </div>
             )}
+
+
 
             <Taskbar
                 isVisible={isVisible} 

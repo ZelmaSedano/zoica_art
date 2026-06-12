@@ -350,13 +350,23 @@ header {
 .contact-header-text span {
   text-decoration: underline;
 }
+.modal-header-group .blue-bar-text {
+    font-size: 15px;
+}
 .contact-content {
   background: 
     radial-gradient(circle at top right, #c4d5f1, #91b5f3);
 
+  background: radial-gradient(
+    circle at top right,
+    #a9c8f9 0%,      /* Light warm color at top-right corner */
+    #a9c8f9 30%,     /* Light color persists in this radius */
+    #8cb1f6 70%,     /* Transition to darker */
+    #8cb1f6 100%     /* Very dark at bottom-left */
+  );
   /* positioning */
   position: relative;
-  width: 61vw;
+  width: 600px;
   height: 60vh;
   /* text color */
   color: black;
@@ -845,7 +855,7 @@ nav ul li a p{
   align-items: center;
   margin-bottom: 15px;
   gap: 10px;
-  width: 100%;
+  width: 600px;
 }
 /* GET LABELS TO BE THE SAME SIZE */
 .form-row label {
@@ -856,6 +866,7 @@ nav ul li a p{
   text-align: center;
   min-width: 35px;
   text-align: right;
+  font-family: Arial, sans-serif;
 }
 
 .subject-label, .message-label {
@@ -863,32 +874,25 @@ nav ul li a p{
   /* slightly larger to look more similar to To & From */
   font-size: 17px;
   text-align: right;
+  font-family: Arial, sans-serif;
 }
 /* input fields */
 .form-input, .form-textarea {
   padding: 5px;
   background-color: white;
-  /* webcraftian black instead of auto white */
+
   color: black;
-  /* why isn't default font being picked up? */
-  font-family: 'MS Sans Serif', sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 15px;
   
-  border-top: 2px solid black;
-  border-left: 2px solid black;
-  border-bottom: 2px solid #ffffff;
-  border-right: 2px solid #ffffff;
-
-  box-shadow: 
-    inset 1px 1px 0px #ffffff,
-    inset -1px -1px 0px #c3c3c3;
+  border: 2px solid #919c9e;
 }
 .form-textarea {
   display: flex;
   flex: 1;
   /* removes default resizing */
   resize: none;
-  min-height: 180px;
+  min-height: 150px;
 }
 .form-button {
   display: flex;
@@ -902,15 +906,16 @@ nav ul li a p{
   justify-items: center;
   align-items: center;
   margin-top: -6px;
-  background-color: #c3c3c3;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-  font-family: 'MS Sans Serif', sans-serif;
-  font-size: 18px;
+  background-color: #015ffd;
+  border-right: 2px solid #265ab2;
+  border-bottom: 2px solid #265ab2;
+  border-top: 2px solid #377ffb;
+  border-left: 2px solid #377ffb;
+  font-family: Arial, sans-serif;
+  font-size: 17px;
   cursor: pointer;
   outline: none;
+  color: white;
 }
 .send-button.active {
   border-top: 1px solid #808080;
@@ -922,11 +927,12 @@ nav ul li a p{
         inset 1px 1px 0 #000;
 }
 .send-icon {
-  width: 26px;
-  height: 26px;
-  margin-right: 5px;
+  width: 24px;
+  height: 24px;
+  margin-right: 2px;
   /* aligns with 'Send' */
   margin-top: -3px;
+  padding: 3px;
 }
 input:focus, textarea:focus {
   outline: none;
@@ -1014,11 +1020,7 @@ input:focus, textarea:focus {
 }
 
 /********* WIDESCREEN **********/
-@media (max-width: 1920px) {
-  .form-textarea {
-    max-height: 300px;
-  }
-}
+
 
 @media (min-width: 1500px) {
   .window {

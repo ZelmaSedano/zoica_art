@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import './App.css';
@@ -834,7 +834,7 @@ function Home() {
                                                 onChange={handleInputChange}
                                                 required
                                                 className="form-input"
-                                                placeholder="Greetings!"
+                                                placeholder="Commission"
                                             />
                                         </div>
                                         
@@ -850,7 +850,7 @@ function Home() {
                                                 onChange={handleInputChange}
                                                 required
                                                 className="form-textarea"
-                                                placeholder='Can I commission a portrait of my favorite goddess?'
+                                                placeholder='Can you make a portrait of my amazing cat?'
                                             />
                                         </div>
 
