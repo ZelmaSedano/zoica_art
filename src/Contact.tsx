@@ -8,7 +8,6 @@ import './components/Taskbar.css'
 import DesktopIcon from './components/DesktopIcon';
 import './components/DesktopIcon.css';
 
-import send from '../public/images/send.png'
 
 
 
@@ -461,7 +460,7 @@ function Contact() {
                                     type="submit"
                                     className={`send-button ${isButtonActive ? 'active' : ''}`}
                                 >
-                                    <img src={send} className="send-icon" alt="Send"/>
+                                    {/* <img src={send} className="send-icon" alt="Send"/> */}
                                     Send
                                 </button>
                             </div>
