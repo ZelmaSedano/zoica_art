@@ -342,7 +342,9 @@ header {
 .contact-header {
   display: flex;
   flex-direction: row;
-  margin-left: 20px;
+  padding-left: 20px;
+  border-bottom: 1px solid #2f518f;
+  background: linear-gradient(to bottom, #d1e4ff, #8fb3f6)
 }
 .contact-header-items {
   margin: 5px 15px 0 0px;
