@@ -1384,7 +1384,7 @@ input:focus, textarea:focus {
     background: url('/public/images/mobile_standard_2_shortest.png') no-repeat center;
     background-size: 100% 100%; /* Stretch to fill exactly */
     /* or */
-    background-size: 400px 900px; /* Match your container dimensions */
+    background-size: 420px 900px; /* Match your container dimensions */
     
 
 
