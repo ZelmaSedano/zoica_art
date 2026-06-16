@@ -19,7 +19,6 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
 }
 #root {
   height: 100%;
@@ -329,7 +328,6 @@ header {
 
   z-index: 0;
   overflow-y: auto;
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -344,7 +342,7 @@ header {
   flex-direction: row;
   padding-left: 20px;
   border-bottom: 1px solid #2f518f;
-  background: linear-gradient(to bottom, #d1e4ff, #8fb3f6)
+  background: linear-gradient(to bottom, #d1e4ff, #8fb3f6);
 }
 .contact-header-items {
   margin: 5px 15px 0 0px;
@@ -1169,11 +1167,38 @@ input:focus, textarea:focus {
 
 
   .content {
-    background: url('/public/images/mobile_standard_2_shortest.png') no-repeat;
+    background-image: url('/public/images/mobile_standard_2_shortest.png');
+    background-repeat: no-repeat;
+    background-size: cover; /* or contain, depending on your preference */
+    background-position: center;
+    
+    /* Fix the conflicting height declarations */
     height: 932px;
     max-height: 932px;
     width: 430px;
     max-width: 430px;
+    /* Remove the calc() height and use fixed height instead */
+    overflow-y: auto !important;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #c3c3c3;
+    border-right: 10px solid red;
+  }
+    /* Show scrollbar */
+  .content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .content::-webkit-scrollbar-track {
+    background: #c3c3c3;
+  }
+  
+  .content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  
+  .content::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 
   .homepage-banners {
@@ -1190,14 +1215,6 @@ input:focus, textarea:focus {
     position: relative;
     margin-top: 20px;
     width: 90%;
-  }
-  .content {
-    /* adjust height accounting 4 header */
-    height: 100vh;
-    width: 100vw;
-    box-sizing: border-box;
-    /* border: 3px solid #c3c3c3;  */
-    overflow-y: auto;
   }
 
   .contact-content {
@@ -1365,11 +1382,17 @@ input:focus, textarea:focus {
 /* iphone 14: 393px x 852px */
 @media (max-width: 400px) {
   .content {
-    background: url('/public/images/mobile_2.jpg');
-    height: 932px;
-    max-height: 932px;
-    width: 430px;
-    max-width: 430px;
+    background: url('/public/images/mobile_standard_2_shortest.png') no-repeat center;
+    background-size: 100% 100%; /* Stretch to fill exactly */
+    /* or */
+    background-size: 420px 900px; /* Match your container dimensions */
+    
+
+
+    height: 900px;
+    max-height: 900px;
+    width: 375px;
+    max-width: 375px;
   }
 }
 
