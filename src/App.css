@@ -1181,7 +1181,6 @@ input:focus, textarea:focus {
     overflow-y: auto !important;
     scrollbar-width: thin;
     scrollbar-color: #888 #c3c3c3;
-    border-right: 10px solid red;
   }
     /* Show scrollbar */
   .content::-webkit-scrollbar {
