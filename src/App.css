@@ -1379,19 +1379,20 @@ input:focus, textarea:focus {
 }
 
 /* iphone 14: 393px x 852px */
+/* iphone se: 393px x 852px */
 @media (max-width: 400px) {
   .content {
     background: url('/public/images/mobile_standard_2_shortest.png') no-repeat center;
     background-size: 100% 100%; /* Stretch to fill exactly */
     /* or */
-    background-size: 420px 900px; /* Match your container dimensions */
+    background-size: 393px 900px; /* Match your container dimensions */
     
 
 
     height: 900px;
     max-height: 900px;
-    width: 400px;
-    max-width: 400px;
+    width: 393px;
+    max-width: 393px;
   }
 }
 
