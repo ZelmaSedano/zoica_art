@@ -997,22 +997,6 @@ function Home() {
                                             </div>
                                         ))}
                                         </div>
-                                        
-                                        {/* Custom scrollbar
-                                            <div className="custom-scrollbar">
-                                                <div 
-                                                    className="scroll-track" 
-                                                    ref={scrollTrackRef}
-                                                    onClick={handleCustomScroll}
-                                                >
-                                                    <div 
-                                                    className="scroll-thumb" 
-                                                    ref={scrollThumbRef}
-                                                    onMouseDown={startDragScroll}
-                                                    />
-                                                </div>
-                                            </div>
-                                        */}
                                     </div>
                                     <div className='right-left-arrows'>
                                         <button className="arrow-1 left" onClick={scrollLeft}>

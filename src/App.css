@@ -51,6 +51,7 @@ html, body {
 
 body {
   background: url('/public/images/island.gif') no-repeat center/cover;
+  height: 100svh;
 }
 
 
@@ -352,6 +353,7 @@ header {
 }
 .modal-header-group .blue-bar-text {
     font-size: 15px;
+    word-spacing: 3px;
 }
 .contact-content {
   background: 
@@ -739,6 +741,20 @@ nav ul li a p{
 
   background: #222;
 }
+.scroll-list {
+  flex: 1;
+  height: 360px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 5px;
+  background: #32301f;
+
+  /* Hide native scrollbar */
+  /* scrollbar-width: none; 
+  -ms-overflow-style: none; */
+}
 /* ITEMS */
 .scroll-item {
   border: 2px solid transparent;
@@ -791,20 +807,7 @@ nav ul li a p{
   height: 360px;
 }
 
-.scroll-list {
-  flex: 1;
-  height: 360px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 5px;
-  background: #32301f;
 
-  /* Hide native scrollbar */
-  /* scrollbar-width: none; 
-  -ms-overflow-style: none; */
-}
 /* .scroll-list::-webkit-scrollbar {
   display: none; 
 } */
@@ -1014,6 +1017,7 @@ input:focus, textarea:focus {
   font-size: 15px;
 }
 
+
 /* desktop - hide hamburger */
 @media (min-width: 769px) {
     .hamburger {
@@ -1029,7 +1033,6 @@ input:focus, textarea:focus {
 }
 
 /********* WIDESCREEN **********/
-
 
 @media (min-width: 1500px) {
   .window {
@@ -1048,24 +1051,52 @@ input:focus, textarea:focus {
     width: 1200px;
   }
 
+  .homepage-banners .banner {
+    margin-right: -7px;
+    margin-top: 15px;
+  }
+
+
+  /* navbar & buttons wider in widescreen */
+  .navbar {
+    width: 186px;
+    margin-top: 53px;
+    margin-left: 120px;
+  }
+  .button-1 {
+    background: url('/public/images/button_2.png');
+  }
+  nav ul li {
+    height: 35px;
+  }
+
+
+  /* right side: preview-pane & scroll-menu combined */
   .image-layout {
-    margin-top: 30px;
+    margin-top: 25px;
   }
   .preview-pane {
-    margin-left: 15px;
-    width: 400px;
-    height: 475px;
+    margin-left: 45px;
+    width: 350px;
+    height: 455px;
   }
-  .preview-pane img {
+  /* .preview-pane img {
     max-width: 100%;
     max-height: 100%;
+  } */
+  .arrow-1.up {
+    margin-top: -10px;
   }
   .scroll-menu {
     margin-left: 70px;
   }
   .scroll-list {
-    height: 450px;
-    margin-top: -25px;
+    height: 425px;
+    margin-top: 8px;
+  }
+  /* if you push this arrow down, the entire image-layout section goes down slightly */
+  .arrow-1.down {
+    margin-top: 75px;
   }
 }
 
@@ -1302,12 +1333,20 @@ input:focus, textarea:focus {
     border-color: solid 1px #75714c #75714c #75714c #75714c;
   }
   .scroll-menu {
-    margin-left: -40px;
+    margin-left: -5px;
   }
   .scroll-list {
     width: 270px;
+    height: 150px;
     margin-top: 20px;
     border-color: #75714c #75714c #75714c #75714c;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .scroll-list {
+    flex-direction: row;
+    height: auto;
   }
   .scroll-item img {
     width: 100px;
@@ -1316,16 +1355,6 @@ input:focus, textarea:focus {
     height: auto !important;
   }
 
-  .scroll-list {
-    flex-direction: row;
-    height: auto;
-  }
-  .scroll-list {
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-    height: 150px;
-  }
   .scroll-item {
     flex: 0 0 auto !important;
     width: 100px !important;
@@ -1342,8 +1371,6 @@ input:focus, textarea:focus {
   .arrow-1.right {
     display: block;
   }
-
-
 
 
   .footer {
@@ -1380,19 +1407,23 @@ input:focus, textarea:focus {
 
 /* iphone 14: 393px x 852px */
 /* iphone se: 393px x 852px */
+
+/* you can shift the background image to fit the viewport, BUT the scroll-list will shift to the left */
 @media (max-width: 400px) {
   .content {
     background: url('/public/images/mobile_standard_2_shortest.png') no-repeat center;
     background-size: 100% 100%; /* Stretch to fill exactly */
     /* or */
-    background-size: 393px 900px; /* Match your container dimensions */
+    background-size: 400px 900px; /* Match your container dimensions */
     
-
-
     height: 900px;
     max-height: 900px;
-    width: 393px;
-    max-width: 393px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .scroll-menu {
+    margin-left: 0px;
   }
 }
 
