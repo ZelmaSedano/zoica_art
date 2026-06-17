@@ -51,6 +51,7 @@ html, body {
 
 body {
   background: url('/public/images/island.gif') no-repeat center/cover;
+  /* this makes sure elements that are set to 100% width actually span correctly */
   height: 100svh;
 }
 
@@ -678,11 +679,11 @@ nav ul li a p{
   margin-top: 10px;
 }
 .preview-title {
-  margin-top: 8px;
-  font-size: 15px;
+  font-size: 18px;
   color: white;
   font-family: 'alegard';
   margin: 0 auto;
+  margin-top: 3px;
 }
 
 
@@ -1355,6 +1356,11 @@ input:focus, textarea:focus {
     margin: 0 auto;
     margin-left: 41px;
     border-color: solid 1px #75714c #75714c #75714c #75714c;
+  }
+  .preview-title {
+    color: #b1b19f;
+    margin-top: 0;
+    font-size: 16px;
   }
   .scroll-menu {
     margin-left: -5px;

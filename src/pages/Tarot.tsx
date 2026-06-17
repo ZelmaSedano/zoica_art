@@ -11,13 +11,13 @@ import '../components/DesktopIcon.css';
 
 const images = [
     {
-        title: 'Utgaard',
-        id: 'tarot/Utgaardfloki',
+        title:'Hanging Man',
+        id: 'tarot/hangedmanfinal',
         url: 'http://www.etsy.com'
     },
     {
-        title:'Hanging Man',
-        id: 'tarot/hangedmanfinal',
+        title: 'Utgaard',
+        id: 'tarot/Utgaardfloki',
         url: 'http://www.etsy.com'
     },
             {

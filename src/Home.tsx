@@ -46,27 +46,22 @@ function Home() {
     // position states
     // window position
     const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [modalPosition, setModalPosition] = useState(() => {
-        const saved = sessionStorage.getItem('mediaModalPosition');
-        return saved ? JSON.parse(saved) : {
-            x: Math.max(0, (window.innerWidth - 500) / 2), // Adjust width based on your modal size
-            y: Math.max(0, (window.innerHeight - 400) / 2)
-        };
-    });
-    const [screamModalPosition, setScreamModalPosition] = useState(() => {
-        const saved = sessionStorage.getItem('screamModalPosition');
-        return saved ? JSON.parse(saved) : {
-            x: Math.max(0, (window.innerWidth - 400) / 2), // Adjust width based on your scream modal size
-            y: Math.max(0, (window.innerHeight - 300) / 2)
-        };
-    });
-    const [contactModalPosition, setContactModalPosition] = useState(() => {
-        const saved = sessionStorage.getItem('contactModalPosition');
-        return saved ? JSON.parse(saved) : {
-            x: Math.max(0, (window.innerWidth - 500) / 2), // Adjust width based on your modal size
-            y: Math.max(0, (window.innerHeight - 400) / 2)
-        };
-    });
+
+    // modal positions: where they load - LOAD IN THE MIDDLE
+    const [modalPosition, setModalPosition] = useState(() => ({
+        x: Math.max(0, (window.innerWidth - 500) / 2),
+        y: Math.max(0, (window.innerHeight - 400) / 2)
+    }));
+
+    const [screamModalPosition, setScreamModalPosition] = useState(() => ({
+        x: Math.max(0, (window.innerWidth - 400) / 2),
+        y: Math.max(0, (window.innerHeight - 300) / 2)
+    }));
+
+    const [contactModalPosition, setContactModalPosition] = useState(() => ({
+        x: Math.max(0, (window.innerWidth - 500) / 2),
+        y: Math.max(0, (window.innerHeight - 400) / 2)
+    }));
 
     // STATES
     // mobile menu
@@ -264,25 +259,6 @@ function Home() {
     // active button styling
     const location = useLocation();
 
-    // initial window load - IN THE MIDDLE
-    useEffect(() => {
-        if (windowRef.current) {
-            const rect = windowRef.current.getBoundingClientRect();
-            // divide the actual width of the viewport
-            setPosition({
-                x: (window.innerWidth - rect.width) / 2,
-                y: (window.innerHeight - rect.height) / 2
-            });
-        }
-    }, []);
-    // Clock ticker
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentTime(new Date());
-        }, 1000);
-        return () => clearInterval(timer);
-    }, []);
-
     // CONTACT
     useEffect(() => {
         if (isButtonActive) {
@@ -443,7 +419,6 @@ function Home() {
             }
         }
     };
-
     // content window
     const handleWindowMouseUp = () => {
         if (!isDraggingRef.current) return;
@@ -518,29 +493,9 @@ function Home() {
     };
 
 
-    // save position to sessionStorage only when drag ends (not during drag)
-    useEffect(() => {
-        sessionStorage.setItem('windowPosition', JSON.stringify(position));
-    }, [position]); // window
-    useEffect(() => {
-        sessionStorage.setItem('mediaModalPosition', JSON.stringify(modalPosition));
-    }, [modalPosition]); // media player
-    useEffect(() => {
-        sessionStorage.setItem('screamModalPosition', JSON.stringify(screamModalPosition));
-    }, [screamModalPosition]); // scream
-    useEffect(() => {
-        sessionStorage.setItem('contactModalPosition', JSON.stringify(contactModalPosition));
-    }, [contactModalPosition]); // contact
-
-    // after drag
-    useEffect(() => {
-        if (windowRef.current && !isDraggingRef.current) {
-            windowRef.current.style.left = `${position.x}px`;
-            windowRef.current.style.top = `${position.y}px`;
-        }
-    }, [position]);
 
 
+    // USEEFFECTS FUNCTIONS
     // this needs to be after handler funcs
     // adds event listeners to DOM
     useEffect(() => {
@@ -559,6 +514,59 @@ function Home() {
             document.removeEventListener('mouseup', handleModalMouseUp);
         };
     }, [isDraggingModal, modalDragOffset]);
+    
+    // initial window load - IN THE MIDDLE
+    useEffect(() => {
+        if (windowRef.current) {
+            const rect = windowRef.current.getBoundingClientRect();
+            // divide the actual width of the viewport
+            setPosition({
+                x: (window.innerWidth - rect.width) / 2,
+                y: (window.innerHeight - rect.height) / 2
+            });
+        }
+    }, []);
+    // Clock ticker
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    // recalculate modal positions when window resizes
+    useEffect(() => {
+        const handleResize = () => {
+            // Only update if the modals are NOT currently being dragged
+            if (!isDraggingModal) {
+                setModalPosition({
+                    x: Math.max(0, (window.innerWidth - 500) / 2),
+                    y: Math.max(0, (window.innerHeight - 400) / 2)
+                });
+                setScreamModalPosition({
+                    x: Math.max(0, (window.innerWidth - 400) / 2),
+                    y: Math.max(0, (window.innerHeight - 300) / 2)
+                });
+                setContactModalPosition({
+                    x: Math.max(0, (window.innerWidth - 500) / 2),
+                    y: Math.max(0, (window.innerHeight - 400) / 2)
+                });
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [isDraggingModal]);
+    // these dependencies run everytime a state is changed, so everytime isDraggingModal's value changes, this useEffect is ran
+    
+    // after drag
+    useEffect(() => {
+        if (windowRef.current && !isDraggingRef.current) {
+            windowRef.current.style.left = `${position.x}px`;
+            windowRef.current.style.top = `${position.y}px`;
+        }
+    }, [position]);
+
 
 
     // hide/show content window
