@@ -600,7 +600,7 @@ function Home() {
                             onMouseDown={handleModalMouseDown}
                         >
                             <div className="modal-header">
-                                <span className='scream-modal'>Simple and clean is the way you're making me feel tonight</span>
+                                <span className='scream-modal-blue-bar-text'>Simple and clean is the way you're making me feel tonight</span>
                                 <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
                             </div>
                             <div className="modal-body">
@@ -624,7 +624,7 @@ function Home() {
                 {showPlayModal && (
                     <div className="modal-overlay" onClick={() => setShowPlayModal(false)}>
                         <div 
-                            className="modal media-modal" 
+                            className="modal media-modal"
                             ref={mediaModalRef}
                             style={{
                                 position: 'fixed',

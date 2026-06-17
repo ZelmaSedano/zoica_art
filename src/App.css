@@ -64,7 +64,7 @@ body {
   justify-content: center;
   flex-direction: column;
 }
-.scream-modal {
+.scream-modal-blue-bar-text {
   margin-left: 5px;
 }
 
@@ -111,15 +111,13 @@ body {
   width: 100%;
   padding: 0;
   margin: 0;
+  width: 320px; /* or whatever your XP-style player width is */
+  align-items: stretch;
 }
 .lane {
   width: 100%;
   height: auto;
   display: block;
-}
-.media-player-container {
-  width: 320px; /* or whatever your XP-style player width is */
-  align-items: stretch;
 }
 .media-controls {
   display: flex;
@@ -1146,6 +1144,16 @@ input:focus, textarea:focus {
     max-width: 431px;
     width: 430px;
   }
+
+  /* ICON STYLES */
+  .scream-modal-blue-bar-text {
+    font-size: 13px;
+  }
+
+  .media-player-container {
+    width: 98%;
+  }
+
   
 
   header {
@@ -1249,7 +1257,6 @@ input:focus, textarea:focus {
     margin-top: 20px;
     width: 90%;
   }
-
   .contact-content {
     /* adjust height accounting 4 header */
     width: 100vw;
@@ -1258,7 +1265,7 @@ input:focus, textarea:focus {
     overflow-y: auto;
   }
 
-  /* HAMBURGER MENU STYLES */
+  /* MOBILE NAVBAR */
   .hamburger {
     display: none; /* ???? */
     font-size: 55px;
@@ -1317,11 +1324,9 @@ input:focus, textarea:focus {
     color: black;
     margin: 0;
   }
-
   .button {
     margin: 3px 0;
   }
-
   .button-1 {
     position: relative;
 
