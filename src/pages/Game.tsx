@@ -51,27 +51,22 @@ function Game() {
     // position states
     // window position
     const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [modalPosition, setModalPosition] = useState(() => {
-        const saved = sessionStorage.getItem('mediaModalPosition');
-        return saved ? JSON.parse(saved) : {
-            x: Math.max(0, (window.innerWidth - 500) / 2), // Adjust width based on your modal size
-            y: Math.max(0, (window.innerHeight - 400) / 2)
-        };
-    });
-    const [screamModalPosition, setScreamModalPosition] = useState(() => {
-        const saved = sessionStorage.getItem('screamModalPosition');
-        return saved ? JSON.parse(saved) : {
-            x: Math.max(0, (window.innerWidth - 400) / 2), // Adjust width based on your scream modal size
-            y: Math.max(0, (window.innerHeight - 300) / 2)
-        };
-    });
-    const [contactModalPosition, setContactModalPosition] = useState(() => {
-        const saved = sessionStorage.getItem('contactModalPosition');
-        return saved ? JSON.parse(saved) : {
-            x: Math.max(0, (window.innerWidth - 500) / 2), // Adjust width based on your modal size
-            y: Math.max(0, (window.innerHeight - 400) / 2)
-        };
-    });
+
+    // modal positions: where they load - LOAD IN THE MIDDLE
+    const [modalPosition, setModalPosition] = useState(() => ({
+        x: Math.max(0, (window.innerWidth - 500) / 2),
+        y: Math.max(0, (window.innerHeight - 400) / 2)
+    }));
+
+    const [screamModalPosition, setScreamModalPosition] = useState(() => ({
+        x: Math.max(0, (window.innerWidth - 400) / 2),
+        y: Math.max(0, (window.innerHeight - 300) / 2)
+    }));
+
+    const [contactModalPosition, setContactModalPosition] = useState(() => ({
+        x: Math.max(0, (window.innerWidth - 500) / 2),
+        y: Math.max(0, (window.innerHeight - 400) / 2)
+    }));
 
     // STATES
     // mobile menu
@@ -523,19 +518,6 @@ function Game() {
     };
 
 
-    // save position to sessionStorage only when drag ends (not during drag)
-    useEffect(() => {
-        sessionStorage.setItem('windowPosition', JSON.stringify(position));
-    }, [position]); // window
-    useEffect(() => {
-        sessionStorage.setItem('mediaModalPosition', JSON.stringify(modalPosition));
-    }, [modalPosition]); // media player
-    useEffect(() => {
-        sessionStorage.setItem('screamModalPosition', JSON.stringify(screamModalPosition));
-    }, [screamModalPosition]); // scream
-    useEffect(() => {
-        sessionStorage.setItem('contactModalPosition', JSON.stringify(contactModalPosition));
-    }, [contactModalPosition]); // contact
 
     // after drag
     useEffect(() => {
@@ -564,6 +546,30 @@ function Game() {
             document.removeEventListener('mouseup', handleModalMouseUp);
         };
     }, [isDraggingModal, modalDragOffset]);
+    
+    // recalculate modal positions when window resizes
+    useEffect(() => {
+        const handleResize = () => {
+            // Only update if the modals are NOT currently being dragged
+            if (!isDraggingModal) {
+                setModalPosition({
+                    x: Math.max(0, (window.innerWidth - 500) / 2),
+                    y: Math.max(0, (window.innerHeight - 400) / 2)
+                });
+                setScreamModalPosition({
+                    x: Math.max(0, (window.innerWidth - 400) / 2),
+                    y: Math.max(0, (window.innerHeight - 300) / 2)
+                });
+                setContactModalPosition({
+                    x: Math.max(0, (window.innerWidth - 500) / 2),
+                    y: Math.max(0, (window.innerHeight - 400) / 2)
+                });
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [isDraggingModal]);
 
 
     // hide/show content window
