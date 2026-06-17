@@ -1149,12 +1149,27 @@ input:focus, textarea:focus {
   .scream-modal-blue-bar-text {
     font-size: 13px;
   }
-
   .media-player-container {
     width: 98%;
   }
 
-  
+  .modal-body .contact {
+    width: 99vw;
+  }
+  .modal-header {
+    width: 96vw;
+  }
+  .contact-content {
+    /* adjust height accounting 4 header */
+    width: 98vw;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  .form-row {
+    width: 98vw;
+  }
+
+
 
   header {
     width: 100vw;
@@ -1257,13 +1272,7 @@ input:focus, textarea:focus {
     margin-top: 20px;
     width: 90%;
   }
-  .contact-content {
-    /* adjust height accounting 4 header */
-    width: 100vw;
-    box-sizing: border-box;
-    border: 5px solid #c3c3c3; 
-    overflow-y: auto;
-  }
+
 
   /* MOBILE NAVBAR */
   .hamburger {
