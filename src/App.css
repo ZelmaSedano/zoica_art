@@ -1326,8 +1326,8 @@ input:focus, textarea:focus {
     display: none !important;
 
     position: absolute;
-    top: 35px;
-    left: 40px;
+    top: 39px;
+    left: 32px;
 
     z-index: 999;
 
