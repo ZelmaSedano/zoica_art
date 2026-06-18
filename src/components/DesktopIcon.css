@@ -1,9 +1,6 @@
 /* NOTES: 
 
 CSS multi-class selector vs descendant selector::after
-
-    - remember to string the classes in one string, no spaces
-    ex: .desktop-icon.clippy img {
 */
 
 .desktop-icon {
@@ -39,13 +36,6 @@ CSS multi-class selector vs descendant selector::after
     width: 50px;
     height: 50px;
     margin-bottom: 4px;
-}
-
-/* no space between the 2 classes */
-.desktop-icon.clippy img {
-    width: 75px;
-    height: 75px;
-    margin-bottom: -2px;
 }
 
 /* fun fact: desktop-icon img worked, but .horoscope-icon didn't work by itself
@@ -122,88 +112,3 @@ you can just add the more specific selector in that case in front of the one tha
     color: black;
 }
 
-/* clippy */
-.chatbot-modal {
-    width: 400px;
-    max-width: 90vw;
-    background-color: #c3c3c3;
-    border-right: solid 5px #02198e;
-    border-bottom: solid 5px #02198e;
-    border-left: solid 5px #02198e;
-    box-shadow: 4px 4px rgba(0,0,0,0.5);
-}
-.chatbot-modal-header {
-    background: #000080;
-    color: white;
-    padding: 4px 2px;
-    display: flex;
-    justify-content: space-between;
-}
-.chatbot-modal-header span {
-    margin-left: 8px;
-}
-.chatbot-body {
-    display: flex;
-    flex-direction: column;
-    height: 400px;
-    padding: 6px;
-}
-.chat-history {
-    flex: 1;
-    overflow-y: auto;
-    padding: 15px;
-    background: #f5f5f5;
-    border-radius: 4px 4px 0 0;
-}
-.message-sender, 
-.message-content {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
-}
-.chat-message.user .message-sender {
-    color: red;
-}
-.chat-message.bot .message-sender {
-    color: green;
-}
-/* the ACTUAL message */
-.chat-message {
-    display: flex;
-    padding: 3px 12px;
-}
-.message-content {
-    padding-left: 10px;
-}
-.chat-message.user {
-    color: black;
-    margin-right: auto;
-}
-.chat-message.bot {
-    color: #333;
-    margin-right: auto;
-}
-.chat-input-form {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #ddd;
-    background: #c3c3c3;
-}
-.chat-input {
-    flex: 1;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    outline: none;
-    background-color: white;
-    color: black;
-}
-.chat-input:focus {
-    border-color: #0078d4;
-}
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translateY(-5px); }
-    20%, 40%, 60%, 80% { transform: translateY(5px); }
-}
-.shake-animation {
-    animation: shake 0.8s ease-in-out;
-}
