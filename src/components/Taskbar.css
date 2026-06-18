@@ -220,7 +220,10 @@
 }
 .devscape-text {
     margin-left: 4px;
+    margin-top: 3px;
     color: #d7e2fc;
+    font-size: 15.5px;
+    font-family: Arial;
 }
 
 

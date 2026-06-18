@@ -388,7 +388,7 @@ header {
 
 /* CUSTOM SCROLLBAR */
 /* Custom Windows 98-style scrollbar for .content */
-/* .content::-webkit-scrollbar {
+.content::-webkit-scrollbar {
   width: 20px;
   background-color: #ece9d8; 
 }
@@ -402,8 +402,8 @@ header {
     #e5e5e5 50%,
     #f0f0f0 100%
   );
-} */
-/* .content::-webkit-scrollbar-thumb {
+}
+.content::-webkit-scrollbar-thumb {
   background: #bfd3fa;
   border: 2px solid #ece9d8;
   border-radius: 6px;
@@ -414,9 +414,9 @@ header {
 }
 .content::-webkit-scrollbar-thumb:hover {
   background: #bfd3fa;
-} */
+}
 /* Scrollbar buttons (up/down arrows) */
-/* .content::-webkit-scrollbar-button:vertical:decrement:start {
+.content::-webkit-scrollbar-button:vertical:decrement:start {
   display: block;
   height: 16px;
   background-color: #bfd3fa;
@@ -437,13 +437,13 @@ header {
   background-position: center;
   border: 1px solid #a0a0a0;
   border-radius: 2px;
-} */
+}
 
 /* Make sure to style the scrollbar buttons on hover */
-/* .content::-webkit-scrollbar-button:hover {
+.content::-webkit-scrollbar-button:hover {
   background-color: #e1dfce;
   border-color: #888888;
-} */
+}
 
 
 
@@ -585,8 +585,8 @@ header {
   display: flex;
   flex-direction: column;
   align-self: flex-start;
-  margin-left: 0;
-  margin-top: 70px;
+  margin-left: 100px;
+  margin-top: 30px;
   flex-shrink: 0; /* prevent shrinking */
 }
 .navbar ul {
@@ -745,7 +745,6 @@ nav ul li a p{
   background: #222;
 }
 .scroll-list {
-  flex: 1;
   height: 360px;
   overflow-y: auto;
   display: flex;
@@ -755,8 +754,11 @@ nav ul li a p{
   background: #32301f;
 
   /* Hide native scrollbar */
-  /* scrollbar-width: none; 
-  -ms-overflow-style: none; */
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+}
+.scroll-list {
+  overflow-y: scroll !important;
 }
 /* ITEMS */
 .scroll-item {
@@ -1027,12 +1029,7 @@ input:focus, textarea:focus {
         display: none !important;
     }
     
-    .navbar {
-        display: flex !important;
-        width: 161px;
-        margin-left: 100px;
-        margin-top: 70px;
-    }
+
 }
 
 /********* WIDESCREEN **********/

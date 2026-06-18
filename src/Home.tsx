@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import './App.css';
@@ -67,11 +67,11 @@ function Home() {
     // mobile menu
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // const [customScrollTop, setCustomScrollTop] = useState(0);
-    // const [isDraggingScroll, setIsDraggingScroll] = useState(false);
-    // const scrollContentRef = useRef<HTMLDivElement | null>(null);
-    // const scrollTrackRef = useRef<HTMLDivElement | null>(null);
-    // const scrollThumbRef = useRef<HTMLDivElement | null>(null);
+    const [customScrollTop, setCustomScrollTop] = useState(0);
+    const [isDraggingScroll, setIsDraggingScroll] = useState(false);
+    const scrollContentRef = useRef<HTMLDivElement | null>(null);
+    const scrollTrackRef = useRef<HTMLDivElement | null>(null);
+    const scrollThumbRef = useRef<HTMLDivElement | null>(null);
 
 
     // icon states
@@ -114,144 +114,144 @@ function Home() {
 
 
 
-    // custom scrollbar funcs (keep together)
-    // const updateScrollThumb = () => {
-    // if (scrollRef.current && scrollThumbRef.current && scrollTrackRef.current) {
-    //     const scrollHeight = scrollRef.current.scrollHeight;
-    //     const clientHeight = scrollRef.current.clientHeight;
-    //     const trackHeight = scrollTrackRef.current.clientHeight;
+
+    const updateScrollThumb = () => {
+    if (scrollRef.current && scrollThumbRef.current && scrollTrackRef.current) {
+        const scrollHeight = scrollRef.current.scrollHeight;
+        const clientHeight = scrollRef.current.clientHeight;
+        const trackHeight = scrollTrackRef.current.clientHeight;
         
-    //     if (scrollHeight <= clientHeight) {
-    //     scrollThumbRef.current.style.display = 'none';
-    //     return;
-    //     }
+        if (scrollHeight <= clientHeight) {
+        scrollThumbRef.current.style.display = 'none';
+        return;
+        }
         
-    //     scrollThumbRef.current.style.display = 'block';
-    //     const thumbHeight = Math.max(30, (clientHeight / scrollHeight) * trackHeight);
-    //     const scrollPercent = scrollRef.current.scrollTop / (scrollHeight - clientHeight);
-    //     const thumbTop = scrollPercent * (trackHeight - thumbHeight);
+        scrollThumbRef.current.style.display = 'block';
+        const thumbHeight = Math.max(30, (clientHeight / scrollHeight) * trackHeight);
+        const scrollPercent = scrollRef.current.scrollTop / (scrollHeight - clientHeight);
+        const thumbTop = scrollPercent * (trackHeight - thumbHeight);
         
-    //     scrollThumbRef.current.style.height = `${thumbHeight}px`;
-    //     scrollThumbRef.current.style.top = `${thumbTop}px`;
-    // }
-    // };
+        scrollThumbRef.current.style.height = `${thumbHeight}px`;
+        scrollThumbRef.current.style.top = `${thumbTop}px`;
+    }
+    };
 
-    // const handleCustomScroll = (e: React.MouseEvent) => {
-    // if (scrollTrackRef.current && scrollRef.current) {
-    //     const rect = scrollTrackRef.current.getBoundingClientRect();
-    //     const clickY = e.clientY - rect.top;
-    //     const trackHeight = rect.height;
-    //     const scrollHeight = scrollRef.current.scrollHeight;
-    //     const clientHeight = scrollRef.current.clientHeight;
+    const handleCustomScroll = (e: React.MouseEvent) => {
+    if (scrollTrackRef.current && scrollRef.current) {
+        const rect = scrollTrackRef.current.getBoundingClientRect();
+        const clickY = e.clientY - rect.top;
+        const trackHeight = rect.height;
+        const scrollHeight = scrollRef.current.scrollHeight;
+        const clientHeight = scrollRef.current.clientHeight;
         
-    //     const scrollPercent = clickY / trackHeight;
-    //     const scrollTop = scrollPercent * (scrollHeight - clientHeight);
-    //     scrollRef.current.scrollTop = scrollTop;
-    //     updateScrollThumb();
-    // }
-    // };
+        const scrollPercent = clickY / trackHeight;
+        const scrollTop = scrollPercent * (scrollHeight - clientHeight);
+        scrollRef.current.scrollTop = scrollTop;
+        updateScrollThumb();
+    }
+    };
 
-    // const startDragScroll = (e: React.MouseEvent) => {
-    // setIsDraggingScroll(true);
-    // e.preventDefault();
-    // };
+    const startDragScroll = (e: React.MouseEvent) => {
+    setIsDraggingScroll(true);
+    e.preventDefault();
+    };
 
-    // const onDragScroll = (e: MouseEvent) => {
-    // if (isDraggingScroll && scrollTrackRef.current && scrollRef.current && scrollThumbRef.current) {
-    //     const rect = scrollTrackRef.current.getBoundingClientRect();
-    //     const trackHeight = rect.height;
-    //     const thumbHeight = scrollThumbRef.current.clientHeight;
-    //     let newTop = e.clientY - rect.top - (thumbHeight / 2);
-    //     newTop = Math.max(0, Math.min(newTop, trackHeight - thumbHeight));
+    const onDragScroll = (e: MouseEvent) => {
+    if (isDraggingScroll && scrollTrackRef.current && scrollRef.current && scrollThumbRef.current) {
+        const rect = scrollTrackRef.current.getBoundingClientRect();
+        const trackHeight = rect.height;
+        const thumbHeight = scrollThumbRef.current.clientHeight;
+        let newTop = e.clientY - rect.top - (thumbHeight / 2);
+        newTop = Math.max(0, Math.min(newTop, trackHeight - thumbHeight));
         
-    //     const scrollPercent = newTop / (trackHeight - thumbHeight);
-    //     const scrollHeight = scrollRef.current.scrollHeight;
-    //     const clientHeight = scrollRef.current.clientHeight;
-    //     const scrollTop = scrollPercent * (scrollHeight - clientHeight);
-    //     scrollRef.current.scrollTop = scrollTop;
-    //     updateScrollThumb();
-    // }
-    // };
+        const scrollPercent = newTop / (trackHeight - thumbHeight);
+        const scrollHeight = scrollRef.current.scrollHeight;
+        const clientHeight = scrollRef.current.clientHeight;
+        const scrollTop = scrollPercent * (scrollHeight - clientHeight);
+        scrollRef.current.scrollTop = scrollTop;
+        updateScrollThumb();
+    }
+    };
 
-    // const stopDragScroll = () => {
-    // setIsDraggingScroll(false);
-    // };
+    const stopDragScroll = () => {
+    setIsDraggingScroll(false);
+    };
 
-    // Add event listeners for drag scrolling
-    // useEffect(() => {
-    // if (isDraggingScroll) {
-    //     document.addEventListener('mousemove', onDragScroll);
-    //     document.addEventListener('mouseup', stopDragScroll);
-    //     return () => {
-    //     document.removeEventListener('mousemove', onDragScroll);
-    //     document.removeEventListener('mouseup', stopDragScroll);
-    //     };
-    // }
-    // }, [isDraggingScroll]);
 
-    // // 1. Initial setup with useLayoutEffect for immediate DOM access
-    //     useLayoutEffect(() => {
-    //         const scrollElement = scrollRef.current;
-    //         if (scrollElement) {
-    //             const handleScroll = () => updateScrollThumb();
-    //             scrollElement.addEventListener('scroll', handleScroll);
-    //             updateScrollThumb(); // Initial update
-    //             return () => scrollElement.removeEventListener('scroll', handleScroll);
-    //         }
-    //     }, []);
+    useEffect(() => {
+    if (isDraggingScroll) {
+        document.addEventListener('mousemove', onDragScroll);
+        document.addEventListener('mouseup', stopDragScroll);
+        return () => {
+        document.removeEventListener('mousemove', onDragScroll);
+        document.removeEventListener('mouseup', stopDragScroll);
+        };
+    }
+    }, [isDraggingScroll]);
+
+    // 1. Initial setup with useLayoutEffect for immediate DOM access
+        useLayoutEffect(() => {
+            const scrollElement = scrollRef.current;
+            if (scrollElement) {
+                const handleScroll = () => updateScrollThumb();
+                scrollElement.addEventListener('scroll', handleScroll);
+                updateScrollThumb(); // Initial update
+                return () => scrollElement.removeEventListener('scroll', handleScroll);
+            }
+        }, []);
     
-    //     // 2. Handle image loading
-    //     useEffect(() => {
-    //         const scrollElement = scrollRef.current;
-    //         if (!scrollElement) return;
+        // 2. Handle image loading
+        useEffect(() => {
+            const scrollElement = scrollRef.current;
+            if (!scrollElement) return;
     
-    //         const updateThumbAfterLoad = () => {
-    //             updateScrollThumb();
-    //     };
+            const updateThumbAfterLoad = () => {
+                updateScrollThumb();
+        };
     
-    //     // Find all images in the scroll container
-    //     const images = scrollElement.querySelectorAll('img');
-    //         let loadedCount = 0;
+        // Find all images in the scroll container
+        const images = scrollElement.querySelectorAll('img');
+            let loadedCount = 0;
             
-    //         const handleImageLoad = () => {
-    //             loadedCount++;
-    //             if (loadedCount === images.length) {
-    //             updateThumbAfterLoad();
-    //             }
-    //     };
+            const handleImageLoad = () => {
+                loadedCount++;
+                if (loadedCount === images.length) {
+                updateThumbAfterLoad();
+                }
+        };
         
-    //     images.forEach(img => {
-    //         if (img.complete) {
-    //         handleImageLoad();
-    //         } else {
-    //         img.addEventListener('load', handleImageLoad);
-    //         }
-    //     });
+        images.forEach(img => {
+            if (img.complete) {
+            handleImageLoad();
+            } else {
+            img.addEventListener('load', handleImageLoad);
+            }
+        });
         
-    //     // Also listen for window resize
-    //     window.addEventListener('resize', updateThumbAfterLoad);
+        // Also listen for window resize
+        window.addEventListener('resize', updateThumbAfterLoad);
         
-    //     return () => {
-    //         images.forEach(img => {
-    //         img.removeEventListener('load', handleImageLoad);
-    //         });
-    //         window.removeEventListener('resize', updateThumbAfterLoad);
-    //     };
-    //     }, [images]); // Re-run when images array changes
+        return () => {
+            images.forEach(img => {
+            img.removeEventListener('load', handleImageLoad);
+            });
+            window.removeEventListener('resize', updateThumbAfterLoad);
+        };
+        }, [images]); // Re-run when images array changes
     
-    //     // 3. Update when selected image changes
-    //     useEffect(() => {
-    //         updateScrollThumb();
-    //     }, [selectedImage]);
+        // 3. Update when selected image changes
+        useEffect(() => {
+            updateScrollThumb();
+        }, [selectedImage]);
     
-    //     // 4. Final safety net - multiple delayed updates
-    //     useEffect(() => {
-    //         const timeouts = [100, 300, 600].map(delay => 
-    //             setTimeout(() => updateScrollThumb(), delay)
-    //         );
+        // 4. Final safety net - multiple delayed updates
+        useEffect(() => {
+            const timeouts = [100, 300, 600].map(delay => 
+                setTimeout(() => updateScrollThumb(), delay)
+            );
             
-    //         return () => timeouts.forEach(clearTimeout);
-    //     }, []);
+            return () => timeouts.forEach(clearTimeout);
+        }, []);
     
 
 
@@ -1020,7 +1020,7 @@ function Home() {
                                         <img src='/images/up_arrow.png' />
                                     </button>
 
-                                    {/* Custom scroll container */}
+                                    {/* scroll container */}
                                     <div className="custom-scroll-container">
                                         <div className="scroll-list" ref={scrollRef}>
                                         {images.map((img) => (
@@ -1034,6 +1034,12 @@ function Home() {
                                             <img src={`/images/${img.id}.jpg`} alt={img.title} />
                                             </div>
                                         ))}
+                                        </div>
+                                        {/* custom scrolbar */}
+                                        <div className="custom-scrollbar">
+                                            <div className="scroll-track" ref={scrollTrackRef} onClick={handleCustomScroll}>
+                                                <div className="scroll-thumb" ref={scrollThumbRef} onMouseDown={startDragScroll}></div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className='right-left-arrows'>
