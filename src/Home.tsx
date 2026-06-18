@@ -553,11 +553,25 @@ function Home() {
                 });
             }
         };
-
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, [isDraggingModal]);
     // these dependencies run everytime a state is changed, so everytime isDraggingModal's value changes, this useEffect is ran
+    // Close current modal with Escape key
+    useEffect(() => {
+        const handleEscKey = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                if (showScreamModal) setShowScreamModal(false);
+                else if (showPlayModal) setShowPlayModal(false);
+                else if (showContactModal) setShowContactModal(false);
+            }
+        };
+
+        document.addEventListener('keydown', handleEscKey);
+        return () => {
+            document.removeEventListener('keydown', handleEscKey);
+        };
+    }, [showScreamModal, showPlayModal, showContactModal]);
     
     // after drag
     useEffect(() => {
@@ -581,7 +595,13 @@ function Home() {
                     label="click me"
                     x={50}
                     y={35}
-                    onClick={() => setShowScreamModal(true)}
+                    // forcing modal to load at top
+                    onClick={() => {
+                        if (window.innerWidth <= 768) {
+                            setScreamModalPosition({ x: 0, y: 20 });
+                        }
+                        setShowScreamModal(true);
+                    }}
                 />
 
                 {showScreamModal && (
@@ -618,7 +638,12 @@ function Home() {
                     label="play"
                     x={50}
                     y={145}
-                    onClick={() => setShowPlayModal(true)}
+                    onClick={() => {
+                        if (window.innerWidth <= 768) {
+                            setModalPosition({ x: 0, y: 20 });
+                        }
+                        setShowPlayModal(true);
+                    }}
                 />
 
                 {showPlayModal && (
@@ -744,7 +769,12 @@ function Home() {
                     label="contact"
                     x={50}
                     y={255}
-                    onClick={() => setShowContactModal(true)}
+                    onClick={() => {
+                        if (window.innerWidth <= 768) {
+                            setContactModalPosition({ x: 0, y: 20 });
+                        }
+                        setShowContactModal(true);
+                    }}
                 />
 
                 {showContactModal && (

@@ -12,6 +12,8 @@
   - make sure you have commas, they break the style 
 */
 
+
+
 @import url('./fonts/fontStyles.css');
 
 html, body {
@@ -27,10 +29,7 @@ html, body {
   padding: 0;
 }
 
-
-/************ Desktop Design *************/
-
-
+/********** Desktop Design ***********/
 .window {
   width: 988px;
   height: 613px;
@@ -66,6 +65,7 @@ body {
 }
 .scream-modal-blue-bar-text {
   margin-left: 5px;
+  font-family: Arial;
 }
 
 /* MEDIA PLAYER MODAL */
@@ -80,6 +80,9 @@ body {
 }
 .media-header-title {
   margin-top: 5px;
+  font-family: Arial;
+  font-weight: 600;
+  font-size: 15px;
 }
 .play-button {
   padding: 0;
@@ -1148,6 +1151,7 @@ input:focus, textarea:focus {
   /* ICON STYLES */
   .scream-modal-blue-bar-text {
     font-size: 13px;
+    margin-left: -4px;
   }
   .media-player-container {
     width: 98%;
