@@ -554,7 +554,6 @@ header {
   font-size: 27px;
   margin: 0 auto;
   text-align: center;
-  margin-right: 20px;
   margin-top: 10px;
 }
 /* .homepage-banners .banner-1 {
@@ -745,6 +744,7 @@ nav ul li a p{
   background: #222;
 }
 .scroll-list {
+
   height: 360px;
   overflow-y: auto;
   display: flex;

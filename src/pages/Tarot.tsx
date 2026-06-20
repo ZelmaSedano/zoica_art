@@ -11,7 +11,7 @@ import '../components/DesktopIcon.css';
 
 const images = [
     {
-        title:'Hanging Man',
+        title:'The Hanged Man',
         id: 'tarot/hangedmanfinal',
         url: 'http://www.etsy.com'
     },
@@ -568,6 +568,19 @@ function Tarot() {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, [isDraggingModal]);
+
+
+    // menu loads 150px down so user sees next image
+    useEffect(() => {
+        // small delay to ensure images are rendered
+        const timer = setTimeout(() => {
+            if (scrollRef.current) {
+                scrollRef.current.scrollTop = 150;
+            }
+        }, 50);
+        
+        return () => clearTimeout(timer);
+    }, []);
 
 
     // hide/show content window

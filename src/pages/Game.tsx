@@ -571,6 +571,18 @@ function Game() {
         return () => window.removeEventListener('resize', handleResize);
     }, [isDraggingModal]);
 
+    // menu loads 150px down so user sees next image
+    useEffect(() => {
+        // small delay to ensure images are rendered
+        const timer = setTimeout(() => {
+            if (scrollRef.current) {
+                scrollRef.current.scrollTop = 150;
+            }
+        }, 50);
+        
+        return () => clearTimeout(timer);
+    }, []);
+
 
     // hide/show content window
     const toggleWindow = () => setIsVisible(!isVisible);
