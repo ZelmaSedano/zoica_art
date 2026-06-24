@@ -492,9 +492,6 @@ function Home() {
         }
     };
 
-
-
-
     // USEEFFECTS FUNCTIONS
     // this needs to be after handler funcs
 

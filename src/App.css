@@ -1270,10 +1270,11 @@ input:focus, textarea:focus {
   /* Fix content container to make room for dropdown menu */
   .content-container {
     position: relative;
-    margin-top: 20px;
     width: 90%;
+    margin: 0 auto;
+    align-items: center;
+    margin-top: 20px;
   }
-
 
   /* MOBILE NAVBAR */
   .hamburger {
