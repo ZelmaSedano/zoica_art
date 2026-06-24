@@ -708,7 +708,7 @@ nav ul li a p{
 
 /* ARROWS */
 .arrow-1 img{
-  width: 50px;
+  width: 45px;
   cursor: pointer;
   padding: 0;
 }
@@ -1028,8 +1028,6 @@ input:focus, textarea:focus {
     .hamburger {
         display: none !important;
     }
-    
-
 }
 
 /********* WIDESCREEN **********/
@@ -1274,6 +1272,9 @@ input:focus, textarea:focus {
     margin: 0 auto;
     align-items: center;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;;
+
   }
 
   /* MOBILE NAVBAR */
@@ -1370,7 +1371,6 @@ input:focus, textarea:focus {
     width: 250px;
     height: 330px;
     margin: 0 auto;
-    margin-left: 41px;
     border-color: solid 1px #75714c #75714c #75714c #75714c;
   }
   .preview-title {

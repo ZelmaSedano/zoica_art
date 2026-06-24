@@ -67,6 +67,9 @@ function Home() {
     // mobile menu
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    // mobile state
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
     // const [customScrollTop, setCustomScrollTop] = useState(0);
     // const [isDraggingScroll, setIsDraggingScroll] = useState(false);
     // const scrollContentRef = useRef<HTMLDivElement | null>(null);
@@ -492,6 +495,7 @@ function Home() {
         }
     };
 
+
     // USEEFFECTS FUNCTIONS
     // this needs to be after handler funcs
 
@@ -535,6 +539,9 @@ function Home() {
     // recalculate modal positions when window resizes
     useEffect(() => {
         const handleResize = () => {
+            // Mobile detection
+            setIsMobile(window.innerWidth <= 768);
+
             // Only update if the modals are NOT currently being dragged
             if (!isDraggingModal) {
                 setModalPosition({
@@ -555,6 +562,7 @@ function Home() {
         return () => window.removeEventListener('resize', handleResize);
     }, [isDraggingModal]);
     // these dependencies run everytime a state is changed, so everytime isDraggingModal's value changes, this useEffect is ran
+
     // Close current modal with Escape key
     useEffect(() => {
         const handleEscKey = (event: KeyboardEvent) => {
@@ -570,7 +578,7 @@ function Home() {
             document.removeEventListener('keydown', handleEscKey);
         };
     }, [showScreamModal, showPlayModal, showContactModal]);
-    
+
     // after drag
     useEffect(() => {
         if (windowRef.current && !isDraggingRef.current) {
@@ -589,7 +597,6 @@ function Home() {
         
         return () => clearTimeout(timer);
     }, []);
-
 
 
     // hide/show content window
@@ -965,108 +972,183 @@ function Home() {
                     </div>
                     
 
-                    {/* CONTENT */}
                     <div className='content'>
-
-                        <div className='homepage-banners'>
-                            <div className='inner-banner-text'>
-                                <p className='banner'>Zoica Art</p>
-                                {/* <p className='banner-1'>Explore Your Dark Fantasy</p> */}
-                            </div>
-                        </div>
-
-                        {/* navbar -- image gallery -- image scroll */}
-                        <div className='content-container'>
-                            {/* Hamburger icon - visible only on mobile */}
-                            <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                ☰
-                            </div>
-
-                            {/* navbar - hidden on mobile until hamburger clicked */}
-                            <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
-                                <ul>
-                                    <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                        <Link to="/" onClick={() => setIsMenuOpen(false)}>
-                                            <p className='nav-p'>Home</p>
-                                        </Link>
-                                    </li>
-                                    <li className='button-1'>
-                                        <Link to="/tarot" onClick={() => setIsMenuOpen(false)}>
-                                            <p className='nav-p'>Tarot</p>
-                                        </Link>
-                                    </li>
-                                    <li className='button-1'>
-                                        <Link to="/norse" onClick={() => setIsMenuOpen(false)}>
-                                            <p className='nav-p'>Mythology</p>
-                                        </Link>
-                                    </li>
-                                    <li className='button-1'>
-                                        <Link to="/game" onClick={() => setIsMenuOpen(false)}>
-                                            <p className='nav-p'>Game Art</p>
-                                        </Link>
-                                    </li>
-                                    <li className='button-1'>
-                                        <Link to="/commissions" onClick={() => setIsMenuOpen(false)}>
-                                            <p className='nav-p'>Commissions</p>
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </nav>
-
-                            <section className='image-layout'>
-                                {/* LEFT: selected image preview */}
-                                <div className="preview-pane">
-                                    <img
-                                        src={`/images/${selectedImage.id}.jpg`}
-                                        alt={selectedImage.title}
-                                    />
-                                    <div className="preview-title">{selectedImage.title}</div>
+                        {isMobile ? (
+                            // MOBILE VERSION
+                            <>
+                                <div className='homepage-banners'>
+                                    <div className='inner-banner-text'>
+                                        <p className='banner'>Zoica Art</p>
+                                    </div>
                                 </div>
 
-                                {/* RIGHT: scroll selector */}
-                                <div className="scroll-menu">
-                                    <button className="arrow-1 up" onClick={scrollUp}>
-                                        <img src='/images/up_arrow.png' />
-                                    </button>
+                                <div className='content-container'>
+                                    <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                        ☰
+                                    </div>
 
-                                    {/* Custom scroll container */}
-                                    <div className="custom-scroll-container">
-                                        <div className="scroll-list" ref={scrollRef}>
-                                        {images.map((img) => (
-                                            <div
-                                            key={img.id}
-                                            className={`scroll-item ${
-                                                selectedImage.id === img.id ? 'active' : ''
-                                            }`}
-                                            onClick={() => setSelectedImage(img)}
-                                            >
-                                            <img src={`/images/${img.id}.jpg`} alt={img.title} />
-                                            </div>
-                                        ))}
+                                    <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
+                                        <ul>
+                                            <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
+                                                <Link to="/" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Home</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/tarot" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Tarot</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/norse" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Mythology</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/game" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Game Art</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/commissions" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Commissions</p>
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+                                    <section className='image-layout'>
+                                        <div className="preview-pane">
+                                            <img
+                                                src={`/images/${selectedImage.id}.jpg`}
+                                                alt={selectedImage.title}
+                                            />
+                                            <div className="preview-title">{selectedImage.title}</div>
                                         </div>
-                                    </div>
-                                    <div className='right-left-arrows'>
-                                        <button className="arrow-1 left" onClick={scrollLeft}>
-                                            <img src='/images/left_arrow.png' />
-                                        </button>
-                                        <button className="arrow-1 right" onClick={scrollRight}>
-                                            <img src='/images/right_arrow.png' />
-                                        </button>
-                                    </div>
 
-                                    <button className="arrow-1 down" onClick={scrollDown}>
-                                        <img src='/images/downward_arrow.png'/>
-                                    </button>
+                                        <div className="scroll-menu">
+                                            <div className="custom-scroll-container">
+                                                <div className="scroll-list" ref={scrollRef}>
+                                                    {images.map((img) => (
+                                                        <div
+                                                            key={img.id}
+                                                            className={`scroll-item ${selectedImage.id === img.id ? 'active' : ''}`}
+                                                            onClick={() => setSelectedImage(img)}
+                                                        >
+                                                            <img src={`/images/${img.id}.jpg`} alt={img.title} />
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <div className='right-left-arrows'>
+                                                <button className="arrow-1 left" onClick={scrollLeft}>
+                                                    <img src='/images/left_arrow.png' />
+                                                </button>
+                                                <button className="arrow-1 right" onClick={scrollRight}>
+                                                    <img src='/images/right_arrow.png' />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    TEST TEST
                                 </div>
-                            </section>
-                        </div>
+                            </>
+                        ) : (
+                            // DESKTOP VERSION
+                            <>
+                                <div className='homepage-banners'>
+                                    <div className='inner-banner-text'>
+                                        <p className='banner'>Zoica Art</p>
+                                    </div>
+                                </div>
 
-                        {/* image scrolling section */}
+                                <div className='content-container'>
+                                    {/* Hamburger icon - visible only on mobile */}
+                                    <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                        ☰
+                                    </div>
+
+                                    <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
+                                        <ul>
+                                            <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
+                                                <Link to="/" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Home</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/tarot" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Tarot</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/norse" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Mythology</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/game" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Game Art</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/commissions" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Commissions</p>
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+                                    <section className='image-layout'>
+                                        {/* LEFT: selected image preview */}
+                                        <div className="preview-pane">
+                                            <img
+                                                src={`/images/${selectedImage.id}.jpg`}
+                                                alt={selectedImage.title}
+                                            />
+                                            <div className="preview-title">{selectedImage.title}</div>
+                                        </div>
+
+                                        {/* RIGHT: scroll selector */}
+                                        <div className="scroll-menu">
+                                            <button className="arrow-1 up" onClick={scrollUp}>
+                                                <img src='/images/up_arrow.png' />
+                                            </button>
+
+                                            <div className="custom-scroll-container">
+                                                <div className="scroll-list" ref={scrollRef}>
+                                                    {images.map((img) => (
+                                                        <div
+                                                            key={img.id}
+                                                            className={`scroll-item ${selectedImage.id === img.id ? 'active' : ''}`}
+                                                            onClick={() => setSelectedImage(img)}
+                                                        >
+                                                            <img src={`/images/${img.id}.jpg`} alt={img.title} />
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <div className='right-left-arrows'>
+                                                <button className="arrow-1 left" onClick={scrollLeft}>
+                                                    <img src='/images/left_arrow.png' />
+                                                </button>
+                                                <button className="arrow-1 right" onClick={scrollRight}>
+                                                    <img src='/images/right_arrow.png' />
+                                                </button>
+                                            </div>
+
+                                            <button className="arrow-1 down" onClick={scrollDown}>
+                                                <img src='/images/downward_arrow.png'/>
+                                            </button>
+                                        </div>
+                                    </section>
+                                </div>
+                            </>
+                        )}
+
                         <div className="xp-footer-line"></div>
                     </div>
                 </div>
             )}
-
 
 
             <Taskbar
