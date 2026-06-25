@@ -713,10 +713,10 @@ function Norse() {
                                         
                                         <div className="volume-controls">
                                             <span>
-                                                <img className='backwards' src='/public/images/backwards.png'></img>
+                                                <img className='backwards' src='/images/backwards.png'></img>
                                             </span>
                                             <span>
-                                                <img className='forward' src='/public/images/forward.png'></img>
+                                                <img className='forward' src='/images/forward.png'></img>
                                             </span>
 
                                             <span>
