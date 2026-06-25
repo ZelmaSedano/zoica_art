@@ -1260,9 +1260,9 @@ input:focus, textarea:focus {
     align-items: center;
   }
   .homepage-banners .banner {
-    font-size: 27px;
+    font-size: 26px;
     margin-right: 1px;
-    margin-top: 13px;
+    margin-top: 14px;
   }
 
   /* Fix content container to make room for dropdown menu */
