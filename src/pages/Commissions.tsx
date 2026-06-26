@@ -238,8 +238,8 @@ function Commissions() {
             },
             'kM5UXATQMVrLI690I'
         )
-        .then(() => alert("Email sent to zoicaart@gmail.com!"))
-        .catch((err) => console.error("Failed to send:", err)); // log the error
+        .then(() => alert('Email sent to zoicaart@gmail.com!'))
+        .catch((err) => console.error('Failed to send:', err)); // log the error
     };
 
 
@@ -506,10 +506,10 @@ function Commissions() {
     return (
         <>
             {/* scream icon */}
-            <div className="desktop">
+            <div className='desktop'>
                 <DesktopIcon
-                    icon="/images/fishicon.png"
-                    label="click me"
+                    icon='/images/fishicon.png'
+                    label='click me'
                     x={isMobile ? 30: 50}
                     y={isMobile ? 20: 35}
                     onClick={() => {
@@ -521,9 +521,9 @@ function Commissions() {
                 />
 
                 {showScreamModal && (
-                    <div className="modal-overlay" onClick={() => setShowScreamModal(false)}>
+                    <div className='modal-overlay' onClick={() => setShowScreamModal(false)}>
                         <div 
-                            className="modal" 
+                            className='modal' 
                             ref={screamModalRef}
                             style={{
                                 position: 'fixed',
@@ -535,12 +535,12 @@ function Commissions() {
                             onClick={(e) => e.stopPropagation()}
                             onMouseDown={handleModalMouseDown}
                         >
-                            <div className="modal-header">
-                                <span className='scream-modal'>Simple and clean is the way you're making me feel tonight</span>
+                            <div className='modal-header'>
+                                <span className='scream-modal-blue-bar-text'>Simple and clean is the way you're making me feel tonight</span>
                                 <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
                             </div>
-                            <div className="modal-body">
-                                <img src="/images/idk.gif" className='gif' alt="Kingdom Hearts" />
+                            <div className='modal-body'>
+                                <img src='/images/idk.gif' className='gif' alt='Kingdom Hearts' />
                             </div>
                         </div>
                     </div>
@@ -548,10 +548,10 @@ function Commissions() {
             </div>
 
             {/* media player */}
-            <div className="desktop">
+            <div className='desktop'>
                 <DesktopIcon
-                    icon="/images/player.png"
-                    label="play"
+                    icon='/images/player.png'
+                    label='play'
                     x={isMobile ? 30: 50}
                     y={isMobile ? 125: 145}
                     onClick={() => {
@@ -563,9 +563,9 @@ function Commissions() {
                 />
 
                 {showPlayModal && (
-                    <div className="modal-overlay" onClick={() => setShowPlayModal(false)}>
+                    <div className='modal-overlay' onClick={() => setShowPlayModal(false)}>
                         <div 
-                            className="modal media-modal" 
+                            className='modal media-modal' 
                             ref={mediaModalRef}
                             style={{
                                 position: 'fixed',
@@ -577,9 +577,9 @@ function Commissions() {
                             onClick={(e) => e.stopPropagation()}
                             onMouseDown={handleModalMouseDown}
                         >
-                            <div className="modal-header">
+                            <div className='modal-header'>
                                 <div className='modal-left'>
-                                    <img className='tiny-media-player' src='/images/player.png' alt="player" />
+                                    <img className='tiny-media-player' src='/images/player.png' alt='player' />
                                     <span className='media-header-title'>Zoica Player</span>
                                 </div>
                                 <button className='x-button' onClick={() => {
@@ -592,8 +592,8 @@ function Commissions() {
                                 }}>✕</button>
                             </div>
 
-                            <div className="modal-body">
-                                <div className="media-player-container">
+                            <div className='modal-body'>
+                                <div className='media-player-container'>
                                     <video 
                                         id='video-player'
                                         src='/perfect.mp4'
@@ -609,42 +609,42 @@ function Commissions() {
                                         }}
                                     />
 
-                                    <div className="track-info">
-                                        <div className="track-title">Now Playing: "Your Video Title"</div>
+                                    <div className='track-info'>
+                                        <div className='track-title'>Now Playing: 'Your Video Title'</div>
                                     </div>
 
-                                    <div className="media-controls">
-                                        <div className="progress-container">
+                                    <div className='media-controls'>
+                                        <div className='progress-container'>
                                             <button
-                                                className="play-button"
+                                                className='play-button'
                                                 onClick={handlePlayVideo}
                                             >
                                                 {videoPlayer.isPlaying ? 
-                                                    <img src='/images/pause_1.png' className='media-player-pause' alt="pause" /> : 
-                                                    <img src='/images/play_1.png' className='media-player-play' alt="play" />
+                                                    <img src='/images/pause_1.png' className='media-player-pause' alt='pause' /> : 
+                                                    <img src='/images/play_1.png' className='media-player-play' alt='play' />
                                                 }
                                             </button>
 
-                                            <span className="time-display current-time">
+                                            <span className='time-display current-time'>
                                                 {formatTime(videoPlayer.currentTime)}
                                             </span>
                                             
                                             <input
-                                                type="range"
-                                                className="progress-bar"
-                                                min="0"
+                                                type='range'
+                                                className='progress-bar'
+                                                min='0'
                                                 max={videoPlayer.duration || 100}
                                                 value={videoPlayer.currentTime}
                                                 onChange={handleSeek}
-                                                step="0.1"
+                                                step='0.1'
                                             />
                                             
-                                            <span className="time-display total-time">
+                                            <span className='time-display total-time'>
                                                 {formatTime(videoPlayer.duration)}
                                             </span>
                                         </div>
                                         
-                                        <div className="volume-controls">
+                                        <div className='volume-controls'>
                                             <span>
                                                 <img className='backwards' src='/images/backwards.png'></img>
                                             </span>
@@ -653,15 +653,15 @@ function Commissions() {
                                             </span>
 
                                             <span>
-                                                <img src='/images/volume.png' className="volume-icon" alt="volume" />
+                                                <img src='/images/volume.png' className='volume-icon' alt='volume' />
                                             </span>
                                             <input
-                                                type="range"
-                                                className="volume-bar"
-                                                min="0"
-                                                max="1"
-                                                step="0.01"
-                                                defaultValue="1"
+                                                type='range'
+                                                className='volume-bar'
+                                                min='0'
+                                                max='1'
+                                                step='0.01'
+                                                defaultValue='1'
                                                 onChange={(e) => {
                                                     const videoElement = document.getElementById('video-player') as HTMLVideoElement;
                                                     if (videoElement) {
@@ -679,10 +679,10 @@ function Commissions() {
             </div>
 
             {/* contact icon */}
-            <div className="desktop">
+            <div className='desktop'>
                 <DesktopIcon
-                    icon="/images/contact.png"
-                    label="contact"
+                    icon='/images/contact.png'
+                    label='contact'
                     x={isMobile ? 30: 50}
                     y={isMobile ? 230: 255}
                     onClick={() => {
@@ -694,10 +694,10 @@ function Commissions() {
                 />
 
                 {showContactModal && (
-                    <div className="modal-overlay" onClick={() => setShowContactModal(false)}>
+                    <div className='modal-overlay' onClick={() => setShowContactModal(false)}>
 
                         <div 
-                            className="modal contact" 
+                            className='modal contact' 
                             ref={contactModalRef}
                             style={{
                                 position: 'fixed',
@@ -710,16 +710,16 @@ function Commissions() {
                             onMouseDown={handleModalMouseDown}
                         >
 
-                            <div className="modal-header">
+                            <div className='modal-header'>
                                 <div className='modal-header-group'>
-                                    <img className='contact-modal-img' src="/images/265.ico" alt="" />
+                                    <img className='contact-modal-img' src='/images/265.ico' alt='send-icon' />
                                     <section className='blue-bar-text'>Contact Zoica Art</section>
                                 </div>
                                 <button className='x-button' 
                                     onClick={(e) => {setShowContactModal(false);}}>✕</button>
                             </div>
 
-                            <div className="modal-body">
+                            <div className='modal-body'>
                                 
                                 <div className='contact-content'>
 
@@ -747,74 +747,74 @@ function Commissions() {
                                         </div>
                                     </div>
 
-                                    <form onSubmit={handleSubmit} className="contact-form">
+                                    <form onSubmit={handleSubmit} className='contact-form'>
                                         {/* first row - Recipient email (read-only) */}
-                                        <div className="form-row">
-                                            <label htmlFor="to" className='to-label'>T<span className='underline'>o.</span>..</label> 
+                                        <div className='form-row'>
+                                            <label htmlFor='to' className='to-label'>T<span className='underline'>o.</span>..</label> 
                                             <input
-                                                type="email"
-                                                id="to"
-                                                name="to"
+                                                type='email'
+                                                id='to'
+                                                name='to'
                                                 value={formData.to}
                                                 onChange={handleInputChange}
                                                 readOnly
-                                                className="form-input"
+                                                className='form-input'
                                             />
                                         </div>
 
                                         {/* second row - sender email */}
-                                        <div className="form-row">
-                                            <label htmlFor="from" className='from-label'><span className='underline'>F</span>rom...</label>
+                                        <div className='form-row'>
+                                            <label htmlFor='from' className='from-label'><span className='underline'>F</span>rom...</label>
                                             <input
-                                                type="email"
-                                                id="from"
-                                                name="from"
+                                                type='email'
+                                                id='from'
+                                                name='from'
                                                 value={formData.from}
                                                 onChange={handleInputChange}
                                                 required   
-                                                className="form-input"
-                                                placeholder="your email"
+                                                className='form-input'
+                                                placeholder='your email'
                                             />
                                         </div>
                                         
                                         {/* third row - email subject */}
-                                        <div className="form-row">
-                                            <label htmlFor="subject" className='subject-label'> S<span className='underline'>u</span>bject:</label>
+                                        <div className='form-row'>
+                                            <label htmlFor='subject' className='subject-label'> S<span className='underline'>u</span>bject:</label>
                                             <input
-                                                type="text"
-                                                id="subject"
-                                                name="subject"
+                                                type='text'
+                                                id='subject'
+                                                name='subject'
                                                 value={formData.subject}
                                                 onChange={handleInputChange}
                                                 required
-                                                className="form-input"
-                                                placeholder="Commission"
+                                                className='form-input'
+                                                placeholder='Commission'
                                             />
                                         </div>
                                         
                                         {/* fourth row - message body */}
-                                        <div className="form-row">
-                                            <label htmlFor="message" className='message-label'>
+                                        <div className='form-row'>
+                                            <label htmlFor='message' className='message-label'>
                                                 <span className='underline'>M</span>essage:
                                             </label>
                                             <textarea
-                                                id="message"
-                                                name="message"
+                                                id='message'
+                                                name='message'
                                                 value={formData.message}
                                                 onChange={handleInputChange}
                                                 required
-                                                className="form-textarea"
+                                                className='form-textarea'
                                                 placeholder='Can you make a portrait of my amazing cat?'
                                             />
                                         </div>
 
                                         {/* submit button row */}
-                                        <div className="form-button">
+                                        <div className='form-button'>
                                             <button 
-                                                type="submit"
+                                                type='submit'
                                                 className={`send-button ${isButtonActive ? 'active' : ''}`}
                                             >
-                                                <img src='/images/265.ico' className="send-icon" alt="Send"/>
+                                                <img src='/images/265.ico' className='send-icon' alt='Send'/>
                                                 Send
                                             </button>
                                         </div>
@@ -844,9 +844,9 @@ function Commissions() {
                     {/* BLUE BAR */}
                     <header>
                         <section className='blue-bar'>
-                            <img src="/images/18.ico" className='icon' alt="icon"/>
+                            <img src='/images/18.ico' className='icon' alt='icon'/>
                             <section className='blue-bar-text'>Zoica Browser</section>
-                            <div className="button-container">
+                            <div className='button-container'>
                                 <button className='x-button' onClick={toggleWindow}>✕</button>
                             </div>
                         </section>
@@ -887,34 +887,34 @@ function Commissions() {
 
                                     <section className='image-layout'>
 
-                                        <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                        <div className='hamburger' onClick={() => setIsMenuOpen(!isMenuOpen)}>
                                             ☰
                                         </div>
 
                                         <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
                                             <ul>
                                                 <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                                    <Link to="/" onClick={() => setIsMenuOpen(false)}>
+                                                    <Link to='/' onClick={() => setIsMenuOpen(false)}>
                                                         <p className='nav-p'>Home</p>
                                                     </Link>
                                                 </li>
                                                 <li className='button-1'>
-                                                    <Link to="/tarot" onClick={() => setIsMenuOpen(false)}>
+                                                    <Link to='/tarot' onClick={() => setIsMenuOpen(false)}>
                                                         <p className='nav-p'>Tarot</p>
                                                     </Link>
                                                 </li>
                                                 <li className='button-1'>
-                                                    <Link to="/norse" onClick={() => setIsMenuOpen(false)}>
+                                                    <Link to='/norse' onClick={() => setIsMenuOpen(false)}>
                                                         <p className='nav-p'>Mythology</p>
                                                     </Link>
                                                 </li>
                                                 <li className='button-1'>
-                                                    <Link to="/game" onClick={() => setIsMenuOpen(false)}>
+                                                    <Link to='/game' onClick={() => setIsMenuOpen(false)}>
                                                         <p className='nav-p'>Game Art</p>
                                                     </Link>
                                                 </li>
                                                 <li className='button-1'>
-                                                    <Link to="/commissions" onClick={() => setIsMenuOpen(false)}>
+                                                    <Link to='/commissions' onClick={() => setIsMenuOpen(false)}>
                                                         <p className='nav-p'>Commissions</p>
                                                     </Link>
                                                 </li>
@@ -922,17 +922,17 @@ function Commissions() {
                                         </nav>
 
 
-                                        <div className="preview-pane">
+                                        <div className='preview-pane'>
                                             <img
                                                 src={`/images/${selectedImage.id}.jpg`}
                                                 alt={selectedImage.title}
                                             />
-                                            <div className="preview-title">{selectedImage.title}</div>
+                                            <div className='preview-title'>{selectedImage.title}</div>
                                         </div>
 
-                                        <div className="scroll-menu">
-                                            <div className="custom-scroll-container">
-                                                <div className="scroll-list" ref={scrollRef}>
+                                        <div className='scroll-menu'>
+                                            <div className='custom-scroll-container'>
+                                                <div className='scroll-list' ref={scrollRef}>
                                                     {images.map((img) => (
                                                         <div
                                                             key={img.id}
@@ -945,10 +945,10 @@ function Commissions() {
                                                 </div>
                                             </div>
                                             <div className='right-left-arrows'>
-                                                <button className="arrow-1 left" onClick={scrollLeft}>
+                                                <button className='arrow-1 left' onClick={scrollLeft}>
                                                     <img src='/images/left_arrow.png' />
                                                 </button>
-                                                <button className="arrow-1 right" onClick={scrollRight}>
+                                                <button className='arrow-1 right' onClick={scrollRight}>
                                                     <img src='/images/right_arrow.png' />
                                                 </button>
                                             </div>
@@ -980,27 +980,27 @@ function Commissions() {
                                     <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
                                         <ul>
                                             <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                                <Link to="/" onClick={() => setIsMenuOpen(false)}>
+                                                <Link to='/' onClick={() => setIsMenuOpen(false)}>
                                                     <p className='nav-p'>Home</p>
                                                 </Link>
                                             </li>
                                             <li className='button-1'>
-                                                <Link to="/tarot" onClick={() => setIsMenuOpen(false)}>
+                                                <Link to='/tarot' onClick={() => setIsMenuOpen(false)}>
                                                     <p className='nav-p'>Tarot</p>
                                                 </Link>
                                             </li>
                                             <li className='button-1'>
-                                                <Link to="/norse" onClick={() => setIsMenuOpen(false)}>
+                                                <Link to='/norse' onClick={() => setIsMenuOpen(false)}>
                                                     <p className='nav-p'>Mythology</p>
                                                 </Link>
                                             </li>
                                             <li className='button-1'>
-                                                <Link to="/game" onClick={() => setIsMenuOpen(false)}>
+                                                <Link to='/game' onClick={() => setIsMenuOpen(false)}>
                                                     <p className='nav-p'>Game Art</p>
                                                 </Link>
                                             </li>
                                             <li className='button-1'>
-                                                <Link to="/commissions" onClick={() => setIsMenuOpen(false)}>
+                                                <Link to='/commissions' onClick={() => setIsMenuOpen(false)}>
                                                     <p className='nav-p'>Commissions</p>
                                                 </Link>
                                             </li>
@@ -1018,22 +1018,22 @@ function Commissions() {
 
                                     <section className='image-layout'>
                                         {/* LEFT: selected image preview */}
-                                        <div className="preview-pane">
+                                        <div className='preview-pane'>
                                             <img
                                                 src={`/images/${selectedImage.id}.jpg`}
                                                 alt={selectedImage.title}
                                             />
-                                            <div className="preview-title">{selectedImage.title}</div>
+                                            <div className='preview-title'>{selectedImage.title}</div>
                                         </div>
 
                                         {/* RIGHT: scroll selector */}
-                                        <div className="scroll-menu">
-                                            <button className="arrow-1 up" onClick={scrollUp}>
+                                        <div className='scroll-menu'>
+                                            <button className='arrow-1 up' onClick={scrollUp}>
                                                 <img src='/images/up_arrow.png' />
                                             </button>
 
-                                            <div className="custom-scroll-container">
-                                                <div className="scroll-list" ref={scrollRef}>
+                                            <div className='custom-scroll-container'>
+                                                <div className='scroll-list' ref={scrollRef}>
                                                     {images.map((img) => (
                                                         <div
                                                             key={img.id}
@@ -1046,15 +1046,15 @@ function Commissions() {
                                                 </div>
                                             </div>
                                             <div className='right-left-arrows'>
-                                                <button className="arrow-1 left" onClick={scrollLeft}>
+                                                <button className='arrow-1 left' onClick={scrollLeft}>
                                                     <img src='/images/left_arrow.png' />
                                                 </button>
-                                                <button className="arrow-1 right" onClick={scrollRight}>
+                                                <button className='arrow-1 right' onClick={scrollRight}>
                                                     <img src='/images/right_arrow.png' />
                                                 </button>
                                             </div>
 
-                                            <button className="arrow-1 down" onClick={scrollDown}>
+                                            <button className='arrow-1 down' onClick={scrollDown}>
                                                 <img src='/images/downward_arrow.png'/>
                                             </button>
                                         </div>
@@ -1063,7 +1063,7 @@ function Commissions() {
                             </>
                         )}
 
-                        <div className="xp-footer-line"></div>
+                        <div className='xp-footer-line'></div>
                     </div>
                 </div>
             )}

@@ -950,30 +950,6 @@ input:focus, textarea:focus {
     width: 430px;
   }
 
-  /* ICON STYLES */
-  .scream-modal-blue-bar-text {
-    font-size: 13px;
-    margin-left: -4px;
-  }
-  .media-player-container {
-    width: 98%;
-  }
-
-  .modal-body .contact {
-    width: 99vw;
-  }
-  .modal-header {
-    width: 96vw;
-  }
-  .contact-content {
-    /* adjust height accounting 4 header */
-    width: 98vw;
-    box-sizing: border-box;
-    overflow-y: auto;
-  }
-  .form-row {
-    width: 98vw;
-  }
 
 
 

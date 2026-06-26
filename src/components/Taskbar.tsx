@@ -39,35 +39,35 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
     };
 
     return (
-        <div className="taskbar">
+        <div className='taskbar'>
 
             <button
                 ref={startButtonRef}
                 className={`start-button ${isStartMenuOpen ? 'active' : ''}`}
                 onClick={toggleStartMenu}
             >
-                <img src="/images/windows_purple.png" className="start-icon" alt="start"/>
-                <span className="start-text">links</span>
+                <img src='/images/windows_purple.png' className='start-icon' alt='start'/>
+                <span className='start-text'>links</span>
             </button>
 
             {isStartMenuOpen && (
-                <div ref={startMenuRef} className="start-menu">
+                <div ref={startMenuRef} className='start-menu'>
                     <section className='blue-bar-1'>
-                            <img src="/images/mythology.png" className='start-menu-icon' alt="icon"/>
+                            <img src='/images/mythology.png' className='start-menu-icon' alt='icon'/>
                             <section className='blue-bar-text-1'>Zoica Art</section>
                     </section>
 
-                    <div className="start-menu-items">
-                        <a href='https://www.etsy.com/uk/shop/ZoicaArt' target='_blank' className="start-menu-item">
-                            <img src="/images/etsy.png" className='start-icon-1' alt="icon"/>
+                    <div className='start-menu-items'>
+                        <a href='https://www.etsy.com/uk/shop/ZoicaArt' target='_blank' className='start-menu-item'>
+                            <img src='/images/etsy.png' className='start-icon-1' alt='icon'/>
                             <span className='start-menu-item-text'>Shop</span>
                         </a>
-                        <a href='https://www.twitch.tv/zoicaart' target='_blank' className="start-menu-item">
-                            <img src="/images/twitch.png" className='start-icon-1' alt="icon"/>
+                        <a href='https://www.twitch.tv/zoicaart' target='_blank' className='start-menu-item'>
+                            <img src='/images/twitch.png' className='start-icon-1' alt='icon'/>
                             <span className='start-menu-item-text'>Twitch</span>
                         </a>
-                        <a href='https://www.instagram.com/zoica' target='_blank' className="start-menu-item">
-                            <img src="/images/insta.png" className='start-icon-1' alt="icon"/>
+                        <a href='https://www.instagram.com/zoica' target='_blank' className='start-menu-item'>
+                            <img src='/images/insta.png' className='start-icon-1' alt='icon'/>
                             <span className='start-menu-item-text'>Instagram</span>
                         </a>
 
@@ -82,13 +82,13 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
                 className={`devscape-button ${isVisible ? 'window-visible' : ''}`}
                 onClick={toggleWindow}
                 >
-                    <img src="/images/home.png" className='connections-icon' alt="icon"/>
-                    <span className="devscape-text">Zoica Browser</span>
+                    <img src='/images/home.png' className='connections-icon' alt='icon'/>
+                    <span className='devscape-text'>Zoica Browser</span>
                 </button>
             </div>
 
-            <div className="taskbar-items">
-                <div className="clock">
+            <div className='taskbar-items'>
+                <div className='clock'>
                 {currentTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                 </div>
             </div>

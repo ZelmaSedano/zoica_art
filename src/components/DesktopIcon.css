@@ -300,4 +300,37 @@ you can just add the more specific selector in that case in front of the one tha
         width: 40px;
         height: 40px;
     }
+
+    .modal-body .gif {
+        width: 98%;
+    }
+
+    .media-player-container {
+        width: 98%;
+    }
+
+      /* ICON STYLES */
+    .scream-modal-blue-bar-text {
+        font-size: 13px;
+        margin-left: -4px;
+    }
+    .media-player-container {
+        width: 98%;
+    }
+
+    .modal-body .contact {
+        width: 99vw;
+    }
+    .modal-header {
+        width: 96vw;
+    }
+    .contact-content {
+    /* adjust height accounting 4 header */
+        width: 98vw;
+        box-sizing: border-box;
+        overflow-y: auto;
+    }
+    .form-row {
+        width: 98vw;
+    }
 }

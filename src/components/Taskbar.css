@@ -120,7 +120,7 @@
     margin-left: 10px;
     margin-bottom: -8px;
     font-family: Arial, sans-serif;
-    font-weight: 700; /* Arial's 600 ≈ Tahoma's "bold but not too bold" */
+    font-weight: 700;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 /* desktop computer icon */
