@@ -486,8 +486,8 @@ function Game() {
                 <DesktopIcon
                     icon="/images/fishicon.png"
                     label="click me"
-                    x={50}
-                    y={35}
+                    x={isMobile ? 30 : 50}
+                    y={isMobile ? 20 : 35}
                     onClick={() => setShowScreamModal(true)}
                 />
 
@@ -523,8 +523,8 @@ function Game() {
                 <DesktopIcon
                     icon="/images/player.png"
                     label="play"
-                    x={50}
-                    y={145}
+                    x={isMobile ? 30: 50}
+                    y={isMobile ? 125: 145}
                     onClick={() => setShowPlayModal(true)}
                 />
 
@@ -649,8 +649,8 @@ function Game() {
                 <DesktopIcon
                     icon="/images/contact.png"
                     label="contact"
-                    x={50}
-                    y={255}
+                    x={isMobile ? 30: 50}
+                    y={isMobile ? 230: 255}
                     onClick={() => setShowContactModal(true)}
                 />
 
