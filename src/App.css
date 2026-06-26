@@ -288,9 +288,13 @@ header {
 }
 .url-bar-small-1-text {
   position: relative;
-  margin-top: 1px;
+  margin-top: 2px;
+  font-family: Arial;
+  font-size: 14px;
 }
 .url-bar-large {
+  font-family: Arial;
+  font-size: 14px;
   background-color: white;
   width: 85%;
   display: flex;
