@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import './App.css';
+import { EMAILJS_CONFIG } from './emailjs-config';
 
 // component imports
 import Taskbar from './components/Taskbar'
@@ -291,34 +292,26 @@ function Home() {
             [name]: value
         }));
     };
-    // handle form submission - added emailjs code to actually send email
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
         setIsButtonActive(true);
 
-        // Log what we're sending for debugging
-        console.log('Sending email with:', {
+        const templateParams = {
             to_email: 'zoicaart@gmail.com',
             from_email: formData.from,
             subject: formData.subject,
             message: formData.message
-        });
-        
+        };
+
         emailjs.send(
-            'service_gwprl37',
-            'template_nneudiv',
-            {
-            to_email: 'zoicaart@gmail.com',
-            from_email: formData.from,
-            subject: formData.subject,
-            message: formData.message
-            },
-            'LjhiQbPlXFn9EYsCD'
+            EMAILJS_CONFIG.SERVICE_ID,
+            EMAILJS_CONFIG.TEMPLATE_ID,
+            templateParams,
+            EMAILJS_CONFIG.PUBLIC_KEY
         )
-        .then((response) => {
-            console.log('SUCCESS!', response.status, response.text);
-            alert('Email sent successfully!');
-            // Reset form
+        .then((response: any) => {
+            console.log('SUCCESS!', response);
+            alert('✓ Message sent successfully!');
             setFormData({
                 to: 'zoicaart@gmail.com',
                 from: '',
@@ -327,13 +320,12 @@ function Home() {
             });
             setIsButtonActive(false);
         })
-        .catch((err) => {
-            console.error('Failed to send:', err);
-            console.error('Error details:', err.text); // This will give more info
-            alert(`Failed to send: ${err.text || 'Unknown error'}`);
+        .catch((err: any) => {
+            console.error('Failed:', err);
+            alert(`Failed to send: ${err.text || 'Please try again'}`);
             setIsButtonActive(false);
         });
-};
+    };
 
 
     // HANDLER FUNCTIONS
