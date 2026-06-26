@@ -49,7 +49,7 @@ html, body {
 }
 
 body {
-  background: url('/public/images/island.gif') no-repeat center/cover;
+  background: url('/images/island.gif') no-repeat center/cover;
   /* this makes sure elements that are set to 100% width actually span correctly */
   height: 100svh;
 }
@@ -138,7 +138,7 @@ header {
 
 /* CONTENT WINDOW */
 .content {
-  background: url('/public/images/idk.png') no-repeat;
+  background: url('/images/idk.png') no-repeat;
   background-size: 100% 100%;
 
   position: relative;
@@ -316,7 +316,9 @@ header {
   text-align: left;
   padding: 2px;
   padding-left: 5px;
-  font-size: 13.7px;
+  font-size: 14px;
+  font-family: Arial;
+  color: rgb(65, 65, 65);
 }
 .dropdown-container {
   position: relative;
@@ -433,7 +435,7 @@ nav ul li {
   position: relative;
   overflow: hidden;
   display: flex;
-  background: url('/public/images/button.png');
+  background: url('/images/button.png');
   /* border-right: 2px solid #000;
   border-bottom: 1px solid #000;
   border-top: 1px solid #000;
@@ -887,7 +889,7 @@ input:focus, textarea:focus {
     height: 732px;
   }
   .content {
-    background: url('/public/images/widescreen_standard.png') no-repeat;
+    background: url('/images/widescreen_standard.png') no-repeat;
     /* image dimensions: 1200x675*/
     max-width: 1200px;
     height: 675px;
@@ -911,7 +913,7 @@ input:focus, textarea:focus {
     margin-left: 120px;
   }
   .button-1 {
-    background: url('/public/images/button_2.png');
+    background: url('/images/button_2.png');
   }
   nav ul li {
     height: 35px;
@@ -1080,7 +1082,7 @@ input:focus, textarea:focus {
 
 
   .content {
-    background-image: url('/public/images/mobile_standard_2_shortest.png');
+    background-image: url('/images/mobile_standard_2_shortest.png');
     background-repeat: no-repeat;
     background-size: cover; /* or contain, depending on your preference */
     background-position: center;
@@ -1216,7 +1218,7 @@ input:focus, textarea:focus {
 
     margin: 0;
 
-    background: url('/public/images/button.png');
+    background: url('/images/button.png');
 
     outline: 2px solid black;
     outline-offset: 5px;
@@ -1337,7 +1339,7 @@ input:focus, textarea:focus {
 /* you can shift the background image to fit the viewport, BUT the scroll-list will shift to the left */
 @media (max-width: 400px) {
   .content {
-    background: url('/public/images/mobile_standard_2_shortest.png') no-repeat center;
+    background: url('/images/mobile_standard_2_shortest.png') no-repeat center;
     background-size: 100% 100%; /* Stretch to fill exactly */
     /* or */
     background-size: 400px 900px; /* Match your container dimensions */
