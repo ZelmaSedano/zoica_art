@@ -233,11 +233,11 @@ you can just add the more specific selector in that case in front of the one tha
     width: 70px;
     vertical-align: middle;
     margin-top: -5px;
-    background: red;
+
+
 }
 .volume-bar::-webkit-slider-runnable-track {
     height: 4px;
-  background: red;  /* Change this color for the track background */
 }
 .volume-bar::-webkit-slider-thumb {
     margin-top: -6px;

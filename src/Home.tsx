@@ -263,7 +263,7 @@ function Home() {
     //     }, []);
     
 
-
+    emailjs.init('kM5UXATQMVrLI690I');
 
     // active button styling
     const location = useLocation();
@@ -294,22 +294,46 @@ function Home() {
     // handle form submission - added emailjs code to actually send email
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        setIsButtonActive(true); // Trigger the color change
+        setIsButtonActive(true);
+
+        // Log what we're sending for debugging
+        console.log('Sending email with:', {
+            to_email: 'zoicaart@gmail.com',
+            from_email: formData.from,
+            subject: formData.subject,
+            message: formData.message
+        });
         
         emailjs.send(
-            'service_fiblai5',
-            'template_bzci6ho',
+            'service_gwprl37',
+            'template_nneudiv',
             {
             to_email: 'zoicaart@gmail.com',
             from_email: formData.from,
             subject: formData.subject,
             message: formData.message
             },
-            'kM5UXATQMVrLI690I'
+            'LjhiQbPlXFn9EYsCD'
         )
-        .then(() => alert('Email sent to zoicaart@gmail.com!'))
-        .catch((err) => console.error('Failed to send:', err)); // log the error
-    };
+        .then((response) => {
+            console.log('SUCCESS!', response.status, response.text);
+            alert('Email sent successfully!');
+            // Reset form
+            setFormData({
+                to: 'zoicaart@gmail.com',
+                from: '',
+                subject: '',
+                message: ''
+            });
+            setIsButtonActive(false);
+        })
+        .catch((err) => {
+            console.error('Failed to send:', err);
+            console.error('Error details:', err.text); // This will give more info
+            alert(`Failed to send: ${err.text || 'Unknown error'}`);
+            setIsButtonActive(false);
+        });
+};
 
 
     // HANDLER FUNCTIONS
@@ -925,8 +949,7 @@ function Home() {
                                             </button>
                                         </div>
                                     </form>
-                                {/* contact-content */}
-                                </div>
+                                </div> {/* contact-content */}
 
                             </div>
                         </div>
