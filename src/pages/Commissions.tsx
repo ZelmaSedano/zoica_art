@@ -512,7 +512,12 @@ function Commissions() {
                     label="click me"
                     x={isMobile ? 30: 50}
                     y={isMobile ? 20: 35}
-                    onClick={() => setShowScreamModal(true)}
+                    onClick={() => {
+                        if (window.innerWidth <= 768) {
+                            setScreamModalPosition({ x: 0, y: 20 });
+                        }
+                        setShowScreamModal(true);
+                    }}
                 />
 
                 {showScreamModal && (
@@ -549,7 +554,12 @@ function Commissions() {
                     label="play"
                     x={isMobile ? 30: 50}
                     y={isMobile ? 125: 145}
-                    onClick={() => setShowPlayModal(true)}
+                    onClick={() => {
+                        if (window.innerWidth <= 768) {
+                            setModalPosition({ x: 0, y: 20 });
+                        }
+                        setShowPlayModal(true);
+                    }}
                 />
 
                 {showPlayModal && (
@@ -675,7 +685,12 @@ function Commissions() {
                     label="contact"
                     x={isMobile ? 30: 50}
                     y={isMobile ? 230: 255}
-                    onClick={() => setShowContactModal(true)}
+                    onClick={() => {
+                        if (window.innerWidth <= 768) {
+                            setContactModalPosition({ x: 0, y: 20 });
+                        }
+                        setShowContactModal(true);
+                    }}
                 />
 
                 {showContactModal && (
