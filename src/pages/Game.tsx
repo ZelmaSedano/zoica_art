@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import '../App.css';
+import { EMAILJS_CONFIG } from '../emailjs-config';
 
 // component imports
 import Taskbar from '../components/Taskbar'
@@ -199,25 +200,40 @@ function Game() {
         }));
     };
     // handle form submission - added emailjs code to actually send email
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        setIsButtonActive(true); // Trigger the color change
-        
-        emailjs.send(
-            'service_fiblai5',
-            'template_bzci6ho',
-            {
+        setIsButtonActive(true);
+
+        const templateParams = {
             to_email: 'zoicaart@gmail.com',
             from_email: formData.from,
             subject: formData.subject,
             message: formData.message
-            },
-            'kM5UXATQMVrLI690I'
-        )
-        .then(() => alert('Email sent to zoicaart@gmail.com!'))
-        .catch((err) => console.error('Failed to send:', err)); // log the error
-    };
+        };
 
+        emailjs.send(
+            EMAILJS_CONFIG.SERVICE_ID,
+            EMAILJS_CONFIG.TEMPLATE_ID,
+            templateParams,
+            EMAILJS_CONFIG.PUBLIC_KEY
+        )
+        .then((response: any) => {
+            console.log('SUCCESS!', response);
+            alert('✓ Message sent successfully!');
+            setFormData({
+                to: 'zoicaart@gmail.com',
+                from: '',
+                subject: '',
+                message: ''
+            });
+            setIsButtonActive(false);
+        })
+        .catch((err: any) => {
+            console.error('Failed:', err);
+            alert(`Failed to send: ${err.text || 'Please try again'}`);
+            setIsButtonActive(false);
+        });
+    };
 
     // HANDLER FUNCTIONS
     // content window
