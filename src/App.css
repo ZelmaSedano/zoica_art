@@ -976,6 +976,11 @@ input:focus, textarea:focus {
 
 /* Mobile styles */
 @media (max-width: 768px) {
+
+  body {
+    background: url('/images/island.gif') no-repeat right/cover;
+  }
+
   .window {
     position: static !important;
     left: auto !important;
@@ -1118,7 +1123,7 @@ input:focus, textarea:focus {
     margin-top: 14px;
   }
 
-  /* Fix content container to make room for dropdown menu */
+/* CONTENT */
   .content-container {
     position: relative;
     width: 90%;
@@ -1126,19 +1131,28 @@ input:focus, textarea:focus {
     align-items: center;
     margin-top: 20px;
     display: flex;
-    flex-direction: column;;
+    flex-direction: column;
+  }
 
+
+  .image-layout {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+    position: relative;
   }
 
   /* MOBILE NAVBAR */
   .hamburger {
-    display: none; /* ???? */
+    display: block;
     font-size: 55px;
     cursor: pointer;
     color: black;
     position: absolute;
-    top: -27px;
-    left: 35px;
+
+    top: -75px;
+    /* aligns hamburger to the left-side of image-pane */
+    left: 0;
     z-index: 100;
   }
   .hamburger {
@@ -1151,8 +1165,8 @@ input:focus, textarea:focus {
     margin-top: 0 !important;
     padding: 10px 0;
 
-    top: 39px;
-    left: 40px;
+    top: -7px;
+    left: 7px;
 
     z-index: 999;
 
@@ -1213,13 +1227,6 @@ input:focus, textarea:focus {
     margin: 0 auto;
   }
   
-
-
-  .image-layout {
-    display: block;
-    margin: 0 auto;
-    margin-top: 50px;
-  }
   .preview-pane {
     width: 250px;
     height: 330px;
