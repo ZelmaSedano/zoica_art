@@ -13,57 +13,68 @@ const images = [
     {
         title:'Graybeard',
         id: 'commissions/Graybeard',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Kagnor',
         id: 'commissions/kagnor',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Mandrogora',
         id: 'commissions/mandrogora',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Mazzerisofar',
         id: 'commissions/mazzerisofar',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Olm2',
         id: 'commissions/Olmfinaltiny',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Patasola',
         id: 'commissions/patasola',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Porcelain',
         id: 'commissions/porcelain5',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Witch',
         id: 'commissions/witch',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Dragon',
         id: 'commissions/commexample',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Demon Lord',
         id: 'commissions/demonlord',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Olm1',
         id: 'commissions/olm done',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
 ];
 
@@ -91,6 +102,8 @@ function Commissions() {
     // STATES
     // mobile menu
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    // mobile state
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     // const [customScrollTop, setCustomScrollTop] = useState(0);
     // const [isDraggingScroll, setIsDraggingScroll] = useState(false);
@@ -137,150 +150,6 @@ function Commissions() {
     const scrollRef = useRef<HTMLDivElement | null>(null);
 
 
-
-
-    // custom scrollbar funcs (keep together)
-    // const updateScrollThumb = () => {
-    // if (scrollRef.current && scrollThumbRef.current && scrollTrackRef.current) {
-    //     const scrollHeight = scrollRef.current.scrollHeight;
-    //     const clientHeight = scrollRef.current.clientHeight;
-    //     const trackHeight = scrollTrackRef.current.clientHeight;
-        
-    //     if (scrollHeight <= clientHeight) {
-    //     scrollThumbRef.current.style.display = 'none';
-    //     return;
-    //     }
-        
-    //     scrollThumbRef.current.style.display = 'block';
-    //     const thumbHeight = Math.max(30, (clientHeight / scrollHeight) * trackHeight);
-    //     const scrollPercent = scrollRef.current.scrollTop / (scrollHeight - clientHeight);
-    //     const thumbTop = scrollPercent * (trackHeight - thumbHeight);
-        
-    //     scrollThumbRef.current.style.height = `${thumbHeight}px`;
-    //     scrollThumbRef.current.style.top = `${thumbTop}px`;
-    // }
-    // };
-
-    // const handleCustomScroll = (e: React.MouseEvent) => {
-    // if (scrollTrackRef.current && scrollRef.current) {
-    //     const rect = scrollTrackRef.current.getBoundingClientRect();
-    //     const clickY = e.clientY - rect.top;
-    //     const trackHeight = rect.height;
-    //     const scrollHeight = scrollRef.current.scrollHeight;
-    //     const clientHeight = scrollRef.current.clientHeight;
-        
-    //     const scrollPercent = clickY / trackHeight;
-    //     const scrollTop = scrollPercent * (scrollHeight - clientHeight);
-    //     scrollRef.current.scrollTop = scrollTop;
-    //     updateScrollThumb();
-    // }
-    // };
-
-    // const startDragScroll = (e: React.MouseEvent) => {
-    // setIsDraggingScroll(true);
-    // e.preventDefault();
-    // };
-
-    // const onDragScroll = (e: MouseEvent) => {
-    // if (isDraggingScroll && scrollTrackRef.current && scrollRef.current && scrollThumbRef.current) {
-    //     const rect = scrollTrackRef.current.getBoundingClientRect();
-    //     const trackHeight = rect.height;
-    //     const thumbHeight = scrollThumbRef.current.clientHeight;
-    //     let newTop = e.clientY - rect.top - (thumbHeight / 2);
-    //     newTop = Math.max(0, Math.min(newTop, trackHeight - thumbHeight));
-        
-    //     const scrollPercent = newTop / (trackHeight - thumbHeight);
-    //     const scrollHeight = scrollRef.current.scrollHeight;
-    //     const clientHeight = scrollRef.current.clientHeight;
-    //     const scrollTop = scrollPercent * (scrollHeight - clientHeight);
-    //     scrollRef.current.scrollTop = scrollTop;
-    //     updateScrollThumb();
-    // }
-    // };
-
-    // const stopDragScroll = () => {
-    // setIsDraggingScroll(false);
-    // };
-
-    // Add event listeners for drag scrolling
-    // useEffect(() => {
-    // if (isDraggingScroll) {
-    //     document.addEventListener('mousemove', onDragScroll);
-    //     document.addEventListener('mouseup', stopDragScroll);
-    //     return () => {
-    //     document.removeEventListener('mousemove', onDragScroll);
-    //     document.removeEventListener('mouseup', stopDragScroll);
-    //     };
-    // }
-    // }, [isDraggingScroll]);
-
-    // // 1. Initial setup with useLayoutEffect for immediate DOM access
-    //     useLayoutEffect(() => {
-    //         const scrollElement = scrollRef.current;
-    //         if (scrollElement) {
-    //             const handleScroll = () => updateScrollThumb();
-    //             scrollElement.addEventListener('scroll', handleScroll);
-    //             updateScrollThumb(); // Initial update
-    //             return () => scrollElement.removeEventListener('scroll', handleScroll);
-    //         }
-    //     }, []);
-    
-    //     // 2. Handle image loading
-    //     useEffect(() => {
-    //         const scrollElement = scrollRef.current;
-    //         if (!scrollElement) return;
-    
-    //         const updateThumbAfterLoad = () => {
-    //             updateScrollThumb();
-    //     };
-    
-    //     // Find all images in the scroll container
-    //     const images = scrollElement.querySelectorAll('img');
-    //         let loadedCount = 0;
-            
-    //         const handleImageLoad = () => {
-    //             loadedCount++;
-    //             if (loadedCount === images.length) {
-    //             updateThumbAfterLoad();
-    //             }
-    //     };
-        
-    //     images.forEach(img => {
-    //         if (img.complete) {
-    //         handleImageLoad();
-    //         } else {
-    //         img.addEventListener('load', handleImageLoad);
-    //         }
-    //     });
-        
-    //     // Also listen for window resize
-    //     window.addEventListener('resize', updateThumbAfterLoad);
-        
-    //     return () => {
-    //         images.forEach(img => {
-    //         img.removeEventListener('load', handleImageLoad);
-    //         });
-    //         window.removeEventListener('resize', updateThumbAfterLoad);
-    //     };
-    //     }, [images]); // Re-run when images array changes
-    
-    //     // 3. Update when selected image changes
-    //     useEffect(() => {
-    //         updateScrollThumb();
-    //     }, [selectedImage]);
-    
-    //     // 4. Final safety net - multiple delayed updates
-    //     useEffect(() => {
-    //         const timeouts = [100, 300, 600].map(delay => 
-    //             setTimeout(() => updateScrollThumb(), delay)
-    //         );
-            
-    //         return () => timeouts.forEach(clearTimeout);
-    //     }, []);
-    
-
-
-
     // active button styling
     const location = useLocation();
 
@@ -302,6 +171,33 @@ function Commissions() {
         }, 1000);
         return () => clearInterval(timer);
     }, []);
+
+    // recalculate modal positions when window resizes
+    useEffect(() => {
+        const handleResize = () => {
+            // Mobile detection
+            setIsMobile(window.innerWidth <= 768);
+
+            // Only update if the modals are NOT currently being dragged
+            if (!isDraggingModal) {
+                setModalPosition({
+                    x: Math.max(0, (window.innerWidth - 500) / 2),
+                    y: Math.max(0, (window.innerHeight - 400) / 2)
+                });
+                setScreamModalPosition({
+                    x: Math.max(0, (window.innerWidth - 400) / 2),
+                    y: Math.max(0, (window.innerHeight - 300) / 2)
+                });
+                setContactModalPosition({
+                    x: Math.max(0, (window.innerWidth - 500) / 2),
+                    y: Math.max(0, (window.innerHeight - 400) / 2)
+                });
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [isDraggingModal]);
+    // these dependencies run everytime a state is changed, so everytime isDraggingModal's value changes, this useEffect is ran
 
     // CONTACT
     useEffect(() => {
@@ -961,119 +857,194 @@ function Commissions() {
                     </div>
                     
 
-                    {/* CONTENT */}
                     <div className='content'>
 
-                        <div className='homepage-banners'>
-                            <div className='inner-banner-text'>
-                                <p className='banner'>Zoica Art</p>
-                                {/* <p className='banner-1'>Explore Your Dark Fantasy</p> */}
-                            </div>
-                        </div>
-
-                        {/* navbar -- image gallery -- image scroll */}
-                        <div className='content-container'>
-                            {/* Hamburger icon - visible only on mobile */}
-                            <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                ☰
-                            </div>
-
-                            {/* navbar - hidden on mobile until hamburger clicked */}
-                            <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
-                                <ul>
-                                    <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                        <Link to="/" onClick={() => setIsMenuOpen(false)}>
-                                            <p className='nav-p'>Home</p>
-                                        </Link>
-                                    </li>
-                                    <li className='button-1'>
-                                        <Link to="/tarot" onClick={() => setIsMenuOpen(false)}>
-                                            <p className='nav-p'>Tarot</p>
-                                        </Link>
-                                    </li>
-                                    <li className='button-1'>
-                                        <Link to="/norse" onClick={() => setIsMenuOpen(false)}>
-                                            <p className='nav-p'>Mythology</p>
-                                        </Link>
-                                    </li>
-                                    <li className='button-1'>
-                                        <Link to="/game" onClick={() => setIsMenuOpen(false)}>
-                                            <p className='nav-p'>Game Art</p>
-                                        </Link>
-                                    </li>
-                                    <li className='button-1'>
-                                        <Link to="/commissions" onClick={() => setIsMenuOpen(false)}>
-                                            <p className='nav-p'>Commissions</p>
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </nav>
-
-                            <section className='image-layout'>
-                                {/* LEFT: selected image preview */}
-                                <div className="preview-pane">
-                                    <img
-                                        src={`/images/${selectedImage.id}.jpg`}
-                                        alt={selectedImage.title}
-                                    />
-                                    <div className="preview-title">{selectedImage.title}</div>
+                        {isMobile ? (
+                            // MOBILE VERSION
+                            <>
+                                <div className='homepage-banners'>
+                                    <div className='inner-banner-text'>
+                                        <p className='banner'>Zoica Art</p>
+                                    </div>
                                 </div>
 
-                                {/* RIGHT: scroll selector */}
-                                <div className="scroll-menu">
-                                    <button className="arrow-1 up" onClick={scrollUp}>
-                                        <img src='/images/up_arrow.png' />
-                                    </button>
+                                <div className='content-container'>
+                                    <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                                        ☰
+                                    </div>
 
-                                    {/* Custom scroll container */}
-                                    <div className="custom-scroll-container">
-                                        <div className="scroll-list" ref={scrollRef}>
-                                        {images.map((img) => (
-                                            <div
-                                            key={img.id}
-                                            className={`scroll-item ${
-                                                selectedImage.id === img.id ? 'active' : ''
-                                            }`}
-                                            onClick={() => setSelectedImage(img)}
-                                            >
-                                            <img src={`/images/${img.id}.jpg`} alt={img.title} />
-                                            </div>
-                                        ))}
+                                    <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
+                                        <ul>
+                                            <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
+                                                <Link to="/" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Home</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/tarot" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Tarot</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/norse" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Mythology</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/game" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Game Art</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/commissions" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Commissions</p>
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+                                    <section className='image-layout'>
+                                        <div className="preview-pane">
+                                            <img
+                                                src={`/images/${selectedImage.id}.jpg`}
+                                                alt={selectedImage.title}
+                                            />
+                                            <div className="preview-title">{selectedImage.title}</div>
                                         </div>
-                                        
-                                        {/* Custom scrollbar
-                                            <div className="custom-scrollbar">
-                                                <div 
-                                                    className="scroll-track" 
-                                                    ref={scrollTrackRef}
-                                                    onClick={handleCustomScroll}
-                                                >
-                                                    <div 
-                                                    className="scroll-thumb" 
-                                                    ref={scrollThumbRef}
-                                                    onMouseDown={startDragScroll}
-                                                    />
+
+                                        <div className="scroll-menu">
+                                            <div className="custom-scroll-container">
+                                                <div className="scroll-list" ref={scrollRef}>
+                                                    {images.map((img) => (
+                                                        <div
+                                                            key={img.id}
+                                                            className={`scroll-item ${selectedImage.id === img.id ? 'active' : ''}`}
+                                                            onClick={() => setSelectedImage(img)}
+                                                        >
+                                                            <img src={`/images/${img.id}.jpg`} alt={img.title} />
+                                                        </div>
+                                                    ))}
                                                 </div>
                                             </div>
-                                        */}
-                                    </div>
-                                    <div className='right-left-arrows'>
-                                        <button className="arrow-1 left" onClick={scrollLeft}>
-                                            <img src='/images/left_arrow.png' />
-                                        </button>
-                                        <button className="arrow-1 right" onClick={scrollRight}>
-                                            <img src='/images/right_arrow.png' />
-                                        </button>
-                                    </div>
+                                            <div className='right-left-arrows'>
+                                                <button className="arrow-1 left" onClick={scrollLeft}>
+                                                    <img src='/images/left_arrow.png' />
+                                                </button>
+                                                <button className="arrow-1 right" onClick={scrollRight}>
+                                                    <img src='/images/right_arrow.png' />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </section>
 
-                                    <button className="arrow-1 down" onClick={scrollDown}>
-                                        <img src='/images/downward_arrow.png'/>
-                                    </button>
+                                    <section className='info-box'>
+                                        <div className='inner-info-box'>
+                                            <div className='info-box-text'>
+                                                <p>{selectedImage.description}</p>
+                                            </div>
+                                        </div>
+                                    </section>
                                 </div>
-                            </section>
-                        </div>
+                            </>
+                        ) : (
 
-                        {/* image scrolling section */}
+                            // DESKTOP VERSION
+                            <>
+                                <div className='homepage-banners'>
+                                    <div className='inner-banner-text'>
+                                        <p className='banner'>Zoica Art</p>
+                                    </div>
+                                </div>
+
+                                <div className='content-container'>
+
+                                <div className='navbar-info-container'>
+                                    <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
+                                        <ul>
+                                            <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
+                                                <Link to="/" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Home</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/tarot" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Tarot</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/norse" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Mythology</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/game" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Game Art</p>
+                                                </Link>
+                                            </li>
+                                            <li className='button-1'>
+                                                <Link to="/commissions" onClick={() => setIsMenuOpen(false)}>
+                                                    <p className='nav-p'>Commissions</p>
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+                                    <section className='info-box'>
+                                        <div className='inner-info-box'>
+                                            <p className='info-box-text'>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.
+                                            </p>
+                                        </div>
+                                    </section>
+                                </div>
+
+                                    <section className='image-layout'>
+                                        {/* LEFT: selected image preview */}
+                                        <div className="preview-pane">
+                                            <img
+                                                src={`/images/${selectedImage.id}.jpg`}
+                                                alt={selectedImage.title}
+                                            />
+                                            <div className="preview-title">{selectedImage.title}</div>
+                                        </div>
+
+                                        {/* RIGHT: scroll selector */}
+                                        <div className="scroll-menu">
+                                            <button className="arrow-1 up" onClick={scrollUp}>
+                                                <img src='/images/up_arrow.png' />
+                                            </button>
+
+                                            <div className="custom-scroll-container">
+                                                <div className="scroll-list" ref={scrollRef}>
+                                                    {images.map((img) => (
+                                                        <div
+                                                            key={img.id}
+                                                            className={`scroll-item ${selectedImage.id === img.id ? 'active' : ''}`}
+                                                            onClick={() => setSelectedImage(img)}
+                                                        >
+                                                            <img src={`/images/${img.id}.jpg`} alt={img.title} />
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <div className='right-left-arrows'>
+                                                <button className="arrow-1 left" onClick={scrollLeft}>
+                                                    <img src='/images/left_arrow.png' />
+                                                </button>
+                                                <button className="arrow-1 right" onClick={scrollRight}>
+                                                    <img src='/images/right_arrow.png' />
+                                                </button>
+                                            </div>
+
+                                            <button className="arrow-1 down" onClick={scrollDown}>
+                                                <img src='/images/downward_arrow.png'/>
+                                            </button>
+                                        </div>
+                                    </section>
+                                </div>
+                            </>
+                        )}
+
                         <div className="xp-footer-line"></div>
                     </div>
                 </div>

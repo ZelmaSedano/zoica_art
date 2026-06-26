@@ -23,6 +23,7 @@ CSS multi-class selector vs descendant selector::after
     border: 1px solid transparent;
     box-sizing: border-box;
     padding-top: 6px;
+
 }
 
 .desktop-icon.active .desktop-icon-label {
@@ -31,6 +32,7 @@ CSS multi-class selector vs descendant selector::after
     padding: 2px 2px;
     /* Optional: add border-radius for a nicer look */
     border-radius: 2px;
+    box-shadow: 4px 4px 10px 2px rgba(0, 0, 0, 0.3);
 }
 .desktop-icon img {
     width: 50px;
@@ -112,3 +114,9 @@ you can just add the more specific selector in that case in front of the one tha
     color: black;
 }
 
+@media (max-width: 768px) {
+    .destop-icon img {
+        width: 40px;
+        height: 40px;
+    }
+}

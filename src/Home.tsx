@@ -13,32 +13,38 @@ const images = [
     {
         title:'Revenant',
         id: 'best/revenant3',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Banished Knight',
         id: 'best/banished_knight',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Brocover',
         id: 'best/brocover',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Surtr',
         id: 'best/surtrprint',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Mazzeri',
         id: 'best/mazzerisofar',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     },
     {
         title:'Utgaard Floki',
         id: 'best/Utgaardfloki',
-        url: 'http://www.etsy.com'
+        url: 'http://www.etsy.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
     }
 ];
 
@@ -609,8 +615,8 @@ function Home() {
                 <DesktopIcon
                     icon="/images/fishicon.png"
                     label="click me"
-                    x={50}
-                    y={35}
+                    x={isMobile ? 30: 50}
+                    y={isMobile ? 20: 35}
                     // forcing modal to load at top
                     onClick={() => {
                         if (window.innerWidth <= 768) {
@@ -652,8 +658,8 @@ function Home() {
                 <DesktopIcon
                     icon="/images/player.png"
                     label="play"
-                    x={50}
-                    y={145}
+                    x={isMobile ? 30: 50}
+                    y={isMobile ? 125: 145}
                     onClick={() => {
                         if (window.innerWidth <= 768) {
                             setModalPosition({ x: 0, y: 20 });
@@ -783,8 +789,8 @@ function Home() {
                 <DesktopIcon
                     icon="/images/contact.png"
                     label="contact"
-                    x={50}
-                    y={255}
+                    x={isMobile? 30:50}
+                    y={isMobile? 230: 255}
                     onClick={() => {
                         if (window.innerWidth <= 768) {
                             setContactModalPosition({ x: 0, y: 20 });
@@ -972,7 +978,9 @@ function Home() {
                     </div>
                     
 
+
                     <div className='content'>
+
                         {isMobile ? (
                             // MOBILE VERSION
                             <>
@@ -1050,10 +1058,18 @@ function Home() {
                                             </div>
                                         </div>
                                     </section>
-                                    TEST TEST
+
+                                    <section className='info-box'>
+                                        <div className='inner-info-box'>
+                                            <div className='info-box-text'>
+                                                <p>{selectedImage.description}</p>
+                                            </div>
+                                        </div>
+                                    </section>
                                 </div>
                             </>
                         ) : (
+
                             // DESKTOP VERSION
                             <>
                                 <div className='homepage-banners'>
@@ -1063,11 +1079,8 @@ function Home() {
                                 </div>
 
                                 <div className='content-container'>
-                                    {/* Hamburger icon - visible only on mobile */}
-                                    <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                        ☰
-                                    </div>
 
+                                <div className='navbar-info-container'>
                                     <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
                                         <ul>
                                             <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
@@ -1097,6 +1110,15 @@ function Home() {
                                             </li>
                                         </ul>
                                     </nav>
+
+                                    <section className='info-box'>
+                                        <div className='inner-info-box'>
+                                            <p className='info-box-text'>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.
+                                            </p>
+                                        </div>
+                                    </section>
+                                </div>
 
                                     <section className='image-layout'>
                                         {/* LEFT: selected image preview */}
