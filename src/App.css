@@ -133,144 +133,6 @@ header {
 }
 
 
-
-
-
-/* CONTENT WINDOW */
-.content {
-  background: url('/images/idk.png') no-repeat;
-  background-size: 100% 100%;
-
-  position: relative;
-
-  /* image dimensions: 988px x 556px */
-  max-width: 988px;
-  height: 556px;
-  max-height: 556px;
-  width: 988px;
-
-  color: black;
-  /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
-
-  z-index: 0;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-
-/* CONTACT FORM */
-.modal.contact {
-  width: 600px;
-}
-.contact-header {
-  display: flex;
-  flex-direction: row;
-  padding-left: 20px;
-  border-bottom: 1px solid #2f518f;
-  background: linear-gradient(to bottom, #d1e4ff, #8fb3f6);
-}
-.contact-header-items {
-  font-size: 15.5px;
-  padding: 5px 15px 3px 0px;
-}
-.contact-header-text span {
-  text-decoration: underline;
-}
-.modal-header-group .blue-bar-text {
-    font-size: 15px;
-    word-spacing: 3px;
-}
-.contact-content {
-  background: 
-    radial-gradient(circle at top right, #c4d5f1, #91b5f3);
-
-  background: radial-gradient(
-    circle at top right,
-    #acc8f5 0%,      /* Light warm color at top-right corner */
-    #acc8f5 50%,     /* Light color persists in this radius */
-    #8cb1f6 80%,     /* Transition to darker */
-    #85acf4 100%     /* Very dark at bottom-left */
-  );
-  /* positioning */
-  position: relative;
-  width: 600px;
-  height: 450px;
-  /* text color */
-  color: black;
-  /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
-  border: none;
-  box-shadow: 
-    inset 1px 1px 0px #808080,
-    0 0 0 0px #c3c3c3;
-
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  display: flex;
-  flex-direction: column;
-}
-
-/* CUSTOM SCROLLBAR */
-/* Custom Windows 98-style scrollbar for .content */
-.content::-webkit-scrollbar {
-  width: 20px;
-  background-color: #ece9d8; 
-}
-.content::-webkit-scrollbar-track {
-  background-color: #ece9d8;
-  border: 2px solid #ece9d8;
-
-  background-image: linear-gradient(
-    to right,
-    #f0f0f0 0%,
-    #e5e5e5 50%,
-    #f0f0f0 100%
-  );
-}
-.content::-webkit-scrollbar-thumb {
-  background: #bfd3fa;
-  border: 2px solid #ece9d8;
-  border-radius: 6px;
-
-  box-shadow: 
-    inset 1px 1px 0px #ffffff,
-    inset -1px -1px 0px #316ac5;
-}
-.content::-webkit-scrollbar-thumb:hover {
-  background: #bfd3fa;
-}
-/* Scrollbar buttons (up/down arrows) */
-.content::-webkit-scrollbar-button:vertical:decrement:start {
-  display: block;
-  height: 16px;
-  background-color: #bfd3fa;
-
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5' viewBox='0 0 10 5'%3E%3Cpolygon points='0,5 5,0 10,5' fill='%23555555'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 1px solid #a0a0a0;
-  border-radius: 2px;
-}
-
-.content::-webkit-scrollbar-button:vertical:increment:end {
-  display: block;
-  height: 16px;
-  background-color: #bfd3fa;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5' viewBox='0 0 10 5'%3E%3Cpolygon points='0,0 5,5 10,0' fill='%23555555'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 1px solid #a0a0a0;
-  border-radius: 2px;
-}
-
-/* Make sure to style the scrollbar buttons on hover */
-.content::-webkit-scrollbar-button:hover {
-  background-color: #e1dfce;
-  border-color: #888888;
-}
-
-
-
-
 .url-bar {
   width: 100%;
   /* makes all the sections float inline */
@@ -361,8 +223,107 @@ header {
   color: #62625f;
   margin-left: 7px;
   font-size: 15px;
+  font-family: Arial;
+  margin-top: 1.5px;
+  font-size: 14px;
 }
 
+
+
+
+/* CUSTOM SCROLLBAR */
+/* Custom Windows 98-style scrollbar for .content */
+/* .content::-webkit-scrollbar {
+  width: 20px;
+  background-color: #ece9d8; 
+}
+.content::-webkit-scrollbar-track {
+  background-color: #ece9d8;
+  border: 2px solid #ece9d8;
+
+  background-image: linear-gradient(
+    to right,
+    #f0f0f0 0%,
+    #e5e5e5 50%,
+    #f0f0f0 100%
+  );
+}
+.content::-webkit-scrollbar-thumb {
+  background: #bfd3fa;
+  border: 2px solid #ece9d8;
+  border-radius: 6px;
+
+  box-shadow: 
+    inset 1px 1px 0px #ffffff,
+    inset -1px -1px 0px #316ac5;
+}
+.content::-webkit-scrollbar-thumb:hover {
+  background: #bfd3fa;
+} */
+/* Scrollbar buttons (up/down arrows) */
+/* .content::-webkit-scrollbar-button:vertical:decrement:start {
+  display: block;
+  height: 16px;
+  background-color: #bfd3fa;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5' viewBox='0 0 10 5'%3E%3Cpolygon points='0,5 5,0 10,5' fill='%23555555'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid #a0a0a0;
+  border-radius: 2px;
+}
+.content::-webkit-scrollbar-button:vertical:increment:end {
+  display: block;
+  height: 16px;
+  background-color: #bfd3fa;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5' viewBox='0 0 10 5'%3E%3Cpolygon points='0,0 5,5 10,0' fill='%23555555'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid #a0a0a0;
+  border-radius: 2px;
+} */
+/* Make sure to style the scrollbar buttons on hover */
+/* .content::-webkit-scrollbar-button:hover {
+  background-color: #e1dfce;
+  border-color: #888888;
+} */
+
+
+
+/* CONTENT WINDOW */
+/******** CONTENT CONTAINER ********/
+
+.content {
+  background: url('/images/idk.png') no-repeat;
+  background-size: 100% 100%;
+
+  position: relative;
+
+  /* image dimensions: 988px x 556px */
+  max-width: 988px;
+  height: 556px;
+  max-height: 556px;
+  width: 988px;
+
+  color: black;
+  /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
+
+  z-index: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.content-container {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  gap: 20px;
+  /* some extra space at top */
+  margin-top: 5px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
 .homepage-banners {
@@ -384,20 +345,6 @@ header {
   margin: 0 auto;
   text-align: center;
   margin-top: 11.5px;
-}
-
-
-/******** CONTENT CONTAINER ********/
-.content-container {
-  display: flex;
-  width: 90%;
-  justify-content: space-between;
-  gap: 20px;
-  /* some extra space at top */
-  margin-top: 5px;
-
-  margin-left: auto;
-  margin-right: auto;
 }
 
 

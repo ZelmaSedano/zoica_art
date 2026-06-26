@@ -244,50 +244,56 @@ you can just add the more specific selector in that case in front of the one tha
     cursor: pointer;
 }
 
+/* CONTACT FORM */
+.modal.contact {
+    width: 600px;
+}
+.contact-header {
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+    border-bottom: 1px solid #2f518f;
+    background: linear-gradient(to bottom, #d1e4ff, #8fb3f6);
+}
+.contact-header-items {
+    font-size: 15.5px;
+    padding: 5px 15px 3px 0px;
+}
+.contact-header-text span {
+    text-decoration: underline;
+}
+.modal-header-group .blue-bar-text {
+    font-size: 15px;
+    word-spacing: 3px;
+}
+.contact-content {
+    background: 
+        radial-gradient(circle at top right, #c4d5f1, #91b5f3);
 
-.cat-response-modal {
-    width: 350px;
-}
-.cat-buttons {
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-    justify-content: center;
-    gap: 20px;
-}
-.cat-button {
-    border: 2px solid black;
-    padding: 10px 30px;
-    margin-bottom: 15px;
+    background: radial-gradient(
+        circle at top right,
+        #acc8f5 0%,      /* Light warm color at top-right corner */
+        #acc8f5 50%,     /* Light color persists in this radius */
+        #8cb1f6 80%,     /* Transition to darker */
+        #85acf4 100%     /* Very dark at bottom-left */
+    );
+    /* positioning */
+    position: relative;
+    width: 600px;
+    height: 450px;
+    /* text color */
     color: black;
-}
-.wassupp {
-    height: 191px;
-    width: 280px;
-    margin-left: -20px;
-    padding-left: 0;
-}
-.image-container {
-    width: 100%;
+    /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
+    border: none;
+    box-shadow: 
+        inset 1px 1px 0px #808080,
+        0 0 0 0px #c3c3c3;
+
+    overflow-x: hidden; /* Prevent horizontal scrolling */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
-.image-container img {
-    max-width: 100%;
-    max-height: 200px;
-    object-fit: contain;
-}
-.horoscope-select {
-    background-color: white;
-    color: black;
-    border: 2px solid black;
-}
-.horoscope-button {
-    border: 2px solid black;
-    margin-left: 20px;
-    outline: none;
-}
+
 
 @media (max-width: 768px) {
     .destop-icon img {
