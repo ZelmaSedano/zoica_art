@@ -23,7 +23,6 @@ CSS multi-class selector vs descendant selector::after
     border: 1px solid transparent;
     box-sizing: border-box;
     padding-top: 6px;
-
 }
 
 .desktop-icon.active .desktop-icon-label {
@@ -112,6 +111,182 @@ you can just add the more specific selector in that case in front of the one tha
 }
 .modal-body {
     color: black;
+}
+
+/* icons */
+.modal .modal-body {
+    background-color: #2452c8;
+    /* fixed the extra blue at bottom under gif*/
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.scream-modal-blue-bar-text {
+    margin-left: 5px;
+    font-family: Arial;
+}
+
+/* MEDIA PLAYER MODAL */
+.modal-left {
+    display: flex;
+    align-items: center;
+}
+.tiny-media-player {
+    height: 20px;
+    margin-bottom: -3px;
+    margin-right: 10px;
+}
+.media-header-title {
+    margin-top: 5px;
+    font-family: Arial;
+    font-weight: 600;
+    font-size: 15px;
+}
+.play-button {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    /* even though I removed .button's native stylings from index.css, only this could fix it */
+    /* reset styling for this one button */
+    all: unset;
+    cursor: pointer;
+    /* removes space above volume*/
+    line-height: 0;
+    width: 34px;
+    height: 34px;
+}
+.media-player-play, 
+.media-player-pause {
+    height: 26px;
+    width: 26px;
+}
+.video-player {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.media-player-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    width: 320px; /* or whatever your XP-style player width is */
+    align-items: stretch;
+}
+.lane {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.media-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(
+        to bottom,
+        rgb(142, 170, 232),
+        rgb(87, 110, 180),
+        rgb(74, 85, 161)
+    );
+}
+.progress-container {
+    display: flex;
+    align-items: center;
+    margin: 5px auto;
+    margin-bottom: 0px;
+}
+.track-info {
+    background-color: black;
+    text-align: center;
+}
+.track-title {
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    font-size: 15px;
+    color: rgb(182, 185, 201);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.volume-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.backwards {
+    height: 15px;
+    width: 22px;
+}
+.forward {
+    height: 15px;
+    width: 22px;
+}
+.volume-icon {
+    height: 15px;
+    width: 22px;
+    display: inline-block;
+}
+.volume-bar {
+    width: 70px;
+    vertical-align: middle;
+    margin-top: -5px;
+    background: red;
+}
+.volume-bar::-webkit-slider-runnable-track {
+    height: 4px;
+  background: red;  /* Change this color for the track background */
+}
+.volume-bar::-webkit-slider-thumb {
+    margin-top: -6px;
+    cursor: pointer;
+}
+
+
+.cat-response-modal {
+    width: 350px;
+}
+.cat-buttons {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
+    gap: 20px;
+}
+.cat-button {
+    border: 2px solid black;
+    padding: 10px 30px;
+    margin-bottom: 15px;
+    color: black;
+}
+.wassupp {
+    height: 191px;
+    width: 280px;
+    margin-left: -20px;
+    padding-left: 0;
+}
+.image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image-container img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+}
+.horoscope-select {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}
+.horoscope-button {
+    border: 2px solid black;
+    margin-left: 20px;
+    outline: none;
 }
 
 @media (max-width: 768px) {
