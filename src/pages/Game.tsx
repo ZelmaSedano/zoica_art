@@ -806,8 +806,8 @@ function Game() {
                                                 type='submit'
                                                 className={`send-button ${isButtonActive ? 'active' : ''}`}
                                             >
-                                                <img src='/src/assets/send.png' className='send-icon' alt='Send'/>
-                                                Send
+                                                <img src='/images/265.ico' className='send-icon' alt='Send'/>
+                                                <div className='send-button-text'>Send</div>
                                             </button>
                                         </div>
                                     </form>

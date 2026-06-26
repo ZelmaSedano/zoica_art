@@ -188,10 +188,10 @@ function Tarot() {
         }
     }, [isButtonActive]);
     const [formData, setFormData] = useState({
-        to: 'zoicaart@gmail.com',
-        from: '',
-        subject: '',
-        message: ''
+            to: 'zoicaart@gmail.com',
+            from: '',
+            subject: '',
+            message: ''
     });
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -217,8 +217,7 @@ function Tarot() {
             templateParams,
             EMAILJS_CONFIG.PUBLIC_KEY
         )
-        .then((response: any) => {
-            console.log('SUCCESS!', response);
+        .then(() => {
             alert('✓ Message sent successfully!');
             setFormData({
                 to: 'zoicaart@gmail.com',
@@ -806,8 +805,8 @@ function Tarot() {
                                                 type='submit'
                                                 className={`send-button ${isButtonActive ? 'active' : ''}`}
                                             >
-                                                <img src='/src/assets/send.png' className='send-icon' alt='Send'/>
-                                                Send
+                                                <img src='/images/265.ico' className='send-icon' alt='Send'/>
+                                                <div className='send-button-text'>Send</div>
                                             </button>
                                         </div>
                                     </form>
