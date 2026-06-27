@@ -961,21 +961,21 @@ function Home() {
 
 
             {showSuccessModal && (
-                <div 
+                <div
                     className='modal-overlay'
                     onClick={() => setShowSuccessModal(false)}
                 >
-                    <div 
-                        className='modal'
+                    <div
+                        className='success-modal modal'
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <div className="modal-header">
+                        <div className="success-modal-header modal-header">
                             <span className="success-title">✓ Message Sent!</span>
                             <button className='x-button' onClick={() => setShowSuccessModal(false)}>
                                     ✕
                             </button>
                         </div>
-                        <div className="modal-body">
+                        <div className="success-modal-body modal-body">
                             <p className="success-message">Your message was sent successfully!</p>
                         </div>
                     </div>

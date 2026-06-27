@@ -272,10 +272,10 @@ you can just add the more specific selector in that case in front of the one tha
 
     background: radial-gradient(
         circle at top right,
-        #acc8f5 0%,      /* Light warm color at top-right corner */
-        #acc8f5 50%,     /* Light color persists in this radius */
-        #8cb1f6 80%,     /* Transition to darker */
-        #85acf4 100%     /* Very dark at bottom-left */
+        #acc8f5 0%,
+        #acc8f5 50%,
+        #8cb1f6 80%,
+        #85acf4 100%
     );
     /* positioning */
     position: relative;
@@ -335,5 +335,15 @@ you can just add the more specific selector in that case in front of the one tha
     }
     .form-row {
         width: 98vw;
+    }
+    .success-modal-header {
+        width: 77vw;
+    }
+    .success-modal {
+        width: 80vw;
+    }
+    .success-modal-body {
+        width: 80vw;
+        align-items: center;
     }
 }
