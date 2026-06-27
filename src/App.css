@@ -931,7 +931,7 @@ input:focus, textarea:focus {
 @media (max-width: 768px) {
 
   body {
-    background: url('/images/island.gif') no-repeat right/cover;
+    background: url('/images/island_2.gif') no-repeat right/cover;
   }
 
   .window {
