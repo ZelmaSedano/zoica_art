@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import '../App.css';
-import { EMAILJS_CONFIG } from '../emailjs-config';
 
 // component imports
 import Taskbar from '../components/Taskbar'
@@ -207,10 +206,10 @@ function Norse() {
         };
 
         emailjs.send(
-            EMAILJS_CONFIG.SERVICE_ID,
-            EMAILJS_CONFIG.TEMPLATE_ID,
+            'service_gwprl37',
+            'template_nneudiv',
             templateParams,
-            EMAILJS_CONFIG.PUBLIC_KEY
+            'LjhiQbPlXFn9EYsCD'
         )
         .then((response: any) => {
             console.log('SUCCESS!', response);
