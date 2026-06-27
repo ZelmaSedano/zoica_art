@@ -16,9 +16,12 @@
 
 a {
   font-weight: 500;
+  color: #3b602b;
   text-decoration: inherit;
 }
-
+a:hover {
+  color: #3b602b;
+}
 
 body {
   margin: 0;
