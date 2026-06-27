@@ -639,7 +639,7 @@ function Home() {
                     icon='/images/fishicon.png'
                     label='click me'
                     x={isMobile ? 30: 50}
-                    y={isMobile ? 20: 35}
+                    y={isMobile ? 55: 35}
                     // forcing modal to load at top
                     onClick={() => {
                         if (window.innerWidth <= 768) {
@@ -684,7 +684,7 @@ function Home() {
                     icon='/images/player.png'
                     label='play'
                     x={isMobile ? 30: 50}
-                    y={isMobile ? 125: 145}
+                    y={isMobile ? 165: 145}
                     onClick={() => {
                         if (window.innerWidth <= 768) {
                             setModalPosition({ x: 0, y: 20 });
@@ -815,7 +815,7 @@ function Home() {
                     icon='/images/contact.png'
                     label='contact'
                     x={isMobile? 30:50}
-                    y={isMobile? 230: 255}
+                    y={isMobile? 275: 255}
                     onClick={() => {
                         if (window.innerWidth <= 768) {
                             setContactModalPosition({ x: 0, y: 20 });
