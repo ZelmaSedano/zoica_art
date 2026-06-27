@@ -115,7 +115,7 @@ you can just add the more specific selector in that case in front of the one tha
 
 /* icons */
 .modal .modal-body {
-    background-color: #2452c8;
+    background-color: #c0c0c0;
     /* fixed the extra blue at bottom under gif*/
     display: flex;
     justify-content: center;
@@ -292,6 +292,9 @@ you can just add the more specific selector in that case in front of the one tha
     overflow-x: hidden; /* Prevent horizontal scrolling */
     display: flex;
     flex-direction: column;
+}
+.success-message {
+    padding: 5px 15px;
 }
 
 

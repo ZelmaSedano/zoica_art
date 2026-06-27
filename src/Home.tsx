@@ -59,12 +59,10 @@ function Home() {
         x: Math.max(0, (window.innerWidth - 500) / 2),
         y: Math.max(0, (window.innerHeight - 400) / 2)
     }));
-
     const [screamModalPosition, setScreamModalPosition] = useState(() => ({
         x: Math.max(0, (window.innerWidth - 400) / 2),
         y: Math.max(0, (window.innerHeight - 300) / 2)
     }));
-
     const [contactModalPosition, setContactModalPosition] = useState(() => ({
         x: Math.max(0, (window.innerWidth - 500) / 2),
         y: Math.max(0, (window.innerHeight - 400) / 2)
@@ -73,16 +71,8 @@ function Home() {
     // STATES
     // mobile menu
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
     // mobile state
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-    // const [customScrollTop, setCustomScrollTop] = useState(0);
-    // const [isDraggingScroll, setIsDraggingScroll] = useState(false);
-    // const scrollContentRef = useRef<HTMLDivElement | null>(null);
-    // const scrollTrackRef = useRef<HTMLDivElement | null>(null);
-    // const scrollThumbRef = useRef<HTMLDivElement | null>(null);
-
 
     // icon states
     const [showScreamModal, setShowScreamModal] = useState(false);
@@ -107,6 +97,12 @@ function Home() {
         duration: 0,
     });
 
+    // contact modal
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+
+
+
     // refs for dragging
     const windowRef = useRef<HTMLDivElement | null>(null);
     const mediaModalRef = useRef<HTMLDivElement | null>(null);
@@ -125,6 +121,13 @@ function Home() {
 
 
     // custom scrollbar funcs (keep together)
+
+    // const [customScrollTop, setCustomScrollTop] = useState(0);
+    // const [isDraggingScroll, setIsDraggingScroll] = useState(false);
+    // const scrollContentRef = useRef<HTMLDivElement | null>(null);
+    // const scrollTrackRef = useRef<HTMLDivElement | null>(null);
+    // const scrollThumbRef = useRef<HTMLDivElement | null>(null);
+
     // const updateScrollThumb = () => {
     // if (scrollRef.current && scrollThumbRef.current && scrollTrackRef.current) {
     //     const scrollHeight = scrollRef.current.scrollHeight;
@@ -309,9 +312,14 @@ function Home() {
             templateParams,
             EMAILJS_CONFIG.PUBLIC_KEY
         )
-        .then((response: any) => {
-            console.log('SUCCESS!', response);
-            alert('✓ Message sent successfully!');
+        .then(() => {
+            setShowSuccessModal(true);
+
+        // success message times out after 2 seconds
+        setTimeout(() => {
+            setShowSuccessModal(false);
+        },2000);
+
             setFormData({
                 to: 'zoicaart@gmail.com',
                 from: '',
@@ -659,7 +667,9 @@ function Home() {
                         >
                             <div className='modal-header'>
                                 <span className='scream-modal-blue-bar-text'>Simple and clean is the way you're making me feel tonight</span>
-                                <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
+                                <button className='x-button' onClick={() => setShowScreamModal(false)}>
+                                    ✕
+                                </button>
                             </div>
                             <div className='modal-body'>
                                 <img src='/images/idk.gif' className='gif' alt='Kingdom Hearts' />
@@ -948,6 +958,33 @@ function Home() {
                     </div>
                 )}
             </div>
+
+
+            {showSuccessModal && (
+                <div 
+                    className='modal-overlay'
+                    onClick={() => setShowSuccessModal(false)}
+                >
+                    <div 
+                        className='modal'
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="modal-header">
+                            <span className="success-title">✓ Message Sent!</span>
+                            <button className='x-button' onClick={() => setShowSuccessModal(false)}>
+                                    ✕
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <p className="success-message">Your message was sent successfully!</p>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+
+
+
 
 
             {/* content window - draggable */}
