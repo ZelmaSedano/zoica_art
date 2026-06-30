@@ -38,6 +38,11 @@ CSS multi-class selector vs descendant selector::after
     height: 50px;
     margin-bottom: 4px;
 }
+.desktop-icon-label {
+    font-family: Arial;
+    font-size: 13.7px;
+    width: 120%;
+}
 
 /* fun fact: desktop-icon img worked, but .horoscope-icon didn't work by itself
 
@@ -389,6 +394,15 @@ you can just add the more specific selector in that case in front of the one tha
     filter: brightness(1.05);
 }
 
+
+.desktop-icon.about-zoica img {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 4px;
+}
+.sweden-pic {
+    width: 600px;
+}
 
 @media (max-width: 768px) {
     .destop-icon img {

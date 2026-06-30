@@ -54,6 +54,7 @@ function Home() {
     // window position
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
+    // STATES
     // modal positions: where they load - LOAD IN THE MIDDLE
     const [modalPosition, setModalPosition] = useState(() => ({
         x: Math.max(0, (window.innerWidth - 500) / 2),
@@ -67,8 +68,11 @@ function Home() {
         x: Math.max(0, (window.innerWidth - 500) / 2),
         y: Math.max(0, (window.innerHeight - 400) / 2)
     }));
+    const [infoModalPosition, setInfoModalPosition] = useState(() => ({
+        x: Math.max(0, (window.innerWidth - 500) / 2), 
+        y: Math.max(0, (window.innerHeight - 400) / 2)
+    }))
 
-    // STATES
     // mobile menu
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     // mobile state
@@ -78,6 +82,8 @@ function Home() {
     const [showScreamModal, setShowScreamModal] = useState(false);
     const [showPlayModal, setShowPlayModal] = useState(false);
     const [showContactModal, setShowContactModal] = useState(false);
+    const [showInfoModal, setShowInfoModal] = useState(false);
+
     // dragging states
     const [isDraggingModal, setIsDraggingModal] = useState(false);
     const [modalDragOffset, setModalDragOffset] = useState({ x: 0, y: 0 });
@@ -85,8 +91,7 @@ function Home() {
     // calculator
     const [showCalculator, setShowCalculator] = useState(false);
     const [calculatorPosition, setCalculatorPosition] = useState({ x: 200, y: 200 });
-    const [isDraggingCalculator, setIsDraggingCalculator] = useState(false);
-    const [calculatorDragOffset, setCalculatorDragOffset] = useState({ x: 0, y: 0 });
+
     // calculator logic states (add with your other states)
     const [calculatorDisplay, setCalculatorDisplay] = useState('0');
     const [previousValue, setPreviousValue] = useState<number | null>(null);
@@ -123,6 +128,7 @@ function Home() {
     const screamModalRef = useRef<HTMLDivElement | null>(null);
     const contactModalRef = useRef<HTMLDivElement | null>(null);
     const calculatorModalRef = useRef<HTMLDivElement | null>(null);
+    const infoModalRef = useRef<HTMLDivElement | null>(null);
     
     const isDraggingRef = useRef(false);
     const dragOffsetRef = useRef({ x: 0, y: 0 });
@@ -468,7 +474,9 @@ function Home() {
             windowRef.current.style.cursor = 'grabbing';
         }
     };
+
     // modal windows
+    // dragging
     const handleModalMouseDown = (e: React.MouseEvent) => {
         // if clicking on either modal's header
         if ((e.target as HTMLElement).closest('.modal-header') && 
@@ -479,6 +487,7 @@ function Home() {
             const isScreamModal = screamModalRef.current?.contains(e.target as Node);
             const isContactModal = contactModalRef.current?.contains(e.target as Node);
             const isCalculatorModal = calculatorModalRef.current?.contains(e.target as Node);
+            const isInfoModal = infoModalRef.current?.contains(e.target as Node);
             
             if (isMediaModal && mediaModalRef.current) {
                 const rect = mediaModalRef.current.getBoundingClientRect();
@@ -503,6 +512,13 @@ function Home() {
                 });
             } else if (isCalculatorModal && calculatorModalRef.current) {
                 const rect = calculatorModalRef.current.getBoundingClientRect();
+                setIsDraggingModal(true);
+                setModalDragOffset({
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top
+                });
+            }  else if (isInfoModal && infoModalRef.current) {
+                const rect = infoModalRef.current.getBoundingClientRect();
                 setIsDraggingModal(true);
                 setModalDragOffset({
                     x: e.clientX - rect.left,
@@ -533,6 +549,7 @@ function Home() {
         dragPositionRef.current = { x: constrainedX, y: constrainedY };
     };
     // modal windows
+    // more dragging
     const handleModalMouseMove = (e: MouseEvent) => {
         if (isDraggingModal) {
             // check which modal is currently being dragged
@@ -572,9 +589,19 @@ function Home() {
                     x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
                     y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
                 });
+            } else if (infoModalRef.current) {
+                const newX = e.clientX - modalDragOffset.x;
+                const newY = e.clientY - modalDragOffset.y;
+                const { offsetWidth, offsetHeight } = infoModalRef.current;
+                
+                setInfoModalPosition({
+                    x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
+                    y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
+                });
             }
         }
     };
+
     // content window
     const handleWindowMouseUp = () => {
         if (!isDraggingRef.current) return;
@@ -590,6 +617,8 @@ function Home() {
         setPosition(dragPositionRef.current);
     };
     const handleModalMouseUp = () => setIsDraggingModal(false);
+
+
 
     // MEDIA PLAYER HANDLER FUNCS
     const handlePlayVideo = () => {
@@ -625,6 +654,7 @@ function Home() {
         const secs = Math.floor(seconds % 60);
         return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     };
+
 
     // image menu scrolling handlers
     const scrollUp = () => {
@@ -709,6 +739,10 @@ function Home() {
                     x: Math.max(0, (window.innerWidth - 500) / 2),
                     y: Math.max(0, (window.innerHeight - 400) / 2)
                 });
+                setInfoModalPosition({
+                    x: Math.max(0, (window.innerWidth - 500) / 2),
+                    y: Math.max(0, (window.innerHeight - 400) / 2)
+                });
             }
         };
         window.addEventListener('resize', handleResize);
@@ -761,7 +795,7 @@ function Home() {
             <div className='desktop'>
                 <DesktopIcon
                     icon='/images/fishicon.png'
-                    label='click me'
+                    label='Click Me'
                     x={isMobile ? 30: 50}
                     y={isMobile ? 45: 35}
                     // forcing modal to load at top
@@ -806,7 +840,7 @@ function Home() {
             <div className='desktop'>
                 <DesktopIcon
                     icon='/images/player.png'
-                    label='play'
+                    label='Media Player'
                     x={isMobile ? 30: 50}
                     y={isMobile ? 155: 145}
                     onClick={() => {
@@ -937,7 +971,7 @@ function Home() {
             <div className='desktop'>
                 <DesktopIcon
                     icon='/images/contact.png'
-                    label='contact'
+                    label='Contact'
                     x={isMobile? 30:50}
                     y={isMobile? 265: 255}
                     onClick={() => {
@@ -1111,8 +1145,8 @@ function Home() {
                 <DesktopIcon
                     icon="/images/calculator.png"
                     label="Calculator"
-                    x={50}
-                    y={355}
+                    x={isMobile? 30 : 50}
+                    y={isMobile? 365: 355}
                     onClick={() => setShowCalculator(true)}
                     className='calculator'
                 />
@@ -1190,6 +1224,52 @@ function Home() {
                                     <button className="calc-btn operator-btn" onClick={() => performOperation('+')}>+</button>
                                     <button className="calc-btn equals-btn" onClick={compute}>=</button>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* info icon */}
+            <div className='desktop'>
+                <DesktopIcon
+                    icon='/images/1001.ico'
+                    label='About Zoica'
+                    x={isMobile ? 30: 50}
+                    y={isMobile ? 455: 465}
+                    // forcing modal to load at top
+                    onClick={() => {
+                        if (window.innerWidth <= 768) {
+                            setScreamModalPosition({ x: 0, y: 20 });
+                        }
+                        setShowInfoModal(true);
+                    }}
+                    className='about-zoica'
+                />
+
+                {showInfoModal && (
+                    <div className='modal-overlay' onClick={() => setShowInfoModal(false)}>
+                        <div 
+                            className='modal' 
+                            ref={screamModalRef}
+                            style={{
+                                position: 'fixed',
+                                left: `${screamModalPosition.x}px`,
+                                top: `${screamModalPosition.y}px`,
+                                cursor: isDraggingModal ? 'grabbing' : 'default',
+                                margin: 0,
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                            onMouseDown={handleModalMouseDown}
+                        >
+                            <div className='modal-header'>
+                                <span className='scream-modal-blue-bar-text'>Hej! I am Svenska/Swedish</span>
+                                <button className='x-button' onClick={() => setShowInfoModal(false)}>
+                                    ✕
+                                </button>
+                            </div>
+                            <div className='modal-body'>
+                                <img src='/images/sweden.jpg' className='sweden-pic' alt='Kingdom Hearts' />
                             </div>
                         </div>
                     </div>
