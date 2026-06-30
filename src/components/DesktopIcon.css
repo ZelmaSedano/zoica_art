@@ -233,8 +233,6 @@ you can just add the more specific selector in that case in front of the one tha
     width: 70px;
     vertical-align: middle;
     margin-top: -5px;
-
-
 }
 .volume-bar::-webkit-slider-runnable-track {
     height: 4px;
@@ -295,6 +293,100 @@ you can just add the more specific selector in that case in front of the one tha
 }
 .success-message {
     padding: 5px 15px;
+}
+/* calculator styles */
+.calculator-modal {
+    width: 300px !important;
+    background: #c0c0c0 !important;
+}
+.calculator-body {
+    padding: 6px;
+    background: #c0c0c0;
+}
+.calculator-display {
+    background: #ffffff;
+    border: 2px solid #808080;
+    padding: 4px 8px;
+    margin-bottom: 6px;
+    text-align: right;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 28px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+.display-content {
+    color: #000000;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 3px;
+}
+.calc-btn {
+    padding: 8px 0;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+    box-shadow: 
+        1px 1px 0px #000000,
+        inset 1px 1px 0px #dfdfdf;
+    transition: all 0.05s ease;
+    text-align: center;
+    min-height: 32px;
+}
+.calc-btn:active {
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    box-shadow: 
+        inset -1px -1px 0 #dfdfdf,
+        inset 1px 1px 0 #000;
+}
+.calc-btn.number-btn {
+    color: #1512bb;
+}
+.calc-btn.operator-btn {
+    color: #c91933;
+}
+.calc-btn.operator-btn-1 {
+    color: #0c0462;
+}
+.calc-btn.function-btn {
+    font-size: 14px;
+    color: #0c0462;
+}
+.calc-btn.function-btn-1 {
+    font-size: 14px;
+    color: #7b2831;
+}
+.calc-btn.equals-btn {
+    color: #c91933;
+    font-weight: bold;
+    font-size: 20px;
+}
+.calc-btn.memory-btn {
+    font-size: 12px;
+    padding: 4px 0;
+    min-height: 24px;
+    color: #cc110e;
+}
+.calc-btn.zero-btn {
+    grid-column: span 1;
+}
+.calc-btn:hover {
+    filter: brightness(1.05);
 }
 
 
