@@ -90,6 +90,8 @@ you can just add the more specific selector in that case in front of the one tha
 
     align-content: center;
     align-items: center;
+    font-family: Arial;
+    font-weight: bold;
 }
 .modal-header-group {
     display: flex;
