@@ -972,7 +972,7 @@ function Tarot() {
                 )}
             </div>
 
-                        {/* calculator icon */}
+            {/* calculator icon */}
             <div className="desktop">
                 <DesktopIcon
                     icon="/images/calculator.png"
@@ -1068,7 +1068,7 @@ function Tarot() {
                     icon='/images/1001.ico'
                     label='About Zoica'
                     x={isMobile ? 30 : 50}
-                    y={isMobile ? 455 : 450}
+                    y={isMobile ? 455 : 460}
                     // forcing modal to load at top
                     onClick={() => {
                         if (window.innerWidth <= 768) {
