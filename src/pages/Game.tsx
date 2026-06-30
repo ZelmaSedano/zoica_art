@@ -979,8 +979,8 @@ function Game() {
                 <DesktopIcon
                     icon="/images/calculator.png"
                     label="Calculator"
-                    x={50}
-                    y={355}
+                    x={isMobile? 30 : 50}
+                    y={isMobile? 335 : 355}
                     onClick={() => setShowCalculator(true)}
                     className='calculator'
                 />
@@ -1069,8 +1069,8 @@ function Game() {
                 <DesktopIcon
                     icon='/images/1001.ico'
                     label='About Zoica'
-                    x={isMobile ? 30: 50}
-                    y={isMobile ? 455: 465}
+                    x={isMobile ? 30 : 50}
+                    y={isMobile ? 450 : 450}
                     // forcing modal to load at top
                     onClick={() => {
                         if (window.innerWidth <= 768) {

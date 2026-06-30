@@ -1236,7 +1236,7 @@ function Home() {
                     icon='/images/1001.ico'
                     label='About Zoica'
                     x={isMobile ? 30: 50}
-                    y={isMobile ? 455: 465}
+                    y={isMobile ? 470: 470}
                     // forcing modal to load at top
                     onClick={() => {
                         if (window.innerWidth <= 768) {

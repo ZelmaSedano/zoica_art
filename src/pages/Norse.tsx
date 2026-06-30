@@ -976,8 +976,8 @@ function Norse() {
                 <DesktopIcon
                     icon="/images/calculator.png"
                     label="Calculator"
-                    x={50}
-                    y={355}
+                    x={isMobile? 30: 50}
+                    y={isMobile? 335: 355}
                     onClick={() => setShowCalculator(true)}
                     className='calculator'
                 />
@@ -1067,7 +1067,7 @@ function Norse() {
                     icon='/images/1001.ico'
                     label='About Zoica'
                     x={isMobile ? 30: 50}
-                    y={isMobile ? 455: 465}
+                    y={isMobile ? 455: 450}
                     // forcing modal to load at top
                     onClick={() => {
                         if (window.innerWidth <= 768) {

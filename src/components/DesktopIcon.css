@@ -411,20 +411,17 @@ you can just add the more specific selector in that case in front of the one tha
     }
 
     .modal-body .gif {
-        width: 98%;
+        width: 99%;
     }
 
     .media-player-container {
-        width: 98%;
+        width: 99%;
     }
 
       /* ICON STYLES */
     .scream-modal-blue-bar-text {
-        font-size: 13px;
+        font-size: 12px;
         margin-left: -4px;
-    }
-    .media-player-container {
-        width: 98%;
     }
 
     .modal-body .contact {
@@ -451,5 +448,8 @@ you can just add the more specific selector in that case in front of the one tha
     .success-modal-body {
         width: 80vw;
         align-items: center;
+    }
+    .sweden-pic {
+        width: 99vw;
     }
 }
