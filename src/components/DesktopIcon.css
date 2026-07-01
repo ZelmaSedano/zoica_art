@@ -449,6 +449,10 @@ you can just add the more specific selector in that case in front of the one tha
         width: 80vw;
         align-items: center;
     }
+    .calculator-modal {
+        width: 99vw !important;
+        background: #efe8d6 !important;
+    }
     .sweden-pic {
         width: 99vw;
     }

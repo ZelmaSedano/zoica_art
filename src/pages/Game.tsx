@@ -75,6 +75,10 @@ function Game() {
         x: Math.max(0, (window.innerWidth - 500) / 2),
         y: Math.max(0, (window.innerHeight - 400) / 2)
     }));
+    const [calculatorModalPosition, setCalculatorModalPosition] = useState(() => ({
+        x: Math.max(0, (window.innerWidth - 500) / 2),
+        y: Math.max(0, (window.innerHeight - 400) / 2)
+    }));
     const [infoModalPosition, setInfoModalPosition] = useState(() => ({
         x: Math.max(0, (window.innerWidth - 500) / 2), 
         y: Math.max(0, (window.innerHeight - 400) / 2)
@@ -105,7 +109,6 @@ function Game() {
 
     // calculator
     const [showCalculator, setShowCalculator] = useState(false);
-    const [calculatorPosition, setCalculatorPosition] = useState({ x: 200, y: 200 });
 
     // calculator logic states (add with your other states)
     const [calculatorDisplay, setCalculatorDisplay] = useState('0');
@@ -485,7 +488,7 @@ function Game() {
                 const newY = e.clientY - modalDragOffset.y;
                 const { offsetWidth, offsetHeight } = calculatorModalRef.current;
                 
-                setCalculatorPosition({
+                setCalculatorModalPosition({
                     x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
                     y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
                 });
@@ -619,6 +622,10 @@ function Game() {
                     y: Math.max(0, (window.innerHeight - 300) / 2)
                 });
                 setContactModalPosition({
+                    x: Math.max(0, (window.innerWidth - 500) / 2),
+                    y: Math.max(0, (window.innerHeight - 400) / 2)
+                });
+                setCalculatorModalPosition({
                     x: Math.max(0, (window.innerWidth - 500) / 2),
                     y: Math.max(0, (window.innerHeight - 400) / 2)
                 });
@@ -994,8 +1001,8 @@ function Game() {
                             ref={calculatorModalRef}
                             style={{
                                 position: 'fixed',
-                                left: `${calculatorPosition.x}px`,
-                                top: `${calculatorPosition.y}px`
+                                left: `${calculatorModalPosition.x}px`,
+                                top: `${calculatorModalPosition.y}px`
                             }}
                             onMouseDown={handleModalMouseDown}
                         >
