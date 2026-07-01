@@ -1093,12 +1093,7 @@ function Commissions() {
                     x={isMobile ? 30: 50}
                     y={isMobile ? 455: 460}
                     // forcing modal to load at top
-                    onClick={() => {
-                        if (window.innerWidth <= 768) {
-                            setScreamModalPosition({ x: 0, y: 20 });
-                        }
-                        setShowInfoModal(true);
-                    }}
+                    onClick={() => {setShowInfoModal(true)}}
                     className='about-zoica'
                 />
 
