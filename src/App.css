@@ -861,7 +861,17 @@ input:focus, textarea:focus {
   .navbar {
     width: 186px;
     margin-top: 53px;
-    margin-left: 120px;
+    margin-left: 20px;
+  }
+
+  .info-box {
+    margin-top: 60px;
+    margin-left: 17px;
+    width: 186px;
+  }
+  .inner-info-box {
+    width: 170px;
+    height: 145px;
   }
   .button-1 {
     background: url('/images/button_2.png');
