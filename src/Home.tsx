@@ -808,12 +808,7 @@ function Home() {
                     x={isMobile ? 30: 50}
                     y={isMobile ? 45: 35}
                     // forcing modal to load at top
-                    onClick={() => {
-                        if (window.innerWidth <= 768) {
-                            setScreamModalPosition({ x: 0, y: 20 });
-                        }
-                        setShowScreamModal(true);
-                    }}
+                    onClick={() => {setShowScreamModal(true)}}
                 />
 
                 {showScreamModal && (

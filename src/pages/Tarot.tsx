@@ -665,12 +665,7 @@ function Tarot() {
                     label='Click Me'
                     x={isMobile ? 30: 50}
                     y={isMobile ? 20: 35}
-                    onClick={() => {
-                        if (window.innerWidth <= 768) {
-                            setScreamModalPosition({ x: 0, y: 20 });
-                        }
-                        setShowScreamModal(true);
-                    }}
+                    onClick={() => {setShowScreamModal(true)}}
                 />
 
                 {showScreamModal && (
