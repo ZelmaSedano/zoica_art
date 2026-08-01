@@ -989,7 +989,7 @@ function Home() {
                 {showContactModal && (
                     <div className='modal-overlay' onClick={() => setShowContactModal(false)}>
 
-                        <div 
+                        <div
                             className='modal contact' 
                             ref={contactModalRef}
                             style={{
@@ -1145,102 +1145,15 @@ function Home() {
 
 
             {/* calculator icon */}
-            <div className="desktop">
-                <DesktopIcon
-                    icon="/images/calculator.png"
-                    label="Calculator"
-                    x={isMobile? 30 : 50}
-                    y={isMobile? 365: 355}
-                    onClick={() => setShowCalculator(true)}
-                    className='calculator'
-                />
-
-                {/* calculator modal */}
-                {showCalculator && (
-                    <div className="modal-overlay" onClick={() => setShowCalculator(false)}>
-                        <div 
-                            className="modal calculator-modal"
-                            onClick={(e) => e.stopPropagation()}
-                            ref={calculatorModalRef}
-                            style={{
-                                position: 'fixed',
-                                left: `${calculatorModalPosition.x}px`,
-                                top: `${calculatorModalPosition.y}px`
-                            }}
-                            onMouseDown={handleModalMouseDown}
-                        >
-                            <div 
-                                className="modal-header"
-                                style={{ cursor: 'grab' }}
-                                onMouseDown={handleModalMouseDown}
-                            >
-                                <span>Calculator</span>
-                                <button className='x-button' onClick={() => setShowCalculator(false)}>✕</button>
-                            </div>
-                            
-                            <div className="calculator-body">
-                                <div className="calculator-display">
-                                    <div className="display-content">{calculatorDisplay}</div>
-                                </div>
-
-                                <div className="calculator-buttons">
-                                    {/* memory row */}
-                                    <button className="calc-btn function-btn" onClick={clearAll}></button>
-                                    <button className="calc-btn function-btn" onClick={clearEntry}></button>
-                                    <button className="calc-btn function-btn" onClick={clearEntry}></button>
-                                    <button className="calc-btn function-btn-1" onClick={clearAll}>Back</button>
-                                    <button className="calc-btn function-btn-1" onClick={clearEntry}>CE</button>
-                                    <button className="calc-btn function-btn-1" onClick={clearAll}>AC</button>
-
-
-                                    {/* row 1 */}
-                                    <button className="calc-btn memory-btn" onClick={() => handleMemory('MC')}>MC</button>
-                                    <button className="calc-btn number-btn" onClick={() => inputDigit('7')}>7</button>
-                                    <button className="calc-btn number-btn" onClick={() => inputDigit('8')}>8</button>
-                                    <button className="calc-btn number-btn" onClick={() => inputDigit('9')}>9</button>
-                                    <button className="calc-btn operator-btn" onClick={() => performOperation('÷')}>÷</button>
-                                    {/* change to square root */}
-                                    <button className="calc-btn function-btn" onClick={() => performOperation('√')}>√</button>
-
-                                    
-                                    <button className="calc-btn memory-btn" onClick={() => handleMemory('MR')}>MR</button>
-                                    <button className="calc-btn number-btn" onClick={() => inputDigit('4')}>4</button>
-                                    <button className="calc-btn number-btn" onClick={() => inputDigit('5')}>5</button>
-                                    <button className="calc-btn number-btn" onClick={() => inputDigit('6')}>6</button>
-                                    <button className="calc-btn operator-btn" onClick={() => performOperation('×')}>×</button>
-                                    <button className="calc-btn function-btn" onClick={inputPercent}>%</button>
-                                    
-                                    
-                                    {/* row 2 */}
-                                    <button className="calc-btn memory-btn" onClick={() => handleMemory('MS')}>MS</button>
-                                    <button className="calc-btn number-btn" onClick={() => inputDigit('1')}>1</button>
-                                    <button className="calc-btn number-btn" onClick={() => inputDigit('2')}>2</button>
-                                    <button className="calc-btn number-btn" onClick={() => inputDigit('3')}>3</button>
-                                    <button className="calc-btn operator-btn" onClick={() => performOperation('-')}>−</button>
-                                    {/* change to 1/x */}
-                                    <button className="calc-btn function-btn" onClick={() => performOperation('1/x')}>1/x</button>
-
-
-                                    <button className="calc-btn memory-btn" onClick={() => handleMemory('M+')}>M+</button>
-                                    <button className="calc-btn number-btn zero-btn" onClick={() => inputDigit('0')}>0</button>
-                                    <button className="calc-btn number-btn" onClick={inputDecimal}>.</button>
-                                    <button className="calc-btn function-btn" onClick={toggleSign}>±</button>
-                                    <button className="calc-btn operator-btn" onClick={() => performOperation('+')}>+</button>
-                                    <button className="calc-btn equals-btn" onClick={compute}>=</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
-            </div>
+            
 
             {/* info icon */}
             <div className='desktop'>
                 <DesktopIcon
-                    icon='/images/1001.ico'
+                    icon='/images/orange_daisy.png'
                     label='About Zoica'
                     x={isMobile ? 30: 50}
-                    y={isMobile ? 470: 460}
+                    y={isMobile ? 365: 360}
                     // forcing modal to load at top
                     onClick={() => {setShowInfoModal(true)}}
                     className='about-zoica'
@@ -1250,11 +1163,11 @@ function Home() {
                     <div className='modal-overlay' onClick={() => setShowInfoModal(false)}>
                         <div 
                             className='modal' 
-                            ref={screamModalRef}
+                            ref={infoModalRef}
                             style={{
                                 position: 'fixed',
-                                left: `${screamModalPosition.x}px`,
-                                top: `${screamModalPosition.y}px`,
+                                left: `${infoModalPosition.x}px`,
+                                top: `${infoModalPosition.y}px`,
                                 cursor: isDraggingModal ? 'grabbing' : 'default',
                                 margin: 0,
                             }}
@@ -1262,13 +1175,55 @@ function Home() {
                             onMouseDown={handleModalMouseDown}
                         >
                             <div className='modal-header'>
-                                <span className='scream-modal-blue-bar-text'>Hej! I am Svenska/Swedish</span>
+                                <span className='scream-modal-blue-bar-text'>Hej!</span>
                                 <button className='x-button' onClick={() => setShowInfoModal(false)}>
                                     ✕
                                 </button>
                             </div>
-                            <div className='modal-body'>
-                                <img src='/images/sweden.jpg' className='sweden-pic' alt='Kingdom Hearts' />
+
+                            <div className='zoica-modal modal-body'>
+                                
+                                <div className='meet-chris-top-section'>
+                                    
+                                    <div className='meet-chris-left-side'>
+                                        <div className='meet-chris'>
+                                            <p className='meet-chris-text'>MEET - CHRIS</p>
+                                        </div>
+                                        <div className='file-name-section'>
+                                            <p className='file-name'>File name:</p>
+                                            <p className='file-name-info'>
+                                                <p className='file-name-text'> CHRISTOPHER LINDKVIST</p>
+                                            </p>
+                                        </div>
+                                        <div className='preset-section'>
+                                            <div className='preset'>Preset:</div>
+                                            <div className='preset-text'>ZOICA ART</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className='meet-chris-right-side'>
+                                        <div className='sup-button'>
+                                            <p className='sup-button-text'>Sup?</p>
+                                        </div>
+                                        <div className='cancel-button'>
+                                            <p className='cancel-button-text'>Cancel</p>
+                                        </div>
+
+                                        <div className='unit-section'>
+                                            <p className='unit-text'>Unit</p>
+                                            <div className='unit-dropdown-button'>
+                                                <div className='unit-dropdown-content'>
+                                                    <p className='unit-dropdown-text'>cm</p>
+                                                    <img className='down-arrow'src='/images/down-arrow.png'></img>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
                             </div>
                         </div>
                     </div>

@@ -395,14 +395,128 @@ you can just add the more specific selector in that case in front of the one tha
 }
 
 
+/* ABOUT ZOICA */
+/* fix text width */
 .desktop-icon.about-zoica img {
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
     margin-bottom: 4px;
+    border-radius: 10px;
 }
-.sweden-pic {
-    width: 600px;
+.zoica-modal.modal-body {
+    width: 550px;
+    height: 400px;
+    background-color: #1b1b5e;
+    font-family: Tahoma;
 }
+
+.meet-chris-top-section {
+    display: flex;
+}
+.meet-chris-left-side {
+    float: left;
+}
+.meet-chris-right-side {
+    float: right;
+}
+
+.meet-chris {
+    width: 250px;
+    background: #683968;
+    margin-left: 110px;
+    font-size: 23px;
+}
+.meet-chris-text {
+    color: white;
+    margin: 0;
+}
+.file-name-section {
+    display: flex;
+    margin-left: 25px;
+}
+.file-name {
+    color: white;
+    text-align: right;
+    font-size: 15px;
+}
+.file-name-info {
+    background: #683968;
+    margin-left: 15px;
+}
+.file-name-text {
+    margin: 0;
+    color: white;
+}
+.preset-section {
+    display: flex;
+    margin-left: 25px;
+    text-align: right;
+}
+.preset {
+    text-align: right;
+    color: white;
+    font-size: 15px;
+    margin-left: 23px;
+}
+.preset-text {
+    background: #683968;
+    color: rgb(207, 207, 207);
+    margin-left: 15px;
+}
+
+.sup-button {
+    background-color: #a074ff;
+    padding: 0 23px;
+    text-align: center;
+}
+.sup-button-text { 
+    font-size: 15px;
+    color: white;
+}
+.cancel-button {
+    background-color: #683968;
+    text-align: center;
+}
+.cancel-button-text {
+    color: white;
+}
+.unit-section {
+    display: flex;
+}
+.unit-text {
+    margin: 0;
+    color: white;
+}
+.unit-dropdown-button {
+    background: #2936d7;
+    margin-left: 7px;
+    border: 0.5px solid white;
+    border-radius: 3px;
+}
+.unit-dropdown-content {
+    display: flex;
+    align-items: center;
+    padding: 2px 8px
+}
+.unit-dropdown-text {
+    margin: 0;
+    color: white;
+}
+.down-arrow {
+    width: 13px;
+    height: 13px;
+    color: white;
+    margin-left: 7px;
+}
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 768px) {
     .destop-icon img {
