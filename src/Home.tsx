@@ -1072,7 +1072,9 @@ function Home() {
                                         
                                         {/* third row - email subject */}
                                         <div className='form-row'>
-                                            <label htmlFor='subject' className='subject-label'> S<span className='underline'>u</span>bject:</label>
+                                            <label htmlFor='subject' className='subject-label'> 
+                                                S<span className='underline'>u</span>bject:
+                                            </label>
                                             <input
                                                 type='text'
                                                 id='subject'
@@ -1181,8 +1183,10 @@ function Home() {
                                 </button>
                             </div>
 
+
+
                             <div className='zoica-modal modal-body'>
-                                
+
                                 <div className='meet-chris-top-section'>
                                     
                                     <div className='meet-chris-left-side'>
@@ -1220,6 +1224,56 @@ function Home() {
                                         </div>
 
                                     </div>
+                                </div>
+
+
+                                {/* use justify-content: space-between to push the 2 sections apart */}
+                                <div className='meet-chris-bottom-section'>
+
+                                    <div className='meet-chris-bottom-section-left-side'>
+
+                                        <div className='width-section'>
+                                            <p className='about-width'>Width:</p>
+                                            <p className='about-width-value'>35</p>
+                                            <span className='width-dropdown'>
+                                                <p className='width-dropdown-text'>SWE/CHI</p>
+                                                <img className='width-dropdown-arrow' src='/public/images/down-arrow.png'/>
+                                            </span>
+                                        </div>9
+
+                                        <div className='height-section'>
+                                            <p className='about-height'>Height:</p>
+                                            <p className='about-height-value'>178</p>
+                                        </div>
+
+                                        <div className='resolution-section'>
+                                            <p className='about-resolution'>Resolution:</p>
+                                            <p className='about-resolution-value'>69.420 fr fr</p>
+                                        </div>
+                                        <div className='resolution-section'>
+                                            <p className='about-resolution'>Basic expression color</p>
+                                            <p className='about-expression-value'>muted</p>
+                                        </div>
+                                        <div className='resolution-section'>
+                                            <p className='about-resolution'>Age, location:</p>
+                                            <p className='about-age-value'>35, London</p>
+                                        </div>
+                                        <div className='resolution-section'>
+                                            <p className='about-resolution'>Paper color</p>
+                                            <p className='about-banana-value'>banana</p>
+                                        </div>
+                                        <div className='resolution-section'>
+                                            <p className='about-resolution'>Template</p>
+                                            <p className='about-gender-value'>he/him/them</p>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div className='meet-chris-bottom-section-right-side'>
+                                        <img className='signal-img' src='/public/images/signal.png'/>
+                                    </div>
+
                                 </div>
 
 

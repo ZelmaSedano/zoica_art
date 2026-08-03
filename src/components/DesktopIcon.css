@@ -511,6 +511,79 @@ you can just add the more specific selector in that case in front of the one tha
 
 
 
+.meet-chris-bottom-section {
+    background-color: #0e0e0e;
+    display: flex;
+    justify-content: space-between;
+}
+.meet-chris-bottom-section-left-side {
+    margin-top: 20px;
+}
+.width-section,
+.height-section,
+.resolution-section {
+    display: flex;
+    color: white;
+    margin: -25px 0px;
+}
+.about-width,
+.about-height,
+.about-resolution {
+    width: 175px;
+    flex-shrink: 0;
+    text-align: right;
+}
+.about-width-value,
+.about-height-value,
+.about-resolution-value,
+.about-expression-value,
+.about-age-value,
+.about-banana-value,
+.about-gender-value {
+    background-color: #683968;
+    flex: 1;
+    margin-left: 5px;
+}
+
+.about-expression-value,
+.about-age-value,
+.about-banana-value,
+.about-gender-value {
+    text-align: center;
+}
+
+.width-dropdown {
+    display: flex;
+    padding: 0px 10px;
+    height: 24px;
+    background-color: #683968;
+    margin-top: 16px;
+    margin-left: 10px;
+    align-items: center;
+}
+p.width-dropdown-text {
+    margin: 0;
+    padding: 0;
+}
+.width-dropdown-arrow {
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+    margin-right: 0px;
+}
+
+
+
+.signal-img {
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+
+
 
 
 
