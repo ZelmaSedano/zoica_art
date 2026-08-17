@@ -1201,16 +1201,29 @@ function Home() {
                                         </div>
                                         <div className='preset-section'>
                                             <div className='preset'>Preset:</div>
-                                            <div className='preset-text'>ZOICA ART</div>
+                                            <p className='preset-text-section'>
+                                                <div className='preset-text'>ZOICA ART</div>
+                                            </p>
+                                            <span>
+                                                <img className='preset-download' src='/images/download.png' alt='download-icon' />
+                                            </span>
+                                            <span>
+                                                <img className='preset-trash' src='/images/trash.png' alt='download-icon' />
+                                            </span>
+                                            
                                         </div>
                                     </div>
                                     
+
+
                                     <div className='meet-chris-right-side'>
-                                        <div className='sup-button'>
-                                            <p className='sup-button-text'>Sup?</p>
-                                        </div>
-                                        <div className='cancel-button'>
-                                            <p className='cancel-button-text'>Cancel</p>
+                                        <div className='meet-chris-right-side-top'>
+                                            <div className='sup-button'>
+                                                <p className='sup-button-text'>Sup?</p>
+                                            </div>
+                                            <div className='cancel-button'>
+                                                <p className='cancel-button-text'>Cancel</p>
+                                            </div>
                                         </div>
 
                                         <div className='unit-section'>
@@ -1222,58 +1235,69 @@ function Home() {
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
+
                                 </div>
 
 
                                 {/* use justify-content: space-between to push the 2 sections apart */}
-                                <div className='meet-chris-bottom-section'>
+                                <div className='meet-chris-bottom-outer-section'>
+                                    <div className='meet-chris-bottom-section'>
 
-                                    <div className='meet-chris-bottom-section-left-side'>
+                                        <div className='meet-chris-bottom-section-left-side'>
 
-                                        <div className='width-section'>
-                                            <p className='about-width'>Width:</p>
-                                            <p className='about-width-value'>35</p>
-                                            <span className='width-dropdown'>
-                                                <p className='width-dropdown-text'>SWE/CHI</p>
-                                                <img className='width-dropdown-arrow' src='/public/images/down-arrow.png'/>
-                                            </span>
-                                        </div>9
+                                            <div className='width-section'>
+                                                <p className='about-width'>Width:</p>
+                                                <p className='about-width-value'>35</p>
+                                                <img className='right-arrow' src='/images/right-arrow.png' alt="" />
+                                            </div>9
 
-                                        <div className='height-section'>
-                                            <p className='about-height'>Height:</p>
-                                            <p className='about-height-value'>178</p>
+                                            <div className='height-section'>
+                                                <p className='about-height'>Height:</p>
+                                                <p className='about-height-value'>178</p>
+                                                <img className='right-arrow' src='images/right-arrow.png' alt="" />
+                                            </div>
+
+                                            <div className='resolution-section'>
+                                                <p className='about-resolution'>Resolution:</p>
+                                                <p className='about-resolution-value'>69.420 fr fr</p>
+                                                <span className='resolution-down-arrow'>
+                                                    <img className='down-arrow' src='/images/down-arrow.png' alt="" />
+                                                </span>
+                                            </div>
+                                            <div className='resolution-section'>
+                                                <p className='about-resolution'>Basic expression color</p>
+                                                <p className='about-resolution-value'>muted
+                                                    <img className='resolution-down-arrow' src='/images/down-arrow.png' alt="resolution-down-arrow" />
+                                                </p>
+                                            </div>
+                                            <div className='resolution-section'>
+                                                <p className='age-resolution'>Age, location:</p>
+                                                <p className='about-age-value'>35, London</p>
+                                            </div>
+                                            <div className='resolution-section'>
+                                                <p className='about-resolution paper-color'>Paper color</p>
+                                                <span className='about-banana-value'>
+                                                    <p className='about-banana-text'>banana</p>
+                                                </span>
+                                            </div>
+                                            <div className='resolution-section'>
+                                                <p className='about-resolution'>Template</p>
+                                                <p className='about-gender-value'>he/him/them</p>
+                                            </div>
                                         </div>
 
-                                        <div className='resolution-section'>
-                                            <p className='about-resolution'>Resolution:</p>
-                                            <p className='about-resolution-value'>69.420 fr fr</p>
-                                        </div>
-                                        <div className='resolution-section'>
-                                            <p className='about-resolution'>Basic expression color</p>
-                                            <p className='about-expression-value'>muted</p>
-                                        </div>
-                                        <div className='resolution-section'>
-                                            <p className='about-resolution'>Age, location:</p>
-                                            <p className='about-age-value'>35, London</p>
-                                        </div>
-                                        <div className='resolution-section'>
-                                            <p className='about-resolution'>Paper color</p>
-                                            <p className='about-banana-value'>banana</p>
-                                        </div>
-                                        <div className='resolution-section'>
-                                            <p className='about-resolution'>Template</p>
-                                            <p className='about-gender-value'>he/him/them</p>
-                                        </div>
+                                        {/* free-floating to the right of width */}
+                                        <span className='width-dropdown'>
+                                            <p className='width-dropdown-text'>SWE/CHI</p>
+                                            <img className='width-dropdown-arrow' src='/images/down-arrow.png'/>
+                                        </span>
 
+                                        <div className='meet-chris-bottom-section-right-side'>
+                                            <img className='signal-img' src='/images/signal.png'/>
+                                        </div>
 
                                     </div>
-
-                                    <div className='meet-chris-bottom-section-right-side'>
-                                        <img className='signal-img' src='/public/images/signal.png'/>
-                                    </div>
-
                                 </div>
 
 

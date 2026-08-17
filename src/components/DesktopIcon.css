@@ -404,94 +404,157 @@ you can just add the more specific selector in that case in front of the one tha
     border-radius: 10px;
 }
 .zoica-modal.modal-body {
-    width: 550px;
-    height: 400px;
-    background-color: #1b1b5e;
+    width: 680px;
+    height: 500px;
+    background: url('/images/striated_4.png') no-repeat center/cover;
     font-family: Tahoma;
+    font-size: 15px;
 }
 
 .meet-chris-top-section {
     display: flex;
+    justify-content: space-between;
+    margin-top: -15px;
 }
 .meet-chris-left-side {
     float: left;
 }
 .meet-chris-right-side {
-    float: right;
+    margin-right: 10px;
+    margin-top: -14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .meet-chris {
-    width: 250px;
+    width: 370px;
     background: #683968;
-    margin-left: 110px;
+    /* #823993 */
+    margin-left: 103px;
     font-size: 23px;
+    padding: 7px 0px;
+    border: solid 0.6px #a166b8;
+    border-radius: 1.5px;
 }
 .meet-chris-text {
-    color: white;
+    color: #b1b1b1;
     margin: 0;
+    margin-left: 6px;
 }
 .file-name-section {
     display: flex;
     margin-left: 25px;
+    margin-top: -3px;
 }
 .file-name {
     color: white;
     text-align: right;
-    font-size: 15px;
+    font-size: 13.5px;
 }
 .file-name-info {
     background: #683968;
+    border: solid 0.6px #a166b8;
+    border-radius: 1.5px;
     margin-left: 15px;
+    padding: 4px 0px;
+    width: 370px;
+    margin-top: 9px;
+    align-items: center;
 }
 .file-name-text {
     margin: 0;
     color: white;
+    align-items: center;
+    font-size: 13.5px;
+    margin-left: 5px;
 }
 .preset-section {
     display: flex;
     margin-left: 25px;
     text-align: right;
+    margin-top: -3px;
+    margin-left: 45px;
 }
 .preset {
     text-align: right;
     color: white;
     font-size: 15px;
-    margin-left: 23px;
+    font-size: 13.5px;
+}
+.preset-text-section {
+    width: 300px;
+    margin-top: -7px;
+    background: #683968;
+    border: solid 0.6px #a166b8;
+    border-radius: 1.5px;
+    margin-left: 15px;
+    height: 28px;
 }
 .preset-text {
-    background: #683968;
+    text-align: left;
     color: rgb(207, 207, 207);
-    margin-left: 15px;
+    margin-left: 8px;
+    margin-top: 3px;
+    font-size: 14px;
+}
+.preset-download,
+.preset-trash {
+    height: 17px;
+    background: #683968;
+    padding: 5.7px;
+    margin-top: -7px;
+    margin-left: 5px;
+    border: solid 0.6px #a166b8;
+    border-radius: 2px;
+}
+.preset-trash {
+    background-color: #26268e;
+    opacity: 70%;
 }
 
+/* right side */
 .sup-button {
-    background-color: #a074ff;
-    padding: 0 23px;
+    background-color: #5677e4;
     text-align: center;
+    margin-bottom: -10px;
+    margin-top: 14px;
+    border-radius: 2px;
+    height: 25px;
+    border: solid 1px #ca94f9;
+    align-items: center;
 }
-.sup-button-text { 
-    font-size: 15px;
+.sup-button-text {
+    margin-top: 1px; 
+    font-size: 14px;
     color: white;
 }
 .cancel-button {
     background-color: #683968;
     text-align: center;
+    border-radius: 2px;
 }
 .cancel-button-text {
     color: white;
+    padding: 3px 15px;
+    border: solid 0.5px #ca94f9;
+    border-radius: 2px;
+    font-size: 14px;
 }
 .unit-section {
     display: flex;
+    margin-bottom: 14px;
 }
 .unit-text {
     margin: 0;
     color: white;
+    font-size: 14px;
 }
 .unit-dropdown-button {
     background: #2936d7;
     margin-left: 7px;
-    border: 0.5px solid white;
-    border-radius: 3px;
+    border: 1px solid #725fff;
+    border-radius: 2px;
 }
 .unit-dropdown-content {
     display: flex;
@@ -501,6 +564,7 @@ you can just add the more specific selector in that case in front of the one tha
 .unit-dropdown-text {
     margin: 0;
     color: white;
+    font-size: 13px;
 }
 .down-arrow {
     width: 13px;
@@ -509,13 +573,32 @@ you can just add the more specific selector in that case in front of the one tha
     margin-left: 7px;
 }
 
-
-
-.meet-chris-bottom-section {
+/* bottom section */
+.meet-chris-bottom-outer-section {
     background-color: #0e0e0e;
+    padding: 10px 0px;
+    width: 95%;
+    /* center */
+    margin: 0 auto;
+
+}
+.meet-chris-bottom-section {
     display: flex;
     justify-content: space-between;
+    height: 300px;
+    position: relative;
+} /* custom border */
+.meet-chris-bottom-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 35.1%;
+    transform: translate(-50%);
+    width: 300px;
+    height: 1px;
+    background-color: #361e42;
 }
+/* left side */
 .meet-chris-bottom-section-left-side {
     margin-top: 20px;
 }
@@ -523,15 +606,21 @@ you can just add the more specific selector in that case in front of the one tha
 .height-section,
 .resolution-section {
     display: flex;
-    color: white;
-    margin: -25px 0px;
+    color: #e6e6ff;
+    margin: -23px 0px;
+    align-items: center;
 }
 .about-width,
 .about-height,
-.about-resolution {
-    width: 175px;
+.about-resolution,
+.age-resolution {
+    width: 150px;
     flex-shrink: 0;
     text-align: right;
+    font-size: 13.5px;
+}
+.age-resolution {
+    color: #8d8d8d;
 }
 .about-width-value,
 .about-height-value,
@@ -540,9 +629,46 @@ you can just add the more specific selector in that case in front of the one tha
 .about-age-value,
 .about-banana-value,
 .about-gender-value {
-    background-color: #683968;
+    background-color: #39268e;
     flex: 1;
     margin-left: 5px;
+    border: solid 1px #8150c0;
+    height: 25px;
+    border-radius: 2px;
+    font-size: 13.5px;
+    width: 80px;
+}
+
+.about-resolution-value {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about-banana-text {
+    background-color: white;
+    color: black;
+    margin-top: 2.5px;
+    margin-left: 4.5px;
+    width: 90%;
+    text-align: center;
+    align-items: center;
+}
+.right-arrow,
+.resolution-down-arrow {
+    height: 13px;
+    margin-left: 12px;
+}
+.right-arrow {
+    height: 12px;
+}
+
+.about-resolution-value,
+.about-expression-value,
+.about-age-value,
+.about-banana-value,
+.about-gender-value {
+    color: #929295;
 }
 
 .about-expression-value,
@@ -556,31 +682,59 @@ you can just add the more specific selector in that case in front of the one tha
     display: flex;
     padding: 0px 10px;
     height: 24px;
-    background-color: #683968;
-    margin-top: 16px;
+    background-color: #26268e;
+    margin-top: 11px;
     margin-left: 10px;
+    margin-bottom: 5px;
     align-items: center;
+    color: white;
+    border: solid 1px #6f50c0;
+    border-radius: 2px;
+    width: 70px;
 }
 p.width-dropdown-text {
     margin: 0;
     padding: 0;
+    font-size: 11.5px;
+    color: #8d8ddb;
+    background-color: #3939af;
+    font-size: 12px;
+    margin-left: 5px;
 }
 .width-dropdown-arrow {
-    width: 15px;
-    height: 15px;
-    margin-left: 5px;
-    margin-right: 0px;
+    width: 13px;
+    height: 13px;
+    /* have to do both to push arrow to right */
+    display: block;
+    margin-left: 10px;
 }
 
 
 
+.meet-chris-bottom-section-right-side {
+    height: 240px;
+    position: relative;
+}
 .signal-img {
-    width: 250px;
+    width: 265px;
     margin: 0;
     padding: 0;
-    margin-right: 5px;
-    margin-top: 5px;
+    margin-right: 10px;
+    position: relative;
 }
+
+
+/* BEFORE DOESN'T WORK ON IMAGES, HAVE TO USE WRAPPER*/
+.meet-chris-bottom-section-right-side::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    transform: translate(-43.5%);
+    width: 470px;
+    height: 1px;
+    background-color: #361e42;
+}
+
 
 
 
