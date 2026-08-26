@@ -15,37 +15,37 @@ const images = [
         title:'Revenant',
         id: 'best/revenant3',
         url: 'http://www.etsy.com',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
+        description: '1'
     },
     {
         title:'Banished Knight',
         id: 'best/banished_knight',
         url: 'http://www.etsy.com',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
+        description: '2'
     },
     {
         title:'Brocover',
         id: 'best/brocover',
         url: 'http://www.etsy.com',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
+        description: '3'
     },
     {
         title:'Surtr',
         id: 'best/surtrprint',
         url: 'http://www.etsy.com',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
+        description: '4'
     },
     {
         title:'Mazzeri',
         id: 'best/mazzerisofar',
         url: 'http://www.etsy.com',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
+        description: '5'
     },
     {
         title:'Utgaard Floki',
         id: 'best/Utgaardfloki',
         url: 'http://www.etsy.com',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
+        description: '6'
     }
 ];
 
