@@ -1219,11 +1219,12 @@ function Commissions() {
                                             </ul>
                                         </nav>
 
-
+                                        {/* IMAGE IN MIDDLE */}
                                         <div className='preview-pane'>
                                             <img
                                                 src={`/images/${selectedImage.id}.jpg`}
                                                 alt={selectedImage.title}
+                                                
                                             />
                                             <div className='preview-title'>{selectedImage.title}</div>
                                         </div>
