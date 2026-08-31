@@ -15,37 +15,37 @@ const images = [
         title:'Revenant',
         id: 'best/revenant3',
         url: 'http://www.etsy.com',
-        description: '1'
+        description: 'lorem ipsum'
     },
     {
         title:'Banished Knight',
         id: 'best/banished_knight',
         url: 'http://www.etsy.com',
-        description: '2'
+        description: 'lorem ipsum'
     },
     {
         title:'Brocover',
         id: 'best/brocover',
         url: 'http://www.etsy.com',
-        description: '3'
+        description: 'lorem ipsum'
     },
     {
         title:'Surtr',
         id: 'best/surtrprint',
         url: 'http://www.etsy.com',
-        description: '4'
+        description: 'lorem ipsum'
     },
     {
         title:'Mazzeri',
         id: 'best/mazzerisofar',
         url: 'http://www.etsy.com',
-        description: '5'
+        description: 'lorem ipsum'
     },
     {
         title:'Utgaard Floki',
         id: 'best/Utgaardfloki',
         url: 'http://www.etsy.com',
-        description: '6'
+        description: 'lorem ipsum'
     }
 ];
 
@@ -1494,7 +1494,7 @@ function Home() {
                                     <section className='info-box'>
                                         <div className='inner-info-box'>
                                             <p className='info-box-text'>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.
+                                                {selectedImage.description}
                                             </p>
                                         </div>
                                     </section>

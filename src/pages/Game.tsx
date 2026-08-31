@@ -15,7 +15,7 @@ const images = [
         title:'Banished Knight',
         id: 'fanart/banished_knight',
         url: 'http://www.etsy.com',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.'
+        description: '1'
     },
     {
         title:'Hanging Man',
@@ -1069,7 +1069,7 @@ function Game() {
             {/* info icon */}
             <div className='desktop'>
                 <DesktopIcon
-                    icon='/images/1001.ico'
+                    icon='/images/orange_daisy.png'
                     label='About Zoica'
                     x={isMobile ? 30 : 50}
                     y={isMobile ? 450 : 460}
@@ -1082,11 +1082,11 @@ function Game() {
                     <div className='modal-overlay' onClick={() => setShowInfoModal(false)}>
                         <div 
                             className='modal' 
-                            ref={screamModalRef}
+                            ref={infoModalRef}
                             style={{
                                 position: 'fixed',
-                                left: `${screamModalPosition.x}px`,
-                                top: `${screamModalPosition.y}px`,
+                                left: `${infoModalPosition.x}px`,
+                                top: `${infoModalPosition.y}px`,
                                 cursor: isDraggingModal ? 'grabbing' : 'default',
                                 margin: 0,
                             }}
@@ -1094,13 +1094,131 @@ function Game() {
                             onMouseDown={handleModalMouseDown}
                         >
                             <div className='modal-header'>
-                                <span className='scream-modal-blue-bar-text'>Hej! I am Svenska/Swedish</span>
+                                <span className='scream-modal-blue-bar-text'>Hej!</span>
                                 <button className='x-button' onClick={() => setShowInfoModal(false)}>
                                     ✕
                                 </button>
                             </div>
-                            <div className='modal-body'>
-                                <img src='/images/sweden.jpg' className='sweden-pic' alt='Kingdom Hearts' />
+
+
+
+                            <div className='zoica-modal modal-body'>
+
+                                <div className='meet-chris-top-section'>
+                                    
+                                    <div className='meet-chris-left-side'>
+                                        <div className='meet-chris'>
+                                            <p className='meet-chris-text'>MEET - CHRIS</p>
+                                        </div>
+                                        <div className='file-name-section'>
+                                            <p className='file-name'>File name:</p>
+                                            <p className='file-name-info'>
+                                                <p className='file-name-text'> CHRISTOPHER LINDKVIST</p>
+                                            </p>
+                                        </div>
+                                        <div className='preset-section'>
+                                            <div className='preset'>Preset:</div>
+                                            <p className='preset-text-section'>
+                                                <div className='preset-text'>ZOICA ART</div>
+                                            </p>
+                                            <span>
+                                                <img className='preset-download' src='/images/download.png' alt='download-icon' />
+                                            </span>
+                                            <span>
+                                                <img className='preset-trash' src='/images/trash.png' alt='download-icon' />
+                                            </span>
+                                            
+                                        </div>
+                                    </div>
+                                    
+
+
+                                    <div className='meet-chris-right-side'>
+                                        <div className='meet-chris-right-side-top'>
+                                            <div className='sup-button'>
+                                                <p className='sup-button-text'>Sup?</p>
+                                            </div>
+                                            <div className='cancel-button'>
+                                                <p className='cancel-button-text'>Cancel</p>
+                                            </div>
+                                        </div>
+
+                                        <div className='unit-section'>
+                                            <p className='unit-text'>Unit</p>
+                                            <div className='unit-dropdown-button'>
+                                                <div className='unit-dropdown-content'>
+                                                    <p className='unit-dropdown-text'>cm</p>
+                                                    <img className='down-arrow'src='/images/down-arrow.png'></img>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                {/* use justify-content: space-between to push the 2 sections apart */}
+                                <div className='meet-chris-bottom-outer-section'>
+                                    <div className='meet-chris-bottom-section'>
+
+                                        <div className='meet-chris-bottom-section-left-side'>
+
+                                            <div className='width-section'>
+                                                <p className='about-width'>Width:</p>
+                                                <p className='about-width-value'>35</p>
+                                                <img className='right-arrow' src='/images/right-arrow.png' alt="" />
+                                            </div>9
+
+                                            <div className='height-section'>
+                                                <p className='about-height'>Height:</p>
+                                                <p className='about-height-value'>178</p>
+                                                <img className='right-arrow' src='images/right-arrow.png' alt="" />
+                                            </div>
+
+                                            <div className='resolution-section'>
+                                                <p className='about-resolution'>Resolution:</p>
+                                                <p className='about-resolution-value'>69.420 fr fr</p>
+                                                <span className='resolution-down-arrow'>
+                                                    <img className='down-arrow' src='/images/down-arrow.png' alt="" />
+                                                </span>
+                                            </div>
+                                            <div className='resolution-section'>
+                                                <p className='about-resolution'>Basic expression color</p>
+                                                <p className='about-resolution-value'>muted
+                                                    <img className='resolution-down-arrow' src='/images/down-arrow.png' alt="resolution-down-arrow" />
+                                                </p>
+                                            </div>
+                                            <div className='resolution-section'>
+                                                <p className='age-resolution'>Age, location:</p>
+                                                <p className='about-age-value'>35, London</p>
+                                            </div>
+                                            <div className='resolution-section'>
+                                                <p className='about-resolution paper-color'>Paper color</p>
+                                                <span className='about-banana-value'>
+                                                    <p className='about-banana-text'>banana</p>
+                                                </span>
+                                            </div>
+                                            <div className='resolution-section'>
+                                                <p className='about-resolution'>Template</p>
+                                                <p className='about-gender-value'>he/him/them</p>
+                                            </div>
+                                        </div>
+
+                                        {/* free-floating to the right of width */}
+                                        <span className='width-dropdown'>
+                                            <p className='width-dropdown-text'>SWE/CHI</p>
+                                            <img className='width-dropdown-arrow' src='/images/down-arrow.png'/>
+                                        </span>
+
+                                        <div className='meet-chris-bottom-section-right-side'>
+                                            <img className='signal-img' src='/images/signal.png'/>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
                             </div>
                         </div>
                     </div>
@@ -1289,7 +1407,7 @@ function Game() {
                                     <section className='info-box'>
                                         <div className='inner-info-box'>
                                             <p className='info-box-text'>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa ex, tristique sit amet ligula eu, semper consectetur erat.
+                                                {selectedImage.description}
                                             </p>
                                         </div>
                                     </section>
