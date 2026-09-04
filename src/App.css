@@ -867,20 +867,19 @@ input:focus, textarea:focus {
     max-width: 100%;
     max-height: 100%;
   } */
+  .custom-scroll-container {
+    padding: 0 40px;
+  }
   .arrow-1.up {
-    margin-top: -10px;
+    margin-top: -5px;
   }
   .scroll-menu {
-    margin-left: 70px;
+    margin-left: 30px;
   }
   .scroll-list {
     height: 425px;
-    margin-top: 8px;
   }
-  /* if you push this arrow down, the entire image-layout section goes down slightly */
-  .arrow-1.down {
-    margin-top: 75px;
-  }
+
 }
 
 /******** Tablet Design *********/
