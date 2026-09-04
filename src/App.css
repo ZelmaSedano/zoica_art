@@ -543,7 +543,7 @@ nav ul li a p{
 
 
 .custom-scroll-container {
-  padding: 0 25px;
+  padding: 0 5px;
   background: #1c1a12;
   display: flex;
   gap: 5px;
@@ -870,9 +870,7 @@ input:focus, textarea:focus {
   .custom-scroll-container {
     padding: 0 40px;
   }
-  .arrow-1.up {
-    margin-top: -5px;
-  }
+
   .scroll-menu {
     margin-left: 30px;
   }
@@ -1152,11 +1150,14 @@ input:focus, textarea:focus {
   .scroll-menu {
     margin-left: -5px;
   }
+  .custom-scroll-container {
+    margin-top: 20px;
+  }
   .scroll-list {
     width: 250px;
-    height: 140px;
-    margin-top: 20px;
-    margin-left: 0px;
+    height: 130px;
+
+
     border-color: #75714c #75714c #75714c #75714c;
     border: 3px solid #32301f;
     flex-direction: row;
@@ -1188,12 +1189,16 @@ input:focus, textarea:focus {
   }
   .arrow-1.left, 
   .arrow-1.right {
+    margin-top: 5px;
     display: block;
+  }
+  .arrow-1 img {
+    width: 28px;
   }
 
 
   .info-box {
-    margin-top: -5px;
+
     width: 250px;
     height: 100px;
   }

@@ -1430,7 +1430,7 @@ function Home() {
                                             </div>
                                             <div className='right-left-arrows'>
                                                 <button className='arrow-1 left' onClick={scrollLeft}>
-                                                    <img src='/images/left_arrow.jpg' />
+                                                    <img className='left_arrow' src='/images/left_arrow.jpg' />
                                                 </button>
                                                 <button className='arrow-1 right' onClick={scrollRight}>
                                                     <img src='/images/right_arrow.jpg' />
