@@ -1343,10 +1343,10 @@ function Game() {
                                             </div>
                                             <div className='right-left-arrows'>
                                                 <button className='arrow-1 left' onClick={scrollLeft}>
-                                                    <img src='/images/left_arrow.png' />
+                                                    <img src='/images/left_arrow.jpg' />
                                                 </button>
                                                 <button className='arrow-1 right' onClick={scrollRight}>
-                                                    <img src='/images/right_arrow.png' />
+                                                    <img src='/images/right_arrow.jpg' />
                                                 </button>
                                             </div>
                                         </div>
@@ -1426,7 +1426,7 @@ function Game() {
                                         {/* RIGHT: scroll selector */}
                                         <div className='scroll-menu'>
                                             <button className='arrow-1 up' onClick={scrollUp}>
-                                                <img src='/images/up_arrow.png' />
+                                                <img src='/images/up_arrow.jpg' />
                                             </button>
 
                                             <div className='custom-scroll-container'>
@@ -1444,15 +1444,15 @@ function Game() {
                                             </div>
                                             <div className='right-left-arrows'>
                                                 <button className='arrow-1 left' onClick={scrollLeft}>
-                                                    <img src='/images/left_arrow.png' />
+                                                    <img src='/images/left_arrow.jpg' />
                                                 </button>
                                                 <button className='arrow-1 right' onClick={scrollRight}>
-                                                    <img src='/images/right_arrow.png' />
+                                                    <img src='/images/right_arrow.jpg' />
                                                 </button>
                                             </div>
 
                                             <button className='arrow-1 down' onClick={scrollDown}>
-                                                <img src='/images/downward_arrow.png'/>
+                                                <img src='/images/downward_arrow.jpg'/>
                                             </button>
                                         </div>
                                     </section>

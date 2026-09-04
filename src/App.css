@@ -497,6 +497,11 @@ nav ul li a p{
 
 
 /* RIGHT SCROLLER */
+
+
+
+
+/* IMAGES SCROLL MENU */
 .scroll-menu {
   display: flex;
   flex-direction: column;
@@ -521,14 +526,14 @@ nav ul li a p{
 }
 .arrow-1.up {
   padding: 0;
-  margin: 0;
-  margin-bottom: -15px;
+  margin-top: 10px;
+  margin-bottom: -5px;
   border: 0;
 }
 .arrow-1.down {
   padding: 0;
   margin: 0;
-  margin-top: 10px;
+  margin-top: 5px;
   border: 0;
 }
 .arrow-1.left, 
@@ -536,34 +541,32 @@ nav ul li a p{
     display: none;
 }
 
+
+.custom-scroll-container {
+  padding: 0 25px;
+  background: #1c1a12;
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
 /* SCROLL AREA */
 .scroll-list {
   /* THIS is what creates the “window” */
   height: 360px;
   width: 140px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
   gap: 10px;
-  margin: 5px;
-  padding: 5px;
-}
-.scroll-list {
 
-  height: 360px;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 5px;
-  background: #32301f;
+
   /* Hide native scrollbar */
   scrollbar-width: none; 
   -ms-overflow-style: none;
-}
-.scroll-list {
+  
+  overflow-y: auto;
   overflow-y: scroll !important;
 }
+
 /* ITEMS */
 .scroll-item {
   border: 2px solid transparent;
@@ -580,41 +583,9 @@ nav ul li a p{
 }
 
 
-.grid-container {
-  position: relative;
-  display: inline-block;
-}
-.image-title {
-  justify-content: center;
-  position: absolute;
-  text-align: center;
-  left: 5px;
-  right: 5px;
-  background-color: #c3c3c3;
-  color: black;
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  z-index: 1;
-}
-/* update your existing image style */
-.image {
-  border-bottom: solid 10px #c3c3c3;
-  border-top: solid 21px #c3c3c3; /* Space for the title */
-  outline: solid 1px black;
-  position: relative;
-}
 
 
 
-
-/* Custom Windows 98 Scrollbar Container */
-.custom-scroll-container {
-  display: flex;
-  gap: 5px;
-  height: 360px;
-}
 
 
 /* .scroll-list::-webkit-scrollbar {
