@@ -543,7 +543,7 @@ nav ul li a p{
 
 
 .custom-scroll-container {
-  padding: 0 5px;
+  padding: 0 30px;
   background: #1c1a12;
   display: flex;
   gap: 5px;
@@ -1152,9 +1152,10 @@ input:focus, textarea:focus {
   }
   .custom-scroll-container {
     margin-top: 20px;
+    padding: 0 5px;
   }
   .scroll-list {
-    width: 250px;
+    width: 265px;
     height: 130px;
 
 

@@ -50,11 +50,15 @@ const images = [
 ];
 
 function Home() {
-    // position states
+
+    emailjs.init('kM5UXATQMVrLI690I');
+
+
+    // STATES
+
     // window position
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
-    // STATES
     // modal positions: where they load - LOAD IN THE MIDDLE
     const [modalPosition, setModalPosition] = useState(() => ({
         x: Math.max(0, (window.innerWidth - 500) / 2),
@@ -93,14 +97,14 @@ function Home() {
     const [modalDragOffset, setModalDragOffset] = useState({ x: 0, y: 0 });
 
     // calculator
-    const [showCalculator, setShowCalculator] = useState(false);
+    // const [showCalculator, setShowCalculator] = useState(false);
 
     // calculator logic states (add with your other states)
-    const [calculatorDisplay, setCalculatorDisplay] = useState('0');
-    const [previousValue, setPreviousValue] = useState<number | null>(null);
-    const [operation, setOperation] = useState<string | null>(null);
-    const [waitingForOperand, setWaitingForOperand] = useState(false);
-    const [memory, setMemory] = useState<number | null>(null);
+    // const [calculatorDisplay, setCalculatorDisplay] = useState('0');
+    // const [previousValue, setPreviousValue] = useState<number | null>(null);
+    // const [operation, setOperation] = useState<string | null>(null);
+    // const [waitingForOperand, setWaitingForOperand] = useState(false);
+    // const [memory, setMemory] = useState<number | null>(null);
 
 
     // taskbar clock
@@ -292,101 +296,102 @@ function Home() {
     
 
     // calculator-related functions
-    const clearAll = () => {
-        setCalculatorDisplay('0');
-        setPreviousValue(null);
-        setOperation(null);
-        setWaitingForOperand(false);
-    };
-    const clearEntry = () => {
-        setCalculatorDisplay('0');
-    };
-    const inputDigit = (digit: string) => {
-        if (waitingForOperand) {
-            setCalculatorDisplay(digit);
-            setWaitingForOperand(false);
-        } else {
-            setCalculatorDisplay(calculatorDisplay === '0' ? digit : calculatorDisplay + digit);
-        }
-    };
-    const inputDecimal = () => {
-        if (waitingForOperand) {
-            setCalculatorDisplay('0.');
-            setWaitingForOperand(false);
-            return;
-        }
-        if (!calculatorDisplay.includes('.')) {
-            setCalculatorDisplay(calculatorDisplay + '.');
-        }
-    };
-    const toggleSign = () => {
-        if (calculatorDisplay !== '0') {
-            setCalculatorDisplay(calculatorDisplay.startsWith('-') ? calculatorDisplay.slice(1) : '-' + calculatorDisplay);
-        }
-    };
-    const inputPercent = () => {
-        const value = parseFloat(calculatorDisplay);
-        setCalculatorDisplay(String(value / 100));
-    };
-    const performOperation = (nextOperation: string) => {
-        const currentValue = parseFloat(calculatorDisplay);
+    // const clearAll = () => {
+    //     setCalculatorDisplay('0');
+    //     setPreviousValue(null);
+    //     setOperation(null);
+    //     setWaitingForOperand(false);
+    // };
+    // const clearEntry = () => {
+    //     setCalculatorDisplay('0');
+    // };
+    // const inputDigit = (digit: string) => {
+    //     if (waitingForOperand) {
+    //         setCalculatorDisplay(digit);
+    //         setWaitingForOperand(false);
+    //     } else {
+    //         setCalculatorDisplay(calculatorDisplay === '0' ? digit : calculatorDisplay + digit);
+    //     }
+    // };
+    // const inputDecimal = () => {
+    //     if (waitingForOperand) {
+    //         setCalculatorDisplay('0.');
+    //         setWaitingForOperand(false);
+    //         return;
+    //     }
+    //     if (!calculatorDisplay.includes('.')) {
+    //         setCalculatorDisplay(calculatorDisplay + '.');
+    //     }
+    // };
+    // const toggleSign = () => {
+    //     if (calculatorDisplay !== '0') {
+    //         setCalculatorDisplay(calculatorDisplay.startsWith('-') ? calculatorDisplay.slice(1) : '-' + calculatorDisplay);
+    //     }
+    // };
+    // const inputPercent = () => {
+    //     const value = parseFloat(calculatorDisplay);
+    //     setCalculatorDisplay(String(value / 100));
+    // };
+    // const performOperation = (nextOperation: string) => {
+    //     const currentValue = parseFloat(calculatorDisplay);
         
-        if (previousValue !== null && operation && !waitingForOperand) {
-            const result = calculate(previousValue, currentValue, operation);
-            setCalculatorDisplay(String(result));
-            setPreviousValue(result);
-        } else {
-            setPreviousValue(currentValue);
-        }
+    //     if (previousValue !== null && operation && !waitingForOperand) {
+    //         const result = calculate(previousValue, currentValue, operation);
+    //         setCalculatorDisplay(String(result));
+    //         setPreviousValue(result);
+    //     } else {
+    //         setPreviousValue(currentValue);
+    //     }
         
-        setOperation(nextOperation);
-        setWaitingForOperand(true);
-    };
-    const calculate = (a: number, b: number, op: string): number => {
-        switch (op) {
-            case '+': return a + b;
-            case '-': return a - b;
-            case '×': return a * b;
-            case '÷': return a / b;
-            default: return b;
-        }
-    };
-    const compute = () => {
-        const currentValue = parseFloat(calculatorDisplay);
-        if (previousValue !== null && operation) {
-            const result = calculate(previousValue, currentValue, operation);
-            setCalculatorDisplay(String(result));
-            setPreviousValue(null);
-            setOperation(null);
-            setWaitingForOperand(true);
-        }
-    };
-    const handleMemory = (action: string) => {
-        const currentValue = parseFloat(calculatorDisplay);
-        switch (action) {
-            case 'MC':
-                setMemory(null);
-                break;
-            case 'MR':
-                if (memory !== null) {
-                    setCalculatorDisplay(String(memory));
-                    setWaitingForOperand(true);
-                }
-                break;
-            case 'MS':
-                setMemory(currentValue);
-                setWaitingForOperand(true);
-                break;
-            case 'M+':
-                setMemory((memory || 0) + currentValue);
-                setWaitingForOperand(true);
-                break;
-        }
-    };
+    //     setOperation(nextOperation);
+    //     setWaitingForOperand(true);
+    // };
+    // const calculate = (a: number, b: number, op: string): number => {
+    //     switch (op) {
+    //         case '+': return a + b;
+    //         case '-': return a - b;
+    //         case '×': return a * b;
+    //         case '÷': return a / b;
+    //         default: return b;
+    //     }
+    // };
+    // const compute = () => {
+    //     const currentValue = parseFloat(calculatorDisplay);
+    //     if (previousValue !== null && operation) {
+    //         const result = calculate(previousValue, currentValue, operation);
+    //         setCalculatorDisplay(String(result));
+    //         setPreviousValue(null);
+    //         setOperation(null);
+    //         setWaitingForOperand(true);
+    //     }
+    // };
+    // const handleMemory = (action: string) => {
+    //     const currentValue = parseFloat(calculatorDisplay);
+    //     switch (action) {
+    //         case 'MC':
+    //             setMemory(null);
+    //             break;
+    //         case 'MR':
+    //             if (memory !== null) {
+    //                 setCalculatorDisplay(String(memory));
+    //                 setWaitingForOperand(true);
+    //             }
+    //             break;
+    //         case 'MS':
+    //             setMemory(currentValue);
+    //             setWaitingForOperand(true);
+    //             break;
+    //         case 'M+':
+    //             setMemory((memory || 0) + currentValue);
+    //             setWaitingForOperand(true);
+    //             break;
+    //     }
+    // };
 
 
 
-    emailjs.init('kM5UXATQMVrLI690I');
+
+
 
     // CONTACT
     useEffect(() => {
@@ -660,23 +665,41 @@ function Home() {
     };
 
 
+    // tutorial: how to add 2 onClick events to one button - arrows will also play sound, not just move menu
+    const playClickSound = () => {
+        // create a variable that holds the audio file
+        const audio = new Audio('/public/stonearrow.mp3');
+
+        // error handling if audio file doesn't exist
+        // tutorial: Justine, remember not to use error declarations in typeScript if you can avoid it
+        audio.play().catch(() => {
+            console.log('Justine, this does not work. challenge: fix using tutorial keyword')
+        })
+    }
+
+
     // image menu scrolling handlers
+    // tutorial: Justine, each event will not just move the image menu, it will also play a sound
     const scrollUp = () => {
+        playClickSound();
         if (scrollRef.current) {
             scrollRef.current.scrollBy({ top: -120, behavior: 'smooth' });
         }
     };
     const scrollLeft = () => {
+        playClickSound();
         if(scrollRef.current) {
             scrollRef.current.scrollBy({ left: -120, behavior: 'smooth'});
         }
     }
     const scrollRight = () => {
+        playClickSound();
         if(scrollRef.current) {
             scrollRef.current.scrollBy({ left: 120, behavior: 'smooth'})
         }
     }
     const scrollDown = () => {
+        playClickSound();
         if (scrollRef.current) {
             scrollRef.current.scrollBy({ top: 120, behavior: 'smooth' });
         }
