@@ -706,6 +706,7 @@ function Home() {
     };
 
 
+
     // USEEFFECTS FUNCTIONS
     // this needs to be after handler funcs
 
@@ -1402,26 +1403,42 @@ function Home() {
                                         <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
                                             <ul>
                                                 <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                                    <Link to='/' onClick={() => setIsMenuOpen(false)}>
+
+                                                    <Link to='/' onClick={() => {
+                                                        setIsMenuOpen(false);
+                                                        playClickSound();
+                                                    }}>
                                                         <p className='nav-p'>Home</p>
                                                     </Link>
                                                 </li>
-                                                <li className='button-1'>
-                                                    <Link to='/tarot' onClick={() => setIsMenuOpen(false)}>
+                                                <li className='button-1' onClick={() => {
+                                                        setIsMenuOpen(false);
+                                                        playClickSound();
+                                                    }}>
+                                                    <Link to='/tarot' >
                                                         <p className='nav-p'>Tarot</p>
                                                     </Link>
                                                 </li>
-                                                <li className='button-1'>
+                                                <li className='button-1' onClick={() => {
+                                                        setIsMenuOpen(false);
+                                                        playClickSound();
+                                                    }}>
                                                     <Link to='/norse' onClick={() => setIsMenuOpen(false)}>
                                                         <p className='nav-p'>Mythology</p>
                                                     </Link>
                                                 </li>
-                                                <li className='button-1'>
+                                                <li className='button-1' onClick={() => {
+                                                        setIsMenuOpen(false);
+                                                        playClickSound();
+                                                    }}>
                                                     <Link to='/game' onClick={() => setIsMenuOpen(false)}>
                                                         <p className='nav-p'>Game Art</p>
                                                     </Link>
                                                 </li>
-                                                <li className='button-1'>
+                                                <li className='button-1' onClick={() => {
+                                                        setIsMenuOpen(false);
+                                                        playClickSound();
+                                                    }}>
                                                     <Link to='/commissions' onClick={() => setIsMenuOpen(false)}>
                                                         <p className='nav-p'>Commissions</p>
                                                     </Link>
@@ -1487,27 +1504,42 @@ function Home() {
                                     <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
                                         <ul>
                                             <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-                                                <Link to='/' onClick={() => setIsMenuOpen(false)}>
+                                                <Link to='/' onClick={() => {
+                                                        setIsMenuOpen(false);
+                                                        playClickSound();
+                                                    }}>
                                                     <p className='nav-p'>Home</p>
                                                 </Link>
                                             </li>
                                             <li className='button-1'>
-                                                <Link to='/tarot' onClick={() => setIsMenuOpen(false)}>
+                                                <Link to='/tarot' onClick={() => {
+                                                        setIsMenuOpen(false);
+                                                        playClickSound();
+                                                    }}>
                                                     <p className='nav-p'>Tarot</p>
                                                 </Link>
                                             </li>
                                             <li className='button-1'>
-                                                <Link to='/norse' onClick={() => setIsMenuOpen(false)}>
+                                                <Link to='/norse' onClick={() => {
+                                                        setIsMenuOpen(false);
+                                                        playClickSound();
+                                                    }}>
                                                     <p className='nav-p'>Mythology</p>
                                                 </Link>
                                             </li>
                                             <li className='button-1'>
-                                                <Link to='/game' onClick={() => setIsMenuOpen(false)}>
+                                                <Link to='/game' onClick={() => {
+                                                        setIsMenuOpen(false);
+                                                        playClickSound();
+                                                    }}>
                                                     <p className='nav-p'>Game Art</p>
                                                 </Link>
                                             </li>
                                             <li className='button-1'>
-                                                <Link to='/commissions' onClick={() => setIsMenuOpen(false)}>
+                                                <Link to='/commissions' onClick={() => {
+                                                        setIsMenuOpen(false);
+                                                        playClickSound();
+                                                    }}>
                                                     <p className='nav-p'>Commissions</p>
                                                 </Link>
                                             </li>
