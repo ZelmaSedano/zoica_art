@@ -670,7 +670,7 @@ function Home() {
         // create a variable that holds the audio file
         const audio = new Audio('/stonearrow.mp3');
 
-        // error handling if audio file doesn't exist
+        // sound won't work without this error catch statement
         // tutorial: Justine, remember not to use error declarations in typeScript if you can avoid it
         audio.play().catch(() => {
             console.log('Justine, this does not work. challenge: fix using tutorial keyword')
