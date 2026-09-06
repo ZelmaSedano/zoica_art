@@ -668,7 +668,7 @@ function Home() {
     // tutorial: how to add 2 onClick events to one button - arrows will also play sound, not just move menu
     const playClickSound = () => {
         // create a variable that holds the audio file
-        const audio = new Audio('/public/stonearrow.mp3');
+        const audio = new Audio('/stonearrow.mp3');
 
         // error handling if audio file doesn't exist
         // tutorial: Justine, remember not to use error declarations in typeScript if you can avoid it
