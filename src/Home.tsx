@@ -49,6 +49,8 @@ const images = [
     }
 ];
 
+
+
 function Home() {
 
     emailjs.init('kM5UXATQMVrLI690I');
@@ -1300,16 +1302,37 @@ function Home() {
                                                 <p className='about-age-value'>35, London</p>
                                             </div>
                                             <div className='resolution-section'>
-                                                <p className='about-resolution paper-color'>Paper color</p>
+                                                <p className='about-resolution period'>.</p>
                                                 <span className='about-banana-value'>
                                                     <p className='about-banana-text'>banana</p>
                                                 </span>
                                             </div>
                                             <div className='resolution-section'>
-                                                <p className='about-resolution'>Template</p>
+                                                <p className='about-resolution period'>.</p>
                                                 <p className='about-gender-value'>he/him/them</p>
                                             </div>
+
+
+                                            <div className='float-left'>
+                                                <div className='resolution-section left'>
+                                                    <p className='radio-box top'></p>
+                                                    <p className='left-resolution'>Paper color</p>
+                                                </div>
+                                                <div className='resolution-section left'>
+                                                    <p className='radio-box middle'></p>
+                                                    <p className='left-resolution'>Template</p>
+                                                </div>
+                                                <div className='resolution-section left bottom'>
+                                                    <p className='radio-box bottom'></p>
+                                                    <p className='left-resolution'>Create Commission</p>
+                                                </div>
+                                                <div className='resolution-section left'>
+                                                    <img src='/public/images/info.png'/>
+                                                    <p className='commissions'>Check out my commission menu!</p>
+                                                </div>
+                                            </div>
                                         </div>
+
 
                                         {/* free-floating to the right of width */}
                                         <span className='width-dropdown'>
@@ -1319,6 +1342,10 @@ function Home() {
 
                                         <div className='meet-chris-bottom-section-right-side'>
                                             <img className='signal-img' src='/images/signal.png'/>
+                                        </div>
+
+                                        <div className='pfp'>
+                                            <img src='/public/images/profilepfp.png' className='pfp-1'/>
                                         </div>
 
                                     </div>
