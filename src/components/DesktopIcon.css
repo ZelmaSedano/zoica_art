@@ -410,9 +410,9 @@ you can just add the more specific selector in that case in front of the one tha
 }
 .preset-download,
 .preset-trash {
-    height: 17px;
-    background: #683968;
-    padding: 5.7px;
+    height: 23px;
+    background: #26268e;
+    padding: 2px;
     margin-top: -7px;
     margin-left: 5px;
     border: solid 0.6px #a166b8;
@@ -606,6 +606,14 @@ you can just add the more specific selector in that case in front of the one tha
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.ink {
+    height: 15px;
+    margin-top: 5px;
+}
+.muted {
+    padding-left: 15px;
+    align-items: center;
 }
 .about-banana-text {
     background-color: white;

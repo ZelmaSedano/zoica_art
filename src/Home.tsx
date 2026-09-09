@@ -1231,7 +1231,7 @@ function Home() {
                                                 <div className='preset-text'>ZOICA ART</div>
                                             </p>
                                             <span>
-                                                <img className='preset-download' src='/images/download.png' alt='download-icon' />
+                                                <img className='preset-download' src='/images/download_1.png' alt='download-icon' />
                                             </span>
                                             <span>
                                                 <img className='preset-trash' src='/images/trash.png' alt='download-icon' />
@@ -1293,7 +1293,10 @@ function Home() {
                                             </div>
                                             <div className='resolution-section'>
                                                 <p className='about-resolution'>Basic expression color</p>
-                                                <p className='about-resolution-value'>muted
+                                                <p className='about-resolution-value muted'>
+                                                    <span className='muted'>
+                                                        <img src='/public/images/ink_1.png' className='ink'/>muted
+                                                    </span>
                                                     <img className='resolution-down-arrow' src='/images/down-arrow.png' alt="resolution-down-arrow" />
                                                 </p>
                                             </div>
@@ -1327,12 +1330,11 @@ function Home() {
                                                     <p className='left-resolution'>Create Commission</p>
                                                 </div>
                                                 <div className='resolution-section left'>
-                                                    <img src='/public/images/info.png'/>
+                                                    <img src='/images/info.png'/>
                                                     <p className='commissions'>Check out my commission menu!</p>
                                                 </div>
                                             </div>
                                         </div>
-
 
                                         {/* free-floating to the right of width */}
                                         <span className='width-dropdown'>

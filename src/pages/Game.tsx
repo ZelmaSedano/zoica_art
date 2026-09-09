@@ -1049,12 +1049,10 @@ function Game() {
                                                     <p className='left-resolution'>Create Commission</p>
                                                 </div>
                                                 <div className='resolution-section left'>
-                                                    <img src='/public/images/info.png'/>
+                                                    <img src='/images/info.png'/>
                                                     <p className='commissions'>Check out my commission menu!</p>
                                                 </div>
                                             </div>
-
-
 
                                         </div>
 
