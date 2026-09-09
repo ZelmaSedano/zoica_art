@@ -1345,7 +1345,7 @@ function Home() {
                                         </div>
 
                                         <div className='pfp'>
-                                            <img src='/public/images/profilepfp.png' className='pfp-1'/>
+                                            <img src='/images/profilepfp.png' className='pfp-1'/>
                                         </div>
 
                                     </div>
