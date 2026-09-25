@@ -469,23 +469,24 @@ nav ul li a p{
 
 /* LEFT PREVIEW */
 .preview-pane {
-  width: 300px;
-  /* REMOVED THE SET HEIGHT TO GET BACKGROUND TO CLICK TO IMG DIM*/
-  background: #32301f;
+  width: 315px;
+  height: 433px;
+  /* REMOVED THE SET HEIGHT TO GET BACKGROUND TO CLICK TO IMG DIV*/
+  background: url('/images/widescreen_2.png') no-repeat;
   display: flex;
   flex-direction: column;
   align-self: center;
   flex-shrink: 0;
+  margin-top: 5px;
   margin-left: 20px;
   justify-content: center;
   overflow: hidden;
 }
 .preview-pane img {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 83%;
+  max-height: 83%;
   object-fit: contain;
   margin: 0 auto;
-  margin-top: 10px;
 }
 .preview-title {
   font-size: 18px;

@@ -1239,7 +1239,7 @@ function Home() {
                                             
                                         </div>
                                     </div>
-                                    
+
 
 
                                     <div className='meet-chris-right-side'>
