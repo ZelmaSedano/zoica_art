@@ -1432,7 +1432,6 @@ function Home() {
                                         <nav className={`navbar ${isMenuOpen ? 'mobile-open' : ''}`}>
                                             <ul>
                                                 <li className={`button-1 left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
-
                                                     <Link to='/' onClick={() => {
                                                         setIsMenuOpen(false);
                                                         playClickSound();
