@@ -1128,7 +1128,7 @@ input:focus, textarea:focus {
 
     margin: 0;
 
-    background: url('/images/button_3.png');
+    background: url('/images/button.png');
 
     outline: 2px solid black;
     outline-offset: 5px;
