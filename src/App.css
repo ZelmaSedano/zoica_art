@@ -491,7 +491,7 @@ nav ul li a p{
 }
 .preview-title {
   font-size: 18px;
-  color: white;
+  color: #b1b19f;
   font-family: 'alegard';
   margin: 0 auto;
   padding-top: 5px;
@@ -510,6 +510,7 @@ nav ul li a p{
   align-items: center;
   flex-shrink: 0;
   margin-left: 15px;
+  
 }
 .arrow-1 {
    /* Remove all default button padding and margins */
@@ -546,7 +547,9 @@ nav ul li a p{
 
 .custom-scroll-container {
   padding: 0 30px;
-  background: #1c1a12;
+  background: url('/public/images/image_2.png') no-repeat;
+  height: 370px;
+  width: 145px;
   display: flex;
   gap: 5px;
   margin-top: 10px;
@@ -557,6 +560,7 @@ nav ul li a p{
   height: 360px;
   width: 140px;
   gap: 10px;
+  margin-top: 5px;
 
   display: flex;
   flex-direction: column;
@@ -872,6 +876,9 @@ input:focus, textarea:focus {
   }
   .custom-scroll-container {
     padding: 0 40px;
+    background: url('/public/images/image_3.png') no-repeat;
+    height: 438px;
+    width: 145px;
   }
 
   .scroll-menu {
@@ -880,6 +887,7 @@ input:focus, textarea:focus {
   .scroll-list {
     height: 425px;
   }
+  
 
 }
 
@@ -1157,6 +1165,12 @@ input:focus, textarea:focus {
   .custom-scroll-container {
     margin-top: 20px;
     padding: 0 5px;
+    /* 250x156 */
+    /* 260x166 */
+
+    width: 250px;
+    height: 170px;
+    background: url('/public/images/image_4.png') no-repeat;
   }
   .scroll-list {
     width: 265px;

@@ -12,7 +12,7 @@ import './components/DesktopIcon.css';
 
 const images = [
     {
-        title:'test test - is vercel working?',
+        title:'Revenant',
         id: 'best/revenant3',
         url: 'http://www.etsy.com',
         description: 'lorem ipsum'
