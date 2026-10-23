@@ -469,13 +469,15 @@ nav ul li a p{
 
 /* LEFT PREVIEW */
 .preview-pane {
-  width: 315px;
+  position: relative;
+  width: 305px;
   height: 433px;
   /* REMOVED THE SET HEIGHT TO GET BACKGROUND TO CLICK TO IMG DIV*/
   background: url('/images/desktop_2.png') no-repeat;
   display: flex;
   flex-direction: column;
   align-self: center;
+  align-items: center;
   flex-shrink: 0;
   margin-top: 5px;
 
@@ -487,9 +489,13 @@ nav ul li a p{
   max-height: 81%;
   object-fit: contain;
   margin: 0 auto;
+  padding-bottom: 43px;
+  align-items: center;
   border-radius: 3px;
 }
 .preview-title {
+  position: absolute;
+  bottom: 29px;
   font-size: 18px;
   color: #b1b19f;
   font-family: 'alegard';
@@ -1158,6 +1164,12 @@ input:focus, textarea:focus {
     color: #b1b19f;
     margin-top: 0;
     font-size: 16px;
+  }
+  .preview-pane img {
+    padding-bottom: 30px;
+  }
+  .preview-title {
+    bottom: 18px;
   }
   .scroll-menu {
     margin-left: -5px;
